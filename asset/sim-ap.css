@@ -1,0 +1,17 @@
+span.status-on {
+  text-align: center;
+  border: solid 2px #02af07;
+  width: 100px;
+  color: #02af07;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+span.status-off {
+  text-align: center;
+  border: solid 2px #af0202;
+  width: 100px;
+  color: #af0202;
+  font-weight: 600;
+  text-transform: capitalize;
+}
