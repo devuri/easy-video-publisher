@@ -46,9 +46,6 @@ function sim_easyvidpublisher_activation() {
 
 }
 
-// open graph data
-require_once plugin_dir_path( __FILE__ ). 'src/class-open-graph-data.php';
-
 // youtube class
 require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-post.php';
 
