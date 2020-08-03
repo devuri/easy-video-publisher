@@ -1,4 +1,4 @@
-/**
+
  * Create posts videos from youtube keywords
  * Create posts from youtube channel
  * Create posts from youtube playlist
@@ -41,4 +41,3 @@
  * Post Types
  * campaigns = ytapost (private: no ui | store campaigns each associated posts post ID )
  * videos = ytavids (private: no ui | store video Title and IDs only, these will be linked to campaigns id)
- */
