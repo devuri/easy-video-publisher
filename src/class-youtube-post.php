@@ -23,6 +23,24 @@ class YoutubeVideoPost
 	}
 
 	/**
+	 * create_user
+	 * @param  string $username 
+	 * @return boolean
+	 */
+	public static function create_user( $username = null ){
+			$user_id = username_exists( $username );
+			 	if ( ! $user_id ) {
+					 $userdata = array(
+							 'user_login' 	=> $username,
+							 'display_name' => $username,
+							 'user_pass'  	=> wp_generate_password( 10, true),
+					 );
+					 $user_id = wp_insert_user( $userdata );
+			 	}
+	 		return $user_id;
+	}
+
+	/**
 	 * video_data() using  WP_oEmbed
 	 * @param  string $vid_url video url
 	 * @return object
@@ -103,7 +121,7 @@ class YoutubeVideoPost
 			$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
 			$res1= wp_update_attachment_metadata( $attach_id, $attach_data );
 			$res2= set_post_thumbnail( $post_id, $attach_id );
-		
+
 		return $attach_id;
 	}
 
@@ -126,7 +144,7 @@ class YoutubeVideoPost
 	 * @param  [type] $youtube_video_id [description]
 	 * @return
 	 */
-	public static function newpost( $youtube_video = null , $html = false , $post_author = 1){
+	public static function newpost( $youtube_video = null , $html = false){
 
 		if ( ! $youtube_video == null ) {
 
@@ -143,6 +161,9 @@ class YoutubeVideoPost
 			} else {
 				$video_embed = self::youtube_block($video_id);
 			}
+
+			# post author
+			$post_author = self::create_user($video_author);
 
 			/**
 			 * Post info
