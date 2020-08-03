@@ -1,11 +1,11 @@
 <?php
 
-namespace SimAutoPost;
+namespace EasyVideoPublisher;
 
 /**
  *
  */
-class YoutubePostCreate
+class YoutubeVideoPost
 {
 
 	/**
@@ -13,13 +13,25 @@ class YoutubePostCreate
 	 * @param  $video_url
 	 * @return string
 	 */
-	public static function get_video_id( $video_url = null ){
+	public static function video_id( $video_url = null ){
 		if ( ! $video_url == null ) {
 			if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url , $vid_id)) {
 				$the_id = $vid_id[1];
 			}
 			return $the_id;
 		}
+	}
+
+	/**
+	 * video_data() using  WP_oEmbed
+	 * @param  string $vid_url video url
+	 * @return object
+	 * @link https://developer.wordpress.org/reference/classes/wp_oembed/
+	 */
+	public static function video_data( $vid_url = null ){
+		$oEmbed = new \WP_oEmbed;
+		$vid_data = $oEmbed->get_data($vid_url);
+		return $vid_data;
 	}
 
 	/**
@@ -31,52 +43,70 @@ class YoutubePostCreate
 	 */
 	public static function featured_image( $vid_img_id, $post_id,  $post_title ){
 
-		// @link https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api
-		// example https://img.youtube.com/vi/gu07qmagjSg/maxresdefault.jpg
-
+		/**
+		 * set up to use the maxresdefault image
+		 * example https://img.youtube.com/vi/yXzWfZ4N4xU/maxresdefault.jpg
+		 * @link https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api
+		 */
 		$image_url = 'https://img.youtube.com/vi/'.$vid_img_id.'/maxresdefault.jpg';
-		//$image_url = 'https://img.youtube.com/vi/'.$vid_img_id.'/0.jpg';
 
+		/**
+		 * lets make sure all is well
+		 * The maxresdefault is not always available
+		 * if we cant get the high resolution (maxresdefault) use the (hqdefault)
+		 */
+		$get_response = wp_remote_get( $image_url );
+ 		if ( $get_response['response']['code'] == 200 ) {
+			// req is ok
+ 			$image_url = 'https://img.youtube.com/vi/'.$vid_img_id.'/maxresdefault.jpg';
+ 		} else {
+			$image_url = 'https://img.youtube.com/vi/'.$vid_img_id.'/hqdefault.jpg';
+ 		}
+
+		/**
+		 * image details
+		 */
 		$upload_dir = wp_upload_dir();
-
-		// use @ to suppress error incase
 		$image_data = @file_get_contents($image_url);
 		$image_name = basename($image_url);
 
-		//split to array return file name and extension
-		$IMGgetExtension = explode(".", $image_name);
-
-		$IMGName = $IMGgetExtension[0];
-		$IMGExtension = $IMGgetExtension[1];
-
-		// set new IMAGE Name here (myfile.jpg)
-		$filename = sanitize_title($post_title.'-'.$vid_img_id).'.'.$IMGExtension;
+		/**
+		 * split to array
+		 * return file name and extension
+		 * and rename the image to match the post
+		 */
+		$get_img_extension = explode(".", $image_name);
+		$IMGName = $get_img_extension[0];
+		$image_extension = $get_img_extension[1];
+		$filename = sanitize_title($post_title.'-'.$vid_img_id).'.'.$image_extension;
 
 		// ok lets upload and stuff
 		if(wp_mkdir_p($upload_dir['path']))     $file = $upload_dir['path'] . '/' . $filename;
 		else
 			$file = $upload_dir['basedir'] . '/' . $filename;
 
-			// use @ to suppress error incase
+			/**
+			 * create the post
+			 */
 			@file_put_contents($file, $image_data);
-
 			$wp_filetype = wp_check_filetype($filename, null );
 			$attachment = array(
 				'post_mime_type' => $wp_filetype['type'],
 				'post_title' => sanitize_file_name($filename),
 				'post_content' => '',
 				'post_status' => 'inherit'
-		);
+			);
 
 		$attach_id = wp_insert_attachment( $attachment, $file, $post_id );
 
 		require_once(ABSPATH . 'wp-admin/includes/image.php');
-
 			$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
 			$res1= wp_update_attachment_metadata( $attach_id, $attach_data );
 			$res2= set_post_thumbnail( $post_id, $attach_id );
-
+		
+		return $attach_id;
 	}
+
 	/**
 	 * Youtube Block for wordpress
 	 * @param string $vid the video ID
@@ -91,31 +121,40 @@ class YoutubePostCreate
 		return $yt_block;
 	}
 
-
 	/**
 	 * Create the Post
 	 * @param  [type] $youtube_video_id [description]
 	 * @return
 	 */
-	public static function newpost( $youtube_video = null){
+	public static function newpost( $youtube_video = null , $html = false , $post_author = 1){
 
 		if ( ! $youtube_video == null ) {
 
 			/**
-			 * video id
+			 * video info
 			 */
-			$video_id = self::get_video_id($youtube_video);
+			$video_id 			= self::video_id($youtube_video);
+			$title  				= self::video_data($youtube_video)->title;
+			$thumbnail_url	= self::video_data($youtube_video)->thumbnail_url;
+			$video_author 	= self::video_data($youtube_video)->author_name;
+			$author_url  		= self::video_data($youtube_video)->author_url;
+			if ( $html == true ) {
+				$video_embed = self::video_data($youtube_video)->html;
+			} else {
+				$video_embed = self::youtube_block($video_id);
+			}
 
-			$title  = 'The Video Title';
-
+			/**
+			 * Post info
+			 */
 			$post_info = array(
 					'post_title' 		=> $title,
-					'post_content' 	=> self::youtube_block($video_id),
+					'post_content' 	=> $video_embed,
 					'post_type' 		=> 'post',
 					'post_status' 	=> 'publish',
 					'post_category'	=> array(2),
-					'tags_input' 		=> wp_strip_all_tags('tag 1,tag2'),
-					'post_author'   => 1,
+					'tags_input' 		=> wp_strip_all_tags($video_author),
+					'post_author'   => $post_author,
 			);
 
 			/**
