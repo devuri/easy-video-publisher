@@ -1,4 +1,5 @@
-
+## Easy Video Publisher
+Easy Video Publisher use to Import Youtube videos from youtube channel playlist or search.
  * Create posts videos from youtube keywords
  * Create posts from youtube channel
  * Create posts from youtube playlist
