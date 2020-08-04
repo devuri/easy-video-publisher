@@ -56,17 +56,8 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
-		event.preventDefault();
 		jQuery('input[type="submit"]').on('click', function( event ){
-			$('input[type="submit"]').attr('disabled','disabled');
 			$("#loading-div").removeClass('hidden');
-
-			// disable the button
-			// add loading to a div
-			// send post request
-			// get response
-			// remove loadinf div on success
-
 		});
 	});
 </script>
