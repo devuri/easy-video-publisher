@@ -24,22 +24,12 @@ final class Video_Publisher_Admin extends AdminPage {
     return $menu;
   }
 
-  private static function submenu(){
-    $menu = array();
-    $menu[] = 'YouTube';
-    $menu[] = 'Bulk Import';
-    $menu[] = 'Automatic Import';
-    $menu[] = 'Setup';
-    return $menu;
-  }
-
-
   /**
-   * [whitelabeladmin description]
-   * @return [type] [description]
+   * admin description
+   * @return 
    */
   public static function init(){
-    return new Video_Publisher_Admin(self::admin_menu(),self::submenu());
+    return new Video_Publisher_Admin(self::admin_menu());
   }
 }
 
