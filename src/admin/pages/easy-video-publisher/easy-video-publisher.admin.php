@@ -20,11 +20,10 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 ?><hr/>
 <div id="frmwrap" >
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
-		echo '<br>';
+		echo $this->form()->table('open');
 		echo $this->form()->input('YouTube Video url', 'video url');
-		echo '<br>';
-
+		echo $this->form()->table('close');
+		$this->form()->nonce();
 		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
-	  $this->form()->nonce();
 	?></form>
 </div><!--frmwrap-->
