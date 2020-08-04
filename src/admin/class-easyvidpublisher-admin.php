@@ -27,6 +27,7 @@ final class Video_Publisher_Admin extends AdminPage {
   private static function submenu(){
     $menu = array();
     $menu[] = 'YouTube';
+    $menu[] = 'Bulk Import';
     $menu[] = 'Automatic Import';
     $menu[] = 'Setup';
     return $menu;
