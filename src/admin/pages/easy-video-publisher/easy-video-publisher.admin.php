@@ -78,7 +78,7 @@ to {
 	transform: rotate(360deg);
 }
 }
-</style> <?php
+</style><?php
 /**
  * Process the data
  *
@@ -92,14 +92,18 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		/**
 		 * video
 		 */
-		$vid = sanitize_text_field($_POST['youtube_video_url']);
+		$vid = sanitize_text_field( trim( $_POST['youtube_video_url'] ) );
+
+		$args = array();
+		$args['category'] = intval( trim( $_POST['categoryset_category'] ) );
+		$args['tags'] = sanitize_text_field( trim( $_POST['video_tags'] ) );
 
 		/**
 		 * make sure this is a youtube url
 		 */
 		if ( EasyVideoPublisher\YoutubeVideoPost::video_id($vid) ) {
 
-			$id = EasyVideoPublisher\YoutubeVideoPost::newpost($vid, true);
+			$id = EasyVideoPublisher\YoutubeVideoPost::newpost($vid, $args);
 			if ($id) {
 				echo $this->form()->user_feedback('Video Has been Posted <strong> '.get_post( $id )->post_title.' </strong> ');
 				echo '<img width="400" src="'.get_the_post_thumbnail_url( $id ).'">';
@@ -115,7 +119,9 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 ?><div id="frmwrap" >
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
-		echo $this->form()->input('YouTube Video url', 'video url');
+		echo $this->form()->input('YouTube Video url', ' ');
+		echo $this->form()->categorylist('Category', ' ');
+		echo $this->form()->input('Video Tags', ' ');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
