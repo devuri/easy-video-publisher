@@ -1,5 +1,4 @@
 The MIT License (MIT)
-
 (https://blog.codepen.io/documentation/licensing/)
 
 Copyright (c) 2020 by Uriel Wilson  (https://codepen.io/devuri/pen/ExKxjLe)
