@@ -22,9 +22,50 @@ class YoutubeVideoPost
 		}
 	}
 
+	public static function loading(){ ?>
+		<div class='loader'>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		  <div class='prong'>
+		    <div class='inner'></div>
+		  </div>
+		</div>
+	<?php }
+
 	/**
 	 * create_user
-	 * @param  string $username 
+	 * @param  string $username
 	 * @return boolean
 	 */
 	public static function create_user( $username = null ){
