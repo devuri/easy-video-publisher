@@ -49,6 +49,8 @@ function sim_easyvidpublisher_activation() {
 // youtube class
 require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-post.php';
 
+// youtube class
+require_once plugin_dir_path( __FILE__ ). 'src/class-form-loader.php';
 
   /**
 	 * Load admin page class via composer
