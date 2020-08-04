@@ -24,7 +24,7 @@ class YoutubeVideoPost
 
 	/**
 	 * create_user
-	 * @param  string $username 
+	 * @param  string $username
 	 * @return boolean
 	 */
 	public static function create_user( $username = null ){
@@ -140,11 +140,37 @@ class YoutubeVideoPost
 	}
 
 	/**
-	 * Create the Post
-	 * @param  [type] $youtube_video_id [description]
-	 * @return
+	 * Youtube Html Block
+	 * @param string $vid the video ID
+	 * @return string
 	 */
-	public static function newpost( $youtube_video = null , $html = false){
+	public static function html_block( $vid = null ){
+		$html_block  = '<!-- wp:html -->';
+		$html_block .= '<iframe src="https://www.youtube.com/embed/'.$vid.'?feature=oembed"';
+		$html_block .= 'width="780" height="439" frameborder="0"';
+		$html_block .= 'allowfullscreen="allowfullscreen"></iframe>';
+		$html_block .= '<!-- /wp:html -->';
+		return $html_block;
+	}
+
+	/**
+	 * New Post
+	 * @param  string  $youtube_video  video url
+	 * @param  boolean $html          use html block
+	 * @param  boolean $author        the wp author or create youtube author
+	 * @return int
+	 */
+	public static function newpost( $youtube_video = null , $args = array()){
+
+		/**
+		 * default args
+		 */
+		$default = array();
+		$default['category'] = array(1);
+		$default['html'] = true;
+		$default['create_author'] = true;
+		$default['tags'] = array();
+		$args = wp_parse_args( $args , $default );
 
 		if ( ! $youtube_video == null ) {
 
@@ -156,14 +182,23 @@ class YoutubeVideoPost
 			$thumbnail_url	= self::video_data($youtube_video)->thumbnail_url;
 			$video_author 	= self::video_data($youtube_video)->author_name;
 			$author_url  		= self::video_data($youtube_video)->author_url;
-			if ( $html == true ) {
-				$video_embed = self::video_data($youtube_video)->html;
+			if ( $args['html'] == true ) {
+				$video_embed = self::html_block($video_id);
 			} else {
 				$video_embed = self::youtube_block($video_id);
 			}
 
-			# post author
-			$post_author = self::create_user($video_author);
+			/**
+			 * create a new author
+			 */
+			if ( $args['create_author'] ) {
+				# post author
+				$post_author = self::create_user($video_author);
+			} else {
+				// use current wp author
+				$post_author = 1;
+			}
+
 
 			/**
 			 * Post info
@@ -173,8 +208,8 @@ class YoutubeVideoPost
 					'post_content' 	=> $video_embed,
 					'post_type' 		=> 'post',
 					'post_status' 	=> 'publish',
-					'post_category'	=> array(2),
-					'tags_input' 		=> wp_strip_all_tags($video_author),
+					'post_category'	=> array($args['category']),
+					'tags_input' 		=> wp_strip_all_tags($args['tags']),
 					'post_author'   => $post_author,
 			);
 
