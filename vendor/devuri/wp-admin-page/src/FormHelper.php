@@ -100,7 +100,7 @@ if (!class_exists('WPAdminPage\Admin\Form\FormHelper')) {
       $input .= '<label for="'.str_replace(" ", "_", $fieldname).'">';
       $input .= ucwords(str_replace("_", " ", $fieldname));
       $input .= $require;
-      $input .= ' </label>';
+      $input .= '</label>';
       $input .= '</th>';
       $input .= '<td>';
       $input .= '<input type="'.$type.'" name="'.str_replace(" ", "_", $fieldname).'" id="'.str_replace(" ", "_", $fieldname).'" aria-describedby="'.str_replace(" ", "-", $fieldname).'-description" value="'.$val.'" class="uk-input">';
