@@ -32,9 +32,11 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 			$id = EasyVideoPublisher\YoutubeVideoPost::newpost($vid, $args);
 			if ($id) {
 				echo $this->form()->user_feedback('Video Has been Posted <strong> '.get_post( $id )->post_title.' </strong> ');
+				echo '<div id="new-post-preview">';
 				echo '<img width="400" src="'.get_the_post_thumbnail_url( $id ).'">';
 				echo '<br>';
 				echo '<a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'<a>';
+				echo '</div>';
 			}
 		} else {
 			echo $this->form()->user_feedback('Please Use a Valid YouTube url !!!', 'error');
@@ -57,6 +59,7 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 		jQuery('input[type="submit"]').on('click', function( event ){
+			$("#new-post-preview").addClass('hidden');
 			$("#loading-div").removeClass('hidden');
 		});
 	});
