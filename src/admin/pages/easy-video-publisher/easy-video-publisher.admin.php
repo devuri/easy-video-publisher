@@ -1,9 +1,14 @@
 <?php
 
+	use EasyVideoPublisher\YoutubeVideoPost;
+	use EasyVideoPublisher\Category_List;
+	use EasyVideoPublisher\FormLoader;
+	use EasyVideoPublisher\Sim_Editor;
+
 	/**
 	 * CSS for the loader
 	 */
-	EasyVideoPublisher\FormLoader::css_style();
+	FormLoader::css_style();
 
 /**
  * Process the data
@@ -25,12 +30,14 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		$args['tags'] = sanitize_text_field( trim( $_POST['video_tags'] ) );
 		$args['description'] = wp_filter_post_kses( trim( $_POST['video_description'] ) );
 
+		print_r($_POST['category']);
+
 		/**
 		 * make sure this is a youtube url
 		 */
-		if ( EasyVideoPublisher\YoutubeVideoPost::video_id($vid) ) {
+		if ( YoutubeVideoPost::video_id($vid) ) {
 
-			$id = EasyVideoPublisher\YoutubeVideoPost::newpost($vid, $args);
+			$id = YoutubeVideoPost::newpost($vid, $args);
 			if ($id) {
 				echo $this->form()->user_feedback('Video Has been Posted <strong> '.get_post( $id )->post_title.' </strong> ');
 				echo '<div id="new-post-preview">';
@@ -44,14 +51,15 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		}
 }
 ?><div id="loading-div" class="hidden">
-	<?php EasyVideoPublisher\FormLoader::loading(); ?>
+	<?php FormLoader::loading(); ?>
 </div><div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
+
 		echo $this->form()->table('open');
 		echo $this->form()->input('YouTube Video url', ' ');
 		echo $this->form()->categorylist('Category', ' ');
 		echo $this->form()->input('Video Tags', ' ');
-		echo EasyVideoPublisher\Sim_Editor::get_editor('','video_description');
+		echo Sim_Editor::get_editor('','video_description');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
