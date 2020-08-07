@@ -43,14 +43,17 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 				echo '<div id="new-post-preview">';
 				echo '<img width="400" src="'.get_the_post_thumbnail_url( $id ).'">';
 				echo '<br>';
-				echo '<a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'<a>';
+				echo '<a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a>';
 				echo '</div>';
 			}
 		} else {
 			echo $this->form()->user_feedback('Please Use a Valid YouTube url !!!', 'error');
 		}
 }
-?><div id="loading-div" class="hidden">
+?><h2>
+	<?php _e('Youtube Video Publisher'); ?>
+</h2><hr/>
+<div id="loading-div" class="hidden">
 	<?php FormLoader::loading(); ?>
 </div><div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
@@ -62,6 +65,7 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		echo Sim_Editor::get_editor('','video_description');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
+		echo '<hr/>';
 		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
 	?></form>
 </div><!--frmwrap-->
@@ -69,6 +73,7 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 	jQuery( document ).ready( function( $ ) {
 		jQuery('input[type="submit"]').on('click', function( event ){
 			$("#new-post-preview").addClass('hidden');
+			$("#yt-importform").addClass('hidden');
 			$("#loading-div").removeClass('hidden');
 		});
 	});
