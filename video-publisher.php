@@ -52,6 +52,9 @@ require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-post.php';
 // loader
 require_once plugin_dir_path( __FILE__ ). 'src/class-form-loader.php';
 
+// editor
+require_once plugin_dir_path( __FILE__ ). 'src/class-sim-editor.php';
+
   /**
 	 * Load admin page class via composer
 	 */
