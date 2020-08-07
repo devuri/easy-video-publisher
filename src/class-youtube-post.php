@@ -9,6 +9,22 @@ class YoutubeVideoPost
 {
 
 	/**
+	 * define user access level for the admin form
+	 * who can acces and use the form
+	 */
+	public static function access_level( $role = 'admin'){
+
+		$access = array();
+		$access['admin'] 				= 'manage_options';
+		$access['editor'] 			= 'delete_others_pages';
+		$access['author'] 			= 'publish_posts';
+		$access['contributor'] 	= 'edit_posts';
+		$access['subscriber'] 	= 'read';
+
+		return $access[$role];
+	}
+
+	/**
 	 * get the video id from url
 	 * @param  $video_url
 	 * @return string
@@ -73,8 +89,8 @@ class YoutubeVideoPost
 		 * The maxresdefault is not always available
 		 * if we cant get the high resolution (maxresdefault) use the (hqdefault)
 		 */
-		$get_response = wp_remote_get( $image_url );
- 		if ( $get_response['response']['code'] == 200 ) {
+		$get_image = wp_remote_get( $image_url );
+ 		if ( $get_image['response']['code'] == 200 ) {
 			// req is ok
  			$image_url = 'https://img.youtube.com/vi/'.$vid_img_id.'/maxresdefault.jpg';
  		} else {
@@ -166,10 +182,13 @@ class YoutubeVideoPost
 		 * default args
 		 */
 		$default = array();
-		$default['category'] = array(1);
-		$default['html'] = true;
-		$default['create_author'] = true;
-		$default['tags'] = array();
+		$default['category'] 			= array(1);
+		$default['post_type'] 		= 'post';
+		$default['post_status'] 	= 'publish';
+		$default['html'] 					= true;
+		$default['create_author'] = false;
+		$default['tags'] 					= array();
+		$default['description'] 	= '';
 		$args = wp_parse_args( $args , $default );
 
 		if ( ! $youtube_video == null ) {
@@ -196,7 +215,7 @@ class YoutubeVideoPost
 				$post_author = self::create_user($video_author);
 			} else {
 				// use current wp author
-				$post_author = 1;
+				$post_author = get_current_user_id();
 			}
 
 
@@ -205,9 +224,9 @@ class YoutubeVideoPost
 			 */
 			$post_info = array(
 					'post_title' 		=> $title,
-					'post_content' 	=> $video_embed,
-					'post_type' 		=> 'post',
-					'post_status' 	=> 'publish',
+					'post_content' 	=> $video_embed.'<p>'.$args['description'].'</p>',
+					'post_type' 		=> $args['post_type'],
+					'post_status' 	=> $args['post_status'],
 					'post_category'	=> array($args['category']),
 					'tags_input' 		=> wp_strip_all_tags($args['tags']),
 					'post_author'   => $post_author,

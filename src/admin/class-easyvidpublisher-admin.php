@@ -14,7 +14,7 @@ final class Video_Publisher_Admin extends AdminPage {
     $menu = array();
     $menu[] = 'Easy Video Publisher';
     $menu[] = 'Video Publisher';
-    $menu[] = 'manage_options';
+    $menu[] = YoutubeVideoPost::access_level('admin');
     $menu[] = 'easy-video-publisher';
     $menu[] = 'sim_publisher_callback';
     $menu[] = 'dashicons-video-alt3';
@@ -26,7 +26,7 @@ final class Video_Publisher_Admin extends AdminPage {
 
   /**
    * admin description
-   * @return 
+   * @return
    */
   public static function init(){
     return new Video_Publisher_Admin(self::admin_menu());
