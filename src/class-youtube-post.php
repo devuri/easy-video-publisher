@@ -9,7 +9,8 @@ class YoutubeVideoPost
 {
 
 	/**
-	 * define user access level for the aadmin form
+	 * define user access level for the admin form
+	 * who can acces and use the form
 	 */
 	public static function access_level( $role = 'admin'){
 
