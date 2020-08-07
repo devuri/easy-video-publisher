@@ -23,6 +23,7 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		$args = array();
 		$args['category'] = intval( trim( $_POST['categoryset_category'] ) );
 		$args['tags'] = sanitize_text_field( trim( $_POST['video_tags'] ) );
+		$args['description'] = wp_filter_post_kses( trim( $_POST['video_description'] ) );
 
 		/**
 		 * make sure this is a youtube url
@@ -50,6 +51,7 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		echo $this->form()->input('YouTube Video url', ' ');
 		echo $this->form()->categorylist('Category', ' ');
 		echo $this->form()->input('Video Tags', ' ');
+		echo EasyVideoPublisher\Sim_Editor::get_editor('','video_description');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
