@@ -55,7 +55,6 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
 	?></form>
 </div><!--frmwrap-->
-
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 		jQuery('input[type="submit"]').on('click', function( event ){
