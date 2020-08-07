@@ -55,6 +55,9 @@ require_once plugin_dir_path( __FILE__ ). 'src/class-form-loader.php';
 // editor
 require_once plugin_dir_path( __FILE__ ). 'src/class-sim-editor.php';
 
+// category list
+require_once plugin_dir_path( __FILE__ ). 'src/class-category-list.php';
+
   /**
 	 * Load admin page class via composer
 	 */
