@@ -9,6 +9,21 @@ class YoutubeVideoPost
 {
 
 	/**
+	 * define user access level for the aadmin form
+	 */
+	public static function access_level( $role = 'admin'){
+
+		$access = array();
+		$access['admin'] 				= 'manage_options';
+		$access['editor'] 			= 'delete_others_pages';
+		$access['author'] 			= 'publish_posts';
+		$access['contributor'] 	= 'edit_posts';
+		$access['subscriber'] 	= 'read';
+
+		return $access[$role];
+	}
+
+	/**
 	 * get the video id from url
 	 * @param  $video_url
 	 * @return string
