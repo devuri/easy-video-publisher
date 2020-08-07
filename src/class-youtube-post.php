@@ -188,6 +188,7 @@ class YoutubeVideoPost
 		$default['html'] 					= true;
 		$default['create_author'] = false;
 		$default['tags'] 					= array();
+		$default['description'] 	= '';
 		$args = wp_parse_args( $args , $default );
 
 		if ( ! $youtube_video == null ) {
@@ -223,7 +224,7 @@ class YoutubeVideoPost
 			 */
 			$post_info = array(
 					'post_title' 		=> $title,
-					'post_content' 	=> $video_embed,
+					'post_content' 	=> $video_embed.'<p>'.$args['description'].'</p>',
 					'post_type' 		=> $args['post_type'],
 					'post_status' 	=> $args['post_status'],
 					'post_category'	=> array($args['category']),
