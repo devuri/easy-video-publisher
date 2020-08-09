@@ -7,37 +7,60 @@
 		/**
 		 * CSS for the loader
 		 */
-		FormLoader::css_style();
+		FormLoader::css_style(
+			array(
+				'size' 						=> '20px',
+				'padding' 				=> '0px',
+				'padding-bottom' 	=> '1em',
+			)
+		);
 
 
 /**
  * Process the data
  *
  */
-if ( isset( $_POST['save_category_settings'] ) ){
+if ( isset( $_POST['save_category_settings'] ) ) :
 
 	if ( ! $this->form()->verify_nonce()  ) {
 		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
 	}
-
 	/**
-	 * get category ids
+	 * Make sure this is set if not load empty array
+	 * @var [type]
 	 */
-	$categories = array_keys($_POST['category']);
-	var_dump($categories);
+	if ( ! isset( $_POST['category'] ) ) {
 
+		# update with empty array
+		$restricted_category = array();
+		update_option( 'evp_restricted_categories' , $restricted_category );
 
-}
-?><h2>
-	<?php _e('Publisher Settings'); ?>
-</h2><hr/>
-<div id="loading-div" class="hidden" style="padding: 3em;">
-	<?php FormLoader::loading(); ?>
-</div><div id="yt-importform">
+	} else {
+
+		/**
+		 * get category ids
+		 */
+		$categories = array_keys( $_POST['category'] );
+		foreach ( $categories as $catkey => $val ) {
+			intval( $val );
+			$restricted_category[$catkey] = absint($val);
+		}
+
+		// update and provide feedback
+	  update_option('evp_restricted_categories', $restricted_category );
+	}
+
+endif;
+?><h2><?php _e('Video Publisher Settings'); ?></h2>
+
+<hr/>
+<div id="category-form">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
+		//var_dump(get_option('evp_restricted_categories'));
 		echo $this->form()->table('open');
 		echo '<th><label for="category-list">Restrict Categories</label></th>';
 		echo '<td>';
+		FormLoader::loading('update-loader');
 		echo Category_List::checkbox();
 		echo '</td>';
 		echo $this->form()->table('close');
@@ -49,7 +72,7 @@ if ( isset( $_POST['save_category_settings'] ) ){
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 
-		// selection 
+		// selection
 		jQuery('input[type="checkbox"]').on('click', function( event ){
 			$(this).parent().css('background-color', '#fff').css('color', '#424242');
 				if ($(this).is(":checked")) {
@@ -59,9 +82,7 @@ if ( isset( $_POST['save_category_settings'] ) ){
 
 		// loading
 		jQuery('input[type="submit"]').on('click', function( event ){
-			$("#new-post-preview").addClass('hidden');
-			$("#yt-importform").addClass('hidden');
-			$("#loading-div").removeClass('hidden');
+			$(".update-loader").removeClass('hidden');
 		 });
 	});
 </script>
