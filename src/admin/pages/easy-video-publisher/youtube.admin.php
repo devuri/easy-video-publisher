@@ -8,7 +8,13 @@
 	/**
 	 * CSS for the loader
 	 */
-	FormLoader::css_style();
+	FormLoader::css_style(
+		array(
+			'size' 						=> '200px',
+			'padding' 				=> '1em',
+			'padding-bottom' 	=> '0',
+		)
+	);
 
 /**
  * Process the data
@@ -57,9 +63,8 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 ?><h2>
 	<?php _e('Youtube Video Publisher'); ?>
 </h2><hr/>
-<div id="loading-div" class="hidden" style="padding: 3em;">
-	<?php FormLoader::loading(); ?>
-</div><div id="yt-importform">
+	<?php FormLoader::loading('update-loader');; ?>
+<div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Video Title</label><br> <small> Use a custom title for the video</small></td>';
@@ -90,7 +95,7 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		jQuery('input[type="submit"]').on('click', function( event ){
 			$("#new-post-preview").addClass('hidden');
 			$("#yt-importform").addClass('hidden');
-			$("#loading-div").removeClass('hidden');
+			$(".loading").removeClass('hidden');
 		 });
 	});
 </script>
