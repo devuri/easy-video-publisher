@@ -13,6 +13,8 @@ class Category_List
 	public static function checkbox(){
 		$terms = array(
 			'taxonomy' => 'category',
+			'orderby' => 'name',
+      'order' => 'ASC',
 			'parent'   => 0
 		);
 		$categories = get_terms($terms);
