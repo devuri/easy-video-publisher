@@ -41,8 +41,12 @@
 //Activate
 register_activation_hook( __FILE__, 'sim_easyvidpublisher_activation' );
 function sim_easyvidpublisher_activation() {
-
-  // add option
+  /**
+   * turned off by defualt
+   * @var array
+   */
+  $restricted_categories = array();
+  update_option('evp_restricted_categories', $restricted_categories );
 
 }
 
