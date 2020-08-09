@@ -12,55 +12,33 @@ class FormLoader
 	 * Loading div
 	 * @return [type] [description]
 	 */
-	public static function loading(){ ?>
-		<div class='loader'>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		  <div class='prong'>
-		    <div class='inner'></div>
-		  </div>
-		</div>
-	<?php }
+	public static function loading($name = 'update-loader', $css = array()){
+
+		/**
+		 * make the prongs (12)
+		 */
+		$prong = '<div class="prong"><div class="inner"></div></div>';
+		echo '<div class="loading '.$name.' hidden">';
+		echo '<div class="loader">';
+			for ($i=0; $i <= 12 ; $i++) {
+				echo $prong;
+			}
+		echo '</div>';
+		echo '</div>';
+	}
 
 	/**
 	 * css for the loader
 	 * @return [type] [description]
 	 */
-	public static function css_style(){ ?><style media="screen">
+	public static function css_style( $css = array() ){	?><style media="screen">
+		.loading {
+			padding: <?php echo $css['padding']; ?>;
+			padding-bottom: <?php echo $css['padding-bottom']; ?>;
+		}
 		.loader {
-		width: 200px;
-		height: 200px;
+		width:<?php echo $css['size']; ?>;
+		height: <?php echo $css['size']; ?>;
 		border-radius: 200px;
 		position: relative;
 		animation: rotate 0.8s steps(12, end) infinite;
