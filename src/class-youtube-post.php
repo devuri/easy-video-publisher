@@ -39,6 +39,21 @@ class YoutubeVideoPost
 	}
 
 	/**
+	 * allow the user to add a custom Title
+	 * Instead of using the title from oEmbed
+	 * @return [type] [description]
+	 */
+	public static function custom_title(){
+		$video_title = '<tr class="input-video-title hidden"><th>';
+		$video_title .= '<label for="video_title">Video Title</label>';
+		$video_title .= '</th>';
+		$video_title .= '<td><input type="text" name="video_title" id="video_title" aria-describedby="video-title-description" value=" " class="uk-input">';
+		$video_title .= '<p class="description" id="video-title-description">video title<strong>.</strong>';
+		$video_title .= '</p></td></tr>';
+		return $video_title;
+	}
+
+	/**
 	 * create_user
 	 * @param  string $username
 	 * @return boolean
@@ -70,10 +85,10 @@ class YoutubeVideoPost
 
 	/**
 	 * Download image and set as featured image
-	 * @param  [type] $image_url  [description]
-	 * @param  [type] $post_id    [description]
-	 * @param  [type] $post_title [description]
-	 * @return [type]             [description]
+	 * @param  string $vid_img_id  	youtube video id
+	 * @param  int 		$post_id    	the post id
+	 * @param  string $post_title 	title of the post
+	 * @return int 		$attach_id		the attachment id
 	 */
 	public static function featured_image( $vid_img_id, $post_id,  $post_title ){
 
@@ -112,12 +127,15 @@ class YoutubeVideoPost
 		$get_img_extension = explode(".", $image_name);
 		$IMGName = $get_img_extension[0];
 		$image_extension = $get_img_extension[1];
-		$filename = sanitize_title($post_title.'-'.$vid_img_id).'.'.$image_extension;
+		$img_title = sanitize_text_field( $post_title .' - '. $vid_img_id );
+		$filename = sanitize_file_name(strtolower($post_title.'-'.$vid_img_id)).'.'.$image_extension;
 
 		// ok lets upload and stuff
-		if(wp_mkdir_p($upload_dir['path']))     $file = $upload_dir['path'] . '/' . $filename;
-		else
+		if (wp_mkdir_p($upload_dir['path'])) {
+			$file = $upload_dir['path'] . '/' . $filename;
+		} else {
 			$file = $upload_dir['basedir'] . '/' . $filename;
+		}
 
 			/**
 			 * create the post
@@ -126,7 +144,7 @@ class YoutubeVideoPost
 			$wp_filetype = wp_check_filetype($filename, null );
 			$attachment = array(
 				'post_mime_type' => $wp_filetype['type'],
-				'post_title' => sanitize_file_name($filename),
+				'post_title' => $img_title,
 				'post_content' => '',
 				'post_status' => 'inherit'
 			);
@@ -170,10 +188,9 @@ class YoutubeVideoPost
 	}
 
 	/**
-	 * New Post
-	 * @param  string  $youtube_video  video url
-	 * @param  boolean $html          use html block
-	 * @param  boolean $author        the wp author or create youtube author
+	 * Create the Post
+	 * @param  string $youtube_video youtube url
+	 * @param  array  $args          other options
 	 * @return int
 	 */
 	public static function newpost( $youtube_video = null , $args = array()){
@@ -182,10 +199,11 @@ class YoutubeVideoPost
 		 * default args
 		 */
 		$default = array();
+		$default['title'] 				= self::video_data($youtube_video)->title;
 		$default['category'] 			= array(1);
 		$default['post_type'] 		= 'post';
 		$default['post_status'] 	= 'publish';
-		$default['html'] 					= true;
+		$default['html'] 					= false;
 		$default['create_author'] = false;
 		$default['tags'] 					= array();
 		$default['description'] 	= '';
@@ -197,7 +215,6 @@ class YoutubeVideoPost
 			 * video info
 			 */
 			$video_id 			= self::video_id($youtube_video);
-			$title  				= self::video_data($youtube_video)->title;
 			$thumbnail_url	= self::video_data($youtube_video)->thumbnail_url;
 			$video_author 	= self::video_data($youtube_video)->author_name;
 			$author_url  		= self::video_data($youtube_video)->author_url;
@@ -223,7 +240,7 @@ class YoutubeVideoPost
 			 * Post info
 			 */
 			$post_info = array(
-					'post_title' 		=> $title,
+					'post_title' 		=> $args['title'],
 					'post_content' 	=> $video_embed.'<p>'.$args['description'].'</p>',
 					'post_type' 		=> $args['post_type'],
 					'post_status' 	=> $args['post_status'],
@@ -238,9 +255,9 @@ class YoutubeVideoPost
 			$post_id = wp_insert_post( $post_info );
 
 			/**
-			 *
+			 * set featured image
 			 */
-			self::featured_image( $video_id, $post_id, $title  );
+			self::featured_image( $video_id, $post_id, $args['title']  );
 		}
 
 		return $post_id;

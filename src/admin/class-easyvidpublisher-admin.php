@@ -25,11 +25,27 @@ final class Video_Publisher_Admin extends AdminPage {
   }
 
   /**
+   * submenu()
+   * array of submenu items
+   * @return array
+   */
+  private static function submenu(){
+    $submenu = array();
+    $submenu[] = 'Settings';
+    $submenu[] = array(
+      'name' => 'YouTube',
+      'access' => 'read'
+    );
+    $submenu[] = 'Vimeo';
+    return $submenu;
+  }
+
+  /**
    * admin description
    * @return
    */
   public static function init(){
-    return new Video_Publisher_Admin(self::admin_menu());
+    return new Video_Publisher_Admin(self::admin_menu(),self::submenu());
   }
 }
 
