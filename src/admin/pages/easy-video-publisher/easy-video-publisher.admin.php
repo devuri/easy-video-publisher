@@ -48,6 +48,16 @@ if ( isset( $_POST['save_category_settings'] ) ){
 </div><!--frmwrap-->
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
+
+		// selection 
+		jQuery('input[type="checkbox"]').on('click', function( event ){
+			$(this).parent().css('background-color', '#fff').css('color', '#424242');
+				if ($(this).is(":checked")) {
+					$(this).parent().css('background-color', '#fff').css('color', '#b9b9b9');
+			}
+		});
+
+		// loading
 		jQuery('input[type="submit"]').on('click', function( event ){
 			$("#new-post-preview").addClass('hidden');
 			$("#yt-importform").addClass('hidden');
