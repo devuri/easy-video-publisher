@@ -71,7 +71,7 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Video Title</label><br> <small> Use a custom title for the video</small></td>';
 		echo YoutubeVideoPost::custom_title();
 		echo $this->form()->input('YouTube Video url', ' ');
-		echo Category_Select::categories();
+		echo Category_Select::categories('category');
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';
 		echo Sim_Editor::get_editor('','video_description');
 		echo $this->form()->input('Video Tags', ' ');
