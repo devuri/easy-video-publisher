@@ -127,12 +127,15 @@ class YoutubeVideoPost
 		$get_img_extension = explode(".", $image_name);
 		$IMGName = $get_img_extension[0];
 		$image_extension = $get_img_extension[1];
-		$filename = sanitize_title($post_title.'-'.$vid_img_id).'.'.$image_extension;
+		$img_title = sanitize_text_field( $post_title .' - '. $vid_img_id );
+		$filename = sanitize_file_name(strtolower($post_title.'-'.$vid_img_id)).'.'.$image_extension;
 
 		// ok lets upload and stuff
-		if(wp_mkdir_p($upload_dir['path']))     $file = $upload_dir['path'] . '/' . $filename;
-		else
+		if (wp_mkdir_p($upload_dir['path'])) {
+			$file = $upload_dir['path'] . '/' . $filename;
+		} else {
 			$file = $upload_dir['basedir'] . '/' . $filename;
+		}
 
 			/**
 			 * create the post
@@ -141,7 +144,7 @@ class YoutubeVideoPost
 			$wp_filetype = wp_check_filetype($filename, null );
 			$attachment = array(
 				'post_mime_type' => $wp_filetype['type'],
-				'post_title' => sanitize_file_name($filename),
+				'post_title' => $img_title,
 				'post_content' => '',
 				'post_status' => 'inherit'
 			);
