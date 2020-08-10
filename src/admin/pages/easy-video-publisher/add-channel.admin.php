@@ -13,9 +13,12 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 	/**
 	 * Adds new channel
 	 */
+	$channelId 			= trim( $_POST['channel_id'] );
+	$channelname 		= trim( $_POST['channel_name'] );
+
 	$channels 			= array();
 	$channels 			= get_option('evp_channels');
-	$channels[] 		= trim( $_POST['youtube_channel_id'] );
+	$channels[$channelId] = $channelname;
 
 	# add the new channel
 	update_option('evp_channels', $channels );
@@ -25,7 +28,8 @@ endif;
 ?><div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
-		echo $this->form()->input('YouTube Channel ID', ' ');
+		echo $this->form()->input('Channel ID', ' ');
+		echo $this->form()->input('Channel Name', ' ');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo '<hr/>';
