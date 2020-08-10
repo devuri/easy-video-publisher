@@ -11,6 +11,10 @@ class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
         array (
             'WPAdminPage\\' => 12,
         ),
+        'M' => 
+        array (
+            'Madcoda\\Youtube\\' => 16,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -18,6 +22,14 @@ class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
         array (
             0 => __DIR__ . '/..' . '/devuri/wp-admin-page/src',
         ),
+        'Madcoda\\Youtube\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/madcoda/php-youtube-api/src',
+        ),
+    );
+
+    public static $classMap = array (
+        'Madcoda\\compat' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/compat.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +37,7 @@ class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit15384333ceba211cd3f0f535f5a3055c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit15384333ceba211cd3f0f535f5a3055c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit15384333ceba211cd3f0f535f5a3055c::$classMap;
 
         }, null, ClassLoader::class);
     }
