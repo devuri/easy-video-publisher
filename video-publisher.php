@@ -63,6 +63,9 @@ require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-post.php';
 // youtube api wrapper
 require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-api.php';
 
+// Latest_Updates
+require_once plugin_dir_path( __FILE__ ). 'src/class-latest-updates.php';
+
 // loader
 require_once plugin_dir_path( __FILE__ ). 'src/class-form-loader.php';
 
