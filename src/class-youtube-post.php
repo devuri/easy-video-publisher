@@ -205,9 +205,11 @@ class YoutubeVideoPost
 		$default['post_status'] 	= 'publish';
 		$default['html'] 					= false;
 		$default['create_author'] = false;
+		$default['author'] 				= get_current_user_id();
 		$default['tags'] 					= array();
 		$default['description'] 	= '';
 		$args = wp_parse_args( $args , $default );
+
 
 		if ( ! $youtube_video == null ) {
 
@@ -228,11 +230,9 @@ class YoutubeVideoPost
 			 * create a new author
 			 */
 			if ( $args['create_author'] ) {
-				# post author
 				$post_author = self::create_user($video_author);
 			} else {
-				// use current wp author
-				$post_author = get_current_user_id();
+				$post_author = $args['author'];
 			}
 
 
