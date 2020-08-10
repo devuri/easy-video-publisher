@@ -36,6 +36,7 @@
 
   # plugin url
     define("EVP_URL", plugins_url( "/",__FILE__ ));
+
 #  -----------------------------------------------------------------------------
 
 //Activate
@@ -52,6 +53,9 @@ function sim_easyvidpublisher_activation() {
 
 // youtube class
 require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-post.php';
+
+// youtube api wrapper
+require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-api.php';
 
 // loader
 require_once plugin_dir_path( __FILE__ ). 'src/class-form-loader.php';
