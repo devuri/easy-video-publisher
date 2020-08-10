@@ -36,7 +36,9 @@ final class Video_Publisher_Admin extends AdminPage {
       'name' => 'YouTube',
       'access' => 'read'
     );
-    $submenu[] = 'Vimeo';
+    $submenu[] = 'Auto Publisher';
+    $submenu[] = 'Add Channel';
+    $submenu[] = 'API Setup';
     return $submenu;
   }
 
