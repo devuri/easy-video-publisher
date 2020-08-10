@@ -42,10 +42,16 @@
 //Activate
 register_activation_hook( __FILE__, 'sim_easyvidpublisher_activation' );
 function sim_easyvidpublisher_activation() {
-  /**
-   * turned off by defualt
-   * @var array
-   */
+
+  # api key
+  $api_key = array();
+  update_option('evp_youtube_api', $api_key );
+
+  # channels
+  $channels = array();
+  update_option('evp_channels', $channels);
+
+  # restrict categpries
   $restricted_categories = array();
   update_option('evp_restricted_categories', $restricted_categories );
 
