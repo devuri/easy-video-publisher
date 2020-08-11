@@ -77,10 +77,11 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 		echo $this->form()->input('Video Tags', ' ');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
-		echo '<hr/>';
+		echo '<br/>';
 		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
 	?></form>
 </div><!--frmwrap-->
+<br/><hr/>
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 

@@ -65,10 +65,11 @@ endif;
 		echo '</td>';
 		echo $this->form()->table('close');
 		$this->form()->nonce();
-		echo '<hr/>';
+		echo '<br/>';
 		echo $this->form()->submit_button('Save', 'primary large', 'save_category_settings');
 	?></form>
 </div><!--frmwrap-->
+<br/><hr/>
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 
