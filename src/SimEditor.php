@@ -6,7 +6,21 @@ namespace EasyVideoPublisher;
  */
 class SimEditor
 {
-
+  
+  /**
+	 * allow the user to add a custom Title
+	 * Instead of using the title from oEmbed
+	 * @return [type] [description]
+	 */
+	public static function custom_title(){
+		$video_title = '<tr class="input-video-title hidden"><th>';
+		$video_title .= '<label for="video_title">Video Title</label>';
+		$video_title .= '</th>';
+		$video_title .= '<td><input type="text" name="video_title" id="video_title" aria-describedby="video-title-description" value=" " class="uk-input">';
+		$video_title .= '<p class="description" id="video-title-description">video title<strong>.</strong>';
+		$video_title .= '</p></td></tr>';
+		return $video_title;
+	}
   /**
    * the wp editor
    * @param  string $content   [description]
