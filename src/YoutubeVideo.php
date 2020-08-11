@@ -23,18 +23,6 @@ class YoutubeVideo
 		}
 	}
 
-
-	/**
-	 * video_data() using  WP_oEmbed via UrlDataAPI
-	 * @param  string $vid_url video url
-	 * @return object
-	 * @link https://developer.wordpress.org/reference/classes/wp_oembed/
-	 */
-	public static function video_data( $vid_url = null ){
-		$vid_data = UrlDataAPI::get_data($vid_url);
-		return $vid_data;
-	}
-
 	/**
 	 * Get youtube video info using WP_oEmbed
 	 * @param  mixed  	$v    	video id, or array of video ids
@@ -51,10 +39,10 @@ class YoutubeVideo
 			foreach ( $v as $key => $v) {
 				$vid[$key] = array(
 					'id' 					=> $v,
-					'title' 			=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->title,
-					'thumbnail' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
-					'author_name' => self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
-					'author_url' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
+					'title' 			=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->title,
+					'thumbnail' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
+					'author_name' => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
+					'author_url' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
 				);
 
 				# stop if we reach the limit
@@ -65,10 +53,10 @@ class YoutubeVideo
 		} else {
 			$vid = array(
 				'id' 					=> $v,
-				'title' 			=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->title,
-				'thumbnail' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
-				'author_name' => self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
-				'author_url' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
+				'title' 			=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->title,
+				'thumbnail' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
+				'author_name' => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
+				'author_url' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
 			);
 			return $vid;
 		}
