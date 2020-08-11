@@ -23,7 +23,8 @@ class LatestUpdates
 		if ( get_option('evp_latest_updates') ) {
 			return count( get_option('evp_latest_updates') );
 		}
-		return false;
+		$update_count = 0;
+		return $update_count;
 	}
 
 
