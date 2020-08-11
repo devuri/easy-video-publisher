@@ -4,7 +4,7 @@ namespace EasyVideoPublisher;
 /**
  *
  */
-class Latest_Updates
+class LatestUpdates
 {
 
 	/**

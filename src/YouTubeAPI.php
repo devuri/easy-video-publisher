@@ -7,7 +7,7 @@ use Madcoda\Youtube\Youtube;
 /**
  *
  */
-class YouTube_API
+class YouTubeAPI
 {
 
 	/**
@@ -50,7 +50,7 @@ class YouTube_API
 		try {
 				self::youtube()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
-			wp_die(Video_Publisher_Admin::form()->user_feedback( $e->getMessage(), 'error'));;
+			wp_die(VideoPublisherAdmin::form()->user_feedback( $e->getMessage(), 'error'));;
 		}
 	}
 

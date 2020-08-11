@@ -4,7 +4,7 @@ namespace EasyVideoPublisher;
 /**
  *
  */
-class Category_List
+class CategoryList
 {
 	/**
 	 * list of categories with checkbox
