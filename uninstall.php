@@ -18,8 +18,11 @@
 	  die;
   }
 
-  # delete settings in the options table.
-  delete_option('evp_restricted_categories');
+
+  delete_option( 'evp_youtube_api' );
+  delete_option( 'evp_channels' );
+  delete_option( 'evp_latest_updates' );
+  delete_option( 'evp_restricted_categories' );
 
 
   //finally clear the cache
