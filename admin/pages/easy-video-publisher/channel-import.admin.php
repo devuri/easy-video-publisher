@@ -1,7 +1,7 @@
 <?php
 
-	use EasyVideoPublisher\YoutubeVideoPost;
-	use EasyVideoPublisher\CategorySelect;
+	use EasyVideoPublisher\InsertPost;
+	use EasyVideoPublisher\CategoryList;
 	use EasyVideoPublisher\LatestUpdates;
 	use EasyVideoPublisher\YouTubeAPI;
 	use EasyVideoPublisher\FormLoader;
@@ -66,8 +66,8 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 		 * check if we posted this already
 		 */
 		$args['tags'] = null;
-		$args['category'] = intval( trim( $_POST['categoryset_category'] ) );
-		$id = YoutubeVideoPost::newpost('https://youtu.be/'.$vid , $args );
+		$args['category'] = intval( trim( $_POST['select_category'] ) );
+		$id = InsertPost::newpost('https://youtu.be/'.$vid , $args );
 		if ($id) {
 			echo $this->form()->user_feedback('Video Has been Posted <strong> <a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a> </strong> ');
 		}
@@ -91,7 +91,7 @@ endif;
 		echo $this->form()->select( get_option('evp_channels') , 'Youtube Channel' );
 
 		# categories
-		echo CategorySelect::categories('category');
+		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
 		/**
 		 * Number of Posts to Create.
