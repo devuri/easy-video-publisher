@@ -11,7 +11,7 @@
  * Plugin Name:       Easy Video Publisher
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
  * Description:       Easy Video Publisher use to Import Youtube videos from youtube channel playlist or search.
- * Version:           1.4.0
+ * Version:           1.4.5
  * Requires at least: 3.4
  * Requires PHP:      5.6
  * Author:            SwitchWebdev.com
@@ -29,7 +29,7 @@
     }
 
   # plugin directory
-	  define("EVP_VERSION", '1.4.0');
+	  define("EVP_VERSION", '1.4.5');
 
   # plugin directory
     define("EVP_DIR", dirname(__FILE__));
@@ -50,6 +50,10 @@ function sim_easyvidpublisher_activation() {
   # channels
   $channels = array();
   update_option('evp_channels', $channels);
+
+  # latest updates
+  $latest_updates = array();
+  update_option('evp_latest_updates', $latest_updates );
 
   # restrict categpries
   $restricted_categories = array();
