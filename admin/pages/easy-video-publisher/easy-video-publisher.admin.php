@@ -1,7 +1,7 @@
 <?php
 
 	use EasyVideoPublisher\FormLoader;
-	use EasyVideoPublisher\Category_List;
+	use EasyVideoPublisher\CategoryList;
 
 
 		/**
@@ -61,14 +61,15 @@ endif;
 		echo '<th><label for="category-list">Restrict Categories</label></th>';
 		echo '<td>';
 		FormLoader::loading('update-loader');
-		echo Category_List::checkbox();
+		echo CategoryList::checkbox();
 		echo '</td>';
 		echo $this->form()->table('close');
 		$this->form()->nonce();
-		echo '<hr/>';
+		echo '<br/>';
 		echo $this->form()->submit_button('Save', 'primary large', 'save_category_settings');
 	?></form>
 </div><!--frmwrap-->
+<br/><hr/>
 <script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 

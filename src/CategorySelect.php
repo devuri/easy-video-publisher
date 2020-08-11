@@ -4,7 +4,7 @@ namespace EasyVideoPublisher;
 /**
  *
  */
-class Category_Select
+class CategorySelect
 {
 
 	/**

@@ -4,7 +4,7 @@ namespace EasyVideoPublisher;
 /**
  * Instance of the wp_editor
  */
-class Sim_Editor
+class SimEditor
 {
 
   /**

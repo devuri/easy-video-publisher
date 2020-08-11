@@ -11,7 +11,7 @@
  * Plugin Name:       Easy Video Publisher
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
  * Description:       Easy Video Publisher use to Import Youtube videos from youtube channel playlist or search.
- * Version:           1.4.0
+ * Version:           1.4.7
  * Requires at least: 3.4
  * Requires PHP:      5.6
  * Author:            SwitchWebdev.com
@@ -29,7 +29,7 @@
     }
 
   # plugin directory
-	  define("EVP_VERSION", '1.4.0');
+	  define("EVP_VERSION", '1.4.7');
 
   # plugin directory
     define("EVP_DIR", dirname(__FILE__));
@@ -51,37 +51,22 @@ function sim_easyvidpublisher_activation() {
   $channels = array();
   update_option('evp_channels', $channels);
 
+  # latest updates
+  $latest_updates = array();
+  update_option('evp_latest_updates', $latest_updates );
+
   # restrict categpries
   $restricted_categories = array();
   update_option('evp_restricted_categories', $restricted_categories );
 
 }
 
-// youtube class
-require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-post.php';
-
-// youtube api wrapper
-require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-api.php';
-
-// Latest_Updates
-require_once plugin_dir_path( __FILE__ ). 'src/class-latest-updates.php';
-
-// loader
-require_once plugin_dir_path( __FILE__ ). 'src/class-form-loader.php';
-
-// editor
-require_once plugin_dir_path( __FILE__ ). 'src/class-sim-editor.php';
-
-// category list
-require_once plugin_dir_path( __FILE__ ). 'src/class-category-list.php';
-
-// category select
-require_once plugin_dir_path( __FILE__ ). 'src/class-category-select.php';
-
   /**
 	 * Load admin page class via composer
 	 */
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-  // Menu Item
-  require_once plugin_dir_path( __FILE__ ). 'src/admin/class-easyvidpublisher-admin.php';
+  /**
+	 * make admin page
+	 */
+	require_once plugin_dir_path( __FILE__ ) . 'admin/class-easyvidpublisher-admin.php';

@@ -3,7 +3,7 @@ namespace EasyVideoPublisher;
 
 use WPAdminPage\AdminPage;
 
-final class Video_Publisher_Admin extends AdminPage {
+final class VideoPublisherAdmin extends AdminPage {
   /**
    * admin_menu()
    *
@@ -39,6 +39,7 @@ final class Video_Publisher_Admin extends AdminPage {
     $submenu[] = 'Channel Import';
     $submenu[] = 'Add Channel';
     $submenu[] = 'API Setup';
+    //$submenu[] = 'Automation';
     return $submenu;
   }
 
@@ -47,9 +48,9 @@ final class Video_Publisher_Admin extends AdminPage {
    * @return
    */
   public static function init(){
-    return new Video_Publisher_Admin(self::admin_menu(),self::submenu());
+    return new VideoPublisherAdmin(self::admin_menu(),self::submenu());
   }
 }
 
   // create admin pages
-  Video_Publisher_Admin::init();
+  VideoPublisherAdmin::init();

@@ -1,8 +1,9 @@
 <?php
 
 	use EasyVideoPublisher\YoutubeVideoPost;
-	use EasyVideoPublisher\Latest_Updates;
-	use EasyVideoPublisher\YouTube_API;
+	use EasyVideoPublisher\CategorySelect;
+	use EasyVideoPublisher\LatestUpdates;
+	use EasyVideoPublisher\YouTubeAPI;
 	use EasyVideoPublisher\FormLoader;
 
 
@@ -16,6 +17,11 @@
 			'padding-bottom' 	=> '0',
 		)
 	);
+
+	# make sure we have added channels
+	if ( ! get_option('evp_channels') ) {
+		wp_die($this->form()->user_feedback('Please Add at least One Channel', 'warning'));
+	}
 
 
 /**
@@ -32,14 +38,17 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	 * checks to make sure the request is ok
 	 * if not show the erro message and exit
 	 */
-	YouTube_API::response_error();
+	 if ( ! YouTubeAPI::is_request_ok()  ) {
+		 wp_die($this->form()->user_feedback( YouTubeAPI::response_error() .' !!!', 'error'));
+	 }
+
 
 	/**
 	 * get the channel to post from
 	 */
 	$channelId 				= trim( $_POST['youtube_channel'] );
 	$number_of_posts 	= intval( $_POST['number_of_posts'] );
-	$channel_videos 	= YouTube_API::channel_videos( $channelId , $number_of_posts );
+	$channel_videos 	= YouTubeAPI::channel_videos( $channelId , $number_of_posts );
 
 	# check if we already have the channel_videos in recent_updates
 	$recent_updates 	= get_option('evp_latest_updates');
@@ -48,7 +57,7 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 
 	# if we cant find any new videos
 	if ( ! $new_videos ) {
-		echo $this->form()->user_feedback(' No New Videos', 'warning');
+		echo $this->form()->user_feedback(' No New Videos to Import', 'warning');
 	}
 
 	# create posts
@@ -57,13 +66,14 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 		 * check if we posted this already
 		 */
 		$args['tags'] = null;
-		$id = YoutubeVideoPost::newpost('https://www.youtube.com/watch?v='.$vid , $args );
+		$args['category'] = intval( trim( $_POST['categoryset_category'] ) );
+		$id = YoutubeVideoPost::newpost('https://youtu.be/'.$vid , $args );
 		if ($id) {
 			echo $this->form()->user_feedback('Video Has been Posted <strong> <a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a> </strong> ');
 		}
 	}
 
-	# update and provide feedback
+	# save updates
 	update_option('evp_latest_updates', $next_update );
 
 endif;
@@ -80,29 +90,37 @@ endif;
 		# channel
 		echo $this->form()->select( get_option('evp_channels') , 'Youtube Channel' );
 
+		# categories
+		echo CategorySelect::categories('category');
+
 		/**
 		 * Number of Posts to Create.
 		 * @var array
 		 */
 		$number_of_posts = array(
-			1 => '1',
-			2 => '2',
-			3 => '3',
-			4 => '4',
-			5 => '5',
+			1 	=> '1',
+			2 	=> '2',
+			3 	=> '3',
+			4 	=> '4',
+			5 	=> '5',
+			6 	=> '6',
+			7 	=> '7',
+			8 	=> '8',
+			9 	=> '9',
+			10 	=> '10',
 		);
 		echo $this->form()->select( $number_of_posts , 'Number of Posts' );
 
 		# close the table
 		echo $this->form()->table('close');
 		$this->form()->nonce();
-		echo '<hr/>';
+		echo '<br/>';
 		echo $this->form()->submit_button('Import Videos', 'primary large', 'get_latest_updates');
 
 	?></form>
 </div><!--frmwrap-->
-<h4>
-	<?php _e('Recent Updates [ '.count( get_option('evp_latest_updates') ).' ]'); ?>
+<br><hr/><h4>
+	<?php _e('Recent Updates [ '.LatestUpdates::count_updates().' ]'); ?>
 </h4>
 <?php //Latest_Updates::display(); ?>
 <script type="text/javascript">
