@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'WPAdminPage\\' => array($vendorDir . '/devuri/wp-admin-page/src'),
     'Madcoda\\Youtube\\' => array($vendorDir . '/madcoda/php-youtube-api/src'),
+    'EasyVideoPublisher\\' => array($baseDir . '/src'),
 );

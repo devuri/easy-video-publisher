@@ -15,6 +15,10 @@ class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
         array (
             'Madcoda\\Youtube\\' => 16,
         ),
+        'E' => 
+        array (
+            'EasyVideoPublisher\\' => 19,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -25,6 +29,10 @@ class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
         'Madcoda\\Youtube\\' => 
         array (
             0 => __DIR__ . '/..' . '/madcoda/php-youtube-api/src',
+        ),
+        'EasyVideoPublisher\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
