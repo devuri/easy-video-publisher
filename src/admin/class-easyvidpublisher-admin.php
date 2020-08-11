@@ -39,6 +39,7 @@ final class Video_Publisher_Admin extends AdminPage {
     $submenu[] = 'Channel Import';
     $submenu[] = 'Add Channel';
     $submenu[] = 'API Setup';
+    //$submenu[] = 'Automation';
     return $submenu;
   }
 
