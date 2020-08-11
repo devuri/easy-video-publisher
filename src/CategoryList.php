@@ -12,6 +12,7 @@ class CategoryList
 	 */
 	public static function checkbox(){
 		$terms = array(
+			'hide_empty' => false,
 			'taxonomy' => 'category',
 			'orderby' => 'name',
       'order' => 'ASC',
@@ -35,6 +36,26 @@ class CategoryList
 				echo $checkbox;
 			}
 		}
+	}
+
+	/**
+	 * get categories array
+	 * @return array [description]
+	 */
+	public static function categories(){
+		$terms = array(
+			'hide_empty'	=> false,
+			'exclude' 		=> get_option('evp_restricted_categories'),
+			'taxonomy' 		=> 'category',
+			'orderby' 		=> 'name',
+			'order' 			=> 'ASC',
+			'parent'			=> 0
+		);
+		$categories = get_terms($terms);
+		foreach ( $categories as $ckey => $category ) {
+			$cat[$category->term_id] = $category->name;
+		}
+		return $cat;
 	}
 
 }
