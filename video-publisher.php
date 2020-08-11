@@ -61,31 +61,12 @@ function sim_easyvidpublisher_activation() {
 
 }
 
-// youtube class
-require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-post.php';
-
-// youtube api wrapper
-require_once plugin_dir_path( __FILE__ ). 'src/class-youtube-api.php';
-
-// Latest_Updates
-require_once plugin_dir_path( __FILE__ ). 'src/class-latest-updates.php';
-
-// loader
-require_once plugin_dir_path( __FILE__ ). 'src/class-form-loader.php';
-
-// editor
-require_once plugin_dir_path( __FILE__ ). 'src/class-sim-editor.php';
-
-// category list
-require_once plugin_dir_path( __FILE__ ). 'src/class-category-list.php';
-
-// category select
-require_once plugin_dir_path( __FILE__ ). 'src/class-category-select.php';
-
   /**
 	 * Load admin page class via composer
 	 */
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-  // Menu Item
-  require_once plugin_dir_path( __FILE__ ). 'admin/class-easyvidpublisher-admin.php';
+  /**
+	 * make admin page
+	 */
+	require_once plugin_dir_path( __FILE__ ) . 'admin/class-easyvidpublisher-admin.php';
