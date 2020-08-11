@@ -15,6 +15,18 @@ class Latest_Updates
 		return get_option('evp_latest_updates');
 	}
 
+	/**
+	 * recent_count
+	 * @return [type] [description]
+	 */
+	public static function count_updates(){
+		if ( get_option('evp_latest_updates') ) {
+			return count( get_option('evp_latest_updates') );
+		}
+		return false;
+	}
+
+
 	public static function display(){
 		foreach ( self::current_updates() as $vkey => $videoId ) {
 
@@ -26,5 +38,7 @@ class Latest_Updates
 			echo $title.'<hr/>';
 		}
 	}
+
+
 
 }
