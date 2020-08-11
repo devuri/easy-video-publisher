@@ -1,9 +1,9 @@
 <?php
 
 	use EasyVideoPublisher\YoutubeVideoPost;
-	use EasyVideoPublisher\Category_Select;
-	use EasyVideoPublisher\Latest_Updates;
-	use EasyVideoPublisher\YouTube_API;
+	use EasyVideoPublisher\CategorySelect;
+	use EasyVideoPublisher\LatestUpdates;
+	use EasyVideoPublisher\YouTubeAPI;
 	use EasyVideoPublisher\FormLoader;
 
 
@@ -38,14 +38,17 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	 * checks to make sure the request is ok
 	 * if not show the erro message and exit
 	 */
-	YouTube_API::response_error();
+	 if ( ! YouTubeAPI::is_request_ok()  ) {
+		 wp_die($this->form()->user_feedback( YouTubeAPI::response_error() .' !!!', 'error'));
+	 }
+
 
 	/**
 	 * get the channel to post from
 	 */
 	$channelId 				= trim( $_POST['youtube_channel'] );
 	$number_of_posts 	= intval( $_POST['number_of_posts'] );
-	$channel_videos 	= YouTube_API::channel_videos( $channelId , $number_of_posts );
+	$channel_videos 	= YouTubeAPI::channel_videos( $channelId , $number_of_posts );
 
 	# check if we already have the channel_videos in recent_updates
 	$recent_updates 	= get_option('evp_latest_updates');
@@ -88,7 +91,7 @@ endif;
 		echo $this->form()->select( get_option('evp_channels') , 'Youtube Channel' );
 
 		# categories
-		echo Category_Select::categories('category');
+		echo CategorySelect::categories('category');
 
 		/**
 		 * Number of Posts to Create.
@@ -117,7 +120,7 @@ endif;
 	?></form>
 </div><!--frmwrap-->
 <br><hr/><h4>
-	<?php _e('Recent Updates [ '.Latest_Updates::count_updates().' ]'); ?>
+	<?php _e('Recent Updates [ '.LatestUpdates::count_updates().' ]'); ?>
 </h4>
 <?php //Latest_Updates::display(); ?>
 <script type="text/javascript">
