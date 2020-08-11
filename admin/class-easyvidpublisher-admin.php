@@ -37,11 +37,8 @@ final class VideoPublisherAdmin extends AdminPage {
       'access' => 'read'
     );
     $submenu[] = 'Channel Import';
-    $submenu[] = 'Playlist Import';
-    $submenu[] = 'Search Import';
     $submenu[] = 'Add Channel';
     $submenu[] = 'API Setup';
-    //$submenu[] = 'Automation';
     return $submenu;
   }
 
