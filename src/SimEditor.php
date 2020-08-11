@@ -8,6 +8,37 @@ class SimEditor
 {
 
   /**
+	 * define user access level for the admin form
+	 * who can acces and use the form
+	 */
+	public static function access_level( $role = 'admin'){
+
+		$access = array();
+		$access['admin'] 				= 'manage_options';
+		$access['editor'] 			= 'delete_others_pages';
+		$access['author'] 			= 'publish_posts';
+		$access['contributor'] 	= 'edit_posts';
+		$access['subscriber'] 	= 'read';
+
+		return $access[$role];
+	}
+
+  /**
+	 * allow the user to add a custom Title
+	 * Instead of using the title from oEmbed
+	 * @return [type] [description]
+	 */
+	public static function custom_title( $fieldname = 'Title'){
+		$fieldname = strtolower($fieldname);
+		$get_title = '<tr class="input-custom-title hidden"><th>';
+		$get_title .= '<label for="'.str_replace(" ", "_", $fieldname).'">'.ucwords(str_replace("_", " ", $fieldname )).'</label>';
+		$get_title .= '</th>';
+		$get_title .= '<td><input type="text" name="'.str_replace(" ", "_", $fieldname).'" id="'.str_replace(" ", "_", $fieldname).'" aria-describedby="'.str_replace(" ", "-", $fieldname).'-description" value=" " class="uk-input">';
+		$get_title .= '<p class="description" id="'.str_replace(" ", "-", $fieldname).'-description">'.$fieldname.'<strong>.</strong>';
+		$get_title .= '</p></td></tr>';
+		return $get_title;
+	}
+  /**
    * the wp editor
    * @param  string $content   [description]
    * @param  [type] $editor_id [description]

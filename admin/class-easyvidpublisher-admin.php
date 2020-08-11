@@ -14,7 +14,7 @@ final class VideoPublisherAdmin extends AdminPage {
     $menu = array();
     $menu[] = 'Easy Video Publisher';
     $menu[] = 'Video Publisher';
-    $menu[] = YoutubeVideoPost::access_level('admin');
+    $menu[] = 'manage_options';
     $menu[] = 'easy-video-publisher';
     $menu[] = 'sim_publisher_callback';
     $menu[] = 'dashicons-video-alt3';
@@ -39,7 +39,6 @@ final class VideoPublisherAdmin extends AdminPage {
     $submenu[] = 'Channel Import';
     $submenu[] = 'Add Channel';
     $submenu[] = 'API Setup';
-    //$submenu[] = 'Automation';
     return $submenu;
   }
 

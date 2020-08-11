@@ -1,7 +1,8 @@
 <?php
 
-	use EasyVideoPublisher\YoutubeVideoPost;
-	use EasyVideoPublisher\CategorySelect;
+	use EasyVideoPublisher\InsertPost;
+	use EasyVideoPublisher\ChannelImport;
+	use EasyVideoPublisher\CategoryList;
 	use EasyVideoPublisher\LatestUpdates;
 	use EasyVideoPublisher\YouTubeAPI;
 	use EasyVideoPublisher\FormLoader;
@@ -48,33 +49,28 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	 */
 	$channelId 				= trim( $_POST['youtube_channel'] );
 	$number_of_posts 	= intval( $_POST['number_of_posts'] );
-	$channel_videos 	= YouTubeAPI::channel_videos( $channelId , $number_of_posts );
+	$setcategory 			= intval( $_POST['select_category'] );
 
-	# check if we already have the channel_videos in recent_updates
-	$recent_updates 	= get_option('evp_latest_updates');
-	$new_videos 			= array_diff( $channel_videos , $recent_updates);
-	$next_update 			= array_merge( $new_videos , $recent_updates );
+	/**
+	 * set args to override $default
+	 * @var array
+	 */
+	$args = array();
+	$args['youtube_channel'] 	= $channelId;
+	$args['number_of_posts'] 	= $number_of_posts;
+	$args['setcategory']			= $setcategory;
 
-	# if we cant find any new videos
-	if ( ! $new_videos ) {
-		echo $this->form()->user_feedback(' No New Videos to Import', 'warning');
-	}
+	/**
+	 * creates the posts
+	 */
+	$ids = ChannelImport::publish( $channelId , $args );
 
-	# create posts
-	foreach ( $new_videos  as $upkey => $vid ) {
-		/**
-		 * check if we posted this already
-		 */
-		$args['tags'] = null;
-		$args['category'] = intval( trim( $_POST['categoryset_category'] ) );
-		$id = YoutubeVideoPost::newpost('https://youtu.be/'.$vid , $args );
-		if ($id) {
+	if ( $ids ) {
+		foreach ( $ids as $pkey => $id ) {
 			echo $this->form()->user_feedback('Video Has been Posted <strong> <a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a> </strong> ');
 		}
 	}
 
-	# save updates
-	update_option('evp_latest_updates', $next_update );
 
 endif;
 
@@ -91,7 +87,7 @@ endif;
 		echo $this->form()->select( get_option('evp_channels') , 'Youtube Channel' );
 
 		# categories
-		echo CategorySelect::categories('category');
+		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
 		/**
 		 * Number of Posts to Create.

@@ -23,20 +23,8 @@ class LatestUpdates
 		if ( get_option('evp_latest_updates') ) {
 			return count( get_option('evp_latest_updates') );
 		}
-		return false;
-	}
-
-
-	public static function display(){
-		foreach ( self::current_updates() as $vkey => $videoId ) {
-
-			$vid_data = YoutubeVideoPost::video_data('https://www.youtube.com/watch?v='.$videoId);
-			$title 			= $vid_data->title;
-			$author 		= $vid_data->author_name;
-			$thumbnail 	= $vid_data->thumbnail_url;
-
-			echo $title.'<hr/>';
-		}
+		$update_count = 0;
+		return $update_count;
 	}
 
 

@@ -1,8 +1,8 @@
 <?php
 
-	use EasyVideoPublisher\YoutubeVideoPost;
+	use EasyVideoPublisher\InsertPost;
+	use EasyVideoPublisher\YoutubeVideo;
 	use EasyVideoPublisher\CategoryList;
-	use EasyVideoPublisher\CategorySelect;
 	use EasyVideoPublisher\FormLoader;
 	use EasyVideoPublisher\SimEditor;
 
@@ -21,7 +21,7 @@
  * Process the data
  *
  */
-if ( isset( $_POST['youtube_video_import'] ) ){
+if ( isset( $_POST['submit_post_import'] ) ){
 
 	if ( ! $this->form()->verify_nonce()  ) {
 		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
@@ -37,17 +37,17 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 			$args['title'] = sanitize_text_field( trim( $_POST['video_title'] ) );
 			$custom_title = true;
 		}
-		$args['category'] = intval( trim( $_POST['categoryset_category'] ) );
-		$args['tags'] = sanitize_text_field( trim( $_POST['video_tags'] ) );
-		$args['description'] = wp_filter_post_kses( trim( $_POST['video_description'] ) );
+		$args['category'] = intval( trim( $_POST['select_category'] ) );
+		$args['tags'] = sanitize_text_field( trim( $_POST['tags'] ) );
+		$args['description'] = wp_filter_post_kses( trim( $_POST['post_description'] ) );
 
 
 		/**
 		 * make sure this is a youtube url
 		 */
-		if ( YoutubeVideoPost::video_id($vid) ) {
+		if ( YoutubeVideo::video_id($vid) ) {
 
-			$id = YoutubeVideoPost::newpost($vid, $args);
+			$id = InsertPost::newpost($vid, $args);
 
 			if ($id) {
 				echo $this->form()->user_feedback('Video Has been Posted <strong> '.get_post( $id )->post_title.' </strong> ');
@@ -65,20 +65,24 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 	<?php _e('Youtube Video Publisher'); ?>
 </h2><hr/>
 	<?php FormLoader::loading('update-loader');; ?>
-<div id="yt-importform">
+<div id="post-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Video Title</label><br> <small> Use a custom title for the video</small></td>';
-		echo YoutubeVideoPost::custom_title();
+		echo SimEditor::custom_title('Video Title');
 		echo $this->form()->input('YouTube Video url', ' ');
-		echo CategorySelect::categories('category');
+
+		# categories
+		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
+
+
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';
-		echo SimEditor::get_editor('','video_description');
-		echo $this->form()->input('Video Tags', ' ');
+		echo SimEditor::get_editor('','post_description');
+		echo $this->form()->input('Tags', ' ');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo '<br/>';
-		echo $this->form()->submit_button('Import Video', 'primary large', 'youtube_video_import');
+		echo $this->form()->submit_button('Import Video', 'primary large', 'submit_post_import');
 	?></form>
 </div><!--frmwrap-->
 <br/><hr/>
@@ -86,17 +90,17 @@ if ( isset( $_POST['youtube_video_import'] ) ){
 	jQuery( document ).ready( function( $ ) {
 
 		jQuery('#custom_title').on('click', function( event ){
-			$(".input-video-title").fadeOut( "slow");
-			$(".input-video-title").addClass('hidden');
+			$(".input-custom-title").fadeOut( "slow");
+			$(".input-custom-title").addClass('hidden');
 			if ($('#custom_title').is(":checked")) {
-				$(".input-video-title").fadeIn( "slow");
-				$(".input-video-title").removeClass('hidden');
+				$(".input-custom-title").fadeIn( "slow");
+				$(".input-custom-title").removeClass('hidden');
 			}
 		});
 
 		jQuery('input[type="submit"]').on('click', function( event ){
 			$("#new-post-preview").addClass('hidden');
-			$("#yt-importform").addClass('hidden');
+			$("#post-importform").addClass('hidden');
 			$(".loading").removeClass('hidden');
 		 });
 	});
