@@ -28,14 +28,15 @@ class SimEditor
 	 * Instead of using the title from oEmbed
 	 * @return [type] [description]
 	 */
-	public static function custom_title(){
-		$video_title = '<tr class="input-video-title hidden"><th>';
-		$video_title .= '<label for="video_title">Video Title</label>';
-		$video_title .= '</th>';
-		$video_title .= '<td><input type="text" name="video_title" id="video_title" aria-describedby="video-title-description" value=" " class="uk-input">';
-		$video_title .= '<p class="description" id="video-title-description">video title<strong>.</strong>';
-		$video_title .= '</p></td></tr>';
-		return $video_title;
+	public static function custom_title( $fieldname = 'Title'){
+		$fieldname = strtolower($fieldname);
+		$get_title = '<tr class="input-custom-title hidden"><th>';
+		$get_title .= '<label for="'.str_replace(" ", "_", $fieldname).'">'.ucwords(str_replace("_", " ", $fieldname )).'</label>';
+		$get_title .= '</th>';
+		$get_title .= '<td><input type="text" name="'.str_replace(" ", "_", $fieldname).'" id="'.str_replace(" ", "_", $fieldname).'" aria-describedby="'.str_replace(" ", "-", $fieldname).'-description" value=" " class="uk-input">';
+		$get_title .= '<p class="description" id="'.str_replace(" ", "-", $fieldname).'-description">'.$fieldname.'<strong>.</strong>';
+		$get_title .= '</p></td></tr>';
+		return $get_title;
 	}
   /**
    * the wp editor
