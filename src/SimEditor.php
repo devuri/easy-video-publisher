@@ -6,7 +6,23 @@ namespace EasyVideoPublisher;
  */
 class SimEditor
 {
-  
+
+  /**
+	 * define user access level for the admin form
+	 * who can acces and use the form
+	 */
+	public static function access_level( $role = 'admin'){
+
+		$access = array();
+		$access['admin'] 				= 'manage_options';
+		$access['editor'] 			= 'delete_others_pages';
+		$access['author'] 			= 'publish_posts';
+		$access['contributor'] 	= 'edit_posts';
+		$access['subscriber'] 	= 'read';
+
+		return $access[$role];
+	}
+
   /**
 	 * allow the user to add a custom Title
 	 * Instead of using the title from oEmbed

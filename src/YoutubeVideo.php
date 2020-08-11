@@ -10,22 +10,6 @@ class YoutubeVideo
 {
 
 	/**
-	 * define user access level for the admin form
-	 * who can acces and use the form
-	 */
-	public static function access_level( $role = 'admin'){
-
-		$access = array();
-		$access['admin'] 				= 'manage_options';
-		$access['editor'] 			= 'delete_others_pages';
-		$access['author'] 			= 'publish_posts';
-		$access['contributor'] 	= 'edit_posts';
-		$access['subscriber'] 	= 'read';
-
-		return $access[$role];
-	}
-
-	/**
 	 * get the video id from url
 	 * @param  $video_url
 	 * @return string
@@ -39,38 +23,6 @@ class YoutubeVideo
 		}
 	}
 
-	/**
-	 * allow the user to add a custom Title
-	 * Instead of using the title from oEmbed
-	 * @return [type] [description]
-	 */
-	public static function custom_title(){
-		$video_title = '<tr class="input-video-title hidden"><th>';
-		$video_title .= '<label for="video_title">Video Title</label>';
-		$video_title .= '</th>';
-		$video_title .= '<td><input type="text" name="video_title" id="video_title" aria-describedby="video-title-description" value=" " class="uk-input">';
-		$video_title .= '<p class="description" id="video-title-description">video title<strong>.</strong>';
-		$video_title .= '</p></td></tr>';
-		return $video_title;
-	}
-
-	// /**
-	//  * create_user
-	//  * @param  string $username
-	//  * @return boolean
-	//  */
-	// public static function create_user( $username = null ){
-	// 		$user_id = username_exists( $username );
-	// 		 	if ( ! $user_id ) {
-	// 				 $userdata = array(
-	// 						 'user_login' 	=> $username,
-	// 						 'display_name' => $username,
-	// 						 'user_pass'  	=> wp_generate_password( 10, true),
-	// 				 );
-	// 				 $user_id = wp_insert_user( $userdata );
-	// 		 	}
-	//  		return $user_id;
-	// }
 
 	/**
 	 * video_data() using  WP_oEmbed via UrlDataAPI
@@ -198,32 +150,5 @@ class YoutubeVideo
 		return $attach_id;
 	}
 
-	/**
-	 * Youtube Block for wordpress
-	 * @param string $vid the video ID
-	 * @return string
-	 */
-	public static function youtube_block( $vid = null ){
-		$yt_block = '<!-- wp:core-embed/youtube {"url":"https://www.youtube.com/watch?v='.$vid.'","type":"video","providerNameSlug":"youtube","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-		<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
-		https://www.youtube.com/watch?v='.$vid.'
-		</div></figure>
-		<!-- /wp:core-embed/youtube -->';
-		return $yt_block;
-	}
-
-	/**
-	 * Youtube Html Block
-	 * @param string $vid the video ID
-	 * @return string
-	 */
-	public static function html_block( $vid = null ){
-		$html_block  = '<!-- wp:html -->';
-		$html_block .= '<iframe src="https://www.youtube.com/embed/'.$vid.'?feature=oembed"';
-		$html_block .= 'width="780" height="439" frameborder="0"';
-		$html_block .= 'allowfullscreen="allowfullscreen"></iframe>';
-		$html_block .= '<!-- /wp:html -->';
-		return $html_block;
-	}
 
 }
