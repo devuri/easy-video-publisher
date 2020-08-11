@@ -84,6 +84,45 @@ class YoutubeVideoPost
 	}
 
 	/**
+	 * Get youtube video info using WP_oEmbed
+	 * @param  mixed  	$v    	video id, or array of video ids
+	 * @param  integer 	$limit 	how many videos
+	 * @return array         		video data
+	 */
+	public static function video_info( $v = null , $limit = 1 ) {
+		/**
+		 * get vid info for array
+		 */
+		if ( is_array($v) ) {
+
+			$i = 0;
+			foreach ( $v as $key => $v) {
+				$vid[$key] = array(
+					'id' 					=> $v,
+					'title' 			=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->title,
+					'thumbnail' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
+					'author_name' => self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
+					'author_url' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
+				);
+
+				# stop if we reach the limit
+				if(++$i == $limit) break;
+			}
+			return $vid;
+
+		} else {
+			$vid = array(
+				'id' 					=> $v,
+				'title' 			=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->title,
+				'thumbnail' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
+				'author_name' => self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
+				'author_url' 	=> self::video_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
+			);
+			return $vid;
+		}
+	}
+
+	/**
 	 * Download image and set as featured image
 	 * @param  string $vid_img_id  	youtube video id
 	 * @param  int 		$post_id    	the post id
