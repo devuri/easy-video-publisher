@@ -17,7 +17,7 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 	$channelname 		= trim( $_POST['channel_name'] );
 
 	$channels 			= array();
-	$channels 			= get_option('evp_channels');
+	$channels 			= get_option( 'evp_channels' );
 	$channels[$channelId] = $channelname;
 
 	# add the new channel
@@ -25,14 +25,23 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 
 endif;
 
-?><div id="yt-importform">
+?><h2>
+	<?php _e('Video Publisher Settings'); ?>
+</h2><hr/>
+<div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 		echo $this->form()->input('Channel ID', ' ');
 		echo $this->form()->input('Channel Name', ' ');
 		echo $this->form()->table('close');
 		$this->form()->nonce();
-		echo '<hr/>';
+		echo '<br/>';
 		echo $this->form()->submit_button('Add New Channel', 'primary large', 'add_new_channel');
 	?></form>
 </div><!--frmwrap-->
+<br/><hr/>
+<p>
+	<a href="http://code.google.com/apis/console" rel="nofollow">Obtain API key from Google API Console</a>
+	<br>
+	<a href="https://developers.google.com/youtube/v3/" rel="nofollow">Youtube Data API v3 Doc</a>
+</p>
