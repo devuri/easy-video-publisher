@@ -43,9 +43,16 @@ class CategoryList
 	 * @return array [description]
 	 */
 	public static function categories(){
+
+		if (current_user_can( 'manage_options' )) {
+			$restricted = '';
+		} else {
+			$restricted = get_option('evp_restricted_categories');
+		}
+
 		$terms = array(
 			'hide_empty'	=> false,
-			'exclude' 		=> get_option('evp_restricted_categories'),
+			'exclude' 		=> $restricted,
 			'taxonomy' 		=> 'category',
 			'orderby' 		=> 'name',
 			'order' 			=> 'ASC',
