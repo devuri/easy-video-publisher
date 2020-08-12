@@ -23,6 +23,33 @@ class YoutubeVideo
 		}
 	}
 
+	public static function video_thumbnail( $video_url = null ){
+
+		# get the video id
+		$vid_id = self::video_id( $video_url );
+
+		/**
+		 * set up to use the maxresdefault image
+		 * example https://img.youtube.com/vi/yXzWfZ4N4xU/maxresdefault.jpg
+		 * @link https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api
+		 */
+		$image_url = 'https://img.youtube.com/vi/'.$vid_id.'/maxresdefault.jpg';
+
+		/**
+		 * lets make sure all is well
+		 * The maxresdefault is not always available
+		 * if we cant get the high resolution (maxresdefault) use the (hqdefault)
+		 */
+		$get_image = wp_remote_get( $image_url );
+		if ( $get_image['response']['code'] == 200 ) {
+			// req is ok
+			$thumbnail = 'https://img.youtube.com/vi/'.$vid_id.'/maxresdefault.jpg';
+		} else {
+			$thumbnail = 'https://img.youtube.com/vi/'.$vid_id.'/hqdefault.jpg';
+		}
+		return $thumbnail;
+	}
+
 	/**
 	 * Get youtube video info using WP_oEmbed
 	 * @param  mixed  	$v    	video id, or array of video ids
