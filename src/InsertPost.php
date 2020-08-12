@@ -51,6 +51,19 @@ class InsertPost
 	}
 
 	/**
+	 * creates a simple hashtag from the username
+	 * @param  [type] $medialink [description]
+	 * @param  [type] $username  [description]
+	 * @return [type]            [description]
+	 */
+	private static function hashtag_username( $medialink, $username ){
+		$username 	= UrlDataAPI::get_data( $medialink )->author_name;
+		$username 	= strtolower(sanitize_file_name( $username, true));
+		$username 	= '  #' . $username;
+		return $username;
+	}
+
+	/**
 	 * Create the Post
 	 * @param  string $medialink youtube url
 	 * @param  array  $args   other options
@@ -82,10 +95,11 @@ class InsertPost
 			$args['title'] = substr( $args['title'].'...' , 0, 180 );
 		}
 
-		# for instagram add username
+		#  add username
 		if ( $args['ig'] ) {
-			$tag 	= ' - #' . $args['ig'];
-			$ig 	= ',  @' . $args['ig'];
+			$username 	= ',  @' . $args['ig'];
+		} else {
+			$username 	= self::hashtag_username( $medialink , $username );
 		}
 
 
@@ -111,12 +125,12 @@ class InsertPost
 			 * @link https://developer.wordpress.org/reference/functions/wp_insert_post/
 			 */
 			$postInfo = array(
-					'post_title' 		=> $title . $tag . $ig,
+					'post_title' 		=> $title . $username,
 					'post_content' 	=> $embed.'<p>'.$description.'</p>',
 					'post_type' 		=> $post_type,
 					'post_status' 	=> $post_status,
 					'post_category'	=> array($category),
-					'tags_input' 		=> wp_strip_all_tags($tags),
+					'tags_input' 		=> $tags,
 					'post_author'   => $post_author,
 			);
 			# create the post
