@@ -2,7 +2,6 @@
 
 namespace EasyVideoPublisher;
 
-
 /**
  *
  */
@@ -19,13 +18,10 @@ class FeaturedImage
 	 */
 	public static function setfeatured_image( $thumbnail , $post_id,  $post_title ){
 
-		$image_url = $thumbnail;
-
 		/**
 		 * lets make sure all is well
-		 * The maxresdefault is not always available
-		 * if we cant get the high resolution (maxresdefault) use the (hqdefault)
 		 */
+		$image_url = $thumbnail;
 		$get_image = wp_remote_get( $image_url );
 		IsError::error_check( $get_image );
 
