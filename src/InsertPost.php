@@ -35,11 +35,16 @@ class InsertPost
 	 */
 	public static function newpost( $geturl = null , $args = array()){
 
+		# set UrlDataAPI provider
+
+
 		/**
 		 * default args
 		 */
 		$default = array();
-		$default['title'] 				= UrlDataAPI::get_data($geturl)->title;
+		$default['ig'] 						= false;
+		$default['title'] 				= UrlDataAPI::get_data( $geturl )->title;
+		$default['embed'] 				= $geturl;
 		$default['category'] 			= array(1);
 		$default['post_type'] 		= 'post';
 		$default['post_status'] 	= 'publish';
@@ -48,7 +53,20 @@ class InsertPost
 		$default['author'] 				= get_current_user_id();
 		$default['tags'] 					= array();
 		$default['description'] 	= '';
+		$default['thumbnail'] 		= UrlDataAPI::get_data($geturl)->thumbnail_url;
 		$args = wp_parse_args( $args , $default );
+
+		/**
+		 * title is too long
+		 */
+		if ( strlen( $args['title'] ) > 180 ) {
+			$args['title'] = substr( $args['title'].'...' , 0, 180 );
+		}
+
+		if ( $args['ig'] ) {
+			$tag 	= ' - #' . $args['ig'];
+			$ig 	= ',  @' . $args['ig'];
+		}
 
 
 		if ( ! $geturl == null ) {
@@ -56,17 +74,10 @@ class InsertPost
 			/**
 			 * info
 			 */
-			$video_id 	= YoutubeVideo::video_id($geturl);
-			$thumbnail	= UrlDataAPI::get_data($geturl)->thumbnail_url;
+			$thumbnail	= $args['thumbnail'];
 			$author 		= UrlDataAPI::get_data($geturl)->author_name;
 			$author_url	= UrlDataAPI::get_data($geturl)->author_url;
 
-
-			if ( $args['html'] == true ) {
-				$embed = GetBlock::html($video_id);
-			} else {
-				$embed = GetBlock::youtube($video_id);
-			}
 
 			/**
 			 * create a new author
@@ -81,8 +92,8 @@ class InsertPost
 			 * Post info
 			 */
 			$postInfo = array(
-					'post_title' 		=> $args['title'],
-					'post_content' 	=> $embed.'<p>'.$args['description'].'</p>',
+					'post_title' 		=> $args['title'] . $tag . $ig,
+					'post_content' 	=> $args['embed'].'<p>'.$args['description'].'</p>',
 					'post_type' 		=> $args['post_type'],
 					'post_status' 	=> $args['post_status'],
 					'post_category'	=> array($args['category']),
@@ -98,7 +109,7 @@ class InsertPost
 			/**
 			 * set featured image
 			 */
-			YoutubeVideo::featured_image( $video_id, $post_Id, $args['title']  );
+			FeaturedImage::setfeatured_image( $thumbnail , $post_Id, $args['title']  );
 		}
 
 		return $post_Id;
