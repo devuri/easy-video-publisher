@@ -1,6 +1,7 @@
 <?php
 
 	use EasyVideoPublisher\InsertPost;
+	use EasyVideoPublisher\GetBlock;
 	use EasyVideoPublisher\YoutubeVideo;
 	use EasyVideoPublisher\CategoryList;
 	use EasyVideoPublisher\FormLoader;
@@ -32,14 +33,17 @@ if ( isset( $_POST['submit_post_import'] ) ){
 		 */
 		$vid = sanitize_text_field( trim( $_POST['youtube_video_url'] ) );
 
+		# overrides
 		$args = array();
 		if ( isset($_POST['custom_title']) && isset($_POST['video_title']) ) {
-			$args['title'] = sanitize_text_field( trim( $_POST['video_title'] ) );
-			$custom_title = true;
+			$args['title'] 			= sanitize_text_field( trim( $_POST['video_title'] ) );
+			$custom_title 			= true;
 		}
-		$args['category'] = intval( trim( $_POST['select_category'] ) );
-		$args['tags'] = sanitize_text_field( trim( $_POST['tags'] ) );
-		$args['description'] = wp_filter_post_kses( trim( $_POST['post_description'] ) );
+		$args['embed'] 				= GetBlock::youtube( $vid );
+		$args['thumbnail'] 		= YoutubeVideo::video_thumbnail( $vid );
+		$args['category'] 		= intval( trim( $_POST['select_category'] ) );
+		$args['tags'] 				= sanitize_text_field( trim( $_POST['tags'] ) );
+		$args['description']	= wp_filter_post_kses( trim( $_POST['post_description'] ) );
 
 
 		/**
