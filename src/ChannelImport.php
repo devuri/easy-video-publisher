@@ -36,14 +36,14 @@ class ChannelImport
 		}
 
 		# create posts
-		foreach ( $new_videos  as $upkey => $vid ) {
+		foreach ( $new_videos  as $upkey => $id ) {
 
-			$vid = 'https://youtu.be/'.$vid;
+			$vid = 'https://youtu.be/'.$id;
 
 			/**
 			 * check if we posted this already
 			 */
-			$args['tags'] 					= null;
+			$args['tags'] 					= YouTubeAPI::video_info( $id )->tags;
 			$args['thumbnail'] 			= YoutubeVideo::video_thumbnail( $vid );
 			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['category'] 			= $params['setcategory'];
