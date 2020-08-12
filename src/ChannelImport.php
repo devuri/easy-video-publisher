@@ -37,13 +37,18 @@ class ChannelImport
 
 		# create posts
 		foreach ( $new_videos  as $upkey => $vid ) {
+
+			$vid = 'https://youtu.be/'.$vid;
+
 			/**
 			 * check if we posted this already
 			 */
 			$args['tags'] 					= null;
+			$args['thumbnail'] 			= YoutubeVideo::video_thumbnail( $vid );
+			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['category'] 			= $params['setcategory'];
 			$args['create_author']	= false;
-			$id = InsertPost::newpost('https://youtu.be/'.$vid , $args );
+			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
 				# get the post id
 				$get_id[] = $id;

@@ -6,7 +6,7 @@ namespace EasyVideoPublisher;
 /**
  * get url data
  * uses oEmbed
- * @link https://oembed.com/ 
+ * @link https://oembed.com/
  */
 class UrlDataAPI
 {
@@ -21,6 +21,14 @@ class UrlDataAPI
 		$oEmbed = new \WP_oEmbed;
 		$data = $oEmbed->get_data($url);
 		return $data;
+	}
+
+	public static function provider( $geturl = null ){
+		$provider = [];
+		$provider['name'] = self::get_data($geturl)->provider_name;
+		$provider['url'] 	= self::get_data($geturl)->provider_url;
+		$obprovider = (object) $provider;
+		return $obprovider;
 	}
 
 }
