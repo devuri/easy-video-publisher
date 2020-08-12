@@ -33,9 +33,10 @@ final class VideoPublisherAdmin extends AdminPage {
     $submenu = array();
     $submenu[] = 'Settings';
     $submenu[] = array(
-      'name' => 'YouTube',
-      'access' => 'read'
+      'name'    => 'YouTube',
+      'access'  => 'read'
     );
+    $submenu[] = 'Instagram';
     $submenu[] = 'Channel Import';
     $submenu[] = 'Add Channel';
     $submenu[] = 'API Setup';
