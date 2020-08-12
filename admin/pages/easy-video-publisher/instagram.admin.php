@@ -41,7 +41,7 @@ if ( isset( $_POST['submit_post_import'] ) ){
 		}
 
 
-		//$args['ig'] 					= UrlDataAPI::get_data( $medialink )->author_name;
+		$args['ig'] 					= UrlDataAPI::get_data( $medialink )->author_name;
 		$args['embed'] 				= wp_oembed_get( $medialink );
 		$args['category'] 		= intval( trim( $_POST['select_category'] ) );
 		$args['tags'] 				= sanitize_text_field( trim( $_POST['tags'] ) );
