@@ -86,6 +86,16 @@ class YouTubeAPI
 	}
 
 	/**
+	 * get video info
+	 * @param  string $videoId [description]
+	 * @return string
+	 */
+	public static function video_info( $vid = '' ){
+		$info = self::youtube()->getVideoInfo( $vid )->snippet;
+		return $info;
+	}
+
+	/**
 	 * get videos from multiple channels
 	 * @param  array  $channels [description]
 	 * @return [type]           [description]
