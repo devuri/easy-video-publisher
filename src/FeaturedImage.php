@@ -30,7 +30,7 @@ class FeaturedImage
  		}
 
 		// ok lets upload and stuff
-		$filename = sanitize_file_name(strtolower($post_title.'-'.uniqid()));
+		$filename = sanitize_file_name( strtolower($post_title.'-'.uniqid()) );
 		$upload_dir = wp_upload_dir();
 
 		/**
