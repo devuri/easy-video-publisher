@@ -59,6 +59,7 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	$args['youtube_channel'] 	= $channelId;
 	$args['number_of_posts'] 	= $number_of_posts;
 	$args['setcategory']			= $setcategory;
+	$args['hashtags']			= array( get_term( $args['setcategory'] , 'category' )->name );
 
 	/**
 	 * creates the posts

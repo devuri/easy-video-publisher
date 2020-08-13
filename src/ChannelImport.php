@@ -47,6 +47,7 @@ class ChannelImport
 			$args['thumbnail'] 			= YoutubeVideo::video_thumbnail( $vid );
 			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['category'] 			= $params['setcategory'];
+			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= false;
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
