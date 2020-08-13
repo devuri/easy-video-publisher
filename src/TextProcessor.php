@@ -36,6 +36,7 @@ class TextProcessor
 		$text = str_replace( "-", " ", $text );
 
 		# convert string to array.
+		# @link https://www.php.net/manual/en/function.str-word-count.php
 		$text = str_word_count( $text , 1, '1..9ü' );
 		return $text;
 	}
