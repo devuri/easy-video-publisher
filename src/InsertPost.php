@@ -78,11 +78,14 @@ class InsertPost
 		#  get hashtag
 		if ( $hashtags ) {
 			foreach ( $hashtags as $hstkey => $hashtag ) {
-				$htags = strtolower(sanitize_file_name($hashtag));
-				$htags = str_replace( "-", " #", $htags );
-				$htags = ' #'.$htags;
+				$htags 				= strtolower(sanitize_file_name($hashtag));
+				if ( strpos($htags, '-') ) {
+					$onewordtags 	= ' #'.str_replace( "-", "", $htags );
+				}
+				$htags 				= str_replace( "-", " #", $htags );
+				$htags 				= ' #'.$htags;
 			}
-			return $htags;
+			return $htags.$onewordtags;
 		}
 
 	}
