@@ -11,11 +11,30 @@ class YouTubeAPI
 {
 
 	/**
-	 * [apikey description]
-	 * @return [type] [description]
+	 * Get API key
+	 * uses a random key each time if mutiple keys ara available.
+	 * @return string The API Key
 	 */
-	public static function apikey(){
-		return get_option('evp_youtube_api')['apikey'];
+	private static function apikey(){
+		$apikey = get_option('evp_youtube_api');
+		shuffle( $apikey );
+		return $apikey[0];
+	}
+
+	/**
+	 * API key check
+	 * check if an API key has been set
+	 * @return boolean
+	 */
+	public static function has_key(){
+
+		$apikey = get_option('evp_youtube_api');
+
+			if ( ! $apikey ) :
+				return false;
+			endif;
+
+		return true;
 	}
 
 	/**
@@ -27,6 +46,19 @@ class YouTubeAPI
 		return new Youtube(
 			array('key' => self::apikey() )
 		);
+	}
+
+	/**
+	 * Get a list of the API keys
+	 * @return string API Keys
+	 */
+	public static function keys(){
+		$keys = get_option('evp_youtube_api');
+		?><h4>API Keys List</h4><ul>
+				<?php foreach( get_option('evp_youtube_api') as $k => $key ) { ?>
+          <li><?php echo $key; ?></li>
+				<?php } ?>
+			</ul><?
 	}
 
 	/**
@@ -100,7 +132,7 @@ class YouTubeAPI
 	 * @param  array  $channels [description]
 	 * @return [type]           [description]
 	 */
-	public static function channels_vids( $channels = array()){
+	public static function channels_vids( $channels = array() ){
 		/**
 		 * process channel ids
 		 */
