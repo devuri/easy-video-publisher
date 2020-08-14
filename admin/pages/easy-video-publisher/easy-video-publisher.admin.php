@@ -3,7 +3,6 @@
 	use EasyVideoPublisher\FormLoader;
 	use EasyVideoPublisher\CategoryList;
 
-
 		/**
 		 * CSS for the loader
 		 */
