@@ -22,7 +22,7 @@
  * Process the data
  *
  */
-if ( isset( $_POST['submit_post_import'] ) ){
+if ( isset( $_POST['submit_post_import'] ) ) :
 
 	if ( ! $this->form()->verify_nonce()  ) {
 		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
@@ -64,12 +64,16 @@ if ( isset( $_POST['submit_post_import'] ) ){
 		} else {
 			echo $this->form()->user_feedback('Please Use a Valid YouTube url !!!', 'error');
 		}
-}
-?><h2>
-	<?php _e('Youtube Video Publisher'); ?>
-</h2><hr/>
-	<?php FormLoader::loading('update-loader');; ?>
-<div id="post-importform">
+
+endif;
+
+	# section title
+	SimEditor::section_title('Youtube Video Publisher');
+
+	#loading
+	FormLoader::loading('update-loader');
+
+ ?><div id="post-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Video Title</label><br> <small> Use a custom title for the video</small></td>';

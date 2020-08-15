@@ -2,6 +2,7 @@
 
 	use EasyVideoPublisher\FormLoader;
 	use EasyVideoPublisher\CategoryList;
+	use EasyVideoPublisher\SimEditor;
 
 		/**
 		 * CSS for the loader
@@ -50,16 +51,17 @@ if ( isset( $_POST['save_category_settings'] ) ) :
 	}
 
 endif;
-?><h2><?php _e('Video Publisher Settings'); ?></h2>
 
-<hr/>
-<div id="category-form">
+	// section title
+	$arg['loader'] = true;
+	SimEditor::section_title('Video Publisher Settings', $arg );
+
+?><div id="category-form">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		//var_dump(get_option('evp_restricted_categories'));
 		echo $this->form()->table('open');
 		echo '<th><label for="category-list">Restrict Categories</label></th>';
 		echo '<td>';
-		FormLoader::loading('update-loader');
 		echo CategoryList::checkbox();
 		echo '</td>';
 		echo $this->form()->table('close');

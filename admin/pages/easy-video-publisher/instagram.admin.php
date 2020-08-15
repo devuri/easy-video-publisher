@@ -22,7 +22,7 @@
  * Process the data
  *
  */
-if ( isset( $_POST['submit_post_import'] ) ){
+if ( isset( $_POST['submit_post_import'] ) ) :
 
 	if ( ! $this->form()->verify_nonce()  ) {
 		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
@@ -62,12 +62,15 @@ if ( isset( $_POST['submit_post_import'] ) ){
 				echo '<a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a>';
 				echo '</div>';
 			}
-}
-?><h2>
-	<?php _e('Instagram Publisher'); ?>
-</h2><hr/>
-	<?php FormLoader::loading('update-loader');; ?>
-<div id="post-importform">
+endif;
+
+	# section title
+	SimEditor::section_title('Instagram Publisher');
+
+	#loading
+	FormLoader::loading('update-loader');
+
+?><div id="post-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Title</label><br> <small> Use a custom title for the video</small></td>';
