@@ -7,6 +7,7 @@ use WPAdminPage\AdminPage;
 // use PluginAdminUI\AdminPage;
 
 final class VideoPublisherAdmin extends AdminPage {
+
   /**
    * admin_menu()
    *
