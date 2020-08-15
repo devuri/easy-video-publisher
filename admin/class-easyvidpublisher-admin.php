@@ -16,14 +16,14 @@ final class VideoPublisherAdmin extends AdminPage {
    */
   private static function admin_menu(){
     $menu = array();
-    $menu[] = 'Easy Video Publisher';
+    $menu[] = 'Easy Video Publisher Pro';
     $menu[] = 'Video Publisher';
     $menu[] = 'manage_options';
     $menu[] = 'easy-video-publisher';
     $menu[] = 'sim_publisher_callback';
     $menu[] = 'dashicons-video-alt3';
     $menu[] = null;
-    $menu[] = 'evp';
+    $menu[] = 'evpro';
     $menu[] = plugin_dir_path( __FILE__ );
     return $menu;
   }
@@ -42,6 +42,8 @@ final class VideoPublisherAdmin extends AdminPage {
     );
     $submenu[] = 'Instagram';
     $submenu[] = 'Channel Import';
+    // $submenu[] = 'Search Import';
+    // $submenu[] = 'Playlist Import';
     $submenu[] = 'Add Channel';
     $submenu[] = 'API Setup';
     return $submenu;
