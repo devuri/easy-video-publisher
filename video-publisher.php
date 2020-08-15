@@ -2,16 +2,16 @@
 /**
  * Sim AutoPost
  *
- * @package           EasyVideoPublisher
+ * @package           EasyVideoPublisherPro
  * @author            Uriel Wilson
  * @copyright         2020 Uriel Wilson
  * @license           GPL-2.0
  *
  * @wordpress-plugin
- * Plugin Name:       Easy Video Publisher
+ * Plugin Name:       Easy Video Publisher Pro
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
  * Description:       Easy Video Publisher use to Import Youtube videos from youtube channel playlist or search.
- * Version:           1.8.2
+ * Version:           1.8.3
  * Requires at least: 3.4
  * Requires PHP:      5.6
  * Author:            SwitchWebdev.com
@@ -29,7 +29,7 @@
     }
 
   # plugin directory
-	  define("EVP_VERSION", '1.8.2');
+	  define("EVP_VERSION", '1.8.3');
 
   # plugin directory
     define("EVP_DIR", dirname(__FILE__));
