@@ -58,7 +58,7 @@ endif;
 		echo '<br/>';
 		echo '<br/><hr/>';
 
-		YouTubeAPI::keys();
+		echo YouTubeAPI::keys();
 		echo '<input name="delete_api_keys" id="delete_api_keys" type="submit" class="button" value="Delete API Keys ">';
 		echo '<br/>';
 	?></form>

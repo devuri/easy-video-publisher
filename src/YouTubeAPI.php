@@ -54,11 +54,14 @@ class YouTubeAPI
 	 */
 	public static function keys(){
 		$keys = get_option('evp_youtube_api');
-		?><h4>API Keys List</h4><ul>
-				<?php foreach( get_option('evp_youtube_api') as $k => $key ) { ?>
-          <li><?php echo $key; ?></li>
-				<?php } ?>
-			</ul><?
+
+			$klist 	= '<h4>API Keys List</h4>';
+			$klist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
+			foreach( get_option('evp_youtube_api') as $k => $key ) {
+				$klist 	.= '<li>'.$key.'</li>';
+			}
+		$klist 	.= '</ul><br>';
+		return $klist;
 	}
 
 	/**
@@ -82,7 +85,7 @@ class YouTubeAPI
 		try {
 				self::youtube()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
-			wp_die(VideoPublisherAdmin::form()->user_feedback( $e->getMessage(), 'error'));;
+			echo VideoPublisherAdmin::form()->user_feedback( $e->getMessage() , 'error');
 		}
 	}
 
