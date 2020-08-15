@@ -131,6 +131,17 @@ class YouTubeAPI
 	}
 
 	/**
+	 * channelby_id
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public static function channelby_id( $id = null ){
+		$channel = self::youtube()->getChannelById( $id , false );
+		return $channel;
+	}
+
+
+	/**
 	 * get videos from multiple channels
 	 * @param  array  $channels [description]
 	 * @return [type]           [description]
