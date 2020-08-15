@@ -6,22 +6,13 @@
 	use EasyVideoPublisher\LatestUpdates;
 	use EasyVideoPublisher\YouTubeAPI;
 	use EasyVideoPublisher\FormLoader;
+	use EasyVideoPublisher\SimEditor;
 
-	/**
-	 * CSS for the loader
-	 */
-	FormLoader::css_style(
-		array(
-			'size' 						=> '200px',
-			'padding' 				=> '1em',
-			'padding-bottom' 	=> '0',
-		)
-	);
 
 	# make sure we have added channels
 	if ( ! YouTubeAPI::has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
-		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key<a></strong>', 'error');
+		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
 
 	# make sure we have added channels
@@ -79,11 +70,10 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 
 endif;
 
-?><h2>
-	<?php _e('Youtube Channel Import'); ?>
-</h2><hr/>
-<?php FormLoader::loading('update-loader');; ?>
-<div id="yt-importform">
+	// section title
+	SimEditor::section_title('Youtube Channel Import');
+
+?><div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 
 		echo $this->form()->table('open');
@@ -124,11 +114,3 @@ endif;
 	<?php _e('Recent Updates [ '.LatestUpdates::count_updates().' ]'); ?>
 </h4>
 <?php //Latest_Updates::display(); ?>
-<script type="text/javascript">
-	jQuery( document ).ready( function( $ ) {
-		jQuery('input[type="submit"]').on('click', function( event ){
-			$("#yt-importform").addClass('hidden');
-			$(".loading").removeClass('hidden');
-		 });
-	});
-</script>
