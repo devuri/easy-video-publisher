@@ -47,11 +47,13 @@ class ChannelImport
 			$args['thumbnail'] 			= YoutubeVideo::video_thumbnail( $vid );
 			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['category'] 			= $params['setcategory'];
+			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= false;
+
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
 				# get the post id
-				$get_id[] = $id;
+				$getId[] = $id;
 			}
 		}
 
@@ -62,7 +64,7 @@ class ChannelImport
 		 * ids for each post
 		 * @var array list of post ids
 		 */
-		return $get_id;
+		return $getId;
 	}
 
 }

@@ -56,11 +56,38 @@ class InsertPost
 	 * @param  [type] $username  [description]
 	 * @return [type]            [description]
 	 */
-	private static function hashtag_username( $medialink, $username ){
+	private static function username( $medialink, $username ){
 		$username 	= UrlDataAPI::get_data( $medialink )->author_name;
 		$username 	= strtolower(sanitize_file_name( $username, true));
 		$username 	= '  #' . $username;
 		return $username;
+	}
+
+	/**
+	 * set hashtags
+	 * @param  mixed $hashtags [description]
+	 * @return [type]           [description]
+	 */
+	private static function hashtags( $hashtags ){
+
+		# if we did not get an array return false
+		if ( ! is_array( $hashtags ) ) {
+			return false;
+		}
+
+		#  get hashtag
+		if ( $hashtags ) {
+			foreach ( $hashtags as $hstkey => $hashtag ) {
+				$htags 				= strtolower(sanitize_file_name($hashtag));
+				if ( strpos($htags, '-') ) {
+					$onewordtags 	= ' #'.str_replace( "-", "", $htags );
+				}
+				$htags 				= str_replace( "-", " #", $htags );
+				$htags 				= ' #'.$htags;
+			}
+			return $htags.$onewordtags;
+		}
+
 	}
 
 	/**
@@ -76,7 +103,8 @@ class InsertPost
 		 * @link https://developer.wordpress.org/reference/functions/wp_parse_args/
 		 */
 		$default = array();
-		$default['ig'] 						= false;
+		$default['username'] 			= false;
+		$default['hashtags'] 			= false;
 		$default['title'] 				= UrlDataAPI::get_data( $medialink )->title;
 		$default['embed'] 				= $medialink;
 		$default['category'] 			= array(1);
@@ -96,10 +124,8 @@ class InsertPost
 		}
 
 		#  add username
-		if ( $args['ig'] ) {
-			$username 	= ',  @' . $args['ig'];
-		} else {
-			$username 	= self::hashtag_username( $medialink , $username );
+		if ( $args['username'] ) {
+			$username 	= '  @' . $args['username'];
 		}
 
 
@@ -109,6 +135,7 @@ class InsertPost
 			 * setup info
 			 */
 			$title					= $args['title'];
+			$hashtags				= self::hashtags( $args['hashtags'] );
 			$thumbnail			= $args['thumbnail'];
 			$embed					= $args['embed'];
 			$description		= $args['description'];
@@ -125,7 +152,7 @@ class InsertPost
 			 * @link https://developer.wordpress.org/reference/functions/wp_insert_post/
 			 */
 			$postInfo = array(
-					'post_title' 		=> $title . $username,
+					'post_title' 		=> $title . $username . $hashtags,
 					'post_content' 	=> $embed.'<p>'.$description.'</p>',
 					'post_type' 		=> $post_type,
 					'post_status' 	=> $post_status,

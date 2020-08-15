@@ -3,7 +3,9 @@
 namespace EasyVideoPublisher;
 
 /**
- * Class Upload
+ * Class ImageUploadFromUrl
+ * forked copy of the:
+ * @link https://github.com/aleksnagornyi/image_upload_from_url
  * @package ImageUploadFromUrl
  */
 class ImageUploadFromUrl

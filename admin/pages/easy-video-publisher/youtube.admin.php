@@ -44,7 +44,7 @@ if ( isset( $_POST['submit_post_import'] ) ){
 		$args['category'] 		= intval( trim( $_POST['select_category'] ) );
 		$args['tags'] 				= sanitize_text_field( trim( $_POST['tags'] ) );
 		$args['description']	= wp_filter_post_kses( trim( $_POST['post_description'] ) );
-
+		$args['hashtags']			= array( get_term( $args['category'] , 'category' )->name );
 
 		/**
 		 * make sure this is a youtube url
