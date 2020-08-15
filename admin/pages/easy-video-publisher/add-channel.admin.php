@@ -69,7 +69,7 @@ endif;
 		echo $this->form()->submit_button('Add New Channel', 'primary large', 'add_new_channel');
 	?></form>
 </div><!--frmwrap-->
-<div><br/><hr/><?php
+<br/><hr/><?php
 	/**
 	 * Channels List
 	 * @var [type]
@@ -89,6 +89,4 @@ endif;
 	}
 
 	 ?><p><br>
-		-
-	</p></div>
-</div><!-- flex-form -->
+	 </p>
