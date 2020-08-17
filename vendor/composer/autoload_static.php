@@ -7,10 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
 {
     public static $prefixLengthsPsr4 = array (
-        'W' => 
-        array (
-            'WPAdminPage\\' => 12,
-        ),
         'M' => 
         array (
             'Madcoda\\Youtube\\' => 16,
@@ -22,10 +18,6 @@ class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
     );
 
     public static $prefixDirsPsr4 = array (
-        'WPAdminPage\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/devuri/wp-admin-page/src',
-        ),
         'Madcoda\\Youtube\\' => 
         array (
             0 => __DIR__ . '/..' . '/madcoda/php-youtube-api/src',
