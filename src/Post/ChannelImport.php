@@ -1,5 +1,9 @@
 <?php
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Post;
+
+	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
+	use EasyVideoPublisher\YouTube\YoutubeVideoInfo;
+	use EasyVideoPublisher\GetBlock;
 
 /**
  *
@@ -23,7 +27,7 @@ class ChannelImport
 		 */
 		$channel 					= trim( $params['youtube_channel'] );
 		$number_of_posts 	= intval( $params['number_of_posts'] );
-		$channel_videos 	= YouTubeAPI::channel_videos( $channel , $number_of_posts );
+		$channel_videos 	= YouTubeDataAPI::channel_videos( $channel , $number_of_posts );
 
 		# check if we already have the channel_videos in recent_updates
 		$recent_updates 	= get_option('evp_latest_updates');
@@ -43,8 +47,8 @@ class ChannelImport
 			/**
 			 * check if we posted this already
 			 */
-			$args['tags'] 					= YouTubeAPI::video_info( $id )->tags;
-			$args['thumbnail'] 			= YoutubeVideo::video_thumbnail( $vid );
+			$args['tags'] 					= YouTubeDataAPI::video_info( $id )->tags;
+			$args['thumbnail'] 			= YoutubeVideoInfo::video_thumbnail( $vid );
 			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['category'] 			= $params['setcategory'];
 			$args['hashtags'] 			= $params['hashtags'];

@@ -1,13 +1,14 @@
 <?php
 
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Youtube;
 
 use Madcoda\Youtube\Youtube;
+use EasyVideoPublisher\Admin\VideoPublisherAdmin;
 
 /**
  *
  */
-class YouTubeAPI
+class YouTubeDataAPI
 {
 
 	/**

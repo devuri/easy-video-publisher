@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Form;
 
 /**
  *

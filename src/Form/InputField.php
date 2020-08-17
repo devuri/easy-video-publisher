@@ -1,10 +1,10 @@
 <?php
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Form;
 
 /**
  * Instance of the wp_editor
  */
-class SimEditor
+class InputField
 {
 
   /**
