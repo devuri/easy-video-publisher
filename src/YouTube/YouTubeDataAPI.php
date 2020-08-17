@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyVideoPublisher\Youtube;
+namespace EasyVideoPublisher\YouTube;
 
 use Madcoda\Youtube\Youtube;
 use EasyVideoPublisher\VideoPublisherAdmin;

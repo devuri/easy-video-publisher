@@ -2,7 +2,7 @@
 
 	use EasyVideoPublisher\Post\InsertPost;
 	use EasyVideoPublisher\Post\UrlDataAPI;
-	use EasyVideoPublisher\Youtube\YoutubeVideoInfo;
+	use EasyVideoPublisher\YouTube\YoutubeVideoInfo;
 	use EasyVideoPublisher\Form\CategoryList;
 	use EasyVideoPublisher\Form\FormLoader;
 	use EasyVideoPublisher\Form\InputField;
