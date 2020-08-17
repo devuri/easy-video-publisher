@@ -67,6 +67,6 @@ function sim_easyvidpublisher_activation() {
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
   /**
-	 * make admin page
-	 */
-	require_once plugin_dir_path( __FILE__ ) . 'admin/class-easyvidpublisher-admin.php';
+   * Load Admin Pages
+   */
+  EasyVideoPublisher\Admin\VideoPublisherAdmin::init();

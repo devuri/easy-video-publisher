@@ -1,5 +1,5 @@
 <?php
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Admin;
 
 use WPAdminPage\AdminPage;
 
@@ -59,6 +59,3 @@ final class VideoPublisherAdmin extends AdminPage {
     return new VideoPublisherAdmin(self::admin_menu(),self::submenu());
   }
 }
-
-  // create admin pages
-  VideoPublisherAdmin::init();
