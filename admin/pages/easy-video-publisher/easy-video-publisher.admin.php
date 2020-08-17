@@ -1,8 +1,8 @@
 <?php
 
-	use EasyVideoPublisher\FormLoader;
-	use EasyVideoPublisher\CategoryList;
-	use EasyVideoPublisher\SimEditor;
+	use EasyVideoPublisher\Form\FormLoader;
+	use EasyVideoPublisher\Form\CategoryList;
+	use EasyVideoPublisher\Form\InputField;
 
 		/**
 		 * CSS for the loader
@@ -54,7 +54,7 @@ endif;
 
 	// section title
 	$arg['loader'] = true;
-	SimEditor::section_title('Video Publisher Settings', $arg );
+	InputField::section_title('Video Publisher Settings', $arg );
 
 ?><div id="category-form">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php

@@ -1,8 +1,8 @@
 <?php
 
-	use EasyVideoPublisher\YouTubeAPI;
-	use EasyVideoPublisher\FormLoader;
-	use EasyVideoPublisher\SimEditor;
+	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
+	use EasyVideoPublisher\Form\FormLoader;
+	use EasyVideoPublisher\Form\InputField;
 
 /**
  * Add API keys
@@ -54,7 +54,7 @@ endif;
 
 
 // section title
-SimEditor::section_title('Add API Keys');
+InputField::section_title('Add API Keys');
 
 ?><div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
@@ -71,7 +71,7 @@ SimEditor::section_title('Add API Keys');
 		echo '<br>';
 		echo '<br><hr/>';
 
-		echo YouTubeAPI::keys();
+		echo YouTubeDataAPI::keys();
 		echo '<input name="delete_api_keys" id="delete_api_keys" type="submit" class="button" value="Delete API Keys ">';
 		echo '<br/>';
 	?></form>

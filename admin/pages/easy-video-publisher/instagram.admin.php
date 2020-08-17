@@ -1,11 +1,12 @@
 <?php
 
-	use EasyVideoPublisher\InsertPost;
-	use EasyVideoPublisher\UrlDataAPI;
-	use EasyVideoPublisher\YoutubeVideo;
-	use EasyVideoPublisher\CategoryList;
-	use EasyVideoPublisher\FormLoader;
-	use EasyVideoPublisher\SimEditor;
+	use EasyVideoPublisher\Post\InsertPost;
+	use EasyVideoPublisher\Post\UrlDataAPI;
+	use EasyVideoPublisher\Youtube\YoutubeVideoInfo;
+	use EasyVideoPublisher\Form\CategoryList;
+	use EasyVideoPublisher\Form\FormLoader;
+	use EasyVideoPublisher\Form\InputField;
+
 
 	/**
 	 * CSS for the loader
@@ -65,7 +66,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 endif;
 
 	# section title
-	SimEditor::section_title('Instagram Publisher');
+	InputField::section_title('Instagram Publisher');
 
 	#loading
 	FormLoader::loading('update-loader');
@@ -74,14 +75,14 @@ endif;
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Title</label><br> <small> Use a custom title for the video</small></td>';
-		echo SimEditor::custom_title('Title');
+		echo InputField::custom_title('Title');
 		echo $this->form()->input('Instagram Url', ' ');
 
 		# categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';
-		echo SimEditor::get_editor('','post_description');
+		echo InputField::get_editor('','post_description');
 		echo $this->form()->input('Tags', ' ');
 		echo $this->form()->table('close');
 		$this->form()->nonce();

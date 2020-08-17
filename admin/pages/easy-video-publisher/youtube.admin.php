@@ -1,11 +1,11 @@
 <?php
 
-	use EasyVideoPublisher\InsertPost;
+	use EasyVideoPublisher\Post\InsertPost;
+	use EasyVideoPublisher\Youtube\YoutubeVideoInfo;
+	use EasyVideoPublisher\Form\CategoryList;
+	use EasyVideoPublisher\Form\FormLoader;
+	use EasyVideoPublisher\Form\InputField;
 	use EasyVideoPublisher\GetBlock;
-	use EasyVideoPublisher\YoutubeVideo;
-	use EasyVideoPublisher\CategoryList;
-	use EasyVideoPublisher\FormLoader;
-	use EasyVideoPublisher\SimEditor;
 
 	/**
 	 * CSS for the loader
@@ -40,7 +40,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 			$custom_title 			= true;
 		}
 		$args['embed'] 				= GetBlock::youtube( $vid );
-		$args['thumbnail'] 		= YoutubeVideo::video_thumbnail( $vid );
+		$args['thumbnail'] 		= YoutubeVideoInfo::video_thumbnail( $vid );
 		$args['category'] 		= intval( trim( $_POST['select_category'] ) );
 		$args['tags'] 				= sanitize_text_field( trim( $_POST['tags'] ) );
 		$args['description']	= wp_filter_post_kses( trim( $_POST['post_description'] ) );
@@ -49,7 +49,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 		/**
 		 * make sure this is a youtube url
 		 */
-		if ( YoutubeVideo::video_id($vid) ) {
+		if ( YoutubeVideoInfo::video_id($vid) ) {
 
 			$id = InsertPost::newpost($vid, $args);
 
@@ -68,7 +68,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 endif;
 
 	# section title
-	SimEditor::section_title('Youtube Video Publisher');
+	InputField::section_title('Youtube Video Publisher');
 
 	#loading
 	FormLoader::loading('update-loader');
@@ -77,7 +77,7 @@ endif;
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Video Title</label><br> <small> Use a custom title for the video</small></td>';
-		echo SimEditor::custom_title('Video Title');
+		echo InputField::custom_title('Video Title');
 		echo $this->form()->input('YouTube Video url', ' ');
 
 		# categories
@@ -85,7 +85,7 @@ endif;
 
 
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';
-		echo SimEditor::get_editor('','post_description');
+		echo InputField::get_editor('','post_description');
 		echo $this->form()->input('Tags', ' ');
 		echo $this->form()->table('close');
 		$this->form()->nonce();

@@ -1,16 +1,16 @@
 <?php
 
-	use EasyVideoPublisher\InsertPost;
-	use EasyVideoPublisher\ChannelImport;
-	use EasyVideoPublisher\CategoryList;
+	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
+	use EasyVideoPublisher\Post\InsertPost;
+	use EasyVideoPublisher\Post\ChannelImport;
+	use EasyVideoPublisher\Form\CategoryList;
+	use EasyVideoPublisher\Form\FormLoader;
+	use EasyVideoPublisher\Form\InputField;
 	use EasyVideoPublisher\LatestUpdates;
-	use EasyVideoPublisher\YouTubeAPI;
-	use EasyVideoPublisher\FormLoader;
-	use EasyVideoPublisher\SimEditor;
 
 
 	# make sure we have added channels
-	if ( ! YouTubeAPI::has_key() ) :
+	if ( ! YouTubeDataAPI::has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
@@ -34,8 +34,8 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	 * checks to make sure the request is ok
 	 * if not show the erro message and exit
 	 */
-	if ( ! YouTubeAPI::is_request_ok()  ) {
-		wp_die($this->form()->user_feedback( YouTubeAPI::response_error() .' !!!', 'error'));
+	if ( ! YouTubeDataAPI::is_request_ok()  ) {
+		wp_die($this->form()->user_feedback( YouTubeDataAPI::response_error() .' !!!', 'error'));
 	}
 
 
@@ -71,7 +71,7 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 endif;
 
 	// section title
-	SimEditor::section_title('Youtube Channel Import');
+	InputField::section_title('Youtube Channel Import');
 
 ?><div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
