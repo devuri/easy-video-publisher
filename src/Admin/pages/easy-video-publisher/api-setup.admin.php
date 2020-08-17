@@ -1,6 +1,8 @@
 <?php
 
-	use EasyVideoPublisher\YouTubeAPI;
+	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
+	use EasyVideoPublisher\Form\FormLoader;
+	use EasyVideoPublisher\Form\InputField;
 
 /**
  * Add API keys
@@ -15,12 +17,22 @@ if ( isset( $_POST['add_api_key'] ) ) :
 	/**
 	 * Adds new API Keys
 	 */
-	$api_key			= get_option( 'evp_youtube_api' );
 	$new_key 			= array(trim( $_POST['youtube_api_key'] ));
-	$update_keys 	= array_merge( $api_key , $new_key );
 
-	# update the key
-	update_option('evp_youtube_api', $update_keys );
+	# check if we already have the key in recent updates
+	$api_keys 		= get_option( 'evp_youtube_api' );
+	$iskey_new		= array_diff( $new_key , $api_keys);
+	$update_keys	= array_merge( $new_key , $api_keys );
+
+	# if we cant find any new videos
+	if ( $iskey_new ) {
+		# add the new channel
+		update_option('evp_youtube_api', $update_keys );
+		echo $this->form()->user_feedback( 'New API Key <strong>'.$new_key[0].'</strong> Added !!!');
+	} else {
+		echo $this->form()->user_feedback('<strong>'.$new_key[0].'</strong> already Exists !!!', 'error');
+	}
+
 
 endif;
 
@@ -40,10 +52,11 @@ if ( isset( $_POST['delete_api_keys'] ) ) :
 
 endif;
 
-?><h2>
-	<?php _e('API Key'); ?>
-</h2>
-<hr/><div id="yt-importform">
+
+// section title
+InputField::section_title('Add API Keys');
+
+?><div id="yt-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 
@@ -55,10 +68,10 @@ endif;
 		$this->form()->nonce();
 		echo '<br>';
 		echo $this->form()->submit_button('Add API Key', 'primary large', 'add_api_key');
-		echo '<br/>';
-		echo '<br/><hr/>';
+		echo '<br>';
+		echo '<br><hr/>';
 
-		echo YouTubeAPI::keys();
+		echo YouTubeDataAPI::keys();
 		echo '<input name="delete_api_keys" id="delete_api_keys" type="submit" class="button" value="Delete API Keys ">';
 		echo '<br/>';
 	?></form>
@@ -69,3 +82,11 @@ endif;
 	<br>
 	<a href="https://developers.google.com/youtube/v3/" rel="nofollow">Youtube Data API v3 Doc</a>
 </p>
+<script type="text/javascript">
+	jQuery( document ).ready( function( $ ) {
+		// loading
+		jQuery('input[type="submit"]').on('click', function( event ){
+			$(".update-loader").removeClass('hidden');
+		 });
+	});
+</script>

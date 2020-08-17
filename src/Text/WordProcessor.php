@@ -1,10 +1,10 @@
 <?php
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Text;
 
 /**
- * Instance of the wp_editor
+ * WordProcessor
  */
-class TextProcessor
+class WordProcessor
 {
 
 	/**

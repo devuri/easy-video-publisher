@@ -1,10 +1,10 @@
 <?php
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Form;
 
 /**
  * Instance of the wp_editor
  */
-class SimEditor
+class InputField
 {
 
   /**
@@ -77,4 +77,35 @@ class SimEditor
     </tr>';
     return $editor;
   }
+
+
+	public static function section_title( $title = 'Page Title', $args = array() ){
+
+		$default = array();
+		$default['loader'] 			= false;
+		$args = wp_parse_args( $args , $default );
+
+		?>
+		<table class="form-table" role="presentation">
+		  <tbody>
+		    <!-- page-title -->
+		    <tr class="input-tags">
+		      <th style="width: 240px; padding:unset; padding-bottom: 1em">
+						<label for="page-title">
+							<h2 style="margin:0">
+								<?php _e($title); ?>
+							</h2>
+						</label>
+					</th>
+		      <td style="padding: 0;"><?php
+					# if true use the loader
+					if ( $args['loader'] ) {
+						FormLoader::loading('update-loader');
+					}
+					?></td>
+		    </tr>
+		    <!-- page-title-->
+		  </tbody>
+		</table><hr/>
+	<?php }
 }

@@ -1,13 +1,14 @@
 <?php
 
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Youtube;
 
 use Madcoda\Youtube\Youtube;
+use EasyVideoPublisher\VideoPublisherAdmin;
 
 /**
  *
  */
-class YouTubeAPI
+class YouTubeDataAPI
 {
 
 	/**
@@ -129,6 +130,17 @@ class YouTubeAPI
 		$info = self::youtube()->getVideoInfo( $vid )->snippet;
 		return $info;
 	}
+
+	/**
+	 * channelby_id
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public static function channelby_id( $id = null ){
+		$channel = self::youtube()->getChannelById( $id , false );
+		return $channel;
+	}
+
 
 	/**
 	 * get videos from multiple channels

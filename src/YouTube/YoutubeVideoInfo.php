@@ -1,12 +1,14 @@
 <?php
 
-namespace EasyVideoPublisher;
+namespace EasyVideoPublisher\Youtube;
+
+	use EasyVideoPublisher\Post\UrlDataAPI;
 
 
 /**
  *
  */
-class YoutubeVideo
+class YoutubeVideoInfo
 {
 
 	/**
