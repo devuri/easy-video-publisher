@@ -2,7 +2,7 @@
 
 namespace EasyVideoPublisher\Post;
 
-	use EasyVideoPublisher\VideoPublisherAdmin;
+	use EasyVideoPublisher\Admin\VideoPublisherAdmin;
 	use EasyVideoPublisher\IsError;
 
 /**

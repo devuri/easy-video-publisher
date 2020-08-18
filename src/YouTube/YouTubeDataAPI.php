@@ -3,7 +3,7 @@
 namespace EasyVideoPublisher\YouTube;
 
 use Madcoda\Youtube\Youtube;
-use EasyVideoPublisher\VideoPublisherAdmin;
+use EasyVideoPublisher\Admin\VideoPublisherAdmin;
 
 /**
  *
