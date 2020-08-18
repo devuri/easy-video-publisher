@@ -1,7 +1,7 @@
 <?php
-namespace EasyVideoPublisher\Admin;
+namespace VideoPublisherPro\Admin;
 
-use EasyVideoPublisher\WPAdminPage\AdminPage;
+use VideoPublisherPro\WPAdminPage\AdminPage;
 
 // TODO change to the new
 // use PluginAdminUI\AdminPage;

@@ -1,11 +1,11 @@
 <?php
 
-	use EasyVideoPublisher\Post\InsertPost;
-	use EasyVideoPublisher\YouTube\YoutubeVideoInfo;
-	use EasyVideoPublisher\Form\CategoryList;
-	use EasyVideoPublisher\Form\FormLoader;
-	use EasyVideoPublisher\Form\InputField;
-	use EasyVideoPublisher\GetBlock;
+	use VideoPublisherPro\Post\InsertPost;
+	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\Form\CategoryList;
+	use VideoPublisherPro\Form\FormLoader;
+	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherPro\GetBlock;
 
 	/**
 	 * CSS for the loader

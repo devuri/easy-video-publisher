@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyVideoPublisher\Post;
+namespace VideoPublisherPro\Post;
 
-	use EasyVideoPublisher\Admin\VideoPublisherAdmin;
-	use EasyVideoPublisher\IsError;
+	use VideoPublisherPro\Admin\VideoPublisherAdmin;
+	use VideoPublisherPro\IsError;
 
 /**
  *

@@ -1,9 +1,9 @@
 <?php
-namespace EasyVideoPublisher\Post;
+namespace VideoPublisherPro\Post;
 
-	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
-	use EasyVideoPublisher\YouTube\YoutubeVideoInfo;
-	use EasyVideoPublisher\GetBlock;
+	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\GetBlock;
 
 /**
  *

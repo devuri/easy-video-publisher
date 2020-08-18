@@ -1,12 +1,12 @@
 <?php
 
-	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
-	use EasyVideoPublisher\Post\InsertPost;
-	use EasyVideoPublisher\Post\ChannelImport;
-	use EasyVideoPublisher\Form\CategoryList;
-	use EasyVideoPublisher\Form\FormLoader;
-	use EasyVideoPublisher\Form\InputField;
-	use EasyVideoPublisher\LatestUpdates;
+	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\Post\InsertPost;
+	use VideoPublisherPro\Post\ChannelImport;
+	use VideoPublisherPro\Form\CategoryList;
+	use VideoPublisherPro\Form\FormLoader;
+	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherPro\LatestUpdates;
 
 
 	# make sure we have added channels

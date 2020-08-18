@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyVideoPublisher\YouTube;
+namespace VideoPublisherPro\YouTube;
 
 use Madcoda\Youtube\Youtube;
-use EasyVideoPublisher\Admin\VideoPublisherAdmin;
+use VideoPublisherPro\Admin\VideoPublisherAdmin;
 
 /**
  *

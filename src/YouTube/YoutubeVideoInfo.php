@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyVideoPublisher\YouTube;
+namespace VideoPublisherPro\YouTube;
 
-	use EasyVideoPublisher\Post\UrlDataAPI;
+	use VideoPublisherPro\Post\UrlDataAPI;
 
 
 /**

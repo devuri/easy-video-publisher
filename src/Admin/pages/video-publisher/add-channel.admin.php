@@ -1,7 +1,7 @@
 <?php
 
-	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
-	use EasyVideoPublisher\Form\InputField;
+	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\Form\InputField;
 
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :

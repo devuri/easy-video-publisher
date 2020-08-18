@@ -1,5 +1,5 @@
 <?php
-namespace EasyVideoPublisher\Post;
+namespace VideoPublisherPro\Post;
 
 /**
  *

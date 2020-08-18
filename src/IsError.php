@@ -1,7 +1,7 @@
 <?php
-namespace EasyVideoPublisher;
+namespace VideoPublisherPro;
 
-		use EasyVideoPublisher\Admin\VideoPublisherAdmin;
+		use VideoPublisherPro\Admin\VideoPublisherAdmin;
 
 /**
  *
