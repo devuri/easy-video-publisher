@@ -19,10 +19,10 @@ final class VideoPublisherAdmin extends AdminPage {
     $menu['id']           = 634890;
     $menu['pro']          = true;
     $menu['mcolor']       = '#0071A1';
-    $menu['page_title']   = 'Easy Video Publisher Pro';
+    $menu['page_title']   = 'Video Publisher Pro';
     $menu['menu_title']   = 'Video Publisher';
     $menu['capability']   = 'manage_options';
-    $menu['menu_slug']    = 'easy-video-publisher';
+    $menu['menu_slug']    = 'video-publisher';
     $menu['function']     = 'sim_publisher_callback';
     $menu['icon_url']     = 'dashicons-video-alt3';
     $menu['prefix']       = 'evpro';
