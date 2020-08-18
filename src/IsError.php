@@ -1,7 +1,7 @@
 <?php
 namespace VideoPublisherPro;
 
-		use VideoPublisherPro\Admin\VideoPublisherAdmin;
+	use VideoPublisherPro\Admin\VideoPublisherAdmin;
 
 /**
  *

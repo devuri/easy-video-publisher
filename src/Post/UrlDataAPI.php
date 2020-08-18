@@ -5,8 +5,9 @@ namespace VideoPublisherPro\Post;
 
 /**
  * get url data
- * uses oEmbed
+ * uses oEmbed via Core class WP_oEmbed used to get oEmbed data.
  * @link https://oembed.com/
+ * @link https://developer.wordpress.org/reference/classes/wp_oembed/
  */
 class UrlDataAPI
 {
