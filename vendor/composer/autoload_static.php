@@ -29,30 +29,7 @@ class ComposerStaticInit15384333ceba211cd3f0f535f5a3055c
     );
 
     public static $classMap = array (
-        'Madcoda\\Youtube\\Constants' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/Constants.php',
-        'Madcoda\\Youtube\\Facades\\Youtube' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/Facades/Youtube.php',
-        'Madcoda\\Youtube\\Youtube' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/Youtube.php',
-        'Madcoda\\Youtube\\YoutubeServiceProviderLaravel4' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/YoutubeServiceProviderLaravel4.php',
-        'Madcoda\\Youtube\\YoutubeServiceProviderLaravel5' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/YoutubeServiceProviderLaravel5.php',
         'Madcoda\\compat' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/compat.php',
-        'VideoPublisherPro\\Admin\\VideoPublisherAdmin' => __DIR__ . '/../..' . '/src/Admin/VideoPublisherAdmin.php',
-        'VideoPublisherPro\\Form\\CategoryList' => __DIR__ . '/../..' . '/src/Form/CategoryList.php',
-        'VideoPublisherPro\\Form\\FormLoader' => __DIR__ . '/../..' . '/src/Form/FormLoader.php',
-        'VideoPublisherPro\\Form\\InputField' => __DIR__ . '/../..' . '/src/Form/InputField.php',
-        'VideoPublisherPro\\GetBlock' => __DIR__ . '/../..' . '/src/GetBlock.php',
-        'VideoPublisherPro\\IsError' => __DIR__ . '/../..' . '/src/IsError.php',
-        'VideoPublisherPro\\LatestUpdates' => __DIR__ . '/../..' . '/src/LatestUpdates.php',
-        'VideoPublisherPro\\Post\\ChannelImport' => __DIR__ . '/../..' . '/src/Post/ChannelImport.php',
-        'VideoPublisherPro\\Post\\FeaturedImage' => __DIR__ . '/../..' . '/src/Post/FeaturedImage.php',
-        'VideoPublisherPro\\Post\\ImageUploadFromUrl' => __DIR__ . '/../..' . '/src/Post/ImageUploadFromUrl.php',
-        'VideoPublisherPro\\Post\\InsertPost' => __DIR__ . '/../..' . '/src/Post/InsertPost.php',
-        'VideoPublisherPro\\Post\\UploadImage' => __DIR__ . '/../..' . '/src/Post/UploadImage.php',
-        'VideoPublisherPro\\Post\\UrlDataAPI' => __DIR__ . '/../..' . '/src/Post/UrlDataAPI.php',
-        'VideoPublisherPro\\Text\\WordProcessor' => __DIR__ . '/../..' . '/src/Text/WordProcessor.php',
-        'VideoPublisherPro\\WPAdminPage\\AdminPage' => __DIR__ . '/../..' . '/src/WPAdminPage/AdminPage.php',
-        'VideoPublisherPro\\WPAdminPage\\FormHelper' => __DIR__ . '/../..' . '/src/WPAdminPage/FormHelper.php',
-        'VideoPublisherPro\\YouTube\\YouTubeDataAPI' => __DIR__ . '/../..' . '/src/YouTube/YouTubeDataAPI.php',
-        'VideoPublisherPro\\YouTube\\YoutubeVideoInfo' => __DIR__ . '/../..' . '/src/YouTube/YoutubeVideoInfo.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
