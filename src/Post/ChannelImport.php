@@ -42,6 +42,7 @@ class ChannelImport
 		# create posts
 		foreach ( $new_videos  as $upkey => $id ) {
 
+			# convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
 
 			/**
