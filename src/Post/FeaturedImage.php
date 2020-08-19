@@ -13,7 +13,7 @@ class FeaturedImage
 
 	/**
 	 * Download image and set as featured image
-	 * @param  string $url  	youtube video id
+	 * @param  string $thumbnail  	image url
 	 * @param  int 		$post_id    	the post id
 	 * @param  string $post_title 	title of the post
 	 * @return int 		$attach_id		the attachment id
@@ -34,7 +34,7 @@ class FeaturedImage
 
 		/**
 		 * ok lets upload and stuff
-		 * add uniqid to avoid replacing the image
+		 * add uniqid() to avoid replacing the image
 		 * @var [type]
 		 */
 		$filename = sanitize_file_name( strtolower($post_title.'-'.uniqid()) );
@@ -49,12 +49,13 @@ class FeaturedImage
 
 		$wp_filetype = wp_check_filetype( $image['basename'] , null );
 		$attachment = array(
-			'post_mime_type' => $wp_filetype['type'],
-			'post_title' => $img_title,
-			'post_content' => '',
-			'post_status' => 'inherit'
+			'post_mime_type' 	=> $wp_filetype['type'],
+			'post_title' 			=> $img_title,
+			'post_content' 		=> '',
+			'post_status' 		=> 'inherit'
 		);
 
+		# create the attachment
 		$attach_id = wp_insert_attachment( $attachment, $file , $post_id );
 
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
