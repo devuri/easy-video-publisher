@@ -3,6 +3,7 @@ namespace VideoPublisherPro\Post;
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\UserFeedback;
 	use VideoPublisherPro\GetBlock;
 
 /**
@@ -12,6 +13,16 @@ class ChannelImport
 {
 
 	public static function publish( string $channelId = null , array $params = array() ){
+
+		/**
+		 * checks to make sure the request is ok
+		 * if not show the error message and exit
+		 */
+		 try {
+				 YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
+		 } catch (\Exception $e ) {
+			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
+		 }
 
 		/**
 		 * default args
