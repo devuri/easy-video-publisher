@@ -2,7 +2,7 @@
 
 namespace VideoPublisherPro\Post;
 
-	use VideoPublisherPro\Admin\VideoPublisherAdmin;
+	use VideoPublisherPro\UserFeedback;
 	use VideoPublisherPro\IsError;
 
 /**
@@ -29,7 +29,7 @@ class FeaturedImage
 
 		# if all is not ok give us some feedback
  		if ( ! $get_image['response']['code'] == 200 ) {
-			wp_die( VideoPublisherAdmin::form()->user_feedback( 'I cant download the Image to set featured Image' .' !!!', 'error'));
+			wp_die( UserFeedback::message( 'I cant download the Image to set featured Image' .' !!!', 'error'));
  		}
 
 		/**
