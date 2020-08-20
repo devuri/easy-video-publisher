@@ -56,7 +56,7 @@ class YouTubeDataAPI
 	public static function keys(){
 		$keys = get_option('evp_youtube_api');
 
-			$klist 	= '<h4>API Keys List</h4>';
+			$klist 	= '<h4>API Keys:</h4>';
 			$klist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
 			foreach( get_option('evp_youtube_api') as $k => $key ) {
 				$klist 	.= '<li>'.$key.'</li>';
