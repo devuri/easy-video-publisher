@@ -81,6 +81,8 @@ class InsertPost
 				$htags 				= strtolower(sanitize_file_name($hashtag));
 				if ( strpos($htags, '-') ) {
 					$onewordtags 	= ' #'.str_replace( "-", "", $htags );
+				} else {
+					$onewordtags = '';
 				}
 				$htags 				= str_replace( "-", " #", $htags );
 				$htags 				= ' #'.$htags;
@@ -126,6 +128,8 @@ class InsertPost
 		#  add username
 		if ( $args['username'] ) {
 			$username 	= '  @' . $args['username'];
+		} else {
+			$username 	= '';
 		}
 
 
