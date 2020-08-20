@@ -3,7 +3,7 @@
 namespace VideoPublisherPro\YouTube;
 
 use Madcoda\Youtube\Youtube;
-use VideoPublisherPro\Admin\VideoPublisherAdmin;
+use VideoPublisherPro\UserFeedback;
 
 /**
  *
@@ -19,7 +19,9 @@ class YouTubeDataAPI
 	private static function apikey(){
 		$apikey = get_option('evp_youtube_api');
 		shuffle( $apikey );
-		return $apikey[0];
+		if ( isset($apikey[0]) ) {
+			return $apikey[0];
+		}
 	}
 
 	/**
@@ -86,7 +88,7 @@ class YouTubeDataAPI
 		try {
 				self::youtube()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
-			echo VideoPublisherAdmin::form()->user_feedback( $e->getMessage() , 'error');
+			echo UserFeedback::message( $e->getMessage() , 'error');
 		}
 	}
 
