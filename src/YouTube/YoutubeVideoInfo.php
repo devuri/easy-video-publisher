@@ -12,17 +12,20 @@ class YoutubeVideoInfo
 {
 
 	/**
-	 * get the video id from url
+	 * get the video id from url,
+	 * if not return false
 	 * @param  $video_url
-	 * @return string
+	 * @return mixed
 	 */
 	public static function video_id( $video_url = null ){
 		if ( ! $video_url == null ) {
 			if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url , $vid_id)) {
 				$the_id = $vid_id[1];
+			} else {
+				$the_id = false;
 			}
-			return $the_id;
 		}
+		return $the_id;
 	}
 
 	public static function video_thumbnail( $video_url = null ){
