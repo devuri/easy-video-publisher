@@ -4,7 +4,6 @@ namespace VideoPublisherPro\Post;
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
 	use VideoPublisherPro\UserFeedback;
-	use VideoPublisherPro\GetBlock;
 
 /**
  *
@@ -18,11 +17,11 @@ class ChannelImport
 		 * checks to make sure the request is ok
 		 * if not show the error message and exit
 		 */
-		 try {
-				 YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
-		 } catch (\Exception $e ) {
+		try {
+			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
+		} catch (\Exception $e ) {
 			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
-		 }
+		}
 
 		/**
 		 * default args
@@ -57,7 +56,7 @@ class ChannelImport
 			$vid = 'https://youtu.be/'.$id;
 
 			/**
-			 * check if we posted this already
+			 * set up some $args
 			 */
 			$args['tags'] 					= YouTubeDataAPI::video_info( $id )->tags;
 			$args['thumbnail'] 			= YoutubeVideoInfo::video_thumbnail( $vid );
@@ -69,7 +68,7 @@ class ChannelImport
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
 				# get the post id
-				$getId[] = $id;
+				$ids[] = $id;
 			}
 		}
 
@@ -80,7 +79,7 @@ class ChannelImport
 		 * ids for each post
 		 * @var array list of post ids
 		 */
-		return $getId;
+		return $ids;
 	}
 
 }
