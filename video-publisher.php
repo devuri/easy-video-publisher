@@ -62,7 +62,7 @@ function sim_vidpublisher_activation() {
 }
 
   /**
-	 * Load admin page class via composer
+	 * Load composer
 	 */
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
