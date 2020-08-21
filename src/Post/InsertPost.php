@@ -43,7 +43,7 @@ class InsertPost
 
 		# maybe create author
 		if ( $create_author ) {
-			$post_author = self::create_user( $author );
+			$post_author = self::create_user( $author_name );
 		} else {
 			$post_author = $author;
 		}
