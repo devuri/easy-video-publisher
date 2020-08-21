@@ -9,6 +9,12 @@ use VideoPublisherPro\WPAdminPage\AdminPage;
 final class VideoPublisherAdmin extends AdminPage {
 
   /**
+   * The $capability for YouTube
+   * @var [type]
+   */
+  private static $capability = 'read';
+
+  /**
    * admin_menu()
    *
    * Main top level admin menus
@@ -39,14 +45,17 @@ final class VideoPublisherAdmin extends AdminPage {
     $submenu = array();
     $submenu[] = 'Settings';
     $submenu[] = array(
-      'name'    => 'YouTube',
-      'capability'  => 'read'
+      'name'        => 'YouTube',
+      'capability'  => self::$capability
     );
-    $submenu[] = 'Instagram';
+    //$submenu[] = 'Instagram';
     $submenu[] = 'Channel Import';
-    // $submenu[] = 'Search Import';
-    // $submenu[] = 'Playlist Import';
     $submenu[] = 'Add Channel';
+    // $submenu[] = 'Playlist Import';
+    // $submenu[] = 'Add Playlist';
+    // $submenu[] = 'Search Import';
+    // $submenu[] = 'Add Search Items';
+
     $submenu[] = 'API Setup';
     return $submenu;
   }
