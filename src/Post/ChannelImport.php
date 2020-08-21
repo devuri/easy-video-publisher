@@ -20,6 +20,7 @@ class ChannelImport
 		try {
 			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
+			// TODO create a log message and return 
 			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
 		}
 
