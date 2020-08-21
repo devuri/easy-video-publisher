@@ -42,10 +42,10 @@ class WordProcessor
 	}
 
   /**
-   * find $artist by name
+   * find $find by name
    * search the string for artist
-	 * @param  [type] $text   [description]
-   * @param  array  $artist [description]
+	 * @param  string $text   text to search
+   * @param  string  $find [description]
    * @return [type]         [description]
    */
 	public static function find_word( string $text = null , $find = null ){
