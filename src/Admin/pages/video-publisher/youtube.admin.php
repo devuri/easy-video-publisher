@@ -5,7 +5,7 @@
 	use VideoPublisherPro\Form\CategoryList;
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
-	use VideoPublisherPro\GetBlock;
+	use VideoPublisherPro\Post\GetBlock;
 
 	/**
 	 * CSS for the loader
