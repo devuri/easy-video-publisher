@@ -27,6 +27,4 @@ class LatestUpdates
 		return $update_count;
 	}
 
-
-
 }
