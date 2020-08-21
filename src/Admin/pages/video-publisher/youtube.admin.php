@@ -62,6 +62,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 				echo '</div>';
 			}
 		} else {
+			$id = false;
 			echo $this->form()->user_feedback('Please Use a Valid YouTube url !!!', 'error');
 		}
 
@@ -82,7 +83,6 @@ endif;
 
 		# categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
-
 
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';
 		echo InputField::get_editor('','post_description');
