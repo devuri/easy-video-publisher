@@ -20,7 +20,7 @@ class ChannelImport
 		try {
 			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
-			// TODO create a log message and return 
+			// TODO create a log message $e->getMessage() and return
 			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
 		}
 
@@ -28,6 +28,7 @@ class ChannelImport
 		 * default args
 		 */
 		$default = array();
+		$default['create_author']		= false;
 		$default['youtube_channel'] = $channelId;
 		$default['number_of_posts'] = 2;
 		$default['setcategory'] 		= array(1);
@@ -50,10 +51,10 @@ class ChannelImport
 			return;
 		}
 
-		# create posts
+		// create posts
 		foreach ( $new_videos  as $upkey => $id ) {
 
-			# convert id to full youtube url
+			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
 
 			/**
@@ -64,7 +65,7 @@ class ChannelImport
 			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['category'] 			= $params['setcategory'];
 			$args['hashtags'] 			= $params['hashtags'];
-			$args['create_author']	= false;
+			$args['create_author']	= $params['create_author'];
 
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
