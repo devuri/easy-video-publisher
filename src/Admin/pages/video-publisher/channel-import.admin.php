@@ -54,7 +54,7 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	$args['youtube_channel'] 	= $channelId;
 	$args['number_of_posts'] 	= $number_of_posts;
 	$args['setcategory']			= $setcategory;
-	$args['hashtags']			= array( get_term( $args['setcategory'] , 'category' )->name );
+	$args['hashtags']					= array( get_term( $args['setcategory'] , 'category' )->name );
 
 	/**
 	 * creates the posts
@@ -67,6 +67,21 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 		}
 	}
 
+endif;
+
+/**
+ * Delete All Videos
+ *
+ */
+if ( isset( $_POST['delete_all_videos'] ) ) :
+
+	if ( ! $this->form()->verify_nonce()  ) {
+		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
+	}
+
+	$delete_videos	= array();
+	# delete the videos
+	update_option('evp_latest_updates', $delete_videos );
 
 endif;
 
@@ -108,9 +123,17 @@ endif;
 		echo '<br/>';
 		echo $this->form()->submit_button('Import Videos', 'primary large', 'get_latest_updates');
 
+		echo '<br><hr/><h4>';
+		_e('Recent Updates [ '.LatestUpdates::count_updates().' ]');
+		echo '</h4>';
+
+		// delete videos
+		echo '<input name="delete_all_videos" id="delete_all_videos" type="submit" class="button" value="Delete All Videos Videos ">';
+		echo '<br/>';
+
 	?></form>
 </div><!--frmwrap-->
-<br><hr/><h4>
-	<?php _e('Recent Updates [ '.LatestUpdates::count_updates().' ]'); ?>
-</h4>
+
+
+
 <?php //Latest_Updates::display(); ?>
