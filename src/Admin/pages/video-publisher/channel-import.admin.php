@@ -7,6 +7,7 @@
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
 	use VideoPublisherPro\LatestUpdates;
+	use VideoPublisherPro\PostType;
 
 
 	# make sure we have added channels
@@ -38,7 +39,6 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 		wp_die($this->form()->user_feedback( YouTubeDataAPI::response_error() .' !!!', 'error'));
 	}
 
-
 	/**
 	 * get the channel to post from
 	 */
@@ -52,6 +52,14 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	 * @var array
 	 */
 	$args = array();
+
+	// set post type
+	if ( current_user_can('manage_options')) {
+		$args['post_type'] 		= sanitize_text_field( trim( $_POST['set_post_type'] ) );
+	} else {
+		$args['post_type'] 		= 'post';
+	}
+
 	$args['create_author']		= $setauthor;
 	$args['youtube_channel'] 	= $channelId;
 	$args['number_of_posts'] 	= $number_of_posts;
@@ -118,6 +126,14 @@ endif;
 			10 	=> '10',
 		);
 		echo $this->form()->select( $number_of_posts , 'Number of Posts' );
+
+		/**
+		 * Posts Types.
+		 * @var array
+		 */
+		if ( current_user_can('manage_options')) :
+			echo $this->form()->select( PostType::post_types() , 'Set Post Type' );
+		endif;
 
 		/**
 		 * Posts Author.

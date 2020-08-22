@@ -28,6 +28,7 @@ class ChannelImport
 		 * default args
 		 */
 		$default = array();
+		$default['post_type']				= 'post';
 		$default['create_author']		= false;
 		$default['youtube_channel'] = $channelId;
 		$default['number_of_posts'] = 2;
@@ -63,6 +64,7 @@ class ChannelImport
 			$args['tags'] 					= YouTubeDataAPI::video_info( $id )->tags;
 			$args['thumbnail'] 			= YoutubeVideoInfo::video_thumbnail( $vid );
 			$args['embed'] 					= GetBlock::youtube( $vid );
+			$args['post_type'] 			= $params['post_type'];
 			$args['category'] 			= $params['setcategory'];
 			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= $params['create_author'];
