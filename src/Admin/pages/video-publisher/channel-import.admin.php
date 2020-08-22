@@ -75,7 +75,7 @@ endif;
  * Delete All Videos
  *
  */
-if ( isset( $_POST['delete_all_videos'] ) ) :
+if ( isset( $_POST['delete_recent_updates'] ) ) :
 
 	if ( ! $this->form()->verify_nonce()  ) {
 		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
@@ -141,8 +141,9 @@ endif;
 		echo '</h4>';
 
 		// delete videos
-		echo '<input name="delete_all_videos" id="delete_all_videos" type="submit" class="button" value="Delete All Videos Videos ">';
-		echo '<br/>';
+		echo '<input name="delete_recent_updates" id="delete_recent_updates" type="submit" class="button" value="Delete All Recent Updates">';
+		echo '<span style="color: red; font-size: small; display: block;"> This will only delete the video ids for recent updates </span>';
+		echo '<br>';
 
 	?></form>
 </div><!--frmwrap-->
