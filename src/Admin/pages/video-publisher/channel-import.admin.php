@@ -45,12 +45,14 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	$channelId 				= trim( $_POST['youtube_channel'] );
 	$number_of_posts 	= intval( $_POST['number_of_posts'] );
 	$setcategory 			= intval( $_POST['select_category'] );
+	$setauthor 				= intval( $_POST['set_author'] );
 
 	/**
 	 * set args to override $default
 	 * @var array
 	 */
 	$args = array();
+	$args['create_author']		= $setauthor;
 	$args['youtube_channel'] 	= $channelId;
 	$args['number_of_posts'] 	= $number_of_posts;
 	$args['setcategory']			= $setcategory;
@@ -116,6 +118,17 @@ endif;
 			10 	=> '10',
 		);
 		echo $this->form()->select( $number_of_posts , 'Number of Posts' );
+
+		/**
+		 * Posts Author.
+		 * @var array
+		 */
+		$set_author = array(
+			0 	=> 'Current Author',
+			1 	=> 'YouTube Author',
+		);
+		echo $this->form()->select( $set_author , 'Set Author' );
+
 
 		# close the table
 		echo $this->form()->table('close');
