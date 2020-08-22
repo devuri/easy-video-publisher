@@ -6,6 +6,7 @@
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
 	use VideoPublisherPro\Post\GetBlock;
+	use VideoPublisherPro\PostType;
 
 	/**
 	 * CSS for the loader
@@ -33,12 +34,20 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 		 */
 		$vid = sanitize_text_field( trim( $_POST['youtube_video_url'] ) );
 
-		# overrides
+		# overrides title
 		$args = array();
 		if ( isset($_POST['custom_title']) && isset($_POST['video_title']) ) {
 			$args['title'] 			= sanitize_text_field( trim( $_POST['video_title'] ) );
 			$custom_title 			= true;
 		}
+
+		// set post type
+		if ( current_user_can('manage_options')) {
+			$args['post_type'] 		= sanitize_text_field( trim( $_POST['set_post_type'] ) );
+		} else {
+			$args['post_type'] 		= 'post';
+		}
+
 		$args['embed'] 				= GetBlock::youtube( $vid );
 		$args['thumbnail'] 		= YoutubeVideoInfo::video_thumbnail( $vid );
 		$args['category'] 		= intval( trim( $_POST['select_category'] ) );
@@ -77,20 +86,37 @@ endif;
  ?><div id="post-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
+
 		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Video Title</label><br> <small> Use a custom title for the video</small></td>';
+
 		echo InputField::custom_title('Video Title');
+
 		echo $this->form()->input('YouTube Video url', ' ');
 
 		# categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
+		/**
+		 * Posts Types.
+		 * @var array
+		 */
+		if ( current_user_can('manage_options')) :
+			echo $this->form()->select( PostType::post_types() , 'Set Post Type' );
+		endif;
+
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';
+
 		echo InputField::get_editor('','post_description');
+
 		echo $this->form()->input('Tags', ' ');
+
 		echo $this->form()->table('close');
+
 		$this->form()->nonce();
 		echo '<br/>';
+
 		echo $this->form()->submit_button('Import Video', 'primary large', 'submit_post_import');
+
 	?></form>
 </div><!--frmwrap-->
 <br/><hr/>
