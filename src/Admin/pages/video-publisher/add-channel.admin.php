@@ -1,11 +1,11 @@
 <?php
 
-	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
-	use EasyVideoPublisher\Form\InputField;
+	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\Form\InputField;
 
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
-		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
+		$adminkeylink = admin_url('/admin.php?page=evpro-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
 
@@ -23,10 +23,15 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 
 		/**
 		 * checks to make sure the request is ok
-		 * if not show the erro message and exit
+		 * if not show the error message and exit
 		 */
-		if ( ! YouTubeDataAPI::is_request_ok()  ) {
-			wp_die($this->form()->user_feedback( YouTubeDataAPI::response_error() .' !!!', 'error'));
+		try {
+			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
+		} catch (\Exception $e ) {
+			echo $this->form()->user_feedback( 'Request failed: '. $e->getMessage(), 'error');
+			$adminkeylink = admin_url('/admin.php?page=evpro-api-setup');
+			echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a class="button" href="'.$adminkeylink.'">Add YouTube API key</a></strong>');
+		 	return;
 		}
 
 		# Adds new channel

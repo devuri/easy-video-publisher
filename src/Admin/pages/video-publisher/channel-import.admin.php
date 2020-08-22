@@ -1,17 +1,18 @@
 <?php
 
-	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
-	use EasyVideoPublisher\Post\InsertPost;
-	use EasyVideoPublisher\Post\ChannelImport;
-	use EasyVideoPublisher\Form\CategoryList;
-	use EasyVideoPublisher\Form\FormLoader;
-	use EasyVideoPublisher\Form\InputField;
-	use EasyVideoPublisher\LatestUpdates;
+	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\Post\InsertPost;
+	use VideoPublisherPro\Post\ChannelImport;
+	use VideoPublisherPro\Form\CategoryList;
+	use VideoPublisherPro\Form\FormLoader;
+	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherPro\LatestUpdates;
+	use VideoPublisherPro\PostType;
 
 
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
-		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
+		$adminkeylink = admin_url('/admin.php?page=evpro-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
 
@@ -38,23 +39,32 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 		wp_die($this->form()->user_feedback( YouTubeDataAPI::response_error() .' !!!', 'error'));
 	}
 
-
 	/**
 	 * get the channel to post from
 	 */
 	$channelId 				= trim( $_POST['youtube_channel'] );
 	$number_of_posts 	= intval( $_POST['number_of_posts'] );
 	$setcategory 			= intval( $_POST['select_category'] );
+	$setauthor 				= intval( $_POST['set_author'] );
 
 	/**
 	 * set args to override $default
 	 * @var array
 	 */
 	$args = array();
+
+	// set post type
+	if ( current_user_can('manage_options')) {
+		$args['post_type'] 		= sanitize_text_field( trim( $_POST['set_post_type'] ) );
+	} else {
+		$args['post_type'] 		= 'post';
+	}
+
+	$args['create_author']		= $setauthor;
 	$args['youtube_channel'] 	= $channelId;
 	$args['number_of_posts'] 	= $number_of_posts;
 	$args['setcategory']			= $setcategory;
-	$args['hashtags']			= array( get_term( $args['setcategory'] , 'category' )->name );
+	$args['hashtags']					= array( get_term( $args['setcategory'] , 'category' )->name );
 
 	/**
 	 * creates the posts
@@ -67,6 +77,21 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 		}
 	}
 
+endif;
+
+/**
+ * Delete All Videos
+ *
+ */
+if ( isset( $_POST['delete_recent_updates'] ) ) :
+
+	if ( ! $this->form()->verify_nonce()  ) {
+		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
+	}
+
+	$delete_videos	= array();
+	# delete the videos
+	update_option('evp_latest_updates', $delete_videos );
 
 endif;
 
@@ -102,15 +127,43 @@ endif;
 		);
 		echo $this->form()->select( $number_of_posts , 'Number of Posts' );
 
+		/**
+		 * Posts Types.
+		 * @var array
+		 */
+		if ( current_user_can('manage_options')) :
+			echo $this->form()->select( PostType::post_types() , 'Set Post Type' );
+		endif;
+
+		/**
+		 * Posts Author.
+		 * @var array
+		 */
+		$set_author = array(
+			0 	=> 'Current Author',
+			1 	=> 'YouTube Author',
+		);
+		echo $this->form()->select( $set_author , 'Set Author' );
+
+
 		# close the table
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo '<br/>';
 		echo $this->form()->submit_button('Import Videos', 'primary large', 'get_latest_updates');
 
+		echo '<br><hr/><h4>';
+		_e('Recent Updates [ '.LatestUpdates::count_updates().' ]');
+		echo '</h4>';
+
+		// delete videos
+		echo '<input name="delete_recent_updates" id="delete_recent_updates" type="submit" class="button" value="Delete All Recent Updates">';
+		echo '<span style="color: red; font-size: small; display: block;"> This will only delete the video ids for recent updates </span>';
+		echo '<br>';
+
 	?></form>
 </div><!--frmwrap-->
-<br><hr/><h4>
-	<?php _e('Recent Updates [ '.LatestUpdates::count_updates().' ]'); ?>
-</h4>
+
+
+
 <?php //Latest_Updates::display(); ?>

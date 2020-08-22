@@ -4,7 +4,10 @@
     },
     "autoload": {
       "psr-4": {
-        "EasyVideoPublisher\\":"src"
+        "VideoPublisherPro\\":"src"
       }
+    },
+    "config": {
+    "optimize-autoloader": false
     }
 }

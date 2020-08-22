@@ -1,12 +1,12 @@
 <?php
 
-	use EasyVideoPublisher\Post\InsertPost;
-	use EasyVideoPublisher\Post\UrlDataAPI;
-	use EasyVideoPublisher\YouTube\YoutubeVideoInfo;
-	use EasyVideoPublisher\Form\CategoryList;
-	use EasyVideoPublisher\Form\FormLoader;
-	use EasyVideoPublisher\Form\InputField;
-
+	use VideoPublisherPro\Post\InsertPost;
+	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\Form\CategoryList;
+	use VideoPublisherPro\Form\FormLoader;
+	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherPro\Post\GetBlock;
+	use VideoPublisherPro\PostType;
 
 	/**
 	 * CSS for the loader
@@ -32,28 +32,35 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 		/**
 		 * video
 		 */
-		$medialink = sanitize_text_field( trim( $_POST['instagram_url'] ) );
+		$vid = sanitize_text_field( trim( $_POST['youtube_video_url'] ) );
 
-		# overrides
+		# overrides title
 		$args = array();
-		if ( isset($_POST['custom_title']) && isset($_POST['title']) ) {
-			$args['title'] 			= sanitize_text_field( trim( $_POST['title'] ) );
+		if ( isset($_POST['custom_title']) && isset($_POST['video_title']) ) {
+			$args['title'] 			= sanitize_text_field( trim( $_POST['video_title'] ) );
 			$custom_title 			= true;
 		}
 
+		// set post type
+		if ( current_user_can('manage_options')) {
+			$args['post_type'] 		= sanitize_text_field( trim( $_POST['set_post_type'] ) );
+		} else {
+			$args['post_type'] 		= 'post';
+		}
 
-		$args['username'] 		= UrlDataAPI::get_data( $medialink )->author_name;
-		$args['embed'] 				= wp_oembed_get( $medialink );
+		$args['embed'] 				= GetBlock::youtube( $vid );
+		$args['thumbnail'] 		= YoutubeVideoInfo::video_thumbnail( $vid );
 		$args['category'] 		= intval( trim( $_POST['select_category'] ) );
 		$args['tags'] 				= sanitize_text_field( trim( $_POST['tags'] ) );
 		$args['description']	= wp_filter_post_kses( trim( $_POST['post_description'] ) );
-		$args['hashtags'] 		= array( get_term( $args['category'] , 'category' )->name );
-
+		$args['hashtags']			= array( get_term( $args['category'] , 'category' )->name );
 
 		/**
 		 * make sure this is a youtube url
 		 */
-		$id = InsertPost::newpost($medialink, $args);
+		if ( YoutubeVideoInfo::video_id($vid) ) {
+
+			$id = InsertPost::newpost($vid, $args);
 
 			if ($id) {
 				echo $this->form()->user_feedback('Video Has been Posted <strong> '.get_post( $id )->post_title.' </strong> ');
@@ -63,31 +70,53 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 				echo '<a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a>';
 				echo '</div>';
 			}
+		} else {
+			$id = false;
+			echo $this->form()->user_feedback('Please Use a Valid YouTube url !!!', 'error');
+		}
+
 endif;
 
 	# section title
-	InputField::section_title('Instagram Publisher');
+	InputField::section_title('Youtube Video Publisher');
 
 	#loading
 	FormLoader::loading('update-loader');
 
-?><div id="post-importform">
+ ?><div id="post-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
-		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Title</label><br> <small> Use a custom title for the video</small></td>';
-		echo InputField::custom_title('Title');
-		echo $this->form()->input('Instagram Url', ' ');
+
+		echo '<td><input type="checkbox" id="custom_title" name="custom_title"> <label for="custom_title">Custom Video Title</label><br> <small> Use a custom title for the video</small></td>';
+
+		echo InputField::custom_title('Video Title');
+
+		echo $this->form()->input('YouTube Video url', ' ');
 
 		# categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
+		/**
+		 * Posts Types.
+		 * @var array
+		 */
+		if ( current_user_can('manage_options')) :
+			echo $this->form()->select( PostType::post_types() , 'Set Post Type' );
+		endif;
+
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';
+
 		echo InputField::get_editor('','post_description');
+
 		echo $this->form()->input('Tags', ' ');
+
 		echo $this->form()->table('close');
+
 		$this->form()->nonce();
 		echo '<br/>';
+
 		echo $this->form()->submit_button('Import Video', 'primary large', 'submit_post_import');
+
 	?></form>
 </div><!--frmwrap-->
 <br/><hr/>

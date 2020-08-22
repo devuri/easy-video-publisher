@@ -1,9 +1,9 @@
 <?php
-namespace EasyVideoPublisher\Post;
+namespace VideoPublisherPro\Post;
 
-	use EasyVideoPublisher\YouTube\YouTubeDataAPI;
-	use EasyVideoPublisher\YouTube\YoutubeVideoInfo;
-	use EasyVideoPublisher\GetBlock;
+	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\UserFeedback;
 
 /**
  *
@@ -14,9 +14,22 @@ class ChannelImport
 	public static function publish( string $channelId = null , array $params = array() ){
 
 		/**
+		 * checks to make sure the request is ok
+		 * if not show the error message and exit
+		 */
+		try {
+			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
+		} catch (\Exception $e ) {
+			// TODO create a log message $e->getMessage() and return
+			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
+		}
+
+		/**
 		 * default args
 		 */
 		$default = array();
+		$default['post_type']				= 'post';
+		$default['create_author']		= false;
 		$default['youtube_channel'] = $channelId;
 		$default['number_of_posts'] = 2;
 		$default['setcategory'] 		= array(1);
@@ -39,25 +52,27 @@ class ChannelImport
 			return;
 		}
 
-		# create posts
+		// create posts
 		foreach ( $new_videos  as $upkey => $id ) {
 
+			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
 
 			/**
-			 * check if we posted this already
+			 * set up some $args
 			 */
 			$args['tags'] 					= YouTubeDataAPI::video_info( $id )->tags;
 			$args['thumbnail'] 			= YoutubeVideoInfo::video_thumbnail( $vid );
 			$args['embed'] 					= GetBlock::youtube( $vid );
+			$args['post_type'] 			= $params['post_type'];
 			$args['category'] 			= $params['setcategory'];
 			$args['hashtags'] 			= $params['hashtags'];
-			$args['create_author']	= false;
+			$args['create_author']	= $params['create_author'];
 
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
 				# get the post id
-				$getId[] = $id;
+				$ids[] = $id;
 			}
 		}
 
@@ -68,7 +83,7 @@ class ChannelImport
 		 * ids for each post
 		 * @var array list of post ids
 		 */
-		return $getId;
+		return $ids;
 	}
 
 }

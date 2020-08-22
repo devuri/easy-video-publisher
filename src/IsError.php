@@ -1,5 +1,7 @@
 <?php
-namespace EasyVideoPublisher;
+namespace VideoPublisherPro;
+
+	use VideoPublisherPro\UserFeedback;
 
 /**
  *
@@ -17,7 +19,7 @@ class IsError
 			if ( current_user_can('manage_options') ) {
 				var_dump($task);
 			}
-			wp_die( VideoPublisherAdmin::form()->user_feedback( $task->get_error_message() , 'error') );
+			wp_die( UserFeedback::message( $task->get_error_message() , 'error') );
 		}
 	}
 

@@ -1,12 +1,18 @@
 <?php
-namespace EasyVideoPublisher\Admin;
+namespace VideoPublisherPro\Admin;
 
-use EasyVideoPublisher\WPAdminPage\AdminPage;
+use VideoPublisherPro\WPAdminPage\AdminPage;
 
 // TODO change to the new
 // use PluginAdminUI\AdminPage;
 
 final class VideoPublisherAdmin extends AdminPage {
+
+  /**
+   * The $capability for YouTube
+   * @var [type]
+   */
+  private static $capability = 'read';
 
   /**
    * admin_menu()
@@ -19,10 +25,10 @@ final class VideoPublisherAdmin extends AdminPage {
     $menu['id']           = 634890;
     $menu['pro']          = true;
     $menu['mcolor']       = '#0071A1';
-    $menu['page_title']   = 'Easy Video Publisher Pro';
+    $menu['page_title']   = 'Video Publisher Pro';
     $menu['menu_title']   = 'Video Publisher';
     $menu['capability']   = 'manage_options';
-    $menu['menu_slug']    = 'easy-video-publisher';
+    $menu['menu_slug']    = 'video-publisher';
     $menu['function']     = 'sim_publisher_callback';
     $menu['icon_url']     = 'dashicons-video-alt3';
     $menu['prefix']       = 'evpro';
@@ -39,14 +45,17 @@ final class VideoPublisherAdmin extends AdminPage {
     $submenu = array();
     $submenu[] = 'Settings';
     $submenu[] = array(
-      'name'    => 'YouTube',
-      'capability'  => 'read'
+      'name'        => 'YouTube',
+      'capability'  => self::$capability
     );
-    $submenu[] = 'Instagram';
+    //$submenu[] = 'Instagram';
     $submenu[] = 'Channel Import';
-    // $submenu[] = 'Search Import';
-    // $submenu[] = 'Playlist Import';
     $submenu[] = 'Add Channel';
+    // $submenu[] = 'Playlist Import';
+    // $submenu[] = 'Add Playlist';
+    // $submenu[] = 'Search Import';
+    // $submenu[] = 'Add Search Items';
+
     $submenu[] = 'API Setup';
     return $submenu;
   }

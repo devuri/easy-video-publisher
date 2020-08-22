@@ -1,5 +1,5 @@
 <?php
-namespace EasyVideoPublisher;
+namespace VideoPublisherPro;
 
 /**
  *
@@ -26,7 +26,5 @@ class LatestUpdates
 		$update_count = 0;
 		return $update_count;
 	}
-
-
 
 }
