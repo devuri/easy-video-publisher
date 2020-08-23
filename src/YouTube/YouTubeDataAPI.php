@@ -18,7 +18,7 @@ class YouTubeDataAPI
 	 * @return mixed The API Key.
 	 */
 	private static function apikey(){
-		if ( empty(get_option('evp_youtube_api')) ) {
+		if ( empty( get_option('evp_youtube_api') ) ) {
 			return false;
 		} else {
 			$apikey = get_option('evp_youtube_api');
