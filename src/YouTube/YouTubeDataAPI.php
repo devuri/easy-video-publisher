@@ -13,13 +13,18 @@ class YouTubeDataAPI
 
 	/**
 	 * Get API key
-	 * uses a random key each time if mutiple keys ara available.
-	 * @return string The API Key
+	 * uses a random key each time if mutiple keys are available.
+	 * if no keys are available returns false.
+	 * @return mixed The API Key.
 	 */
 	private static function apikey(){
-		$apikey = get_option('evp_youtube_api');
+		if ( empty(get_option('evp_youtube_api')) ) {
+			return false;
+		} else {
+			$apikey = get_option('evp_youtube_api');
+		}
 		shuffle( $apikey );
-		if ( isset($apikey[0]) ) {
+		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
 		}
 	}
