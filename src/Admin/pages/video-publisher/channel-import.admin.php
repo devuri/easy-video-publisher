@@ -9,6 +9,17 @@
 	use VideoPublisherPro\LatestUpdates;
 	use VideoPublisherPro\PostType;
 
+	/**
+	 * CSS for the loader
+	 */
+	FormLoader::css_style(
+		array(
+			'size' 						=> '200px',
+			'padding' 				=> '1em',
+			'padding-bottom' 	=> '0',
+		)
+	);
+
 
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
@@ -98,7 +109,10 @@ endif;
 	// section title
 	InputField::section_title('Youtube Channel Import');
 
-?><div id="yt-importform">
+	#loading
+	FormLoader::loading('update-loader');
+
+?><div id="channel-importform">
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 
 		echo $this->form()->table('open');
@@ -163,7 +177,15 @@ endif;
 
 	?></form>
 </div><!--frmwrap-->
+<br/><hr/>
+<script type="text/javascript">
+	jQuery( document ).ready( function( $ ) {
 
+		jQuery('input[type="submit"]').on('click', function( event ){
+			$("#new-post-preview").addClass('hidden');
+			$("#channel-importform").addClass('hidden');
+			$(".loading").removeClass('hidden');
+		 });
 
-
-<?php //Latest_Updates::display(); ?>
+	});
+</script>
