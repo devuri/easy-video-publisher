@@ -28,6 +28,11 @@ class YoutubeVideoInfo
 		return $the_id;
 	}
 
+	/**
+	 * get high quality video_thumbnail
+	 * @param  string $video_url the video url
+	 * @return string
+	 */
 	public static function video_thumbnail( $video_url = null ){
 
 		# get the video id

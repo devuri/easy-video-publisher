@@ -24,6 +24,11 @@ class UrlDataAPI
 		return $data;
 	}
 
+	/**
+	 * [provider description]
+	 * @param $geturl the url 
+	 * @return object
+	 */
 	public static function provider( $geturl = null ){
 		$provider = [];
 		$provider['name'] = self::get_data($geturl)->provider_name;
