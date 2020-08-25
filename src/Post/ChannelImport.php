@@ -33,6 +33,7 @@ class ChannelImport
 		$default['youtube_channel'] = $channelId;
 		$default['number_of_posts'] = 2;
 		$default['setcategory'] 		= array(1);
+		$default['post_status'] 		= 'draft';
 		$params = wp_parse_args( $params , $default );
 
 		/**
@@ -66,9 +67,10 @@ class ChannelImport
 			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['post_type'] 			= $params['post_type'];
 			$args['category'] 			= $params['setcategory'];
+			$args['post_status'] 		= $params['post_status'];
 			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= $params['create_author'];
-
+			
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
 				# get the post id
