@@ -98,7 +98,7 @@ class YouTubeDataAPI
 
 	/**
 	 * use to verify specific api key
-	 * @return [type] [description]
+	 * @return bool [description]
 	 */
 	public static function is_key_valid( $apikey = null ){
 		$verify_api_key = new Youtube(
