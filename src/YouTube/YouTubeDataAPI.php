@@ -57,6 +57,62 @@ class YouTubeDataAPI
 	}
 
 	/**
+	 * Adds New API key if its valid.
+	 * @param  [type] $youtube_api_key [description]
+	 * @return [type]                  [description]
+	 */
+	public static function addnew_api_key( $youtube_api_key = null ){
+
+		if ( is_null($youtube_api_key) ) {
+			$is_key_valid = false;
+		} else {
+			// check if the key is valid
+			$is_key_valid = self::is_key_valid($youtube_api_key);
+		}
+
+
+		/**
+		 * check the key
+		 * @var [type]
+		 */
+		if ( $is_key_valid ) {
+			$new_key	= array( $youtube_api_key );
+
+			# check if we already have the key in recent updates
+			$api_keys 		= get_option( 'evp_youtube_api' );
+			$iskey_new		= array_diff( $new_key , $api_keys);
+			$update_keys	= array_merge( $new_key , $api_keys );
+
+			# if we cant find any new videos
+			if ( $iskey_new ) {
+				# add the new channel
+				update_option('evp_youtube_api', $update_keys );
+				echo UserFeedback::message( 'New API Key <strong> <span style="color:#037b0e">'.$new_key[0].'</span></strong> has been successfully added !!');
+			} else {
+				echo UserFeedback::message('<strong> <span style="color:#dc3232">'.$new_key[0].'</span></strong> already Exists !!', 'error');
+			}
+		} else {
+			echo UserFeedback::message('The Key: <span style="color:#dc3232">'.$youtube_api_key.'</span> <strong> is NOT Valid !! </strong> ', 'error');
+		}
+	}
+
+	/**
+	 * use to verify specific api key
+	 * @return [type] [description]
+	 */
+	public static function is_key_valid( $apikey = null ){
+		$verify_api_key = new Youtube(
+			array('key' => $apikey )
+		);
+		try {
+				$verify_api_key->getVideoInfo('YXQpgAAeLM4');
+		} catch (\Exception $e ) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Get a list of the API keys
 	 * @return string API Keys
 	 */
