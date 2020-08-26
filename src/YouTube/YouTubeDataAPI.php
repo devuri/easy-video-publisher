@@ -23,10 +23,13 @@ class YouTubeDataAPI
 		} else {
 			$apikey = get_option('evp_youtube_api');
 		}
+		// get the keys
+		$apikey = array_keys($apikey);
 		shuffle( $apikey );
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
 		}
+
 	}
 
 	/**
@@ -76,21 +79,24 @@ class YouTubeDataAPI
 		 * @var [type]
 		 */
 		if ( $is_key_valid ) {
-			$new_key	= array( $youtube_api_key );
+
+			// set the API key with a timestamp
+			$new_key			= array( $youtube_api_key => time() );
+			$update_keys	= array_merge( $new_key , get_option( 'evp_youtube_api' ) );
 
 			# check if we already have the key in recent updates
 			$api_keys 		= get_option( 'evp_youtube_api' );
-			$iskey_new		= array_diff( $new_key , $api_keys);
-			$update_keys	= array_merge( $new_key , $api_keys );
+			$key_exists 	= array_key_exists( $youtube_api_key , $api_keys );
 
-			# if we cant find any new videos
-			if ( $iskey_new ) {
-				# add the new channel
-				update_option('evp_youtube_api', $update_keys );
-				echo UserFeedback::message( 'New API Key <strong> <span style="color:#037b0e">'.$new_key[0].'</span></strong> has been successfully added !!');
+			# check if we already have that key
+			if ( $key_exists ) {
+				echo UserFeedback::message('<strong> <span style="color:#dc3232">'.$youtube_api_key.'</span></strong> already Exists !!', 'error');
 			} else {
-				echo UserFeedback::message('<strong> <span style="color:#dc3232">'.$new_key[0].'</span></strong> already Exists !!', 'error');
+				# add the new api key
+				update_option('evp_youtube_api', $update_keys );
+				echo UserFeedback::message( 'New API Key <strong> <span style="color:#037b0e">'.$youtube_api_key.'</span></strong> has been successfully added !!');
 			}
+
 		} else {
 			echo UserFeedback::message('The Key: <span style="color:#dc3232">'.$youtube_api_key.'</span> <strong> is NOT A Valid Key !! </strong> ', 'error');
 		}
@@ -119,13 +125,14 @@ class YouTubeDataAPI
 	public static function keys(){
 		$keys = get_option('evp_youtube_api');
 
-			$klist 	= '<h4>API Keys:</h4>';
-			$klist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-			foreach( get_option('evp_youtube_api') as $k => $key ) {
-				$klist 	.= '<li>'.$key.'</li>';
+			$keylist 	= '<h4>API Keys:</h4>';
+			$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
+			foreach( get_option('evp_youtube_api') as $key => $time ) {
+				$key = substr( $key , 0, -20 );
+				$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
 			}
-		$klist 	.= '</ul><br>';
-		return $klist;
+		$keylist 	.= '</ul><br>';
+		return $keylist;
 	}
 
 	/**
