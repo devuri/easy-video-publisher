@@ -39,27 +39,27 @@
 
 #  -----------------------------------------------------------------------------
 
-//Activate
-register_activation_hook( __FILE__, 'sim_vidpublisher_activation' );
-function sim_vidpublisher_activation() {
+  //Activate
+  register_activation_hook( __FILE__, 'sim_vidpublisher_activation' );
+  function sim_vidpublisher_activation() {
 
-  # api key
-  $api_key = array();
-  update_option('evp_youtube_api', $api_key );
+    # api key
+    $api_key = array();
+    update_option('evp_youtube_api', $api_key );
 
-  # channels
-  $channels = array();
-  update_option('evp_channels', $channels);
+    # channels
+    $channels = array();
+    update_option('evp_channels', $channels);
 
-  # latest updates
-  $latest_updates = array();
-  update_option('evp_latest_updates', $latest_updates );
+    # latest updates
+    $latest_updates = array();
+    update_option('evp_latest_updates', $latest_updates );
 
-  # restrict categpries
-  $restricted_categories = array();
-  update_option('evp_restricted_categories', $restricted_categories );
+    # restrict categpries
+    $restricted_categories = array();
+    update_option('evp_restricted_categories', $restricted_categories );
 
-}
+  }
 
   /**
 	 * Load composer
