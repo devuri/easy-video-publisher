@@ -53,11 +53,11 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	/**
 	 * get the channel to post from
 	 */
-	$channelId 				= trim( $_POST['youtube_channel'] );
-	$number_of_posts 	= intval( $_POST['number_of_posts'] );
-	$setcategory 			= intval( $_POST['select_category'] );
-	$setauthor 				= intval( $_POST['set_author'] );
-	$poststatus 			= trim( $_POST['post_status'] );
+	$channelId 				= sanitize_text_field( trim( $_POST['youtube_channel'] ) );
+	$number_of_posts 	= absint( $_POST['number_of_posts'] );
+	$setcategory 			= absint( $_POST['select_category'] );
+	$setauthor 				= absint( $_POST['set_author'] );
+	$poststatus 			= sanitize_text_field( trim( $_POST['post_status'] ) );
 
 	/**
 	 * set args to override $default
