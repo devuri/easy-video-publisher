@@ -92,7 +92,7 @@ class YouTubeDataAPI
 				echo UserFeedback::message('<strong> <span style="color:#dc3232">'.$new_key[0].'</span></strong> already Exists !!', 'error');
 			}
 		} else {
-			echo UserFeedback::message('The Key: <span style="color:#dc3232">'.$youtube_api_key.'</span> <strong> is NOT Valid !! </strong> ', 'error');
+			echo UserFeedback::message('The Key: <span style="color:#dc3232">'.$youtube_api_key.'</span> <strong> is NOT A Valid Key !! </strong> ', 'error');
 		}
 	}
 
