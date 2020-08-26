@@ -26,10 +26,12 @@ class WordProcessor
 
 	/**
 	 * text_to_array() convert the text to array
+	 *
 	 * @param  string $text [description]
 	 * @return array       [description]
 	 */
 	public static function text_to_array( $text = null ){
+
 		# clean up and remove unwanted elements.
 		$text = strtolower( $text );
 		$text = sanitize_title($text);
