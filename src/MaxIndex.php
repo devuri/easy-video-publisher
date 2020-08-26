@@ -11,24 +11,31 @@ class MaxIndex
 	 * [max_limit description]
 	 * @return [type] [description]
 	 */
-	public static function max_limit(){
-		$maxlimit = 2;
-		return $maxlimit;
-	}
-
-	/**
-	 * limit check
-	 * @return [type] [description]
-	 */
-	public static function check( $option ){
-		$limit = self::max_limit();
+	public static function api_key( $option ){
+		$indexlimit = 2;
 
 		$count = count( $option );
-		if ( $count >= $limit ) {
+		if ( $count >= $indexlimit ) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+
+	/**
+	 * [max_limit description]
+	 * @return [type] [description]
+	 */
+	public static function channel_index( $option ){
+		$indexlimit = 4;
+
+		$count = count( $option );
+		if ( $count >= $indexlimit ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 
 }
