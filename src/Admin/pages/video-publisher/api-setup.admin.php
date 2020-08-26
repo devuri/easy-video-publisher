@@ -3,6 +3,7 @@
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherPro\MaxIndex;
 
 /**
  * Add API keys
@@ -24,11 +25,22 @@ if ( isset( $_POST['add_api_key'] ) ) :
 		$youtube_api_key = null;
 	}
 
-	/**
-	 * Process and add the key
-	 * @var [type]
-	 */
-	YouTubeDataAPI::addnew_api_key($youtube_api_key);
+	// check the key limit
+	if ( MaxIndex::check( get_option('evp_youtube_api') ) ) {
+		// maximum number of channels
+		echo $this->form()->user_feedback('You have reached the maximum Index allowed, Looks like you cannot add any more keys !', 'error');
+		echo $this->form()->user_feedback('This version has a maximum Index Limit of: '.MaxIndex::max_limit() , 'error');
+		echo $this->form()->user_feedback('You can increase your limit by upgrading to Pro to unlock more.', 'warning');
+
+	} else {
+		/**
+		 * Process and add the key
+		 * @var [type]
+		 */
+		YouTubeDataAPI::addnew_api_key($youtube_api_key);
+	}
+
+
 
 endif;
 
