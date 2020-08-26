@@ -3,7 +3,6 @@ namespace VideoPublisherPro\Post;
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
-	use VideoPublisherPro\UserFeedback;
 
 /**
  *
@@ -21,7 +20,8 @@ class AutoChannelImport
 			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
 			// TODO create a log message $e->getMessage() and return
-			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
+			// log message api key failed, $e->getMessage() 
+			return;
 		}
 
 		/**
@@ -71,10 +71,10 @@ class AutoChannelImport
 			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= $params['create_author'];
 
-			$id = InsertPost::newpost( $vid , $args );
-			if ($id) {
-				# get the post id
-				$ids[] = $id;
+			$post_id = InsertPost::newpost( $vid , $args );
+			if ($post_id) {
+				# get the $post_id
+				$ids[] = $post_id;
 			}
 		}
 
