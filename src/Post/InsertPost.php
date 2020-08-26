@@ -155,7 +155,7 @@ class InsertPost
 			 * @link https://developer.wordpress.org/reference/functions/wp_insert_post/
 			 */
 			$postInfo = array(
-					'post_title' 		=> $title . $username . $hashtags,
+					'post_title' 		=> esc_html($title . $username . $hashtags),
 					'post_content' 	=> $embed.'<p>'.$description.'</p>',
 					'post_type' 		=> $post_type,
 					'post_status' 	=> $post_status,
