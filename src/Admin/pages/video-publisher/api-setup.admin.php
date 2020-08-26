@@ -26,7 +26,7 @@ if ( isset( $_POST['add_api_key'] ) ) :
 	}
 
 	// check the key limit
-	if ( MaxIndex::api_key( get_option('evp_youtube_api') ) ) {
+	if ( MaxIndex::api_key( (array) get_option('evp_youtube_api', array() ) ) ) {
 		// maximum number of channels
 		echo $this->form()->user_feedback('You have reached the maximum Index allowed, Looks like you cannot add any more keys !', 'error');
 		echo $this->form()->user_feedback('You can increase your limit by upgrading to Pro to unlock more.', 'warning');

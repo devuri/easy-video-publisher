@@ -41,10 +41,10 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 		// set up data
 		$channelname 			= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
 		$newchannel 			= array( $channelId => $channelname );
-		$update_channels	= array_merge( $newchannel , get_option( 'evp_channels' ) );
+		$update_channels	= array_merge( $newchannel , (array) get_option( 'evp_channels' ) );
 
 		// check if we already have the channel
-		$channel_exists = array_key_exists( $channelId , get_option( 'evp_channels' ) );
+		$channel_exists = array_key_exists( $channelId , (array) get_option( 'evp_channels' ) );
 
 		// if channel_exists, let the user know
 		if ( $channel_exists ) {
@@ -84,7 +84,7 @@ endif;
 	if ( get_option('evp_channels') ) {
 		_e('Channels');
 		echo '<ul>';
-		$evp_channels = get_option( 'evp_channels');
+		$evp_channels = (array) get_option( 'evp_channels');
 		sort( $evp_channels );
 		foreach ( $evp_channels as $chkey => $channel ) {
 			$ch = '<li style="padding-left:2em;">';

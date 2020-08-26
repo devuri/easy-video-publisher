@@ -20,7 +20,7 @@ class AutoChannelImport
 			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
 			// TODO create a log message $e->getMessage() and return
-			// log message api key failed, $e->getMessage() 
+			// log message api key failed, $e->getMessage()
 			return;
 		}
 
@@ -44,7 +44,7 @@ class AutoChannelImport
 		$channel_videos 	= YouTubeDataAPI::channel_videos( $channel , $number_of_posts );
 
 		# check if we already have the channel_videos in recent_updates
-		$recent_updates 	= get_option('evp_latest_updates');
+		$recent_updates 	= (array) get_option('evp_latest_updates');
 		$new_videos 			= array_diff( $channel_videos , $recent_updates);
 		$next_update 			= array_merge( $new_videos , $recent_updates );
 

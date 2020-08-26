@@ -18,7 +18,7 @@ class YouTubeDataAPI
 	 * @return mixed The API Key.
 	 */
 	private static function apikey(){
-		if ( empty( get_option('evp_youtube_api') ) ) {
+		if ( empty( get_option('evp_youtube_api', array() ) ) ) {
 			return false;
 		} else {
 			$apikey = get_option('evp_youtube_api');
@@ -39,7 +39,7 @@ class YouTubeDataAPI
 	 */
 	public static function has_key(){
 
-		$apikey = get_option('evp_youtube_api');
+		$apikey = (array) get_option('evp_youtube_api');
 
 			if ( ! $apikey ) :
 				return false;
@@ -82,10 +82,10 @@ class YouTubeDataAPI
 
 			// set the API key with a timestamp
 			$new_key			= array( $youtube_api_key => time() );
-			$update_keys	= array_merge( $new_key , get_option( 'evp_youtube_api' ) );
+			$update_keys	= array_merge( $new_key , (array) get_option( 'evp_youtube_api' ) );
 
 			# check if we already have the key in recent updates
-			$api_keys 		= get_option( 'evp_youtube_api' );
+			$api_keys 		= (array) get_option( 'evp_youtube_api' );
 			$key_exists 	= array_key_exists( $youtube_api_key , $api_keys );
 
 			# check if we already have that key
@@ -123,7 +123,7 @@ class YouTubeDataAPI
 	 * @return string API Keys
 	 */
 	public static function keys(){
-		$keys = get_option('evp_youtube_api');
+		$keys = (array) get_option('evp_youtube_api');
 
 			$keylist 	= '<h4>API Keys:</h4>';
 			$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';

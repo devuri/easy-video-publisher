@@ -120,7 +120,7 @@ endif;
 		echo $this->form()->table('open');
 
 		# channel
-		echo $this->form()->select( get_option('evp_channels') , 'Youtube Channel' );
+		echo $this->form()->select( (array) get_option('evp_channels') , 'Youtube Channel' );
 
 		# categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );

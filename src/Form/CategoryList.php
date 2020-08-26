@@ -20,7 +20,7 @@ class CategoryList
 		);
 		$categories = get_terms($terms);
 		foreach ($categories as $key => $category) {
-			if ( in_array( $category->term_id , get_option('evp_restricted_categories') ) ) {
+			if ( in_array( $category->term_id , (array) get_option('evp_restricted_categories') ) ) {
 				$color = '#b9b9b9';
 				$checkbox  = '<div id="category_checkbox" style="padding-bottom: 1em; color:'.$color.';font-weight:600">';
 				$checkbox .= '<input type="checkbox" id="category['.$category->term_id.']" name="category['.$category->term_id.']" checked>';
