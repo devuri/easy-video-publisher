@@ -86,7 +86,7 @@ endif;
 		echo '<br>';
 		echo '<br><hr/>';
 
-		echo YouTubeDataAPI::channel_keys();
+		echo YouTubeDataAPI::list_channels();
 		echo '<input name="delete_channels" id="delete_channels" type="submit" class="button" value="Delete Channels ">';
 
 	?></form>
