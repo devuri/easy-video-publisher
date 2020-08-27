@@ -1,6 +1,7 @@
 <?php
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\YouTube\AddChannel;
 	use VideoPublisherPro\Form\InputField;
 	use VideoPublisherPro\MaxIndex;
 
@@ -44,7 +45,7 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 			/**
 			 * Process and add the channel
 			 */
-			YouTubeDataAPI::add_channel( $channelId );
+			AddChannel::new_channel( $channelId );
 		}
 
 	}
