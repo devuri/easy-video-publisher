@@ -20,7 +20,13 @@ class YouTubeDataAPI
 	private static function apikey(){
 		// get the keys
 		$apikey = self::get_keys();
-		shuffle( $apikey );
+
+		// key shuffle 
+		if ($apikey) {
+			shuffle( $apikey );
+		}
+
+		// get key
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
 		} else {
@@ -119,21 +125,42 @@ class YouTubeDataAPI
 	 * @param string $channelId the channel id.
 	 */
 	public static function add_channel( $channelId = null ){
-		// set up data
-		$channelname 			= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
-		$newchannel 			= array( $channelId => $channelname );
-		$update_channels	= array_merge( $newchannel , (array) get_option( 'evp_channels' ) );
 
-		// check if we already have the channel
-		$channel_exists = array_key_exists( $channelId , (array) get_option( 'evp_channels' ) );
+		// make sure we have a valid key.
+		if ( ! self::apikey() ) {
+			echo UserFeedback::message('<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error');
+			return;
+		}
 
-		// if channel_exists, let the user know
-		if ( $channel_exists ) {
-			echo UserFeedback::message('<strong>'.$channelname.'</strong> Channel was already Added !!!', 'error');
+		// make sure ID is set
+		if ( is_null( $channelId ) ) {
+			$channelId = false;
+		}
+
+		/**
+		 * check the $channelId
+		 */
+		if ( $channelId ) {
+
+			// set up data
+			$channelname 			= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
+			$newchannel 			= array( $channelId => $channelname );
+			$update_channels	= array_merge( $newchannel , (array) get_option( 'evp_channels' ) );
+
+			// check if we already have the channel
+			$channel_exists = array_key_exists( $channelId , (array) get_option( 'evp_channels' ) );
+
+			// if channel_exists, let the user know
+			if ( $channel_exists ) {
+				echo UserFeedback::message('<strong>'.$channelname.'</strong> Channel was already Added !!!', 'error');
+			} else {
+				// add the new channel
+				update_option('evp_channels', $update_channels );
+				echo UserFeedback::message( '<strong>'.$channelname.'</strong> Channel Added !!!');
+			}
+
 		} else {
-			// add the new channel
-			update_option('evp_channels', $update_channels );
-			echo UserFeedback::message( '<strong>'.$channelname.'</strong> Channel Added !!!');
+			echo UserFeedback::message('<strong> No Channel ID to Add !! </strong> ', 'error');
 		}
 	}
 
@@ -158,16 +185,30 @@ class YouTubeDataAPI
 	 * @return string API Keys
 	 */
 	public static function keys(){
-		$keys = (array) get_option('evp_youtube_api');
 
-			$keylist 	= '<h4>API Keys:</h4>';
-			$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-			foreach( get_option('evp_youtube_api') as $key => $time ) {
-				$key = substr( $key , 0, -20 );
-				$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
-			}
+		$keylist 	= '<h4>API Keys:</h4>';
+		$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
+		foreach( get_option('evp_youtube_api') as $key => $time ) {
+			$key = substr( $key , 0, -20 );
+			$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
+		}
 		$keylist 	.= '</ul><br>';
 		return $keylist;
+	}
+
+	/**
+	 * Get a list of channels
+	 * @return string list_channels
+	 */
+	public static function list_channels(){
+
+			$chanlist 	= '<h4>Channels:</h4>';
+			$chanlist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
+			foreach( get_option('evp_channels') as $chkey => $channel ) {
+				$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
+			}
+		$chanlist 	.= '</ul><br>';
+		return $chanlist;
 	}
 
 	/**
