@@ -2,6 +2,7 @@
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherPro\MaxIndex;
 
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
@@ -34,25 +35,29 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 		 	return;
 		}
 
-		// sanitize new channel
-		$channel_id 			= sanitize_text_field( $_POST['channel_id'] );
-		$channelId 				= trim( $channel_id );
+		/**
+		 * get and sanitize new  channel id
+		 */
+		$channel_id = sanitize_text_field( $_POST['channel_id'] );
+		$channelId 	= trim( $channel_id );
 
-		// set up data
-		$channelname 			= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
-		$newchannel 			= array( $channelId => $channelname );
-		$update_channels	= array_merge( $newchannel , (array) get_option( 'evp_channels' ) );
+		if ( ! isset( $channel_id ) || empty( $channel_id ) ) {
+			$channel_id = null;
+		}
 
-		// check if we already have the channel
-		$channel_exists = array_key_exists( $channelId , (array) get_option( 'evp_channels' ) );
+		// check the channel index limit
+		if ( MaxIndex::channels( (array) get_option( 'evp_channels' , array() ) ) ) {
 
-		// if channel_exists, let the user know
-		if ( $channel_exists ) {
-			echo $this->form()->user_feedback('<strong>'.$channelname.'</strong> Channel was already Added !!!', 'error');
+			// maximum number of channels
+			echo $this->form()->user_feedback('You have reached the maximum Index allowed, Looks like you cannot add any more channels !', 'error');
+			echo $this->form()->user_feedback('You can increase your limit by upgrading to Pro to unlock more.', 'warning');
+
 		} else {
-			// add the new channel
-			update_option('evp_channels', $update_channels );
-			echo $this->form()->user_feedback( '<strong>'.$channelname.'</strong> Channel Added !!!');
+
+			/**
+			 * Process and add the channel
+			 */
+			YouTubeDataAPI::add_channel( $channelId );
 		}
 
 	}
@@ -84,7 +89,7 @@ endif;
 	if ( get_option('evp_channels') ) {
 		_e('Channels');
 		echo '<ul>';
-		$evp_channels = (array) get_option( 'evp_channels');
+		$evp_channels = (array) get_option( 'evp_channels' );
 		sort( $evp_channels );
 		foreach ( $evp_channels as $chkey => $channel ) {
 			$ch = '<li style="padding-left:2em;">';
