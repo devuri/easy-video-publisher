@@ -26,7 +26,7 @@ class MaxIndex
 	 * [max_limit description]
 	 * @return [type] [description]
 	 */
-	public static function channel_index( $option ){
+	public static function channels( $option ){
 		$indexlimit = 4;
 
 		$count = count( $option );
