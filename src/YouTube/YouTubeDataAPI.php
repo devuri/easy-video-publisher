@@ -18,18 +18,30 @@ class YouTubeDataAPI
 	 * @return mixed The API Key.
 	 */
 	private static function apikey(){
-		if ( empty( get_option('evp_youtube_api', array() ) ) ) {
-			return false;
-		} else {
-			$apikey = get_option('evp_youtube_api');
-		}
 		// get the keys
-		$apikey = array_keys($apikey);
+		$apikey = self::get_keys();
 		shuffle( $apikey );
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
+		} else {
+			return false;
 		}
 
+	}
+
+	/**
+	 * [get_keys description]
+	 * @return [type] [description]
+	 */
+	public static function get_keys(){
+		if ( empty( get_option('evp_youtube_api', array() ) ) ) {
+			return false;
+		} else {
+			$apikey = (array) get_option('evp_youtube_api');
+		}
+		// get the keys
+		$apikey = array_keys($apikey);
+		return $apikey;
 	}
 
 	/**
