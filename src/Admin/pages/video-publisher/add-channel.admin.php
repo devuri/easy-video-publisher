@@ -24,11 +24,12 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 	if ( isset( $_POST['channel_id'] ) ) {
 
 		/**
-		 * get and sanitize new  channel id
+		 * get and sanitize new channel id
 		 */
 		$channel_id = sanitize_text_field( $_POST['channel_id'] );
 		$channelId 	= trim( $channel_id );
 
+		// if the channel id is not set or empty return null
 		if ( ! isset( $channel_id ) || empty( $channel_id ) ) {
 			$channel_id = null;
 		}

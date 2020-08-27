@@ -22,6 +22,7 @@ if ( isset( $_POST['add_api_key'] ) ) :
 	$youtube_api_key = sanitize_text_field($_POST['youtube_api_key']);
 	$youtube_api_key = trim($youtube_api_key);
 
+	// if the key is not set or empty return null
 	if ( ! isset( $youtube_api_key ) || empty( $youtube_api_key ) ) {
 		$youtube_api_key = null;
 	}
@@ -33,9 +34,9 @@ if ( isset( $_POST['add_api_key'] ) ) :
 		echo $this->form()->user_feedback('You can increase your limit by upgrading to Pro to unlock more.', 'warning');
 
 	} else {
+		
 		/**
 		 * Process and add the key
-		 * @var [type]
 		 */
 		AddKey::new_apikey($youtube_api_key);
 	}
