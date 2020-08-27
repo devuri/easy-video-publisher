@@ -27,6 +27,7 @@ class YouTubeDataAPI
 		}
 
 		// get key
+		// TODO only return a valid key 
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
 		} else {
