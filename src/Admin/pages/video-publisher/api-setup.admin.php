@@ -1,6 +1,7 @@
 <?php
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
+	use VideoPublisherPro\YouTube\AddKey;
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
 	use VideoPublisherPro\MaxIndex;
@@ -36,10 +37,8 @@ if ( isset( $_POST['add_api_key'] ) ) :
 		 * Process and add the key
 		 * @var [type]
 		 */
-		YouTubeDataAPI::addnew_api_key($youtube_api_key);
+		AddKey::new_apikey($youtube_api_key);
 	}
-
-
 
 endif;
 
