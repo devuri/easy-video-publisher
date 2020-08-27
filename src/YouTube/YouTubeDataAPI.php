@@ -115,6 +115,29 @@ class YouTubeDataAPI
 	}
 
 	/**
+	 * Adds New Channel id.
+	 * @param string $channelId the channel id.
+	 */
+	public static function add_channel( $channelId = null ){
+		// set up data
+		$channelname 			= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
+		$newchannel 			= array( $channelId => $channelname );
+		$update_channels	= array_merge( $newchannel , (array) get_option( 'evp_channels' ) );
+
+		// check if we already have the channel
+		$channel_exists = array_key_exists( $channelId , (array) get_option( 'evp_channels' ) );
+
+		// if channel_exists, let the user know
+		if ( $channel_exists ) {
+			echo UserFeedback::message('<strong>'.$channelname.'</strong> Channel was already Added !!!', 'error');
+		} else {
+			// add the new channel
+			update_option('evp_channels', $update_channels );
+			echo UserFeedback::message( '<strong>'.$channelname.'</strong> Channel Added !!!');
+		}
+	}
+
+	/**
 	 * use to verify specific api key
 	 * @return bool [description]
 	 */
