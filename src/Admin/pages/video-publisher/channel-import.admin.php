@@ -1,8 +1,7 @@
 <?php
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
-	use VideoPublisherPro\Post\InsertPost;
-	use VideoPublisherPro\Post\ChannelImport;
+	use VideoPublisherPro\YouTube\ImportVideo;
 	use VideoPublisherPro\Form\CategoryList;
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
@@ -43,50 +42,23 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	}
 
 	/**
-	 * checks to make sure the request is ok
-	 * if not show the erro message and exit
-	 */
-	if ( ! YouTubeDataAPI::is_request_ok()  ) {
-		wp_die($this->form()->user_feedback( YouTubeDataAPI::response_error() .' !!!', 'error'));
-	}
-
-	/**
-	 * get the channel to post from
-	 */
-	$channelId 				= trim( $_POST['youtube_channel'] );
-	$number_of_posts 	= intval( $_POST['number_of_posts'] );
-	$setcategory 			= intval( $_POST['select_category'] );
-	$setauthor 				= intval( $_POST['set_author'] );
-	$poststatus 			= trim( $_POST['post_status'] );
-
-	/**
-	 * set args to override $default
-	 * @var array
-	 */
-	$args = array();
-
-	// set post type
-	if ( current_user_can('manage_options')) {
-		$args['post_type'] 		= sanitize_text_field( trim( $_POST['set_post_type'] ) );
-	} else {
-		$args['post_type'] 		= 'post';
-	}
-
-	$args['create_author']		= $setauthor;
-	$args['youtube_channel'] 	= $channelId;
-	$args['number_of_posts'] 	= $number_of_posts;
-	$args['setcategory']			= $setcategory;
-	$args['post_status']			= $poststatus;
-	$args['hashtags']					= array( get_term( $args['setcategory'] , 'category' )->name );
-
-	/**
 	 * creates the posts
 	 */
-	$ids = ChannelImport::publish( $channelId , $args );
+	$posts = ImportVideo::add_video( $_POST );
 
-	if ( $ids ) {
-		foreach ( $ids as $pkey => $id ) {
-			echo $this->form()->user_feedback('Video Has been Posted <strong> <a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a> </strong> ');
+	if ( $posts ) {
+
+		// display
+		foreach ( $posts as $pkey => $id ) {
+
+			echo $this->form()->user_feedback(
+				' Video Has been Added: <br>' .
+				get_the_post_thumbnail( $id , 'medium' ) .
+				' <br>New <strong>  '.
+				get_post( $id )->post_status .
+				': <a href="'.get_permalink( $id ).'" target="_blank">' .
+				get_post( $id )->post_title .
+				'</a> </strong> ' );
 		}
 	}
 
@@ -120,7 +92,7 @@ endif;
 		echo $this->form()->table('open');
 
 		# channel
-		echo $this->form()->select( get_option('evp_channels') , 'Youtube Channel' );
+		echo $this->form()->select( (array) get_option('evp_channels') , 'Youtube Channel' );
 
 		# categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
@@ -156,8 +128,8 @@ endif;
 		 * @var array
 		 */
 		$post_status = array(
-			'publish' => 'Publish',
-			'draft' 	=> 'Draft'
+			'draft' 	=> 'Draft',
+			'publish' => 'Publish'
 		);
 		echo $this->form()->select( $post_status , 'Post Status' );
 

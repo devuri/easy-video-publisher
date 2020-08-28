@@ -11,7 +11,7 @@
  * Plugin Name:       Video Publisher Pro
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
  * Description:       Video Publisher is a easy to use Video import plugin, use to Import Youtube videos from youtube channel playlist or search.
- * Version:           2.2.0
+ * Version:           2.3.4
  * Requires at least: 3.4
  * Requires PHP:      5.6
  * Author:            SwitchWebdev.com
@@ -29,7 +29,7 @@
     }
 
   # plugin directory
-	  define("EVP_VERSION", '2.2.0');
+	  define("EVP_VERSION", '2.3.4');
 
   # plugin directory
     define("EVP_DIR", dirname(__FILE__));
@@ -39,27 +39,27 @@
 
 #  -----------------------------------------------------------------------------
 
-//Activate
-register_activation_hook( __FILE__, 'sim_vidpublisher_activation' );
-function sim_vidpublisher_activation() {
+  //Activate
+  register_activation_hook( __FILE__, 'sim_vidpublisher_activation' );
+  function sim_vidpublisher_activation() {
 
-  # api key
-  $api_key = array();
-  update_option('evp_youtube_api', $api_key );
+    # api key
+    $api_key = array();
+    update_option('evp_youtube_api', $api_key );
 
-  # channels
-  $channels = array();
-  update_option('evp_channels', $channels);
+    # channels
+    $channels = array();
+    update_option('evp_channels', $channels);
 
-  # latest updates
-  $latest_updates = array();
-  update_option('evp_latest_updates', $latest_updates );
+    # latest updates
+    $latest_updates = array();
+    update_option('evp_latest_updates', $latest_updates );
 
-  # restrict categpries
-  $restricted_categories = array();
-  update_option('evp_restricted_categories', $restricted_categories );
+    # restrict categpries
+    $restricted_categories = array();
+    update_option('evp_restricted_categories', $restricted_categories );
 
-}
+  }
 
   /**
 	 * Load composer

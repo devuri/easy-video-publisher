@@ -44,7 +44,7 @@ class ChannelImport
 		$channel_videos 	= YouTubeDataAPI::channel_videos( $channel , $number_of_posts );
 
 		# check if we already have the channel_videos in recent_updates
-		$recent_updates 	= get_option('evp_latest_updates');
+		$recent_updates 	= (array) get_option('evp_latest_updates');
 		$new_videos 			= array_diff( $channel_videos , $recent_updates);
 		$next_update 			= array_merge( $new_videos , $recent_updates );
 
@@ -70,7 +70,7 @@ class ChannelImport
 			$args['post_status'] 		= $params['post_status'];
 			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= $params['create_author'];
-			
+
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
 				# get the post id
