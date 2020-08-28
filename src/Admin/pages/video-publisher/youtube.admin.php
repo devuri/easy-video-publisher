@@ -1,11 +1,9 @@
 <?php
 
-	use VideoPublisherPro\Post\InsertPost;
-	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\YouTube\AddNewVideo;
 	use VideoPublisherPro\Form\CategoryList;
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
-	use VideoPublisherPro\Post\GetBlock;
 	use VideoPublisherPro\PostType;
 
 	/**
@@ -30,50 +28,10 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 	}
 
 		/**
-		 * video
+		 * Add New Video Post
 		 */
-		$vid = sanitize_text_field( trim( $_POST['youtube_video_url'] ) );
-
-		# overrides title
-		$args = array();
-		if ( isset($_POST['custom_title']) && isset($_POST['video_title']) ) {
-			$args['title'] 			= sanitize_text_field( trim( $_POST['video_title'] ) );
-			$custom_title 			= true;
-		}
-
-		// set post type
-		if ( current_user_can('manage_options')) {
-			$args['post_type'] 		= sanitize_text_field( trim( $_POST['set_post_type'] ) );
-		} else {
-			$args['post_type'] 		= 'post';
-		}
-
-		$args['embed'] 				= GetBlock::youtube( $vid );
-		$args['thumbnail'] 		= YoutubeVideoInfo::video_thumbnail( $vid );
-		$args['category'] 		= intval( trim( $_POST['select_category'] ) );
-		$args['tags'] 				= sanitize_text_field( trim( $_POST['tags'] ) );
-		$args['description']	= wp_filter_post_kses( trim( $_POST['post_description'] ) );
-		$args['hashtags']			= array( get_term( $args['category'] , 'category' )->name );
-
-		/**
-		 * make sure this is a youtube url
-		 */
-		if ( YoutubeVideoInfo::video_id($vid) ) {
-
-			$id = InsertPost::newpost($vid, $args);
-
-			if ($id) {
-				echo $this->form()->user_feedback('Video Has been Posted <strong> '.get_post( $id )->post_title.' </strong> ');
-				echo '<div id="new-post-preview">';
-				echo '<img width="400" src="'.get_the_post_thumbnail_url( $id ).'">';
-				echo '<br>';
-				echo '<a href="'.get_permalink( $id ).'" target="_blank">'.get_post( $id )->post_title.'</a>';
-				echo '</div>';
-			}
-		} else {
-			$id = false;
-			echo $this->form()->user_feedback('Please Use a Valid YouTube url !!!', 'error');
-		}
+		$new_video = AddNewVideo::publish( $_POST );
+		echo $new_video;
 
 endif;
 
