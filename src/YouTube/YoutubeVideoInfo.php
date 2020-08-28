@@ -18,7 +18,15 @@ class YoutubeVideoInfo
 	 * @return mixed
 	 */
 	public static function video_id( $video_url = null ){
+
+		// check if empty
+		if ( empty($video_url) ) {
+			return false;
+		}
+
+		// get the id
 		if ( ! $video_url == null ) {
+
 			if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url , $vid_id)) {
 				$the_id = $vid_id[1];
 			} else {
