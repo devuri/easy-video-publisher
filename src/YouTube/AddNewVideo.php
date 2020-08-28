@@ -18,7 +18,7 @@ class AddNewVideo
 	 *
 	 * @param array $form_data brings in the $_POST data from the form submission.
 	 */
-	public static function publish_video( array $form_data = array() ){
+	public static function publish( array $form_data = array() ){
 
 		/**
 		 * video
