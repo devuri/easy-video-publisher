@@ -34,23 +34,25 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 		 	return;
 		}
 
-		# Adds new channel
-		$channelId 			= trim( $_POST['channel_id'] );
-		$channelname 		= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
-		$newchannel 		= array( $channelId => $channelname );
+		// sanitize new channel
+		$channel_id 			= sanitize_text_field( $_POST['channel_id'] );
+		$channelId 				= trim( $channel_id );
 
-		# check if we already have the channels
-		$channels 				= get_option( 'evp_channels' );
-		$is_new						= array_diff( $newchannel , $channels );
-		$update_channels	= array_merge( $newchannel , $channels );
+		// set up data
+		$channelname 			= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
+		$newchannel 			= array( $channelId => $channelname );
+		$update_channels	= array_merge( $newchannel , get_option( 'evp_channels' ) );
 
-		# if we cant find any new videos
-		if ( $is_new ) {
-			# add the new channel
+		// check if we already have the channel
+		$channel_exists = array_key_exists( $channelId , get_option( 'evp_channels' ) );
+
+		// if channel_exists, let the user know
+		if ( $channel_exists ) {
+			echo $this->form()->user_feedback('<strong>'.$channelname.'</strong> Channel was already Added !!!', 'error');
+		} else {
+			// add the new channel
 			update_option('evp_channels', $update_channels );
 			echo $this->form()->user_feedback( '<strong>'.$channelname.'</strong> Channel Added !!!');
-		} else {
-			echo $this->form()->user_feedback('<strong>'.$channelname.'</strong> Channel was already Added !!!', 'error');
 		}
 
 	}

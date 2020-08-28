@@ -15,24 +15,20 @@ if ( isset( $_POST['add_api_key'] ) ) :
 	}
 
 	/**
-	 * Adds new API Keys
+	 * new API Key
 	 */
-	$new_key 			= array(trim( $_POST['youtube_api_key'] ));
+	$youtube_api_key = sanitize_text_field($_POST['youtube_api_key']);
+	$youtube_api_key = trim($youtube_api_key);
 
-	# check if we already have the key in recent updates
-	$api_keys 		= get_option( 'evp_youtube_api' );
-	$iskey_new		= array_diff( $new_key , $api_keys);
-	$update_keys	= array_merge( $new_key , $api_keys );
-
-	# if we cant find any new videos
-	if ( $iskey_new ) {
-		# add the new channel
-		update_option('evp_youtube_api', $update_keys );
-		echo $this->form()->user_feedback( 'New API Key <strong>'.$new_key[0].'</strong> Added !!!');
-	} else {
-		echo $this->form()->user_feedback('<strong>'.$new_key[0].'</strong> already Exists !!!', 'error');
+	if ( ! isset( $youtube_api_key ) || empty( $youtube_api_key ) ) {
+		$youtube_api_key = null;
 	}
 
+	/**
+	 * Process and add the key
+	 * @var [type]
+	 */
+	YouTubeDataAPI::addnew_api_key($youtube_api_key);
 
 endif;
 

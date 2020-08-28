@@ -8,7 +8,7 @@ namespace VideoPublisherPro\Post;
 /**
  *
  */
-class ChannelImport
+class AutoChannelImport
 {
 
 	public static function publish( string $channelId = null , array $params = array() ){
@@ -70,7 +70,7 @@ class ChannelImport
 			$args['post_status'] 		= $params['post_status'];
 			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= $params['create_author'];
-			
+
 			$id = InsertPost::newpost( $vid , $args );
 			if ($id) {
 				# get the post id

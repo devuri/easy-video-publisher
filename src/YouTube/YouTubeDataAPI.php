@@ -23,10 +23,13 @@ class YouTubeDataAPI
 		} else {
 			$apikey = get_option('evp_youtube_api');
 		}
+		// get the keys
+		$apikey = array_keys($apikey);
 		shuffle( $apikey );
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
 		}
+
 	}
 
 	/**
@@ -57,19 +60,79 @@ class YouTubeDataAPI
 	}
 
 	/**
+	 * Adds New API key if its valid.
+	 * @param  [type] $youtube_api_key [description]
+	 * @return [type]                  [description]
+	 */
+	public static function addnew_api_key( $youtube_api_key = null ){
+
+		if ( is_null($youtube_api_key) ) {
+			$is_key_valid = false;
+		} else {
+			// check if the key is valid
+			$is_key_valid = self::is_key_valid($youtube_api_key);
+		}
+
+
+		/**
+		 * check the key
+		 * @var [type]
+		 */
+		if ( $is_key_valid ) {
+
+			// set the API key with a timestamp
+			$new_key			= array( $youtube_api_key => time() );
+			$update_keys	= array_merge( $new_key , get_option( 'evp_youtube_api' ) );
+
+			# check if we already have the key in recent updates
+			$api_keys 		= get_option( 'evp_youtube_api' );
+			$key_exists 	= array_key_exists( $youtube_api_key , $api_keys );
+
+			# check if we already have that key
+			if ( $key_exists ) {
+				echo UserFeedback::message('<strong> <span style="color:#dc3232">'.$youtube_api_key.'</span></strong> already Exists !!', 'error');
+			} else {
+				# add the new api key
+				update_option('evp_youtube_api', $update_keys );
+				echo UserFeedback::message( 'New API Key <strong> <span style="color:#037b0e">'.$youtube_api_key.'</span></strong> has been successfully added !!');
+			}
+
+		} else {
+			echo UserFeedback::message('The Key: <span style="color:#dc3232">'.$youtube_api_key.'</span> <strong> is NOT A Valid Key !! </strong> ', 'error');
+		}
+	}
+
+	/**
+	 * use to verify specific api key
+	 * @return bool [description]
+	 */
+	public static function is_key_valid( $apikey = null ){
+		$verify_api_key = new Youtube(
+			array('key' => $apikey )
+		);
+		try {
+				$verify_api_key->getVideoInfo('YXQpgAAeLM4');
+		} catch (\Exception $e ) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Get a list of the API keys
 	 * @return string API Keys
 	 */
 	public static function keys(){
 		$keys = get_option('evp_youtube_api');
 
-			$klist 	= '<h4>API Keys:</h4>';
-			$klist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-			foreach( get_option('evp_youtube_api') as $k => $key ) {
-				$klist 	.= '<li>'.$key.'</li>';
+			$keylist 	= '<h4>API Keys:</h4>';
+			$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
+			foreach( get_option('evp_youtube_api') as $key => $time ) {
+				$key = substr( $key , 0, -20 );
+				$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
 			}
-		$klist 	.= '</ul><br>';
-		return $klist;
+		$keylist 	.= '</ul><br>';
+		return $keylist;
 	}
 
 	/**

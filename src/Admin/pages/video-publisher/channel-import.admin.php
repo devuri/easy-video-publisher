@@ -57,6 +57,7 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	$number_of_posts 	= intval( $_POST['number_of_posts'] );
 	$setcategory 			= intval( $_POST['select_category'] );
 	$setauthor 				= intval( $_POST['set_author'] );
+	$poststatus 			= trim( $_POST['post_status'] );
 
 	/**
 	 * set args to override $default
@@ -75,6 +76,7 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	$args['youtube_channel'] 	= $channelId;
 	$args['number_of_posts'] 	= $number_of_posts;
 	$args['setcategory']			= $setcategory;
+	$args['post_status']			= $poststatus;
 	$args['hashtags']					= array( get_term( $args['setcategory'] , 'category' )->name );
 
 	/**
@@ -148,6 +150,17 @@ endif;
 		if ( current_user_can('manage_options')) :
 			echo $this->form()->select( PostType::post_types() , 'Set Post Type' );
 		endif;
+
+		/**
+		 * Set Post Status.
+		 * @var array
+		 */
+		$post_status = array(
+			'publish' => 'Publish',
+			'draft' 	=> 'Draft'
+		);
+		echo $this->form()->select( $post_status , 'Post Status' );
+
 
 		/**
 		 * Posts Author.
