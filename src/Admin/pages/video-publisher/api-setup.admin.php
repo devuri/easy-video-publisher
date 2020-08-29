@@ -34,7 +34,7 @@ if ( isset( $_POST['add_api_key'] ) ) :
 		echo $this->form()->user_feedback('You can increase your limit by upgrading to Pro to unlock more.', 'warning');
 
 	} else {
-		
+
 		/**
 		 * Process and add the key
 		 */
@@ -58,7 +58,6 @@ if ( isset( $_POST['delete_api_keys'] ) ) :
 	update_option('evp_youtube_api', $delete_keys );
 
 endif;
-
 
 // section title
 InputField::section_title('Add API Keys');
