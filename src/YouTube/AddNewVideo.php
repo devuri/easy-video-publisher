@@ -54,7 +54,7 @@ class AddNewVideo
 			$id = InsertPost::newpost($vid, $args);
 
 			if ($id) {
-				$vidstatus  = UserFeedback::message('Video Has been Posted <strong> '.get_post( $id )->post_title.' </strong> ');
+				$vidstatus  = UserFeedback::message('Video Has been Published <strong> '.get_post( $id )->post_title.' </strong> ');
 				$vidstatus .= '<div id="new-post-preview">';
 				$vidstatus .= '<img width="400" src="'.get_the_post_thumbnail_url( $id ).'">';
 				$vidstatus .= '<br>';
