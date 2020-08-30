@@ -67,6 +67,16 @@
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
   /**
-   * Load Admin Pages
+   * add after the plugins have fully loaded
+   * since we will have addons for this.
+   *
    */
-  VideoPublisherPro\Admin\VideoPublisherAdmin::init();
+  function evp_lite_admin_pages() {
+    /**
+     * Load Admin Pages
+     */
+    if ( is_admin() ) {
+      VideoPublisherPro\Admin\VideoPublisherAdmin::init();
+    }
+  }
+  add_action( 'plugins_loaded', 'evp_lite_admin_pages' );
