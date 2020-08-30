@@ -51,7 +51,8 @@ final class VideoPublisherAdmin extends AdminPage {
   private static function admin_menu(){
     $menu = array();
     $menu['mcolor']       = '#0071A1';
-    $menu['page_title']   = 'Easy Video Publisher '.' <span class="dashicons dashicons-awards pro">Pro</span>';
+    //$menu['page_title']   = 'Easy Video Publisher '.' <span class="dashicons dashicons-awards pro">Pro</span>';
+    $menu['page_title']   = 'Easy Video Publisher ';
     $menu['menu_title']   = 'Video Publisher';
     $menu['capability']   = 'manage_options';
     $menu['menu_slug']    = 'video-publisher';
@@ -79,7 +80,7 @@ final class VideoPublisherAdmin extends AdminPage {
     );
     $submenu[] = 'Channel Import';
     $submenu[] = 'Add Channel';
-    
+
     /**
      * add submenus
      * @var array
