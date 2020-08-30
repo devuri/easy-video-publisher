@@ -27,7 +27,7 @@ class YouTubeDataAPI
 		}
 
 		// get key
-		// TODO only return a valid key 
+		// TODO only return a valid key
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
 		} else {
@@ -102,7 +102,7 @@ class YouTubeDataAPI
 
 		$keylist 	= '<h4>API Keys:</h4>';
 		$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-		foreach( get_option('evp_youtube_api') as $key => $time ) {
+		foreach( get_option('evp_youtube_api' , array()) as $key => $time ) {
 			$key = substr( $key , 0, -20 );
 			$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
 		}
@@ -118,7 +118,7 @@ class YouTubeDataAPI
 
 			$chanlist 	= '<h4>Channels:</h4>';
 			$chanlist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-			foreach( get_option('evp_channels') as $chkey => $channel ) {
+			foreach( get_option('evp_channels' , array() ) as $chkey => $channel ) {
 				$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
 			}
 		$chanlist 	.= '</ul><br>';
