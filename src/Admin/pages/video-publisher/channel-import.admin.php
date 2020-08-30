@@ -75,6 +75,8 @@ if ( isset( $_POST['delete_recent_updates'] ) ) :
 	}
 
 	$delete_videos	= array();
+	// TODO delete posts along with video ids wp_delete_post(1);
+
 	# delete the videos
 	update_option('evp_latest_updates', $delete_videos );
 
