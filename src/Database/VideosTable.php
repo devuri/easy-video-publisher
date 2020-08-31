@@ -33,12 +33,14 @@ final class VideosTable extends WPDb
 		  ID bigint(20) unsigned NOT NULL auto_increment,
 		  post_id bigint(20) unsigned NOT NULL default '0',
 			user_id bigint(20) unsigned NOT NULL DEFAULT '0',
-		  video_id varchar(255),
-		  channel varchar(255),
+			campaign_id bigint(20) unsigned NOT NULL DEFAULT '0',
+		  video_id varchar(30),
+		  channel varchar(50),
 		  created datetime NOT NULL default '0000-00-00 00:00:00',
 		  PRIMARY KEY (ID),
 			KEY post_id (post_id),
 			KEY user_id (user_id),
+			KEY campaign_id (campaign_id),
 			KEY video_id (video_id),
 			KEY created (created)
 		) $charset_collate";
