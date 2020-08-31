@@ -3,6 +3,7 @@ namespace VideoPublisherPro\Post;
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\Database\WPDb;
 	use VideoPublisherPro\UserFeedback;
 
 /**
@@ -71,10 +72,25 @@ class ChannelImport
 			$args['hashtags'] 			= $params['hashtags'];
 			$args['create_author']	= $params['create_author'];
 
-			$id = InsertPost::newpost( $vid , $args );
-			if ($id) {
+			$post_id = InsertPost::newpost( $vid , $args );
+			if ($post_id) {
+
+				// add to "evp_videos" table
+				WPDb::insert_data(
+					'evp_videos',
+					array(
+						'post_id' 		=> $post_id,
+						'user_id' 		=> get_post_field( 'post_author', $post_id ),
+						'campaign_id' => 0,
+						'video_id' 		=> $id,
+						'channel' 		=> $channel,
+						'created' 		=> date("Y-m-d h:i:s ")
+					)
+				);
+
 				# get the post id
-				$ids[] = $id;
+				$posts[] = $post_id;
+
 			}
 		}
 
@@ -85,7 +101,7 @@ class ChannelImport
 		 * ids for each post
 		 * @var array list of post ids
 		 */
-		return $ids;
+		return $posts;
 	}
 
 }
