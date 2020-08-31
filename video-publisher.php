@@ -77,12 +77,12 @@
    * since we will have addons for this.
    *
    */
-  function evp_lite_admin_pages() {
+  add_action( 'plugins_loaded', function () {
+
     /**
      * Load Admin Pages
      */
     if ( is_admin() ) {
       VideoPublisherPro\Admin\VideoPublisherAdmin::init();
     }
-  }
-  add_action( 'plugins_loaded', 'evp_lite_admin_pages' );
+  });
