@@ -84,7 +84,6 @@ class ChannelImport
 						'campaign_id' => 0,
 						'video_id' 		=> $id,
 						'channel' 		=> $channel,
-						'created' 		=> date("Y-m-d h:i:s ")
 					)
 				);
 
