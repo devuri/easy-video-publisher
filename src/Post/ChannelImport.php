@@ -60,10 +60,14 @@ class ChannelImport
 			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
 
+			// check for tags to avoid "Undefined property"
+			if ( property_exists( YouTubeDataAPI::video_info( $id ), 'tags') ) {
+				$args['tags'] = YouTubeDataAPI::video_info( $id )->tags;
+			}
+
 			/**
 			 * set up some $args
 			 */
-			$args['tags'] 					= YouTubeDataAPI::video_info( $id )->tags;
 			$args['thumbnail'] 			= YoutubeVideoInfo::video_thumbnail( $vid );
 			$args['embed'] 					= GetBlock::youtube( $vid );
 			$args['post_type'] 			= $params['post_type'];
