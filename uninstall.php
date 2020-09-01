@@ -13,19 +13,25 @@
  *  ----------------------------------------------------------------------------
  */
 
-	# deny direct access
+	# Deny direct access
   if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	  die;
   }
 
   /**
-   * delete the plugin options 
+   * Delete the plugin options
    */
   delete_option( 'evp_youtube_api' );
   delete_option( 'evp_channels' );
   delete_option( 'evp_latest_updates' );
   delete_option( 'evp_restricted_categories' );
 
+  /**
+   * Delete "evp_videos" Table.
+   */
+  global $wpdb;
+  $wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'evp_videos' );
 
-  //finally clear the cache
+
+  // Finally clear the cache
   wp_cache_flush();

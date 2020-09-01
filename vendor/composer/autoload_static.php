@@ -37,6 +37,8 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'Madcoda\\compat' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/compat.php',
         'VideoPublisherPro\\Admin\\VideoPublisherAdmin' => __DIR__ . '/../..' . '/src/Admin/VideoPublisherAdmin.php',
         'VideoPublisherPro\\Data\\ChannelVideo' => __DIR__ . '/../..' . '/src/Data/ChannelVideo.php',
+        'VideoPublisherPro\\Database\\VideosTable' => __DIR__ . '/../..' . '/src/Database/VideosTable.php',
+        'VideoPublisherPro\\Database\\WPDb' => __DIR__ . '/../..' . '/src/Database/WPDb.php',
         'VideoPublisherPro\\Form\\CategoryList' => __DIR__ . '/../..' . '/src/Form/CategoryList.php',
         'VideoPublisherPro\\Form\\FormLoader' => __DIR__ . '/../..' . '/src/Form/FormLoader.php',
         'VideoPublisherPro\\Form\\InputField' => __DIR__ . '/../..' . '/src/Form/InputField.php',

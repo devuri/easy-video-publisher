@@ -14,6 +14,8 @@ return array(
     'Madcoda\\compat' => $vendorDir . '/madcoda/php-youtube-api/src/compat.php',
     'VideoPublisherPro\\Admin\\VideoPublisherAdmin' => $baseDir . '/src/Admin/VideoPublisherAdmin.php',
     'VideoPublisherPro\\Data\\ChannelVideo' => $baseDir . '/src/Data/ChannelVideo.php',
+    'VideoPublisherPro\\Database\\VideosTable' => $baseDir . '/src/Database/VideosTable.php',
+    'VideoPublisherPro\\Database\\WPDb' => $baseDir . '/src/Database/WPDb.php',
     'VideoPublisherPro\\Form\\CategoryList' => $baseDir . '/src/Form/CategoryList.php',
     'VideoPublisherPro\\Form\\FormLoader' => $baseDir . '/src/Form/FormLoader.php',
     'VideoPublisherPro\\Form\\InputField' => $baseDir . '/src/Form/InputField.php',
