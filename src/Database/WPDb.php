@@ -21,6 +21,46 @@ abstract class WPDb
 	}
 
 	/**
+	 * insert_data()
+	 *
+	 * insert new video item into the table
+	 *
+	 * @param  array  $columns  array of data to update
+	 * @return  int   the id of the inserted
+	 * @link https://developer.wordpress.org/reference/classes/wpdb/insert/
+	 */
+	public static function insert_data( $tablename = null , $columns = array() ){
+
+		global $wpdb;
+		$table = $wpdb->prefix.$tablename;
+
+		if ( is_null($tablename) ) {
+			return false;
+		}
+
+		/**
+		 * build the data array
+		 * @var array
+		 */
+		$defualts = array(
+			'post_id' 		=> 0,
+			'user_id' 		=> 0,
+			'campaign_id' => 0,
+			'video_id' 		=> null,
+			'channel' 		=> null,
+			'created' 		=> current_time( 'mysql' ),
+		);
+		$data = wp_parse_args( $columns , $defualts );
+
+		/**
+		 * insert data into the database
+		 * and return the id
+		 */
+		$wpdb->insert( $table , $data );
+		return $wpdb->insert_id;
+	}
+
+	/**
 	 * set the table name
 	 * @return string
 	 */
