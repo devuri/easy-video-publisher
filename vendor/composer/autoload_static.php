@@ -58,6 +58,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'VideoPublisherPro\\WPAdminPage\\FormHelper' => __DIR__ . '/../..' . '/src/WPAdminPage/FormHelper.php',
         'VideoPublisherPro\\YouTube\\AddChannel' => __DIR__ . '/../..' . '/src/YouTube/AddChannel.php',
         'VideoPublisherPro\\YouTube\\AddKey' => __DIR__ . '/../..' . '/src/YouTube/AddKey.php',
+        'VideoPublisherPro\\YouTube\\AddNewVideo' => __DIR__ . '/../..' . '/src/YouTube/AddNewVideo.php',
         'VideoPublisherPro\\YouTube\\ImportVideo' => __DIR__ . '/../..' . '/src/YouTube/ImportVideo.php',
         'VideoPublisherPro\\YouTube\\YouTubeDataAPI' => __DIR__ . '/../..' . '/src/YouTube/YouTubeDataAPI.php',
         'VideoPublisherPro\\YouTube\\YoutubeVideoInfo' => __DIR__ . '/../..' . '/src/YouTube/YoutubeVideoInfo.php',

@@ -1,17 +1,17 @@
 <?php
 /**
- * Video Publisher Pro
+ * Video Publisher Lite
  *
- * @package           VideoPublisherPro
+ * @package           VideoPublisherLite
  * @author            Uriel Wilson
  * @copyright         2020 Uriel Wilson
  * @license           GPL-2.0
  *
  * @wordpress-plugin
- * Plugin Name:       Video Publisher Pro
+ * Plugin Name:       Video Publisher Lite
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
  * Description:       Video Publisher is a easy to use Video import plugin, use to Import Youtube videos from youtube channel playlist or search.
- * Version:           2.3.5
+ * Version:           2.4.3
  * Requires at least: 3.4
  * Requires PHP:      5.6
  * Author:            SwitchWebdev.com
@@ -29,7 +29,7 @@
     }
 
   # plugin directory
-	  define("EVP_VERSION", '2.3.5');
+	  define("EVP_VERSION", '2.4.3');
 
   # plugin directory
     define("EVP_DIR", dirname(__FILE__));
@@ -67,6 +67,16 @@
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
   /**
-   * Load Admin Pages
+   * add after the plugins have fully loaded
+   * since we will have addons for this.
+   *
    */
-  VideoPublisherPro\Admin\VideoPublisherAdmin::init();
+  function evp_lite_admin_pages() {
+    /**
+     * Load Admin Pages
+     */
+    if ( is_admin() ) {
+      VideoPublisherPro\Admin\VideoPublisherAdmin::init();
+    }
+  }
+  add_action( 'plugins_loaded', 'evp_lite_admin_pages' );

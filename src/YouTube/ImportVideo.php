@@ -25,6 +25,12 @@ class ImportVideo
 			return;
 		}
 
+		// if the channel is not set or empty return
+		if ( empty( (array) get_option('evp_channels') ) ) {
+			echo UserFeedback::message('Pleas Add a YouTube Channel!', 'error');
+			return;
+		}
+
 		/**
 		 * get the channel to post from
 		 */

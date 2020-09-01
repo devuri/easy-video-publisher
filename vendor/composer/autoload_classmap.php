@@ -35,6 +35,7 @@ return array(
     'VideoPublisherPro\\WPAdminPage\\FormHelper' => $baseDir . '/src/WPAdminPage/FormHelper.php',
     'VideoPublisherPro\\YouTube\\AddChannel' => $baseDir . '/src/YouTube/AddChannel.php',
     'VideoPublisherPro\\YouTube\\AddKey' => $baseDir . '/src/YouTube/AddKey.php',
+    'VideoPublisherPro\\YouTube\\AddNewVideo' => $baseDir . '/src/YouTube/AddNewVideo.php',
     'VideoPublisherPro\\YouTube\\ImportVideo' => $baseDir . '/src/YouTube/ImportVideo.php',
     'VideoPublisherPro\\YouTube\\YouTubeDataAPI' => $baseDir . '/src/YouTube/YouTubeDataAPI.php',
     'VideoPublisherPro\\YouTube\\YoutubeVideoInfo' => $baseDir . '/src/YouTube/YoutubeVideoInfo.php',

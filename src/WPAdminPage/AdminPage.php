@@ -4,7 +4,7 @@
  *
  * @copyright 	Copyright © 2020 Uriel Wilson.
  * @package   	AdminPage
- * @version   	2.1.0
+ * @version   	3.1.0
  * @license   	GPL-2.0
  * @author    	Uriel Wilson
  * @link      	https://github.com/devuri/wp-admin-page/
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) exit;
     /**
      * class version
      */
-    const ADMINVERSION = '2.1.0';
+    const ADMINVERSION = '3.1.0';
 
     /**
      * get the current plugin dir path
@@ -336,8 +336,15 @@ if (!defined('ABSPATH')) exit;
      * @param  string $admin_page the admin page name
      * @return
      */
-    public function load_admin_page() {
-      $admin_file = $this->admin_path() . $this->menu_slug().'/'.$this->page_name().'.admin.php';
+    public function load_admin_page( $spage = null ) {
+
+      if ( is_null($spage) ) {
+        $admin_path = $this->admin_path();
+      } else {
+        $admin_path = $spage;
+      }
+
+      $admin_file = $admin_path . $this->menu_slug().'/'.$this->page_name().'.admin.php';
       return $admin_file;
     }
 
@@ -536,15 +543,26 @@ if (!defined('ABSPATH')) exit;
           // keep current slug
           $submenu_slug = sanitize_title($this->prefix.'-'.$this->submenu_val($submenu_item,'name'));
         }
-
+          /**
+           * submenu page dir path
+           * @var [type]
+           */
+          $spage = $this->submenu_val($submenu_item,'page_path');
           # build out the sub menu items
           add_submenu_page(
-            $this->menu_slug,
+            $this->submenu_val($submenu_item,'parent'),
             ucfirst(__($this->submenu_val($submenu_item,'name'))),
             ucwords(__($this->submenu_val($submenu_item,'name'))),
             $submenu_access,
             $submenu_slug,
-            array( $this, 'menu_callback' )
+            function() use ( $spage ){
+              /**
+               * setup the pages
+               */
+              $this->header();
+              $this->require_page( $this->load_admin_page( $spage ) );
+              $this->footer();
+            },
           );
         }
 
@@ -557,15 +575,19 @@ if (!defined('ABSPATH')) exit;
      * @return string
      */
     public function submenu_val( $val , $item = 'name'){
-      if (is_array($val)) {
-        return $val[$item];
-      } else {
-        $subm = array(
-          'name'        => $val,
-          'capability'  => $this->capability,
-        );
-        return $subm[$item];
-      }
+
+      /**
+       * default args
+       */
+      $default = array();
+      $default['name']				= $val;
+      $default['parent']			= $this->menu_slug;
+      $default['capability']	= $this->capability;
+      $default['page_path']   = null;
+      $params = wp_parse_args( $val , $default );
+
+      return $params[$item];
+
     }
 
   }//class
