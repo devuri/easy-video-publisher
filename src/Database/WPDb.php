@@ -48,7 +48,7 @@ abstract class WPDb
 			'campaign_id' => 0,
 			'video_id' 		=> null,
 			'channel' 		=> null,
-			'created' 		=> date("Y-m-d h:i:s ")
+			'created' 		=> current_time( 'mysql' ),
 		);
 		$data = wp_parse_args( $columns , $defualts );
 
