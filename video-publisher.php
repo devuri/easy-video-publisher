@@ -68,7 +68,7 @@
     update_option('evp_restricted_categories', $restricted_categories );
 
     // create "evp_videos" DB Table
-    VideoPublisherPro\Database\VideosTable::create_table();
+    VideoPublisherPro\Database\VideosTable::create();
 
   });
 
