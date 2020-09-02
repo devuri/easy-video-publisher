@@ -28,6 +28,27 @@ class GetData
 	}
 
 	/**
+	 * get a list of results
+	 *
+	 * @param  boolean $data  table id
+	 * @return array   returns results as a keyed array
+	 */
+	public static function get_result( $data = 'channel_title' ){
+
+		$tablename = self::table_name();
+		$results = self::database()->get_results( "SELECT DISTINCT $data FROM $tablename", 'ARRAY_A' );
+
+		if ( ! empty( $results ) && is_array( $results ) ) {
+			foreach ( $results as $entry ) {
+				$key = $entry[$data];
+				$result_list[$key] = $key;
+			}
+		}
+
+		return $result_list;
+	}
+
+	/**
 	 * channel_data() get data from the database table
 	 *
 	 * TODO add error check ' database error:Table doesn't exist'
