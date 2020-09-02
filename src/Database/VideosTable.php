@@ -35,6 +35,7 @@ final class VideosTable extends WPDb
 			user_id bigint(20) unsigned NOT NULL DEFAULT '0',
 			campaign_id bigint(20) unsigned NOT NULL DEFAULT '0',
 		  video_id varchar(30),
+		  channel_title varchar(200),
 		  channel varchar(50),
 		  created datetime NOT NULL default '0000-00-00 00:00:00',
 		  PRIMARY KEY (ID),
