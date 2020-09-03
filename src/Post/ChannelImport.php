@@ -3,6 +3,7 @@ namespace VideoPublisherPro\Post;
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\Database\Videodb;
 	use VideoPublisherPro\Database\WPDb;
 	use VideoPublisherPro\UserFeedback;
 
@@ -46,6 +47,13 @@ class ChannelImport
 
 		// create posts
 		foreach ( $channel_videos  as $upkey => $id ) {
+
+			/**
+			 * check if video is already posted
+			 */
+			if ( Videodb::video_exists( $id ) ) {
+				return;
+			}
 
 			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
