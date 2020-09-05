@@ -17,6 +17,11 @@ final class Videodb extends GetData
    */
 	public static function video_exists( $id = null ){
 		$videos = self::get_result('video_id');
+
+		if ( ! is_array( $videos ) ) {
+			return false;
+		}
+
 		$vid_exists = array_key_exists( $id , $videos );
 		return $vid_exists;
 	}
