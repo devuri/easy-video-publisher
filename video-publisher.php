@@ -74,7 +74,6 @@
 
   /**
    * add after the plugins have fully loaded
-   * since we will have addons for this.
    *
    */
   add_action( 'plugins_loaded', function () {
