@@ -7,7 +7,7 @@
 
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
-		$adminkeylink = admin_url('/admin.php?page=evpro-api-setup');
+		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
 
