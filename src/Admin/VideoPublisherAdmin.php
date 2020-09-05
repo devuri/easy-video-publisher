@@ -36,8 +36,6 @@ final class VideoPublisherAdmin extends AdminPage {
       $addons = (array) vpro_premium_addons();
     } else {
       $addons = array();
-      $addons[] = 'Playlist Import';
-      $addons[] = 'Search Import';
     }
     return $addons;
   }
@@ -46,7 +44,7 @@ final class VideoPublisherAdmin extends AdminPage {
    * admin_menu()
    *
    * Main top level admin menus
-   * @return array 
+   * @return array
    */
   private static function admin_menu(){
     $menu = array();
@@ -73,7 +71,6 @@ final class VideoPublisherAdmin extends AdminPage {
 
     $submenu = array();
     $submenu[] = 'Settings';
-    $submenu[] = 'API Setup';
     $submenu[] = array(
       'name'        => 'YouTube',
       'capability'  => self::$capability
@@ -86,6 +83,9 @@ final class VideoPublisherAdmin extends AdminPage {
      * @var array
      */
     $submenu = array_merge( $submenu, self::addons() );
+    $submenu[] = 'API Setup';
+    $submenu[] = 'Extensions';
+    $submenu[] = 'Help';
 
     return $submenu;
   }
