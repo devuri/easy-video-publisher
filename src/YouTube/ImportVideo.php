@@ -22,13 +22,13 @@ class ImportVideo
 		// make sure we have a valid key.
 		if ( ! YouTubeDataAPI::has_key() ) {
 			echo UserFeedback::message('<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error');
-			return;
+			return 0;
 		}
 
 		// if the channel is not set or empty return
 		if ( empty( (array) get_option('evp_channels') ) ) {
 			echo UserFeedback::message('Pleas Add a YouTube Channel!', 'error');
-			return;
+			return 0;
 		}
 
 		/**
