@@ -29,7 +29,7 @@
     }
 
   # plugin directory
-	define("EVP_VERSION", '2.5.4');
+	define("EVP_VERSION", '2.6.3');
 
   # plugin directory
   define("EVP_DIR", dirname(__FILE__));
