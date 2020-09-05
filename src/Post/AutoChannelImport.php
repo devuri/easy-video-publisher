@@ -10,7 +10,11 @@ namespace VideoPublisherPro\Post;
 class AutoChannelImport
 {
 
-	public static function publish( string $channelId = null , array $params = array() ){
+    /**
+     * @param string|null $channelId
+     * @param array $params
+     */
+    public static function publish( $channelId = null , array $params = array() ){
 
 		/**
 		 * checks to make sure the request is ok
@@ -21,7 +25,7 @@ class AutoChannelImport
 		} catch (\Exception $e ) {
 			// TODO create a log message $e->getMessage() and return
 			// log message api key failed, $e->getMessage()
-			return;
+			return 0;
 		}
 
 		/**
@@ -50,7 +54,7 @@ class AutoChannelImport
 
 		# if we cant find any new videos
 		if ( ! $new_videos ) {
-			return;
+			return 0;
 		}
 
 		// create posts
