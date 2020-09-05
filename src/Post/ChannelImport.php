@@ -3,8 +3,7 @@ namespace VideoPublisherPro\Post;
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
-	use VideoPublisherPro\Database\Videodb;
-	use VideoPublisherPro\Database\WPDb;
+	use VideoPublisherPro\Database\VideosTable;
 	use VideoPublisherPro\UserFeedback;
 
 /**
@@ -52,7 +51,7 @@ class ChannelImport
 			 * skip over if video is already posted
 			 * and continue to the next item.
 			 */
-			if( Videodb::video_exists( $id ) ) continue;
+			if( VideosTable::video_exists( $id ) ) continue;
 
 			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
@@ -77,8 +76,7 @@ class ChannelImport
 			if ($post_id) {
 
 				// add to "evp_videos" table
-				WPDb::insert_data(
-					'evp_videos',
+				(new VideosTable())->insert_data(
 					array(
 						'post_id' 		=> $post_id,
 						'user_id' 		=> get_post_field( 'post_author', $post_id ),
