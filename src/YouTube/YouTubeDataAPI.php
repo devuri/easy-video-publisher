@@ -36,9 +36,9 @@ class YouTubeDataAPI
 
 	}
 
-	/**
-	 * [get_keys description]
-	 * @return [type] [description]
+  /**
+   * [get_keys description]
+   * @return array|false [type] [description]
 	 */
 	public static function get_keys(){
 		if ( empty( get_option('evp_youtube_api', array() ) ) ) {
@@ -80,7 +80,9 @@ class YouTubeDataAPI
 
 	/**
 	 * use to verify specific api key
+	 * @param null $apikey
 	 * @return bool [description]
+	 * @throws \Exception
 	 */
 	public static function is_key_valid( $apikey = null ){
 		$verify_api_key = new Youtube(
@@ -138,10 +140,10 @@ class YouTubeDataAPI
 		return true;
 	}
 
-	/**
-	 * exit whatever is goin on here
-	 * @return [type] [description]
-	 */
+  /**
+   * exit whatever is goin on here
+   * @return void [type] [description]
+   */
 	public static function response_error(){
 		try {
 				self::youtube()->getVideoInfo('YXQpgAAeLM4');
@@ -150,12 +152,12 @@ class YouTubeDataAPI
 		}
 	}
 
-	/**
-	 * get the latest videos by a channel.
-	 * @param  string  $channelId [description]
-	 * @param  integer $limit     [description]
-	 * @return [type]             [description]
-	 */
+  /**
+   * get the latest videos by a channel.
+   * @param string $channelId [description]
+   * @param integer $limit [description]
+   * @return mixed [type]             [description]
+   */
 	public static function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ){
 
 		# get the channel videos
@@ -178,35 +180,37 @@ class YouTubeDataAPI
 	 */
 	public static function video_description( $videoId = '' ){
 		$description 	= self::youtube()->getVideoInfo($videoId)->snippet->description;
-		return $description ;
+		return $description;
 	}
 
-	/**
-	 * get video info
-	 * @param  string $videoId [description]
-	 * @return string
-	 */
+  /**
+   * get video info
+   * @param string $vid
+   * @return string
+   * @throws \Exception
+   */
 	public static function video_info( $vid = '' ){
 		$info = self::youtube()->getVideoInfo( $vid )->snippet;
 		return $info;
 	}
 
 	/**
-	 * channelby_id
-	 * @param  [type] $id [description]
-	 * @return [type]     [description]
-	 */
+ 	 * channelby_id
+ 	 * @param  [type] $id [description]
+ 	 * @return false|\StdClass [type]     [description]
+ 	 * @throws \Exception
+ 	 */
 	public static function channelby_id( $id = null ){
 		$channel = self::youtube()->getChannelById( $id , false );
 		return $channel;
 	}
 
 
-	/**
-	 * get videos from multiple channels
-	 * @param  array  $channels [description]
-	 * @return [type]           [description]
-	 */
+  /**
+   * get videos from multiple channels
+   * @param array $channels [description]
+   * @return mixed [type]           [description]
+   */
 	public static function channels_vids( $channels = array() ){
 		/**
 		 * process channel ids

@@ -11,11 +11,12 @@ use VideoPublisherPro\UserFeedback;
 class AddKey
 {
 
-	/**
-	 * Adds New API key if its valid.
-	 * @param  [type] $youtube_api_key [description]
-	 * @return [type]                  [description]
-	 */
+  /**
+   * Adds New API key if its valid.
+   * @param  [type] $youtube_api_key [description]
+   * @return void [type]                  [description]
+   * @throws \Exception
+   */
 	public static function new_apikey( $youtube_api_key = null ){
 
 		if ( is_null( $youtube_api_key ) ) {

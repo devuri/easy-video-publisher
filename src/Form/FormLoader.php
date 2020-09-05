@@ -8,10 +8,12 @@ namespace VideoPublisherPro\Form;
 class FormLoader
 {
 
-	/**
-	 * Loading div
-	 * @return [type] [description]
-	 */
+  /**
+   * Loading div
+   * @param string $name
+   * @param array $css
+   * @return void [type] [description]
+   */
 	public static function loading($name = 'update-loader', $css = array()){
 
 		/**
@@ -27,10 +29,11 @@ class FormLoader
 		echo '</div>';
 	}
 
-	/**
-	 * css for the loader
-	 * @return [type] [description]
-	 */
+  /**
+   * css for the loader
+   * @param array $css
+   * @return void [type] [description]
+   */
 	public static function css_style( $css = array() ){	?><style media="screen">
 		.loading {
 			padding: <?php echo $css['padding']; ?>;
