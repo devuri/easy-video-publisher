@@ -3,6 +3,7 @@ namespace VideoPublisherPro\Post;
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\Database\VideosTable;
 
 /**
  *
@@ -47,18 +48,14 @@ class AutoChannelImport
 		$number_of_posts 	= intval( $params['number_of_posts'] );
 		$channel_videos 	= YouTubeDataAPI::channel_videos( $channel , $number_of_posts );
 
-		# check if we already have the channel_videos in recent_updates
-		$recent_updates 	= (array) get_option('evp_latest_updates');
-		$new_videos 			= array_diff( $channel_videos , $recent_updates);
-		$next_update 			= array_merge( $new_videos , $recent_updates );
-
-		# if we cant find any new videos
-		if ( ! $new_videos ) {
-			return 0;
-		}
-
 		// create posts
 		foreach ( $new_videos  as $upkey => $id ) {
+
+			/**
+			 * skip over if video is already posted
+			 * and continue to the next item.
+			 */
+			if( VideosTable::video_exists( $id ) ) continue;
 
 			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
@@ -77,19 +74,36 @@ class AutoChannelImport
 
 			$post_id = InsertPost::newpost( $vid , $args );
 			if ($post_id) {
+
+				// add to "evp_videos" table
+				(new VideosTable())->insert_data(
+					array(
+						'post_id' 		=> $post_id,
+						'user_id' 		=> get_post_field( 'post_author', $post_id ),
+						'campaign_id' => 0,
+						'video_id' 		=> $id,
+						'channel' 		=> $channel,
+						'channel_title' => UrlDataAPI::get_data( $vid )->author_name,
+					)
+				);
+
 				# get the $post_id
-				$ids[] = $post_id;
+				$posts[] = $post_id;
 			}
 		}
 
-		# save updates
-		update_option('evp_latest_updates', $next_update );
+		/**
+		 * empty
+		 */
+		if ( empty($posts) ) {
+			return 0;
+		}
 
 		/**
 		 * ids for each post
 		 * @var array list of post ids
 		 */
-		return $ids;
+		return $posts;
 	}
 
 }

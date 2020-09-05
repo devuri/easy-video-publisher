@@ -59,10 +59,6 @@
     $channels = array();
     update_option('evp_channels', $channels);
 
-    # latest updates
-    $latest_updates = array();
-    update_option('evp_latest_updates', $latest_updates );
-
     # restrict categories
     $restricted_categories = array();
     update_option('evp_restricted_categories', $restricted_categories );

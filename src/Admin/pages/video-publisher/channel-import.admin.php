@@ -62,24 +62,6 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 
 endif;
 
-/**
- * Delete All Videos
- *
- */
-if ( isset( $_POST['delete_recent_updates'] ) ) :
-
-	if ( ! $this->form()->verify_nonce()  ) {
-		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
-	}
-
-	$delete_videos	= array();
-	// TODO delete posts along with video ids wp_delete_post(1);
-
-	# delete the videos
-	update_option('evp_latest_updates', $delete_videos );
-
-endif;
-
 	// section title
 	InputField::section_title('Youtube Channel Import');
 
