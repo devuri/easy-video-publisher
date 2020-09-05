@@ -79,9 +79,7 @@
    */
   add_action( 'plugins_loaded', function () {
 
-    /**
-     * Load Admin Pages
-     */
+    // Load The Admin Pages
     if ( is_admin() ) {
       VideoPublisherPro\Admin\VideoPublisherAdmin::init();
     }
