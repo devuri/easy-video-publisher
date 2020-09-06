@@ -69,13 +69,15 @@ class ChannelImport
 			 * @var [type]
 			 */
 			if ( $params['post_schedule'] ) {
+
 				$schedule = $params['post_schedule'];
+
 				$hrs = mt_rand(1, $schedule);
 				$post_date = time() + $hrs*60*60;
-				$post_time = date_i18n( 'Y-m-d H:i:s', $post_date );
 
 				// set the schedule
-				$args['post_date']	= $post_time;
+				$scheduled = date_i18n( 'Y-m-d H:i:s', $post_date );
+				$args['post_date']	= $scheduled;
 			}
 
 			/**
