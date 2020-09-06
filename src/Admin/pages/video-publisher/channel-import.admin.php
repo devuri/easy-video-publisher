@@ -105,6 +105,21 @@ endif;
 		echo $this->form()->select( $post_status , 'Post Status' );
 
 		/**
+		 * Set Post Schedule.
+		 * @var array
+		 */
+		$schedule = array(
+			0 	=> 'None',
+			4 	=> 'Schedule (4h)',
+			8 	=> 'Schedule (8h)',
+			12 	=> 'Schedule (12h)',
+			16 	=> 'Schedule (16h)',
+			24 	=> 'Schedule (24h)',
+			48 	=> 'Schedule (48h)',
+		);
+		echo $this->form()->select( $schedule , 'Post Schedule' );
+
+		/**
 		 * Posts Author.
 		 * @var array
 		 */

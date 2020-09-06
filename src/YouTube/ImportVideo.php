@@ -38,6 +38,7 @@ class ImportVideo
 		$number_of_posts 	= absint( $form_data['number_of_posts'] );
 		$setcategory 			= absint( $form_data['select_category'] );
 		$setauthor 				= absint( $form_data['set_author'] );
+		$schedule 				= absint( $form_data['post_schedule'] );
 		$poststatus 			= sanitize_text_field( trim( $form_data['post_status'] ) );
 
 		/**
@@ -58,6 +59,7 @@ class ImportVideo
 		$args['number_of_posts'] 	= $number_of_posts;
 		$args['setcategory']			= $setcategory;
 		$args['post_status']			= $poststatus;
+		$args['post_schedule']		= $schedule;
 		$args['hashtags']					= array( get_term( $args['setcategory'] , 'category' )->name );
 
 		/**
