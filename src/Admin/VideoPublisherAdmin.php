@@ -11,7 +11,6 @@ final class VideoPublisherAdmin extends AdminPage {
 
   /**
    * The $capability for YouTube
-   * @var [type]
    */
   private static $capability = 'read';
 
@@ -61,7 +60,6 @@ final class VideoPublisherAdmin extends AdminPage {
     return $menu;
   }
 
-
   /**
    * submenu()
    * array of submenu items
@@ -79,10 +77,12 @@ final class VideoPublisherAdmin extends AdminPage {
     $submenu[] = 'Add Channel';
 
     /**
-     * add submenus
+     * add submenu addons
      * @var array
      */
     $submenu = array_merge( $submenu, self::addons() );
+
+    // more submenu items
     $submenu[] = 'API Setup';
     $submenu[] = 'Extensions';
     $submenu[] = 'Help';
