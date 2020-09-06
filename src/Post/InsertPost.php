@@ -112,6 +112,7 @@ class InsertPost
 		$default['category'] 			= array(1);
 		$default['post_type'] 		= 'post';
 		$default['post_status'] 	= 'publish';
+		$default['post_date'] 		= current_time( 'mysql' );
 		$default['html'] 					= false;
 		$default['create_author'] = false;
 		$default['author'] 				= get_current_user_id();
@@ -148,6 +149,7 @@ class InsertPost
 			$tags						= $args['tags'];
 			$create_author	= $args['create_author'];
 			$author					= $args['author'];
+			$post_date			= $args['post_date'];
 			$post_author 		= self::author( $medialink , $author , $create_author );
 
 			/**
@@ -162,6 +164,7 @@ class InsertPost
 					'post_category'	=> array($category),
 					'tags_input' 		=> $tags,
 					'post_author'   => $post_author,
+					'post_date' 		=> $post_date,
 			);
 			# create the post
 			$postId = wp_insert_post( $postInfo );
