@@ -83,18 +83,7 @@ endif;
 		 * Number of Posts to Create.
 		 * @var array
 		 */
-		$number_of_posts = array(
-			1 	=> '1',
-			2 	=> '2',
-			3 	=> '3',
-			4 	=> '4',
-			5 	=> '5',
-			6 	=> '6',
-			7 	=> '7',
-			8 	=> '8',
-			9 	=> '9',
-			10 	=> '10',
-		);
+		$number_of_posts = array_slice(range(0, 20),1, null, true);
 		echo $this->form()->select( $number_of_posts , 'Number of Posts' );
 
 		/**
@@ -114,7 +103,6 @@ endif;
 			'publish' => 'Publish'
 		);
 		echo $this->form()->select( $post_status , 'Post Status' );
-
 
 		/**
 		 * Posts Author.
