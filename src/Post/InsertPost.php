@@ -100,6 +100,17 @@ class InsertPost
    */
 	public static function newpost( string $medialink = null , array $args = array() ){
 
+		if ( is_null($medialink) || empty($medialink) ) {
+			return 0;
+		}
+
+		/**
+		 * make sure all is well with our data
+		 */
+		if ( ! property_exists( UrlDataAPI::get_data( $medialink ), 'title') ) {
+			return 0;
+		}
+
 		/**
 		 * default args
 		 * @link https://developer.wordpress.org/reference/functions/wp_parse_args/
