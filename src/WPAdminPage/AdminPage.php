@@ -231,14 +231,6 @@ if (!defined('ABSPATH')) exit;
     }
 
     /**
-     * get the instance
-     * @return object
-     */
-    public function instance(){
-      return new self($this->args(),$this->submenu_args,$this->settings_args);
-    }
-
-    /**
      * whats the version
      * @return [type] [description]
      */
