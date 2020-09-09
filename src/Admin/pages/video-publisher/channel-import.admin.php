@@ -18,7 +18,6 @@
 		)
 	);
 
-
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
@@ -116,6 +115,7 @@ endif;
 			16 	=> 'Schedule (16h)',
 			24 	=> 'Schedule (24h)',
 			48 	=> 'Schedule (48h)',
+			168 => 'Schedule (7d)',
 		);
 		echo $this->form()->select( $schedule , 'Post Schedule' );
 
