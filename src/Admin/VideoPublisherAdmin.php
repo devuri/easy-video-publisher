@@ -110,8 +110,8 @@ final class VideoPublisherAdmin extends AdminPage {
 
     // more submenu items
     $submenu[] = 'API Setup';
-    $submenu[] = 'Extensions';
-    $submenu[] = 'Getting Started';
+    // $submenu[] = 'Extensions';
+    // $submenu[] = 'Getting Started';
 
     return $submenu;
   }
