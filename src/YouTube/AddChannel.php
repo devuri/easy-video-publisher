@@ -28,6 +28,13 @@ class AddChannel
 			$channelId = false;
 		}
 
+		// validate the channel id, try to get 10 videos
+		$get_vidoes = YouTubeDataAPI::channel_videos( $channelId , 10 );
+		if ( $get_vidoes == false) {
+			echo UserFeedback::message('<strong> Channel ID is not Valid ! </strong> ', 'error');
+			return 0;
+		}
+
 		/**
 		 * check the $channelId
 		 */
