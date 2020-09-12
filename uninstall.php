@@ -27,6 +27,8 @@
 
   /**
    * Delete "evp_videos" Table.
+   *
+   * TODO maybe ask the user 
    */
   global $wpdb;
   $wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'evp_videos' );
