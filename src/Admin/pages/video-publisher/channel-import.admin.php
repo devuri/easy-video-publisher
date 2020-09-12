@@ -21,7 +21,7 @@
 
 	# make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
-		$adminkeylink = admin_url('/admin.php?page=evpro-api-setup');
+		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
 
@@ -51,7 +51,6 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 		foreach ( $posts as $pkey => $id ) {
 
 			echo $this->form()->user_feedback(
-				' Video Has been Added: <br>' .
 				get_the_post_thumbnail( $id , 'medium' ) .
 				' <br>New <strong>  '.
 				get_post( $id )->post_status .

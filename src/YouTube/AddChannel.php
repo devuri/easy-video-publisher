@@ -20,7 +20,7 @@ class AddChannel
 		// make sure we have a valid key.
 		if ( ! YouTubeDataAPI::has_key() ) {
 			echo UserFeedback::message('<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error');
-			return;
+			return 0;
 		}
 
 		// make sure ID is set

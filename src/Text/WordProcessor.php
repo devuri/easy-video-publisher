@@ -7,14 +7,14 @@ namespace VideoPublisherPro\Text;
 class WordProcessor
 {
 
-	/**
-	 * text_search() find item in the array
-	 * array_search will not work for index 0
-	 * @param  string $find [description]
-	 * @param  array $text [description]
-	 * @link https://stackoverflow.com/questions/16750311/php-in-array-or-array-search-not-working
-	 * @return string $result
-	 */
+  /**
+   * text_search() find item in the array
+   * array_search will not work for index 0
+   * @param string|null $find [description]
+   * @param array $text [description]
+   * @return string $result
+   * @link https://stackoverflow.com/questions/16750311/php-in-array-or-array-search-not-working
+   */
 	private static function text_search( string $find = null , array $text  = array() ){
 		$search = array_search( $find , $text ) !== false;
 		if ( $search ) {
@@ -46,9 +46,9 @@ class WordProcessor
   /**
    * find $find by name
    * search the string for artist
-	 * @param  string $text   text to search
-   * @param  string  $find [description]
-   * @return [type]         [description]
+   * @param string|null $text text to search
+   * @param string $find [description]
+   * @return array [type]         [description]
    */
 	public static function find_word( string $text = null , $find = null ){
 

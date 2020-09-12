@@ -49,11 +49,10 @@ class ChannelImport
 		foreach ( $channel_videos  as $upkey => $id ) {
 
 			/**
-			 * check if video is already posted
+			 * skip over if video is already posted
+			 * and continue to the next item.
 			 */
-			if ( Videodb::video_exists( $id ) ) {
-				return;
-			}
+			if( Videodb::video_exists( $id ) ) continue;
 
 			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
@@ -94,6 +93,13 @@ class ChannelImport
 				$posts[] = $post_id;
 
 			}
+		}
+
+		/**
+		 * empty
+		 */
+		if ( empty($posts) ) {
+			return 0;
 		}
 
 		/**

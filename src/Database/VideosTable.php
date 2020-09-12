@@ -17,12 +17,12 @@ final class VideosTable extends WPDb
 		return $this->database()->prefix . "evp_videos";
 	}
 
-	/**
-	 * table
-	 *
-	 * define the table schema
-	 * @return
-	 */
+  /**
+   * table
+   *
+   * define the table schema
+   * @return string
+   */
 	protected function schema(){
 
 		$table_name 			= $this->table_name();
@@ -48,13 +48,15 @@ final class VideosTable extends WPDb
 		) $charset_collate";
 	}
 
-	/**
-	 * create the table
-	 * @return
-	 */
+  /**
+   * create the table
+   * @return void
+   */
 	public static function create(){
-		$evp_videos = new VideosTable();
-		$evp_videos->new_table();
+		/**
+		 * inititate and create the table
+		 */
+		(new VideosTable())->new_table();
 	}
 
 }

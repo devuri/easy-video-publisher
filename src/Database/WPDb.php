@@ -20,15 +20,16 @@ abstract class WPDb
 		return $wpdb;
 	}
 
-	/**
-	 * insert_data()
-	 *
-	 * insert new video item into the table
-	 *
-	 * @param  array  $columns  array of data to update
-	 * @return  int   the id of the inserted
-	 * @link https://developer.wordpress.org/reference/classes/wpdb/insert/
-	 */
+  /**
+   * insert_data()
+   *
+   * insert new video item into the table
+   *
+   * @param null $tablename
+   * @param array $columns array of data to update
+   * @return  int   the id of the inserted
+   * @link https://developer.wordpress.org/reference/classes/wpdb/insert/
+   */
 	public static function insert_data( $tablename = null , $columns = array() ){
 
 		global $wpdb;
@@ -67,12 +68,12 @@ abstract class WPDb
 	 */
 	abstract protected function table_name();
 
-	/**
-	 * table
-	 *
-	 * define the table schema
-	 * @return
-	 */
+  /**
+   * table
+   *
+   * define the table schema
+   * @return
+   */
 	abstract protected function schema();
 
 	/**

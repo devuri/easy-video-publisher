@@ -46,7 +46,7 @@ final class VideoPublisherAdmin extends AdminPage {
    * admin_menu()
    *
    * Main top level admin menus
-   * @return [type] [description]
+   * @return array 
    */
   private static function admin_menu(){
     $menu = array();
@@ -58,7 +58,7 @@ final class VideoPublisherAdmin extends AdminPage {
     $menu['menu_slug']    = 'video-publisher';
     $menu['function']     = 'sim_publisher_callback';
     $menu['icon_url']     = 'dashicons-video-alt3';
-    $menu['prefix']       = 'evpro';
+    $menu['prefix']       = 'evp';
     $menu['plugin_path']  = plugin_dir_path( __FILE__ );
     return $menu;
   }
@@ -92,7 +92,7 @@ final class VideoPublisherAdmin extends AdminPage {
 
   /**
    * admin description
-   * @return
+   * @return VideoPublisherAdmin
    */
   public static function init(){
     return new VideoPublisherAdmin(self::admin_menu(), self::submenu());

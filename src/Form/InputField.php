@@ -8,9 +8,11 @@ class InputField
 {
 
   /**
-	 * define user access level for the admin form
-	 * who can acces and use the form
-	 */
+   * define user access level for the admin form
+   * who can acces and use the form
+   * @param string $role
+   * @return mixed|string
+   */
 	public static function access_level( $role = 'admin'){
 
 		$access = array();
@@ -24,10 +26,11 @@ class InputField
 	}
 
   /**
-	 * allow the user to add a custom Title
-	 * Instead of using the title from oEmbed
-	 * @return [type] [description]
-	 */
+   * allow the user to add a custom Title
+   * Instead of using the title from oEmbed
+   * @param string $fieldname
+   * @return string [type] [description]
+   */
 	public static function custom_title( $fieldname = 'Title'){
 		$fieldname = strtolower($fieldname);
 		$get_title = '<tr class="input-custom-title hidden"><th>';
@@ -38,12 +41,13 @@ class InputField
 		$get_title .= '</p></td></tr>';
 		return $get_title;
 	}
+
   /**
    * the wp editor
-   * @param  string $content   [description]
-   * @param  [type] $editor_id [description]
-   * @param  array  $options   [description]
-   * @return [type]            [description]
+   * @param string $content [description]
+   * @param string $editor_id
+   * @param array $options [description]
+   * @return false|string [type]            [description]
    * @link https://developer.wordpress.org/reference/functions/wp_editor/
    * @link https://developer.wordpress.org/reference/classes/_wp_editors/parse_settings/
    */

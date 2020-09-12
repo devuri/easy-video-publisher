@@ -50,12 +50,12 @@ class InsertPost
 		return $post_author;
 	}
 
-	/**
-	 * creates a simple hashtag from the username
-	 * @param  [type] $medialink [description]
-	 * @param  [type] $username  [description]
-	 * @return [type]            [description]
-	 */
+  /**
+   * creates a simple hashtag from the username
+   * @param $medialink
+   * @param $username
+   * @return string [type]            [description]
+   */
 	private static function username( $medialink, $username ){
 		$username 	= UrlDataAPI::get_data( $medialink )->author_name;
 		$username 	= strtolower(sanitize_file_name( $username, true));
@@ -63,11 +63,11 @@ class InsertPost
 		return $username;
 	}
 
-	/**
-	 * set hashtags
-	 * @param  mixed $hashtags [description]
-	 * @return [type]           [description]
-	 */
+  /**
+   * set hashtags
+   * @param mixed $hashtags [description]
+   * @return false|string [type]           [description]
+   */
 	private static function hashtags( $hashtags ){
 
 		# if we did not get an array return false
@@ -92,12 +92,12 @@ class InsertPost
 
 	}
 
-	/**
-	 * Create the Post
-	 * @param  string $medialink youtube url
-	 * @param  array  $args   other options
-	 * @return int
-	 */
+  /**
+   * Create the Post
+   * @param string|null $medialink youtube url
+   * @param array $args other options
+   * @return int
+   */
 	public static function newpost( string $medialink = null , array $args = array() ){
 
 		/**
