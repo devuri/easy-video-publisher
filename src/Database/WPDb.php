@@ -48,6 +48,7 @@ abstract class WPDb
 			'campaign_id' => 0,
 			'video_id' 		=> null,
 			'channel' 		=> null,
+			'channel_title' => null,
 			'created' 		=> current_time( 'mysql' ),
 		);
 		$data = wp_parse_args( $columns , $defualts );
@@ -72,7 +73,7 @@ abstract class WPDb
 	 * define the table schema
 	 * @return
 	 */
-	abstract protected function table();
+	abstract protected function schema();
 
 	/**
 	 * create table
@@ -94,7 +95,7 @@ abstract class WPDb
 		/**
 		 * there is no table to create
 		 */
-		if ( is_null( $this->table() ) ) {
+		if ( is_null( $this->schema() ) ) {
 			return false;
 		}
 
@@ -104,7 +105,7 @@ abstract class WPDb
 		 * Creates a table in the database, if it doesn’t already exist.
 		 * @link https://developer.wordpress.org/reference/functions/maybe_create_table/
 		 */
-		$table = maybe_create_table( $this->table_name() , $this->table() );
+		$table = maybe_create_table( $this->table_name() , $this->schema() );
 		return $table;
 	}
 

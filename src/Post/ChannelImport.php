@@ -88,6 +88,7 @@ class ChannelImport
 						'campaign_id' => 0,
 						'video_id' 		=> $id,
 						'channel' 		=> $channel,
+						'channel_title' => YouTubeDataAPI::video_info( $id )->channelTitle,
 					)
 				);
 

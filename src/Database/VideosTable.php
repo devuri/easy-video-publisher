@@ -23,7 +23,7 @@ final class VideosTable extends WPDb
 	 * define the table schema
 	 * @return
 	 */
-	protected function table(){
+	protected function schema(){
 
 		$table_name 			= $this->table_name();
 		$charset_collate 	= $this->database()->get_charset_collate();
@@ -36,12 +36,14 @@ final class VideosTable extends WPDb
 			campaign_id bigint(20) unsigned NOT NULL DEFAULT '0',
 		  video_id varchar(30),
 		  channel varchar(50),
+			channel_title varchar(200),
 		  created datetime NOT NULL default '0000-00-00 00:00:00',
 		  PRIMARY KEY (ID),
 			KEY post_id (post_id),
 			KEY user_id (user_id),
 			KEY campaign_id (campaign_id),
 			KEY video_id (video_id),
+			KEY channel (channel),
 			KEY created (created)
 		) $charset_collate";
 	}
@@ -50,7 +52,7 @@ final class VideosTable extends WPDb
 	 * create the table
 	 * @return
 	 */
-	public static function create_table(){
+	public static function create(){
 		$evp_videos = new VideosTable();
 		$evp_videos->new_table();
 	}
