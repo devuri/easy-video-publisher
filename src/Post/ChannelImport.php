@@ -62,6 +62,25 @@ class ChannelImport
 			}
 
 			/**
+			 * schedule random time in the future
+			 *
+			 * will add a scheduled post between a range from one hour to the $shecdule time
+			 * based on post_schedule param
+			 * @var [type]
+			 */
+			if ( $params['post_schedule'] ) {
+
+				$schedule = $params['post_schedule'];
+
+				$hrs = mt_rand(1, $schedule);
+				$post_date = time() + $hrs*60*60;
+
+				// set the schedule
+				$scheduled = date_i18n( 'Y-m-d H:i:s', $post_date );
+				$args['post_date']	= $scheduled;
+			}
+
+			/**
 			 * set up some $args
 			 */
 			$args['thumbnail'] 			= YoutubeVideoInfo::video_thumbnail( $vid );

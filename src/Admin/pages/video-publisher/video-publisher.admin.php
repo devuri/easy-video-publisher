@@ -67,7 +67,7 @@ endif;
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo '<br/>';
-		echo $this->form()->submit_button('Save', 'primary large', 'save_category_settings');
+		echo $this->form()->submit_button('Update Restricted Categories', 'primary large', 'save_category_settings');
 	?></form>
 </div><!--frmwrap-->
 <br/><hr/>

@@ -10,10 +10,24 @@ use VideoPublisherPro\WPAdminPage\AdminPage;
 final class VideoPublisherAdmin extends AdminPage {
 
   /**
-   * The $capability for YouTube
-   * @var [type]
+   * The capability() for YouTube
+   *
+   * control access for the youtube video publisher.
+   * uses WordPress capabilities, the EVP_ACCESS needs be defined in your wp-config.php file.
+   * Example to give access to subscribers simply add "define( 'EVP_ACCESS', 'read' );"
+   * in the wp-config.php file and subscribers will be able to access the youtube publisher.
+   * default capability is "manage_options" for Administrators
+   *
+   * @return string user capability.
+   * @link https://wordpress.org/support/article/roles-and-capabilities/
    */
-  private static $capability = 'read';
+  private static function capability(){
+    if (defined('EVP_ACCESS')) {
+      return EVP_ACCESS;
+    } else {
+      return 'manage_options';
+    }
+  }
 
   /**
    * check if this is pro
@@ -36,8 +50,6 @@ final class VideoPublisherAdmin extends AdminPage {
       $addons = (array) vpro_premium_addons();
     } else {
       $addons = array();
-      $addons[] = 'Playlist Import';
-      $addons[] = 'Search Import';
     }
     return $addons;
   }
@@ -46,13 +58,12 @@ final class VideoPublisherAdmin extends AdminPage {
    * admin_menu()
    *
    * Main top level admin menus
-   * @return array 
+   * @return array
    */
   private static function admin_menu(){
     $menu = array();
     $menu['mcolor']       = '#0071A1';
-    //$menu['page_title']   = 'Easy Video Publisher '.' <span class="dashicons dashicons-awards pro">Pro</span>';
-    $menu['page_title']   = 'Easy Video Publisher ';
+    $menu['page_title']   = 'Easy Video Publisher '. self::pro();
     $menu['menu_title']   = 'Video Publisher';
     $menu['capability']   = 'manage_options';
     $menu['menu_slug']    = 'video-publisher';
@@ -63,6 +74,17 @@ final class VideoPublisherAdmin extends AdminPage {
     return $menu;
   }
 
+  /**
+   * pro badge
+   * @return [type] [description]
+   */
+  private static function pro(){
+    if ( self::is_pro() ) {
+      return ' <span class="dashicons dashicons-awards pro">Pro</span>';
+    }
+    return '';
+
+  }
 
   /**
    * submenu()
@@ -73,19 +95,23 @@ final class VideoPublisherAdmin extends AdminPage {
 
     $submenu = array();
     $submenu[] = 'Settings';
-    $submenu[] = 'API Setup';
     $submenu[] = array(
       'name'        => 'YouTube',
-      'capability'  => self::$capability
+      'capability'  => self::capability()
     );
     $submenu[] = 'Channel Import';
     $submenu[] = 'Add Channel';
 
     /**
-     * add submenus
+     * add submenu addons
      * @var array
      */
     $submenu = array_merge( $submenu, self::addons() );
+
+    // more submenu items
+    $submenu[] = 'API Setup';
+    $submenu[] = 'Extensions';
+    $submenu[] = 'Help';
 
     return $submenu;
   }

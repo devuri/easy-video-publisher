@@ -62,24 +62,6 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 
 endif;
 
-/**
- * Delete All Videos
- *
- */
-if ( isset( $_POST['delete_recent_updates'] ) ) :
-
-	if ( ! $this->form()->verify_nonce()  ) {
-		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
-	}
-
-	$delete_videos	= array();
-	// TODO delete posts along with video ids wp_delete_post(1);
-
-	# delete the videos
-	update_option('evp_latest_updates', $delete_videos );
-
-endif;
-
 	// section title
 	InputField::section_title('Youtube Channel Import');
 
@@ -101,18 +83,7 @@ endif;
 		 * Number of Posts to Create.
 		 * @var array
 		 */
-		$number_of_posts = array(
-			1 	=> '1',
-			2 	=> '2',
-			3 	=> '3',
-			4 	=> '4',
-			5 	=> '5',
-			6 	=> '6',
-			7 	=> '7',
-			8 	=> '8',
-			9 	=> '9',
-			10 	=> '10',
-		);
+		$number_of_posts = array_slice(range(0, 20),1, null, true);
 		echo $this->form()->select( $number_of_posts , 'Number of Posts' );
 
 		/**
@@ -133,6 +104,20 @@ endif;
 		);
 		echo $this->form()->select( $post_status , 'Post Status' );
 
+		/**
+		 * Set Post Schedule.
+		 * @var array
+		 */
+		$schedule = array(
+			0 	=> 'None',
+			4 	=> 'Schedule (4h)',
+			8 	=> 'Schedule (8h)',
+			12 	=> 'Schedule (12h)',
+			16 	=> 'Schedule (16h)',
+			24 	=> 'Schedule (24h)',
+			48 	=> 'Schedule (48h)',
+		);
+		echo $this->form()->select( $schedule , 'Post Schedule' );
 
 		/**
 		 * Posts Author.

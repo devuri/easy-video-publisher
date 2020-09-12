@@ -23,7 +23,6 @@
    */
   delete_option( 'evp_youtube_api' );
   delete_option( 'evp_channels' );
-  delete_option( 'evp_latest_updates' );
   delete_option( 'evp_restricted_categories' );
 
   /**

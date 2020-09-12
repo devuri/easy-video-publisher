@@ -77,8 +77,26 @@ endif;
 
 	?></form>
 </div><!--frmwrap-->
-<br/><hr/>
-<script type="text/javascript">
+<br><hr/>
+<?php
+	/**
+	 * this should only be seen by admins
+	 * @var [type]
+	 */
+	if ( current_user_can( 'manage_options' ) ) :
+	?><strong>Enabling Access using the WordPress capabilities. </strong>
+<br>You can give access to the youtube video publisher using the WordPress capabilities.
+The <code>EVP_ACCESS</code> constant needs be defined in your <code>wp-config.php</code> file.
+<br>For Example to give access to subscribers simply add <code> define( 'EVP_ACCESS', 'read' );</code>
+in the <code> wp-config.php</code> file, and subscribers will be able to access the youtube publisher.
+<br>The default capability is for Administrators.
+read more about <a target="_blank" href="https://wordpress.org/support/article/roles-and-capabilities">WordPress capabilities</a>.
+<hr/><?php
+	if (defined('EVP_ACCESS')) {
+		echo '<span style="color:red;">EVP_ACCESS is defined, the capability is: '. EVP_ACCESS . '</span>';
+	}
+endif;
+?><script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 
 		jQuery('#custom_title').on('click', function( event ){
