@@ -57,6 +57,9 @@ endif;
 	InputField::section_title('Video Publisher Settings', $arg );
 
 ?><div id="category-form">
+	<small>
+		Restricted for other users that have access to the Youtube Video Publisher.
+	</small>
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		//var_dump(get_option('evp_restricted_categories'));
 		echo $this->form()->table('open');

@@ -44,6 +44,12 @@ class ChannelImport
 		$number_of_posts 	= intval( $params['number_of_posts'] );
 		$channel_videos 	= YouTubeDataAPI::channel_videos( $channel , $number_of_posts );
 
+		// no videos to import
+		if ( ! $channel_videos ) {
+			// log some info here
+			return 0;
+		}
+
 		// create posts
 		foreach ( $channel_videos  as $upkey => $id ) {
 

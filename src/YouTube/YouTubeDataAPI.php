@@ -161,7 +161,18 @@ class YouTubeDataAPI
 	public static function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ){
 
 		# get the channel videos
-		$videos = self::youtube()->searchChannelVideos('', $channelId , $limit,'date');
+		try {
+			$videos = self::youtube()->searchChannelVideos('', $channelId , $limit,'date');
+		} catch (\Exception $e) {
+			return 0;
+		}
+
+		# make sure we get the data,
+		# this will return false if we dont get any videos
+		if ( ! $videos ) {
+			return 0;
+		}
+
 
 		/**
 		 * return array of video data

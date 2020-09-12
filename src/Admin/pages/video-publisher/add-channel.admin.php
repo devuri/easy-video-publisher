@@ -39,8 +39,6 @@ if ( isset( $_POST['add_new_channel'] ) ) :
 
 			// maximum number of channels
 			echo $this->form()->user_feedback('You have reached the maximum Index allowed, Looks like you cannot add any more channels !', 'error');
-			echo $this->form()->user_feedback('You can increase your limit by upgrading to Pro to unlock more.', 'warning');
-
 		} else {
 
 			/**

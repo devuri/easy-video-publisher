@@ -37,6 +37,13 @@ class InsertPost
 	 */
 	private static function author( $medialink = null , $author = null , $create_author = false ){
 
+		/**
+		 * make sure all is well with our data
+		 */
+		if ( ! property_exists( UrlDataAPI::get_data( $medialink ), 'title') ) {
+			return 0;
+		}
+
 		# get medialink
 		$author_name	= UrlDataAPI::get_data( $medialink )->author_name;
 		$author_url		= UrlDataAPI::get_data( $medialink )->author_url;
