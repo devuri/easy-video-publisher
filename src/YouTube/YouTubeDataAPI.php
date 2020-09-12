@@ -89,7 +89,7 @@ class YouTubeDataAPI
 			array('key' => $apikey )
 		);
 		try {
-				$verify_api_key->getVideoInfo('YXQpgAAeLM4');
+			$verify_api_key->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
 			return false;
 		}
