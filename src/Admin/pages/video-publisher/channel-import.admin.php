@@ -5,7 +5,6 @@
 	use VideoPublisherPro\Form\CategoryList;
 	use VideoPublisherPro\Form\FormLoader;
 	use VideoPublisherPro\Form\InputField;
-	use VideoPublisherPro\LatestUpdates;
 	use VideoPublisherPro\PostType;
 
 	/**
@@ -153,14 +152,6 @@ endif;
 		echo '<br/>';
 		echo $this->form()->submit_button('Import Videos', 'primary large', 'get_latest_updates');
 
-		echo '<br><hr/><h4>';
-		_e('Recent Updates [ '.LatestUpdates::count_updates().' ]');
-		echo '</h4>';
-
-		// delete videos
-		echo '<input name="delete_recent_updates" id="delete_recent_updates" type="submit" class="button" value="Delete All Recent Updates">';
-		echo '<span style="color: red; font-size: small; display: block;"> This will only delete the video ids for recent updates </span>';
-		echo '<br>';
 
 	?></form>
 </div><!--frmwrap-->

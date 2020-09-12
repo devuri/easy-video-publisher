@@ -3,6 +3,7 @@ namespace VideoPublisherPro\Post;
 
 	use VideoPublisherPro\YouTube\YouTubeDataAPI;
 	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
+	use VideoPublisherPro\Database\Videodb;
 	use VideoPublisherPro\Database\WPDb;
 	use VideoPublisherPro\UserFeedback;
 
@@ -44,18 +45,15 @@ class ChannelImport
 		$number_of_posts 	= intval( $params['number_of_posts'] );
 		$channel_videos 	= YouTubeDataAPI::channel_videos( $channel , $number_of_posts );
 
-		# check if we already have the channel_videos in recent_updates
-		$recent_updates 	= (array) get_option('evp_latest_updates');
-		$new_videos 			= array_diff( $channel_videos , $recent_updates);
-		$next_update 			= array_merge( $new_videos , $recent_updates );
-
-		# if we cant find any new videos
-		if ( ! $new_videos ) {
-			return;
-		}
-
 		// create posts
-		foreach ( $new_videos  as $upkey => $id ) {
+		foreach ( $channel_videos  as $upkey => $id ) {
+
+			/**
+			 * check if video is already posted
+			 */
+			if ( Videodb::video_exists( $id ) ) {
+				return;
+			}
 
 			// convert id to full youtube url
 			$vid = 'https://youtu.be/'.$id;
@@ -88,7 +86,7 @@ class ChannelImport
 						'campaign_id' => 0,
 						'video_id' 		=> $id,
 						'channel' 		=> $channel,
-						'channel_title' => YouTubeDataAPI::video_info( $id )->channelTitle,
+						'channel_title' => UrlDataAPI::get_data( $vid )->author_name,
 					)
 				);
 
@@ -97,9 +95,6 @@ class ChannelImport
 
 			}
 		}
-
-		# save updates
-		update_option('evp_latest_updates', $next_update );
 
 		/**
 		 * ids for each post
