@@ -32,13 +32,13 @@ class WordProcessor
 	 */
 	public static function text_to_array( $text = null ){
 
-		# clean up and remove unwanted elements.
+		// clean up and remove unwanted elements.
 		$text = strtolower( $text );
 		$text = sanitize_title($text);
 		$text = str_replace( "-", " ", $text );
 
-		# convert string to array.
-		# @link https://www.php.net/manual/en/function.str-word-count.php
+		// convert string to array.
+		// @link https://www.php.net/manual/en/function.str-word-count.php
 		$text = str_word_count( $text , 1, '1..9ü' );
 		return $text;
 	}
@@ -52,20 +52,20 @@ class WordProcessor
    */
 	public static function find_word( string $text = null , $find = null ){
 
-		# lowercase
+		// lowercase
 		$find = strtolower( $find );
 
-		# convert the text to array
+		// convert the text to array
 		$text = self::text_to_array($text);
 
-		# find string in the array
+		// find string in the array
 		$result = self::text_search( $find , $text );
 
-		# add the result to empty $match array
+		// add the result to empty $match array
 		$match = array();
 		$match[] = $result;
 
-		# output
+		// output
 		return $match;
 	}
 

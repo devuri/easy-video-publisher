@@ -25,7 +25,7 @@ class AddNewVideo
 		 */
 		$vid = sanitize_text_field( trim( $form_data['youtube_video_url'] ) );
 
-		# overrides title
+		// overrides title
 		$args = array();
 		if ( isset( $form_data['custom_title'] ) && isset( $form_data['video_title'] ) ) {
 			$args['title'] 			= sanitize_text_field( trim( $form_data['video_title'] ) );

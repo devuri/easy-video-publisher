@@ -53,7 +53,7 @@ if ( isset( $_POST['delete_api_keys'] ) ) :
 	}
 
 	$delete_keys 	= array();
-	# update the key
+	// update the key
 	update_option('evp_youtube_api', $delete_keys );
 
 endif;
@@ -65,7 +65,7 @@ InputField::section_title('Add API Keys');
 		<form action="" method="POST"	enctype="multipart/form-data"><?php
 		echo $this->form()->table('open');
 
-		# add key input
+		// add key input
 		echo $this->form()->input('YouTube API Key', ' ');
 
 		echo $this->form()->table('close');

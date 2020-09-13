@@ -1,12 +1,12 @@
-## WP Admin Page, Quick and easy WP Admin Pages
+#// WP Admin Page, Quick and easy WP Admin Pages
 
 Simple way to build out Admin Pages in WordPress
 
-## Getting Started
+#// Getting Started
 
 Please check out the example/ folder
 
-## You can install via Composer.
+#// You can install via Composer.
 
 `$ composer require devuri/wp-admin-page`
 
@@ -77,7 +77,7 @@ final class MyPluginAdmin extends AdminPage {
   ```
 
 
-### Prerequisites
+##// Prerequisites
 
 Tested up to WordPress: 5.4
 

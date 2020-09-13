@@ -36,15 +36,15 @@ class AddKey
 			$new_key			= array( $youtube_api_key => time() );
 			$update_keys	= array_merge( $new_key , (array) get_option( 'evp_youtube_api' ) );
 
-			# check if we already have the key in recent updates
+			// check if we already have the key in recent updates
 			$api_keys 		= (array) get_option( 'evp_youtube_api' );
 			$key_exists 	= array_key_exists( $youtube_api_key , $api_keys );
 
-			# check if we already have that key
+			// check if we already have that key
 			if ( $key_exists ) {
 				echo UserFeedback::message('<strong> <span style="color:#dc3232">'.$youtube_api_key.'</span></strong> already Exists !!', 'error');
 			} else {
-				# add the new api key
+				// add the new api key
 				update_option('evp_youtube_api', $update_keys );
 				echo UserFeedback::message( 'New API Key <strong> <span style="color:#037b0e">'.$youtube_api_key.'</span></strong> has been successfully added !!');
 			}

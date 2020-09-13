@@ -11,7 +11,7 @@
  * Plugin Name:       Video Publisher Lite
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
  * Description:       Video Publisher is a easy to use Video import plugin, use to Import Youtube videos from youtube channel playlist or search.
- * Version:           2.7.3
+ * Version:           2.7.6
  * Requires at least: 3.4
  * Requires PHP:      5.6
  * Author:            SwitchWebdev.com
@@ -23,18 +23,18 @@
  */
 
 
-  # deny direct access
+  // deny direct access
     if ( ! defined( 'WPINC' ) ) {
       die;
     }
 
-  # plugin directory
-	define("EVP_VERSION", '2.7.3');
+  // plugin directory
+	define("EVP_VERSION", '2.7.6');
 
-  # plugin directory
+  // plugin directory
   define("EVP_DIR", dirname(__FILE__));
 
-  # plugin url
+  // plugin url
   define("EVP_URL", plugins_url( "/",__FILE__ ));
 
   /**
@@ -42,7 +42,7 @@
    */
   require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-#  -----------------------------------------------------------------------------
+//  -----------------------------------------------------------------------------
 
   /**
    * Do stuff on Activate
@@ -51,15 +51,15 @@
    */
   register_activation_hook( __FILE__, function(){
 
-    # api key
+    // api key
     $api_key = array();
     update_option('evp_youtube_api', $api_key );
 
-    # channels
+    // channels
     $channels = array();
     update_option('evp_channels', $channels);
 
-    # restrict categories
+    // restrict categories
     $restricted_categories = array();
     update_option('evp_restricted_categories', $restricted_categories );
 

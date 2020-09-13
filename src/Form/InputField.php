@@ -102,7 +102,7 @@ class InputField
 						</label>
 					</th>
 		      <td style="padding: 0;"><?php
-					# if true use the loader
+					// if true use the loader
 					if ( $args['loader'] ) {
 						FormLoader::loading('update-loader');
 					}

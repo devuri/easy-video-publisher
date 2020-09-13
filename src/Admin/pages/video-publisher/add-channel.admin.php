@@ -5,7 +5,7 @@
 	use VideoPublisherPro\Form\InputField;
 	use VideoPublisherPro\MaxIndex;
 
-	# make sure we have added channels
+	// make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
@@ -61,14 +61,14 @@ endif;
 			wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
 		}
 
-		# delete channels
+		// delete channels
 		$delete_channels 	= array();
 		update_option('evp_channels', $delete_channels );
 		echo $this->form()->user_feedback('Channels have been deleted.');
 
 	endif;
 
-	# section title
+	// section title
 	InputField::section_title('Add YouTube Channels');
 
 ?><div id="yt-importform">

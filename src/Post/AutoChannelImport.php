@@ -87,7 +87,7 @@ class AutoChannelImport
 					)
 				);
 
-				# get the $post_id
+				// get the $post_id
 				$posts[] = $post_id;
 			}
 		}

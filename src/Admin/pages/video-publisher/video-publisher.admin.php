@@ -31,7 +31,7 @@ if ( isset( $_POST['save_category_settings'] ) ) :
 	 */
 	if ( ! isset( $_POST['category'] ) ) {
 
-		# update with empty array
+		// update with empty array
 		$restricted_category = array();
 		update_option( 'evp_restricted_categories' , $restricted_category );
 
