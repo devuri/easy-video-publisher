@@ -112,7 +112,7 @@ class ChannelImport
 					)
 				);
 
-				# get the post id
+				// get the post id
 				$posts[] = $post_id;
 
 			}

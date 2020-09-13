@@ -34,7 +34,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 		 */
 		$medialink = sanitize_text_field( trim( $_POST['instagram_url'] ) );
 
-		# overrides
+		// overrides
 		$args = array();
 		if ( isset($_POST['custom_title']) && isset($_POST['title']) ) {
 			$args['title'] 			= sanitize_text_field( trim( $_POST['title'] ) );
@@ -65,7 +65,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 			}
 endif;
 
-	# section title
+	// section title
 	InputField::section_title('Instagram Publisher');
 
 	#loading
@@ -78,7 +78,7 @@ endif;
 		echo InputField::custom_title('Title');
 		echo $this->form()->input('Instagram Url', ' ');
 
-		# categories
+		// categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
 		echo '<td>You can include hashtags and Instagram username like @myusername in the video description</td>';

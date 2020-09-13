@@ -18,13 +18,13 @@
 		)
 	);
 
-	# make sure we have added channels
+	// make sure we have added channels
 	if ( ! YouTubeDataAPI::has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
 
-	# make sure we have added channels
+	// make sure we have added channels
 	if ( ! get_option('evp_channels') ) :
 	 	echo $this->form()->user_feedback('Please Add at least One Channel', 'warning');
 	endif;
@@ -72,10 +72,10 @@ endif;
 
 		echo $this->form()->table('open');
 
-		# channel
+		// channel
 		echo $this->form()->select( (array) get_option('evp_channels') , 'Youtube Channel' );
 
-		# categories
+		// categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
 		/**
@@ -130,7 +130,7 @@ endif;
 		echo $this->form()->select( $set_author , 'Set Author' );
 
 
-		# close the table
+		// close the table
 		echo $this->form()->table('close');
 		$this->form()->nonce();
 		echo '<br/>';

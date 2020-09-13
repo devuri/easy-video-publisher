@@ -35,7 +35,7 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 
 endif;
 
-	# section title
+	// section title
 	InputField::section_title('Youtube Video Publisher');
 
 	#loading
@@ -51,7 +51,7 @@ endif;
 
 		echo $this->form()->input('YouTube Video url', ' ');
 
-		# categories
+		// categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
 
 		/**

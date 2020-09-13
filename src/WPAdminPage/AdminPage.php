@@ -278,7 +278,7 @@ if (!defined('ABSPATH')) exit;
        */
       $screen = get_current_screen();
 
-      # get specific page name
+      // get specific page name
       $id_page_name = explode('_', $screen->id);
       $current_page = $id_page_name[2];
       $current_page = sanitize_text_field($current_page);
@@ -366,7 +366,7 @@ if (!defined('ABSPATH')) exit;
         require_once $adminfile;
       } else {
         $file_location_error = '<h1>'. __( 'Menu file location error : Experiencing Technical Issues, Please Contact Admin' ).'</h1>';
-          # only show full file path to admin user
+          // only show full file path to admin user
         if ( current_user_can('manage_options') ) {
           $file_location_error  = '<h2>' .__('Please check file location, Page Does not Exist').' </h2>';
           $file_location_error .= '<span class="alert-danger">'. $adminfile . '</span> '.__('location of file was not found').' </p>';
@@ -382,7 +382,7 @@ if (!defined('ABSPATH')) exit;
      * @since 2.0
      */
     public function submenu_page() {
-      # this is a submenu
+      // this is a submenu
       $this->admin_submenu = true;
       /**
        * setup the pages
@@ -412,14 +412,14 @@ if (!defined('ABSPATH')) exit;
       echo '<h2 style="border: unset; " class="wll-admin nav-tab-wrapper wp-clearfix">';
       foreach ($this->submenu_args as $key => $submenu_item) {
 
-        # first item is always admin only
+        // first item is always admin only
         if ($key == 0) {
           $submenu_access = 'manage_options';
         } else {
           $submenu_access = $this->submenu_val($submenu_item,'capability');
         }
 
-          # check if user has access for the menu
+          // check if user has access for the menu
           if (current_user_can($submenu_access)) {
             #slugs
             if ($key == 0) {
@@ -428,7 +428,7 @@ if (!defined('ABSPATH')) exit;
               $submenu_slug = sanitize_title($this->prefix.'-'.$this->submenu_val($submenu_item,'name'));
             }
 
-            # build out the sub menu items
+            // build out the sub menu items
             if ($submenu_slug == $this->page_title()) {
               echo '<a href="'.admin_url('/admin.php?page='.strtolower($submenu_slug).'').'" style="color:'.$this->mcolor.'" class="wll-admin-tab nav-tab-active">'.ucwords(__($this->submenu_val($submenu_item,'name'))).'</a>';
             } else {
@@ -520,7 +520,7 @@ if (!defined('ABSPATH')) exit;
        */
       foreach ($this->submenu_args as $key => $submenu_item) {
 
-        # access
+        // access
         if ($key == 0) {
           $submenu_access = 'manage_options';
         } else {
@@ -540,7 +540,7 @@ if (!defined('ABSPATH')) exit;
            * @var [type]
            */
           $spage = $this->submenu_val($submenu_item,'page_path');
-          # build out the sub menu items
+          // build out the sub menu items
           add_submenu_page(
             $this->submenu_val($submenu_item,'parent'),
             ucfirst(__($this->submenu_val($submenu_item,'name'))),

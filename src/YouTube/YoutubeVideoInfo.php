@@ -43,7 +43,7 @@ class YoutubeVideoInfo
 	 */
 	public static function video_thumbnail( $video_url = null ){
 
-		# get the video id
+		// get the video id
 		$vid_id = self::video_id( $video_url );
 
 		/**
@@ -90,7 +90,7 @@ class YoutubeVideoInfo
 					'author_url' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
 				);
 
-				# stop if we reach the limit
+				// stop if we reach the limit
 				if(++$i == $limit) break;
 			}
 			return $vid;

@@ -44,11 +44,11 @@ class InsertPost
 			return 0;
 		}
 
-		# get medialink
+		// get medialink
 		$author_name	= UrlDataAPI::get_data( $medialink )->author_name;
 		$author_url		= UrlDataAPI::get_data( $medialink )->author_url;
 
-		# maybe create author
+		// maybe create author
 		if ( $create_author ) {
 			$post_author = self::create_user( $author_name );
 		} else {
@@ -77,12 +77,12 @@ class InsertPost
    */
 	private static function hashtags( $hashtags ){
 
-		# if we did not get an array return false
+		// if we did not get an array return false
 		if ( ! is_array( $hashtags ) ) {
 			return false;
 		}
 
-		#  get hashtag
+		//  get hashtag
 		if ( $hashtags ) {
 			foreach ( $hashtags as $hstkey => $hashtag ) {
 				$htags 				= strtolower(sanitize_file_name($hashtag));
@@ -139,12 +139,12 @@ class InsertPost
 		$default['thumbnail'] 		= UrlDataAPI::get_data( $medialink )->thumbnail_url;
 		$args = wp_parse_args( $args , $default );
 
-		# if the title is too long
+		// if the title is too long
 		if ( strlen( $args['title'] ) > 180 ) {
 			$args['title'] = substr( $args['title'].'...' , 0, 180 );
 		}
 
-		#  add username
+		//  add username
 		if ( $args['username'] ) {
 			$username 	= '  @' . $args['username'];
 		} else {
@@ -184,10 +184,10 @@ class InsertPost
 					'post_author'   => $post_author,
 					'post_date' 		=> $post_date,
 			);
-			# create the post
+			// create the post
 			$postId = wp_insert_post( $postInfo );
 
-			# set featured image
+			// set featured image
 			FeaturedImage::setfeatured_image( $thumbnail , $postId, $title  );
 		}
 

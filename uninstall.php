@@ -13,7 +13,7 @@
  *  ----------------------------------------------------------------------------
  */
 
-	# Deny direct access
+	// Deny direct access
   if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	  die;
   }

@@ -27,7 +27,7 @@ class FeaturedImage
 		$get_image = wp_remote_get( $image_url );
 		IsError::error_check( $get_image );
 
-		# if all is not ok give us some feedback
+		// if all is not ok give us some feedback
  		if ( ! $get_image['response']['code'] == 200 ) {
 			wp_die( UserFeedback::message( 'I cant download the Image to set featured Image' .' !!!', 'error'));
  		}
@@ -55,7 +55,7 @@ class FeaturedImage
 			'post_status' 		=> 'inherit'
 		);
 
-		# create the attachment
+		// create the attachment
 		$attach_id = wp_insert_attachment( $attachment, $file , $post_id );
 
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );

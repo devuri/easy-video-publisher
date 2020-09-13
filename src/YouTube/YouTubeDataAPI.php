@@ -123,7 +123,7 @@ class YouTubeDataAPI
 			foreach( get_option('evp_channels' , array() ) as $chkey => $channel ) {
 				$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
 			}
-		$chanlist 	.= '</ul><br>';
+			$chanlist 	.= '</ul><br>';
 		return $chanlist;
 	}
 
@@ -160,15 +160,15 @@ class YouTubeDataAPI
    */
 	public static function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ){
 
-		# get the channel videos
+		// get the channel videos
 		try {
 			$videos = self::youtube()->searchChannelVideos('', $channelId , $limit,'date');
 		} catch (\Exception $e) {
 			return 0;
 		}
 
-		# make sure we get the data,
-		# this will return false if we dont get any videos
+		// make sure we get the data,
+		// this will return false if we dont get any videos
 		if ( ! $videos ) {
 			return 0;
 		}
