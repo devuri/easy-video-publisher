@@ -9,7 +9,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
     public static $prefixLengthsPsr4 = array (
         'V' => 
         array (
-            'VideoPublisherlite\\' => 18,
+            'VideoPublisherlite\\' => 19,
         ),
         'M' => 
         array (
