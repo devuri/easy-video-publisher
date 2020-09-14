@@ -1,7 +1,7 @@
 <?php
-namespace VideoPublisherPro\Admin;
+namespace VideoPublisherlite\Admin;
 
-use VideoPublisherPro\WPAdminPage\AdminPage;
+use VideoPublisherlite\WPAdminPage\AdminPage;
 
 
 // TODO change to the new

@@ -1,9 +1,9 @@
 <?php
 
-namespace VideoPublisherPro\YouTube;
+namespace VideoPublisherlite\YouTube;
 
-use VideoPublisherPro\YouTube\YouTubeDataAPI;
-use VideoPublisherPro\UserFeedback;
+use VideoPublisherlite\YouTube\YouTubeDataAPI;
+use VideoPublisherlite\UserFeedback;
 
 /**
  *

@@ -1,9 +1,9 @@
 <?php
-namespace VideoPublisherPro\Post;
+namespace VideoPublisherlite\Post;
 
-	use VideoPublisherPro\YouTube\YouTubeDataAPI;
-	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
-	use VideoPublisherPro\Database\VideosTable;
+	use VideoPublisherlite\YouTube\YouTubeDataAPI;
+	use VideoPublisherlite\YouTube\YoutubeVideoInfo;
+	use VideoPublisherlite\Database\VideosTable;
 
 /**
  *

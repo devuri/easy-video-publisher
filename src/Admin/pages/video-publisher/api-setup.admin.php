@@ -1,10 +1,10 @@
 <?php
 
-	use VideoPublisherPro\YouTube\YouTubeDataAPI;
-	use VideoPublisherPro\YouTube\AddKey;
-	use VideoPublisherPro\Form\FormLoader;
-	use VideoPublisherPro\Form\InputField;
-	use VideoPublisherPro\MaxIndex;
+	use VideoPublisherlite\YouTube\YouTubeDataAPI;
+	use VideoPublisherlite\YouTube\AddKey;
+	use VideoPublisherlite\Form\FormLoader;
+	use VideoPublisherlite\Form\InputField;
+	use VideoPublisherlite\MaxIndex;
 
 /**
  * Add API keys

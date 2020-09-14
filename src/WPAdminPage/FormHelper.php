@@ -1,6 +1,6 @@
 <?php
 
-namespace VideoPublisherPro\WPAdminPage;
+namespace VideoPublisherlite\WPAdminPage;
 
 /**
  * ----------------------------------------------------------------------------

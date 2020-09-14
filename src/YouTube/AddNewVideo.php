@@ -1,11 +1,11 @@
 <?php
 
-namespace VideoPublisherPro\YouTube;
+namespace VideoPublisherlite\YouTube;
 
-	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
-	use VideoPublisherPro\Post\InsertPost;
-	use VideoPublisherPro\Post\GetBlock;
-	use VideoPublisherPro\UserFeedback;
+	use VideoPublisherlite\YouTube\YoutubeVideoInfo;
+	use VideoPublisherlite\Post\InsertPost;
+	use VideoPublisherlite\Post\GetBlock;
+	use VideoPublisherlite\UserFeedback;
 
 /**
  *

@@ -1,5 +1,5 @@
 <?php
-namespace VideoPublisherPro;
+namespace VideoPublisherlite;
 
 /**
  *
@@ -29,7 +29,7 @@ class MaxIndex
    * @return bool [description]
    */
 	public static function channels( $option ){
-		$indexlimit = 49;
+		$indexlimit = 59;
 
 		$count = count( $option );
 		if ( $count >= $indexlimit ) {

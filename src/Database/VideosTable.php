@@ -1,6 +1,6 @@
 <?php
 
-namespace VideoPublisherPro\Database;
+namespace VideoPublisherlite\Database;
 
 
 /**
@@ -30,15 +30,15 @@ final class VideosTable extends WPDb
 
 		// schema
 		return "CREATE TABLE {$table_name} (
-		  ID bigint(20) unsigned NOT NULL auto_increment,
-		  post_id bigint(20) unsigned NOT NULL default '0',
+			ID bigint(20) unsigned NOT NULL auto_increment,
+			post_id bigint(20) unsigned NOT NULL default '0',
 			user_id bigint(20) unsigned NOT NULL DEFAULT '0',
 			campaign_id bigint(20) unsigned NOT NULL DEFAULT '0',
-		  video_id varchar(30),
-		  channel varchar(50),
+			video_id varchar(30),
+			channel varchar(50),
 			channel_title varchar(200),
-		  created datetime NOT NULL default '0000-00-00 00:00:00',
-		  PRIMARY KEY (ID),
+			created datetime NOT NULL default '0000-00-00 00:00:00',
+			PRIMARY KEY (ID),
 			KEY post_id (post_id),
 			KEY user_id (user_id),
 			KEY campaign_id (campaign_id),

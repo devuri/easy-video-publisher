@@ -1,6 +1,6 @@
 <?php
 
-namespace VideoPublisherPro\Data;
+namespace VideoPublisherlite\Data;
 
 /**
  *

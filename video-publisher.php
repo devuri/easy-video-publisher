@@ -64,7 +64,7 @@
     update_option('evp_restricted_categories', $restricted_categories );
 
     // create "evp_videos" DB Table
-    VideoPublisherPro\Database\VideosTable::create();
+    VideoPublisherlite\Database\VideosTable::create();
 
   });
 
@@ -76,6 +76,6 @@
 
     // Load The Admin Pages
     if ( is_admin() ) {
-      VideoPublisherPro\Admin\VideoPublisherAdmin::init();
+      VideoPublisherlite\Admin\VideoPublisherAdmin::init();
     }
   });

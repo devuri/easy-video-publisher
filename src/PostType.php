@@ -1,5 +1,5 @@
 <?php
-namespace VideoPublisherPro;
+namespace VideoPublisherlite;
 
 /**
  *

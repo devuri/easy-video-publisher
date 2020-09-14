@@ -1,6 +1,6 @@
 <?php
 
-namespace VideoPublisherPro\Form;
+namespace VideoPublisherlite\Form;
 
 /**
  *

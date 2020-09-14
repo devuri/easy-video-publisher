@@ -1,9 +1,9 @@
 <?php
 
-namespace VideoPublisherPro\YouTube;
+namespace VideoPublisherlite\YouTube;
 
 use Madcoda\Youtube\Youtube;
-use VideoPublisherPro\UserFeedback;
+use VideoPublisherlite\UserFeedback;
 
 /**
  *
