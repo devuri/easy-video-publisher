@@ -118,9 +118,13 @@ class YouTubeDataAPI
 	 */
 	public static function list_channels(){
 
+		// get the channels
+		$evp_channels =	get_option('evp_channels' , array() );
+		asort($evp_channels);
+
 			$chanlist 	= '<h4>Channels:</h4>';
 			$chanlist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-			foreach( get_option('evp_channels' , array() ) as $chkey => $channel ) {
+			foreach( $evp_channels as $chkey => $channel ) {
 				$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
 			}
 			$chanlist 	.= '</ul><br>';

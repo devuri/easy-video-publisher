@@ -73,7 +73,9 @@ endif;
 		echo $this->form()->table('open');
 
 		// channel
-		echo $this->form()->select( (array) get_option('evp_channels') , 'Youtube Channel' );
+		$evp_channels = (array) get_option('evp_channels');
+		asort($evp_channels);
+		echo $this->form()->select( $evp_channels , 'Youtube Channel' );
 
 		// categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
