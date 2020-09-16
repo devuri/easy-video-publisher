@@ -70,6 +70,7 @@ class YoutubeVideoInfo
 
 	/**
 	 * Get youtube video info using WP_oEmbed
+	 *
 	 * @param  mixed  	$v    	video id, or array of video ids
 	 * @param  integer 	$limit 	how many videos
 	 * @return array         		video data

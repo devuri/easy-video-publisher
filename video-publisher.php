@@ -8,9 +8,9 @@
  * @license           GPL-2.0
  *
  * @wordpress-plugin
- * Plugin Name:       Video Publisher Lite
+ * Plugin Name:       Easy Video Publisher
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
- * Description:       Video Publisher is a easy to use Video import plugin, use to Import Youtube videos from youtube channel playlist or search.
+ * Description:       Video Publisher is a easy to use Video import plugin, use to Import Youtube videos and Import Youtube channel videos.
  * Version:           2.7.8
  * Requires at least: 3.4
  * Requires PHP:      5.6

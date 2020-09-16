@@ -13,6 +13,7 @@ class YouTubeDataAPI
 
 	/**
 	 * Get API key
+	 *
 	 * uses a random key each time if mutiple keys are available.
 	 * if no keys are available returns false.
 	 * @return mixed The API Key.
@@ -53,6 +54,7 @@ class YouTubeDataAPI
 
 	/**
 	 * API key check
+	 *
 	 * check if an API key has been set
 	 * @return boolean
 	 */
@@ -80,6 +82,7 @@ class YouTubeDataAPI
 
 	/**
 	 * use to verify specific api key
+	 *
 	 * @param null $apikey
 	 * @return bool [description]
 	 * @throws \Exception
@@ -98,6 +101,7 @@ class YouTubeDataAPI
 
 	/**
 	 * Get a list of the API keys
+	 *
 	 * @return string API Keys
 	 */
 	public static function keys(){
@@ -114,6 +118,7 @@ class YouTubeDataAPI
 
 	/**
 	 * Get a list of channels
+	 *
 	 * @return string list_channels
 	 */
 	public static function list_channels(){
@@ -133,6 +138,7 @@ class YouTubeDataAPI
 
 	/**
 	 * lets make sure all is well
+	 *
 	 * @return boolean
 	 */
 	public static function is_request_ok(){
@@ -146,6 +152,7 @@ class YouTubeDataAPI
 
   /**
    * exit whatever is goin on here
+   *
    * @return void [type] [description]
    */
 	public static function response_error(){
@@ -158,6 +165,7 @@ class YouTubeDataAPI
 
   /**
    * get the latest videos by a channel.
+   *
    * @param string $channelId [description]
    * @param integer $limit [description]
    * @return mixed [type]             [description]
@@ -190,6 +198,7 @@ class YouTubeDataAPI
 
 	/**
 	 * get video description
+	 *
 	 * @param  string $videoId [description]
 	 * @return string
 	 */
@@ -211,6 +220,7 @@ class YouTubeDataAPI
 
 	/**
  	 * channelby_id
+ 	 *
  	 * @param  [type] $id [description]
  	 * @return false|\StdClass [type]     [description]
  	 * @throws \Exception
@@ -223,6 +233,7 @@ class YouTubeDataAPI
 
   /**
    * get videos from multiple channels
+   * 
    * @param array $channels [description]
    * @return mixed [type]           [description]
    */
