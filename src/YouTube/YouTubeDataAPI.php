@@ -187,6 +187,27 @@ class YouTubeDataAPI extends Youtube
 	}
 
 	/**
+	 * Fix error :: 400 invideoPromotion, remove invideoPromotion from part.
+	 *
+	 * @param $id
+	 * @return \StdClass
+	 * @throws \Exception
+	 */
+	public function getChannelById($id, $optionalParams = false)
+	{
+			$API_URL = $this->getApi('channels.list');
+			$params = array(
+					'id' => $id,
+					'part' => 'id,snippet,contentDetails,statistics'
+			);
+			if ($optionalParams) {
+					$params = array_merge($params, $optionalParams);
+			}
+			$apiData = $this->api_get($API_URL, $params);
+			return $this->decodeSingle($apiData);
+	}
+
+	/**
  	 * channelby_id
  	 *
  	 * @param  [type] $id [description]
