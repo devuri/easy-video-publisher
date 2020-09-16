@@ -2,7 +2,7 @@
 
 namespace VideoPublisherlite\YouTube;
 
-use VideoPublisherlite\YouTube\YouTubeDataAPI;
+use VideoPublisherlite\YouTube\YouTubeData;
 use VideoPublisherlite\UserFeedback;
 
 /**
@@ -23,7 +23,7 @@ class AddKey
 			$is_key_valid = false;
 		} else {
 			// check if the key is valid
-			$is_key_valid = YouTubeDataAPI::is_key_valid( $youtube_api_key );
+			$is_key_valid = YouTubeData::api()->is_key_valid( $youtube_api_key );
 		}
 
 		/**

@@ -2,7 +2,7 @@
 
 namespace VideoPublisherlite\YouTube;
 
-use VideoPublisherlite\YouTube\YouTubeDataAPI;
+use VideoPublisherlite\YouTube\YouTubeData;
 use VideoPublisherlite\UserFeedback;
 
 /**
@@ -18,7 +18,7 @@ class AddChannel
 	public static function new_channel( $channelId = null ){
 
 		// make sure we have a valid key.
-		if ( ! YouTubeDataAPI::has_key() ) {
+		if ( ! YouTubeData::api()->has_key() ) {
 			echo UserFeedback::message('<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error');
 			return 0;
 		}
@@ -29,7 +29,7 @@ class AddChannel
 		}
 
 		// validate the channel id, try to get 10 videos
-		$get_vidoes = YouTubeDataAPI::channel_videos( $channelId , 10 );
+		$get_vidoes = YouTubeData::api()->channel_videos( $channelId , 10 );
 		if ( $get_vidoes == false ) {
 			echo UserFeedback::message('<strong> Channel ID is not Valid ! </strong> ', 'error');
 			return 0;
@@ -41,7 +41,7 @@ class AddChannel
 		if ( $channelId ) {
 
 			// set up data
-			$channelname 			= YouTubeDataAPI::channelby_id( $channelId )->snippet->title;
+			$channelname 			= YouTubeData::api()->channelby_id( $channelId )->snippet->title;
 			$newchannel 			= array( $channelId => $channelname );
 			$update_channels	= array_merge( $newchannel , (array) get_option( 'evp_channels' ) );
 

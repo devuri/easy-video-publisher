@@ -1,6 +1,6 @@
 <?php
 
-	use VideoPublisherlite\YouTube\YouTubeDataAPI;
+	use VideoPublisherlite\YouTube\YouTubeData;
 	use VideoPublisherlite\YouTube\AddKey;
 	use VideoPublisherlite\Form\FormLoader;
 	use VideoPublisherlite\Form\InputField;
@@ -76,7 +76,7 @@ InputField::section_title('Add API Keys');
 		echo '<br>';
 		echo '<br><hr/>';
 
-		echo YouTubeDataAPI::keys();
+		echo YouTubeData::api()->keys();
 		echo '<input name="delete_api_keys" id="delete_api_keys" type="submit" class="button" value="Delete API Keys ">';
 		echo '<br/>';
 	?></form>

@@ -241,7 +241,7 @@ class YouTubeDataAPI extends Youtube
 	 *
 	 * @return string API Keys
 	 */
-	public static function keys(){
+	public function keys(){
 
 		$keylist 	= '<h4>API Keys:</h4>';
 		$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
@@ -258,7 +258,7 @@ class YouTubeDataAPI extends Youtube
 	 *
 	 * @return string list_channels
 	 */
-	public static function list_channels(){
+	public function list_channels(){
 
 		// get the channels
 		$evp_channels =	get_option('evp_channels' , array() );
