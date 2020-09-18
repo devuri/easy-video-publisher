@@ -101,7 +101,7 @@ class ChannelImport
 			if ($post_id) {
 
 				// add to "evp_videos" table
-				(new VideosTable())->insert_data(
+				( new VideosTable() )->insert_data(
 					array(
 						'post_id' 		=> $post_id,
 						'user_id' 		=> get_post_field( 'post_author', $post_id ),
