@@ -48,6 +48,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'VideoPublisherlite\\PostType' => __DIR__ . '/../..' . '/src/PostType.php',
         'VideoPublisherlite\\Post\\AutoChannelImport' => __DIR__ . '/../..' . '/src/Post/AutoChannelImport.php',
         'VideoPublisherlite\\Post\\ChannelImport' => __DIR__ . '/../..' . '/src/Post/ChannelImport.php',
+        'VideoPublisherlite\\Post\\CreateUser' => __DIR__ . '/../..' . '/src/Post/CreateUser.php',
         'VideoPublisherlite\\Post\\FeaturedImage' => __DIR__ . '/../..' . '/src/Post/FeaturedImage.php',
         'VideoPublisherlite\\Post\\GetBlock' => __DIR__ . '/../..' . '/src/Post/GetBlock.php',
         'VideoPublisherlite\\Post\\ImageUploadFromUrl' => __DIR__ . '/../..' . '/src/Post/ImageUploadFromUrl.php',

@@ -25,6 +25,7 @@ return array(
     'VideoPublisherlite\\PostType' => $baseDir . '/src/PostType.php',
     'VideoPublisherlite\\Post\\AutoChannelImport' => $baseDir . '/src/Post/AutoChannelImport.php',
     'VideoPublisherlite\\Post\\ChannelImport' => $baseDir . '/src/Post/ChannelImport.php',
+    'VideoPublisherlite\\Post\\CreateUser' => $baseDir . '/src/Post/CreateUser.php',
     'VideoPublisherlite\\Post\\FeaturedImage' => $baseDir . '/src/Post/FeaturedImage.php',
     'VideoPublisherlite\\Post\\GetBlock' => $baseDir . '/src/Post/GetBlock.php',
     'VideoPublisherlite\\Post\\ImageUploadFromUrl' => $baseDir . '/src/Post/ImageUploadFromUrl.php',
