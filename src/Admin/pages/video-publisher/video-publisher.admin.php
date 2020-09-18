@@ -1,8 +1,8 @@
 <?php
 
-	use VideoPublisherPro\Form\FormLoader;
-	use VideoPublisherPro\Form\CategoryList;
-	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherlite\Form\FormLoader;
+	use VideoPublisherlite\Form\CategoryList;
+	use VideoPublisherlite\Form\InputField;
 
 		/**
 		 * CSS for the loader

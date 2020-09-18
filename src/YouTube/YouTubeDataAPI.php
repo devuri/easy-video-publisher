@@ -1,25 +1,26 @@
 <?php
 
-namespace VideoPublisherPro\YouTube;
+namespace VideoPublisherlite\YouTube;
 
 use Madcoda\Youtube\Youtube;
-use VideoPublisherPro\UserFeedback;
+use VideoPublisherlite\UserFeedback;
 
 /**
  *
  */
-class YouTubeDataAPI
+class YouTubeDataAPI extends Youtube
 {
 
 	/**
 	 * Get API key
+	 *
 	 * uses a random key each time if mutiple keys are available.
 	 * if no keys are available returns false.
 	 * @return mixed The API Key.
 	 */
-	private static function apikey(){
+	private function apikey(){
 		// get the keys
-		$apikey = self::get_keys();
+		$apikey = $this->get_keys();
 
 		// key shuffle
 		if ( $apikey ) {
@@ -36,11 +37,27 @@ class YouTubeDataAPI
 
 	}
 
+	/**
+	 * Constructor
+	 * $youtube = new Youtube(array('key' => 'KEY HERE'))
+	 *
+	 * @param array $params
+	 * @throws \Exception
+	 *
+	 * @link https://github.com/madcoda/php-youtube-api
+	 */
+	public function __construct() {
+		parent::__construct(
+			array('key' => $this->apikey() )
+		);
+	}
+
+
   /**
    * [get_keys description]
    * @return array|false [type] [description]
 	 */
-	public static function get_keys(){
+	public function get_keys(){
 		if ( empty( get_option('evp_youtube_api', array() ) ) ) {
 			return false;
 		} else {
@@ -53,10 +70,11 @@ class YouTubeDataAPI
 
 	/**
 	 * API key check
+	 *
 	 * check if an API key has been set
 	 * @return boolean
 	 */
-	public static function has_key(){
+	public function has_key(){
 
 		$apikey = (array) get_option('evp_youtube_api');
 
@@ -68,23 +86,13 @@ class YouTubeDataAPI
 	}
 
 	/**
-	 * youtube object
-	 * @return object
-	 * @link https://github.com/madcoda/php-youtube-api
-	 */
-	public static function youtube(){
-		return new Youtube(
-			array('key' => self::apikey() )
-		);
-	}
-
-	/**
 	 * use to verify specific api key
+	 *
 	 * @param null $apikey
 	 * @return bool [description]
 	 * @throws \Exception
 	 */
-	public static function is_key_valid( $apikey = null ){
+	public function is_key_valid( $apikey = null ){
 		$verify_api_key = new Youtube(
 			array('key' => $apikey )
 		);
@@ -97,43 +105,13 @@ class YouTubeDataAPI
 	}
 
 	/**
-	 * Get a list of the API keys
-	 * @return string API Keys
-	 */
-	public static function keys(){
-
-		$keylist 	= '<h4>API Keys:</h4>';
-		$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-		foreach( get_option('evp_youtube_api' , array()) as $key => $time ) {
-			$key = substr( $key , 0, -20 );
-			$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
-		}
-		$keylist 	.= '</ul><br>';
-		return $keylist;
-	}
-
-	/**
-	 * Get a list of channels
-	 * @return string list_channels
-	 */
-	public static function list_channels(){
-
-			$chanlist 	= '<h4>Channels:</h4>';
-			$chanlist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-			foreach( get_option('evp_channels' , array() ) as $chkey => $channel ) {
-				$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
-			}
-			$chanlist 	.= '</ul><br>';
-		return $chanlist;
-	}
-
-	/**
 	 * lets make sure all is well
+	 *
 	 * @return boolean
 	 */
-	public static function is_request_ok(){
+	public function is_request_ok(){
 		try {
-				self::youtube()->getVideoInfo('YXQpgAAeLM4');
+				$this->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
 			return false;
 		}
@@ -142,11 +120,12 @@ class YouTubeDataAPI
 
   /**
    * exit whatever is goin on here
+   *
    * @return void [type] [description]
    */
-	public static function response_error(){
+	public function response_error(){
 		try {
-				self::youtube()->getVideoInfo('YXQpgAAeLM4');
+				$this->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
 			echo UserFeedback::message( $e->getMessage() , 'error');
 		}
@@ -154,15 +133,16 @@ class YouTubeDataAPI
 
   /**
    * get the latest videos by a channel.
+   *
    * @param string $channelId [description]
    * @param integer $limit [description]
    * @return mixed [type]             [description]
    */
-	public static function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ){
+	public function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ){
 
 		// get the channel videos
 		try {
-			$videos = self::youtube()->searchChannelVideos('', $channelId , $limit,'date');
+			$videos = $this->searchChannelVideos('', $channelId , $limit,'date');
 		} catch (\Exception $e) {
 			return 0;
 		}
@@ -186,11 +166,12 @@ class YouTubeDataAPI
 
 	/**
 	 * get video description
+	 *
 	 * @param  string $videoId [description]
 	 * @return string
 	 */
-	public static function video_description( $videoId = '' ){
-		$description 	= self::youtube()->getVideoInfo($videoId)->snippet->description;
+	public function video_description( $videoId = '' ){
+		$description 	= $this->getVideoInfo($videoId)->snippet->description;
 		return $description;
 	}
 
@@ -200,36 +181,96 @@ class YouTubeDataAPI
    * @return string
    * @throws \Exception
    */
-	public static function video_info( $vid = '' ){
-		$info = self::youtube()->getVideoInfo( $vid )->snippet;
+	public function video_info( $vid = '' ){
+		$info = $this->getVideoInfo( $vid )->snippet;
 		return $info;
 	}
 
 	/**
+	 * Fix error :: 400 invideoPromotion, remove invideoPromotion from part.
+	 *
+	 * @param $id
+	 * @return \StdClass
+	 * @throws \Exception
+	 */
+	public function getChannelById($id, $optionalParams = false)
+	{
+			$API_URL = $this->getApi('channels.list');
+			$params = array(
+					'id' => $id,
+					'part' => 'id,snippet,contentDetails,statistics'
+			);
+			if ($optionalParams) {
+					$params = array_merge($params, $optionalParams);
+			}
+			$apiData = $this->api_get($API_URL, $params);
+			return $this->decodeSingle($apiData);
+	}
+
+	/**
  	 * channelby_id
+ 	 *
  	 * @param  [type] $id [description]
  	 * @return false|\StdClass [type]     [description]
  	 * @throws \Exception
  	 */
-	public static function channelby_id( $id = null ){
-		$channel = self::youtube()->getChannelById( $id , false );
+	public function channelby_id( $id = null ){
+		$channel = $this->getChannelById( $id , false );
 		return $channel;
 	}
 
 
   /**
    * get videos from multiple channels
+   *
    * @param array $channels [description]
    * @return mixed [type]           [description]
    */
-	public static function channels_vids( $channels = array() ){
+	public function channels_vids( $channels = array() ){
 		/**
 		 * process channel ids
 		 */
 		foreach ($channels as $key => $id) {
-			$videos[] = self::channel_videos($id, 2);
+			$videos[] = $this->channel_videos($id, 2);
 		}
 		return $videos;
+	}
+
+	/**
+	 * Get a list of the API keys
+	 *
+	 * @return string API Keys
+	 */
+	public function keys(){
+
+		$keylist 	= '<h4>API Keys:</h4>';
+		$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
+		foreach( get_option('evp_youtube_api' , array()) as $key => $time ) {
+			$key = substr( $key , 0, -20 );
+			$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
+		}
+		$keylist 	.= '</ul><br>';
+		return $keylist;
+	}
+
+	/**
+	 * Get a list of channels
+	 *
+	 * @return string list_channels
+	 */
+	public function list_channels(){
+
+		// get the channels
+		$evp_channels =	get_option('evp_channels' , array() );
+		asort($evp_channels);
+
+			$chanlist 	= '<h4>Channels:</h4>';
+			$chanlist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
+			foreach( $evp_channels as $chkey => $channel ) {
+				$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
+			}
+			$chanlist 	.= '</ul><br>';
+		return $chanlist;
 	}
 
 }

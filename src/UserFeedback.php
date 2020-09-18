@@ -1,6 +1,6 @@
 <?php
 //TODO change to namespace EvpLite;
-namespace VideoPublisherPro;
+namespace VideoPublisherlite;
 
 /**
  *

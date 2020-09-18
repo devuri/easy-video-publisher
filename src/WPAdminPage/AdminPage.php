@@ -10,9 +10,9 @@
  * @link      	https://github.com/devuri/wp-admin-page/
  */
 
-namespace VideoPublisherPro\WPAdminPage;
+namespace VideoPublisherlite\WPAdminPage;
 
-use VideoPublisherPro\WPAdminPage\FormHelper as Form;
+use VideoPublisherlite\WPAdminPage\FormHelper as Form;
 
 if (!defined('ABSPATH')) exit;
 

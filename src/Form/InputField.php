@@ -1,5 +1,5 @@
 <?php
-namespace VideoPublisherPro\Form;
+namespace VideoPublisherlite\Form;
 
 /**
  * Instance of the wp_editor

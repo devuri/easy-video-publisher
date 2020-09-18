@@ -1,11 +1,11 @@
 <?php
 
-	use VideoPublisherPro\YouTube\YouTubeDataAPI;
-	use VideoPublisherPro\YouTube\ImportVideo;
-	use VideoPublisherPro\Form\CategoryList;
-	use VideoPublisherPro\Form\FormLoader;
-	use VideoPublisherPro\Form\InputField;
-	use VideoPublisherPro\PostType;
+	use VideoPublisherlite\YouTube\YouTubeData;
+	use VideoPublisherlite\YouTube\ImportVideo;
+	use VideoPublisherlite\Form\CategoryList;
+	use VideoPublisherlite\Form\FormLoader;
+	use VideoPublisherlite\Form\InputField;
+	use VideoPublisherlite\PostType;
 
 	/**
 	 * CSS for the loader
@@ -19,7 +19,7 @@
 	);
 
 	// make sure we have added channels
-	if ( ! YouTubeDataAPI::has_key() ) :
+	if ( ! YouTubeData::api()->has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
@@ -61,6 +61,8 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 
 endif;
 
+	var_dump( VideoPublisherlite\Post\UrlDataAPI::get_data( 'https://youtu.be/qkipmtagn1U' )->author_name);
+
 	// section title
 	InputField::section_title('Youtube Channel Import');
 
@@ -73,7 +75,9 @@ endif;
 		echo $this->form()->table('open');
 
 		// channel
-		echo $this->form()->select( (array) get_option('evp_channels') , 'Youtube Channel' );
+		$evp_channels = (array) get_option('evp_channels');
+		asort($evp_channels);
+		echo $this->form()->select( $evp_channels , 'Youtube Channel' );
 
 		// categories
 		echo $this->form()->select( CategoryList::categories() , 'Select Category' );
@@ -108,7 +112,7 @@ endif;
 		 * @var array
 		 */
 		$schedule = array(
-			0 	=> 'None',
+			0 	=> 'Now',
 			4 	=> 'Schedule (4h)',
 			8 	=> 'Schedule (8h)',
 			12 	=> 'Schedule (12h)',

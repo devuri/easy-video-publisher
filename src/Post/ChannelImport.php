@@ -1,10 +1,10 @@
 <?php
-namespace VideoPublisherPro\Post;
+namespace VideoPublisherlite\Post;
 
-	use VideoPublisherPro\YouTube\YouTubeDataAPI;
-	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
-	use VideoPublisherPro\Database\VideosTable;
-	use VideoPublisherPro\UserFeedback;
+	use VideoPublisherlite\YouTube\YouTubeData;
+	use VideoPublisherlite\YouTube\YoutubeVideoInfo;
+	use VideoPublisherlite\Database\VideosTable;
+	use VideoPublisherlite\UserFeedback;
 
 /**
  *
@@ -19,7 +19,7 @@ class ChannelImport
 		 * if not show the error message and exit
 		 */
 		try {
-			YouTubeDataAPI::youtube()->getVideoInfo('YXQpgAAeLM4');
+			YouTubeData::api()->getVideoInfo('YXQpgAAeLM4');
 		} catch (\Exception $e ) {
 			// TODO create a log message $e->getMessage() and return
 			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
@@ -42,7 +42,7 @@ class ChannelImport
 		 */
 		$channel 					= trim( $params['youtube_channel'] );
 		$number_of_posts 	= intval( $params['number_of_posts'] );
-		$channel_videos 	= YouTubeDataAPI::channel_videos( $channel , $number_of_posts );
+		$channel_videos 	= YouTubeData::api()->channel_videos( $channel , $number_of_posts );
 
 		// no videos to import
 		if ( ! $channel_videos ) {
@@ -63,8 +63,8 @@ class ChannelImport
 			$vid = 'https://youtu.be/'.$id;
 
 			// check for tags to avoid "Undefined property"
-			if ( property_exists( YouTubeDataAPI::video_info( $id ), 'tags') ) {
-				$args['tags'] = YouTubeDataAPI::video_info( $id )->tags;
+			if ( property_exists( YouTubeData::api()->video_info( $id ), 'tags') ) {
+				$args['tags'] = YouTubeData::api()->video_info( $id )->tags;
 			}
 
 			/**

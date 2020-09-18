@@ -1,7 +1,7 @@
 <?php
-namespace VideoPublisherPro;
+namespace VideoPublisherlite;
 
-	use VideoPublisherPro\UserFeedback;
+	use VideoPublisherlite\UserFeedback;
 
 /**
  *

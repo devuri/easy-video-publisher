@@ -1,5 +1,5 @@
 <?php
-namespace VideoPublisherPro\Text;
+namespace VideoPublisherlite\Text;
 
 /**
  * WordProcessor

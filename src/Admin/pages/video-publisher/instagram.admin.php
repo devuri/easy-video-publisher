@@ -1,11 +1,11 @@
 <?php
 
-	use VideoPublisherPro\Post\InsertPost;
-	use VideoPublisherPro\Post\UrlDataAPI;
-	use VideoPublisherPro\YouTube\YoutubeVideoInfo;
-	use VideoPublisherPro\Form\CategoryList;
-	use VideoPublisherPro\Form\FormLoader;
-	use VideoPublisherPro\Form\InputField;
+	use VideoPublisherlite\Post\InsertPost;
+	use VideoPublisherlite\Post\UrlDataAPI;
+	use VideoPublisherlite\YouTube\YoutubeVideoInfo;
+	use VideoPublisherlite\Form\CategoryList;
+	use VideoPublisherlite\Form\FormLoader;
+	use VideoPublisherlite\Form\InputField;
 
 
 	/**

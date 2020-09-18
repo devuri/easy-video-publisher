@@ -1,8 +1,8 @@
 <?php
 
-namespace VideoPublisherPro\YouTube;
+namespace VideoPublisherlite\YouTube;
 
-	use VideoPublisherPro\Post\UrlDataAPI;
+	use VideoPublisherlite\Post\UrlDataAPI;
 
 
 /**
@@ -70,6 +70,7 @@ class YoutubeVideoInfo
 
 	/**
 	 * Get youtube video info using WP_oEmbed
+	 *
 	 * @param  mixed  	$v    	video id, or array of video ids
 	 * @param  integer 	$limit 	how many videos
 	 * @return array         		video data

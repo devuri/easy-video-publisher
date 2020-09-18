@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'VideoPublisherPro\\' => array($baseDir . '/src'),
+    'VideoPublisherlite\\' => array($baseDir . '/src'),
     'Madcoda\\Youtube\\' => array($vendorDir . '/madcoda/php-youtube-api/src'),
 );

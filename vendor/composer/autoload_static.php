@@ -9,7 +9,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
     public static $prefixLengthsPsr4 = array (
         'V' => 
         array (
-            'VideoPublisherPro\\' => 18,
+            'VideoPublisherlite\\' => 19,
         ),
         'M' => 
         array (
@@ -18,7 +18,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
     );
 
     public static $prefixDirsPsr4 = array (
-        'VideoPublisherPro\\' => 
+        'VideoPublisherlite\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
@@ -35,35 +35,35 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'Madcoda\\Youtube\\YoutubeServiceProviderLaravel4' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/YoutubeServiceProviderLaravel4.php',
         'Madcoda\\Youtube\\YoutubeServiceProviderLaravel5' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/YoutubeServiceProviderLaravel5.php',
         'Madcoda\\compat' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/compat.php',
-        'VideoPublisherPro\\Admin\\VideoPublisherAdmin' => __DIR__ . '/../..' . '/src/Admin/VideoPublisherAdmin.php',
-        'VideoPublisherPro\\Data\\ChannelVideo' => __DIR__ . '/../..' . '/src/Data/ChannelVideo.php',
-        'VideoPublisherPro\\Database\\GetData' => __DIR__ . '/../..' . '/src/Database/GetData.php',
-        'VideoPublisherPro\\Database\\VideosTable' => __DIR__ . '/../..' . '/src/Database/VideosTable.php',
-        'VideoPublisherPro\\Database\\WPDb' => __DIR__ . '/../..' . '/src/Database/WPDb.php',
-        'VideoPublisherPro\\Form\\CategoryList' => __DIR__ . '/../..' . '/src/Form/CategoryList.php',
-        'VideoPublisherPro\\Form\\FormLoader' => __DIR__ . '/../..' . '/src/Form/FormLoader.php',
-        'VideoPublisherPro\\Form\\InputField' => __DIR__ . '/../..' . '/src/Form/InputField.php',
-        'VideoPublisherPro\\IsError' => __DIR__ . '/../..' . '/src/IsError.php',
-        'VideoPublisherPro\\MaxIndex' => __DIR__ . '/../..' . '/src/MaxIndex.php',
-        'VideoPublisherPro\\PostType' => __DIR__ . '/../..' . '/src/PostType.php',
-        'VideoPublisherPro\\Post\\AutoChannelImport' => __DIR__ . '/../..' . '/src/Post/AutoChannelImport.php',
-        'VideoPublisherPro\\Post\\ChannelImport' => __DIR__ . '/../..' . '/src/Post/ChannelImport.php',
-        'VideoPublisherPro\\Post\\FeaturedImage' => __DIR__ . '/../..' . '/src/Post/FeaturedImage.php',
-        'VideoPublisherPro\\Post\\GetBlock' => __DIR__ . '/../..' . '/src/Post/GetBlock.php',
-        'VideoPublisherPro\\Post\\ImageUploadFromUrl' => __DIR__ . '/../..' . '/src/Post/ImageUploadFromUrl.php',
-        'VideoPublisherPro\\Post\\InsertPost' => __DIR__ . '/../..' . '/src/Post/InsertPost.php',
-        'VideoPublisherPro\\Post\\UploadImage' => __DIR__ . '/../..' . '/src/Post/UploadImage.php',
-        'VideoPublisherPro\\Post\\UrlDataAPI' => __DIR__ . '/../..' . '/src/Post/UrlDataAPI.php',
-        'VideoPublisherPro\\Text\\WordProcessor' => __DIR__ . '/../..' . '/src/Text/WordProcessor.php',
-        'VideoPublisherPro\\UserFeedback' => __DIR__ . '/../..' . '/src/UserFeedback.php',
-        'VideoPublisherPro\\WPAdminPage\\AdminPage' => __DIR__ . '/../..' . '/src/WPAdminPage/AdminPage.php',
-        'VideoPublisherPro\\WPAdminPage\\FormHelper' => __DIR__ . '/../..' . '/src/WPAdminPage/FormHelper.php',
-        'VideoPublisherPro\\YouTube\\AddChannel' => __DIR__ . '/../..' . '/src/YouTube/AddChannel.php',
-        'VideoPublisherPro\\YouTube\\AddKey' => __DIR__ . '/../..' . '/src/YouTube/AddKey.php',
-        'VideoPublisherPro\\YouTube\\AddNewVideo' => __DIR__ . '/../..' . '/src/YouTube/AddNewVideo.php',
-        'VideoPublisherPro\\YouTube\\ImportVideo' => __DIR__ . '/../..' . '/src/YouTube/ImportVideo.php',
-        'VideoPublisherPro\\YouTube\\YouTubeDataAPI' => __DIR__ . '/../..' . '/src/YouTube/YouTubeDataAPI.php',
-        'VideoPublisherPro\\YouTube\\YoutubeVideoInfo' => __DIR__ . '/../..' . '/src/YouTube/YoutubeVideoInfo.php',
+        'VideoPublisherlite\\Admin\\VideoPublisherAdmin' => __DIR__ . '/../..' . '/src/Admin/VideoPublisherAdmin.php',
+        'VideoPublisherlite\\Data\\ChannelVideo' => __DIR__ . '/../..' . '/src/Data/ChannelVideo.php',
+        'VideoPublisherlite\\Database\\GetData' => __DIR__ . '/../..' . '/src/Database/GetData.php',
+        'VideoPublisherlite\\Database\\VideosTable' => __DIR__ . '/../..' . '/src/Database/VideosTable.php',
+        'VideoPublisherlite\\Database\\WPDb' => __DIR__ . '/../..' . '/src/Database/WPDb.php',
+        'VideoPublisherlite\\Form\\CategoryList' => __DIR__ . '/../..' . '/src/Form/CategoryList.php',
+        'VideoPublisherlite\\Form\\FormLoader' => __DIR__ . '/../..' . '/src/Form/FormLoader.php',
+        'VideoPublisherlite\\Form\\InputField' => __DIR__ . '/../..' . '/src/Form/InputField.php',
+        'VideoPublisherlite\\IsError' => __DIR__ . '/../..' . '/src/IsError.php',
+        'VideoPublisherlite\\MaxIndex' => __DIR__ . '/../..' . '/src/MaxIndex.php',
+        'VideoPublisherlite\\PostType' => __DIR__ . '/../..' . '/src/PostType.php',
+        'VideoPublisherlite\\Post\\AutoChannelImport' => __DIR__ . '/../..' . '/src/Post/AutoChannelImport.php',
+        'VideoPublisherlite\\Post\\ChannelImport' => __DIR__ . '/../..' . '/src/Post/ChannelImport.php',
+        'VideoPublisherlite\\Post\\FeaturedImage' => __DIR__ . '/../..' . '/src/Post/FeaturedImage.php',
+        'VideoPublisherlite\\Post\\GetBlock' => __DIR__ . '/../..' . '/src/Post/GetBlock.php',
+        'VideoPublisherlite\\Post\\ImageUploadFromUrl' => __DIR__ . '/../..' . '/src/Post/ImageUploadFromUrl.php',
+        'VideoPublisherlite\\Post\\InsertPost' => __DIR__ . '/../..' . '/src/Post/InsertPost.php',
+        'VideoPublisherlite\\Post\\UploadImage' => __DIR__ . '/../..' . '/src/Post/UploadImage.php',
+        'VideoPublisherlite\\Post\\UrlDataAPI' => __DIR__ . '/../..' . '/src/Post/UrlDataAPI.php',
+        'VideoPublisherlite\\Text\\WordProcessor' => __DIR__ . '/../..' . '/src/Text/WordProcessor.php',
+        'VideoPublisherlite\\UserFeedback' => __DIR__ . '/../..' . '/src/UserFeedback.php',
+        'VideoPublisherlite\\WPAdminPage\\AdminPage' => __DIR__ . '/../..' . '/src/WPAdminPage/AdminPage.php',
+        'VideoPublisherlite\\WPAdminPage\\FormHelper' => __DIR__ . '/../..' . '/src/WPAdminPage/FormHelper.php',
+        'VideoPublisherlite\\YouTube\\AddChannel' => __DIR__ . '/../..' . '/src/YouTube/AddChannel.php',
+        'VideoPublisherlite\\YouTube\\AddKey' => __DIR__ . '/../..' . '/src/YouTube/AddKey.php',
+        'VideoPublisherlite\\YouTube\\AddNewVideo' => __DIR__ . '/../..' . '/src/YouTube/AddNewVideo.php',
+        'VideoPublisherlite\\YouTube\\ImportVideo' => __DIR__ . '/../..' . '/src/YouTube/ImportVideo.php',
+        'VideoPublisherlite\\YouTube\\YouTubeDataAPI' => __DIR__ . '/../..' . '/src/YouTube/YouTubeDataAPI.php',
+        'VideoPublisherlite\\YouTube\\YoutubeVideoInfo' => __DIR__ . '/../..' . '/src/YouTube/YoutubeVideoInfo.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -1,9 +1,9 @@
 <?php
 
-namespace VideoPublisherPro\Post;
+namespace VideoPublisherlite\Post;
 
-	use VideoPublisherPro\UserFeedback;
-	use VideoPublisherPro\IsError;
+	use VideoPublisherlite\UserFeedback;
+	use VideoPublisherlite\IsError;
 
 /**
  *

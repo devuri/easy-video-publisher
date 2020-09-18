@@ -7,7 +7,7 @@
  * ----------------------------------------------------------------------------
  * @category  	Plugin
  * @copyright 	Copyright © 2020 Uriel Wilson.
- * @package   	VideoPublisherPro
+ * @package   	VideoPublisherlite
  * @author    	Uriel Wilson
  * @link      	https://switchwebdev.com
  *  ----------------------------------------------------------------------------
