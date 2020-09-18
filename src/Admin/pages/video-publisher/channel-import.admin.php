@@ -61,8 +61,6 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 
 endif;
 
-	//var_dump( VideoPublisherlite\Post\UrlDataAPI::get_data( 'https://youtu.be/qkipmtagn1U' )->author_name);
-
 	// section title
 	InputField::section_title('Youtube Channel Import');
 
