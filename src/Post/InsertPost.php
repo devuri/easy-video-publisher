@@ -9,54 +9,6 @@ namespace VideoPublisherlite\Post;
 class InsertPost
 {
 
-	/**
-	 * create_user
-	 * @param  string $username
-	 * @return boolean
-	 * @link https://developer.wordpress.org/reference/functions/wp_insert_user/
-	 */
-	private static function create_user( $username = null ){
-			$user_id = username_exists( $username );
-			 	if ( ! $user_id ) {
-					 $userdata = array(
-							 'user_login' 	=> $username,
-							 'display_name' => $username,
-							 'user_pass'  	=> wp_generate_password( 10, true),
-					 );
-					 $user_id = wp_insert_user( $userdata );
-			 	}
-	 		return $user_id;
-	}
-
-	/**
-	 * maybe create a new author
-	 * @param  string  $medialink     	the embed url
-	 * @param  string  $author        	author name
-	 * @param  boolean $create_author 	if we should creat a new wp user
-	 * @return string                 	the author
-	 */
-	private static function author( $medialink = null , $author = null , $create_author = false ){
-
-		/**
-		 * make sure all is well with our data
-		 */
-		if ( ! property_exists( UrlDataAPI::get_data( $medialink ), 'title') ) {
-			return 0;
-		}
-
-		// get medialink
-		$author_name	= UrlDataAPI::get_data( $medialink )->author_name;
-		$author_url		= UrlDataAPI::get_data( $medialink )->author_url;
-
-		// maybe create author
-		if ( $create_author ) {
-			$post_author = self::create_user( $author_name );
-		} else {
-			$post_author = $author;
-		}
-		return $post_author;
-	}
-
   /**
    * creates a simple hashtag from the username
    * @param $medialink
@@ -72,7 +24,7 @@ class InsertPost
 
   /**
    * set hashtags
-   * @param mixed $hashtags [description]
+   * @param array $hashtags [description]
    * @return false|string [type]           [description]
    */
 	private static function hashtags( $hashtags ){
@@ -168,7 +120,7 @@ class InsertPost
 			$create_author	= $args['create_author'];
 			$author					= $args['author'];
 			$post_date			= $args['post_date'];
-			$post_author 		= self::author( $medialink , $author , $create_author );
+			$post_author 		= CreateUser::author( $medialink , $author , $create_author );
 
 			/**
 			 * Post info
