@@ -39,6 +39,7 @@ return array(
     'VideoPublisherlite\\YouTube\\AddKey' => $baseDir . '/src/YouTube/AddKey.php',
     'VideoPublisherlite\\YouTube\\AddNewVideo' => $baseDir . '/src/YouTube/AddNewVideo.php',
     'VideoPublisherlite\\YouTube\\ImportVideo' => $baseDir . '/src/YouTube/ImportVideo.php',
+    'VideoPublisherlite\\YouTube\\YouTubeData' => $baseDir . '/src/YouTube/YouTubeData.php',
     'VideoPublisherlite\\YouTube\\YouTubeDataAPI' => $baseDir . '/src/YouTube/YouTubeDataAPI.php',
     'VideoPublisherlite\\YouTube\\YoutubeVideoInfo' => $baseDir . '/src/YouTube/YoutubeVideoInfo.php',
 );

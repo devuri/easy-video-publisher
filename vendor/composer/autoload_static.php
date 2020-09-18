@@ -62,6 +62,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'VideoPublisherlite\\YouTube\\AddKey' => __DIR__ . '/../..' . '/src/YouTube/AddKey.php',
         'VideoPublisherlite\\YouTube\\AddNewVideo' => __DIR__ . '/../..' . '/src/YouTube/AddNewVideo.php',
         'VideoPublisherlite\\YouTube\\ImportVideo' => __DIR__ . '/../..' . '/src/YouTube/ImportVideo.php',
+        'VideoPublisherlite\\YouTube\\YouTubeData' => __DIR__ . '/../..' . '/src/YouTube/YouTubeData.php',
         'VideoPublisherlite\\YouTube\\YouTubeDataAPI' => __DIR__ . '/../..' . '/src/YouTube/YouTubeDataAPI.php',
         'VideoPublisherlite\\YouTube\\YoutubeVideoInfo' => __DIR__ . '/../..' . '/src/YouTube/YoutubeVideoInfo.php',
     );
