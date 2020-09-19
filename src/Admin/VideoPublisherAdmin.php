@@ -34,10 +34,8 @@ final class VideoPublisherAdmin extends AdminPage {
    * @return boolean [description]
    */
   private static function is_pro(){
-    if (function_exists('vpro_premium_addons')) {
-      return true;
-    }
-    return false;
+    $is_pro = function_exists('evp_addons') ? true : false;
+    return $is_pro ;
   }
 
   /**
@@ -47,7 +45,7 @@ final class VideoPublisherAdmin extends AdminPage {
    */
   private static function addons(){
     if ( self::is_pro() ) {
-      $addons = (array) vpro_premium_addons();
+      $addons = (array) evp_addons();
     } else {
       $addons = array();
     }
@@ -80,7 +78,7 @@ final class VideoPublisherAdmin extends AdminPage {
    */
   private static function pro(){
     if ( self::is_pro() ) {
-      return ' <span class="dashicons dashicons-awards pro">Pro</span>';
+      return ' <span class="dashicons dashicons-awards pro"></span>';
     }
     return '';
 
