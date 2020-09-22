@@ -56,7 +56,7 @@ final class VideosTable extends WPDb
 		/**
 		 * inititate and create the table
 		 */
-		( new VideosTable() )->new_table();
+		(new VideosTable)->new_table();
 	}
 
 	/**
