@@ -6,7 +6,7 @@ use VideoPublisherlite\Form\InputField;
 use VideoPublisherlite\MaxIndex;
 
 	// make sure we have added channels
-	if ( ! YouTubeData::api()->has_key() ) :
+	if ( ! YouTubeData::api_has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;
@@ -86,7 +86,7 @@ endif;
 		echo '<br>';
 		echo '<br><hr/>';
 
-		echo YouTubeData::api()->list_channels();
+		echo YouTubeData::list_channels();
 		echo '<input name="delete_channels" id="delete_channels" type="submit" class="button" value="Delete Channels ">';
 
 	?></form>

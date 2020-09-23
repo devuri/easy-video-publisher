@@ -19,7 +19,7 @@ use VideoPublisherlite\PostType;
 	);
 
 	// make sure we have added channels
-	if ( ! YouTubeData::api()->has_key() ) :
+	if ( ! YouTubeData::api_has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');
 		echo $this->form()->user_feedback('Channel Import requires YouTube API Key <strong><a href="'.$adminkeylink.'">Add YouTube API key</a></strong>', 'error');
 	endif;

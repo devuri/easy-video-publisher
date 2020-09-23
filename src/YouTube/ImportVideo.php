@@ -19,7 +19,7 @@ class ImportVideo
 	public static function add_video( array $form_data = array() ){
 
 		// make sure we have a valid key.
-		if ( ! YouTubeData::api()->has_key() ) {
+		if ( ! YouTubeData::api_has_key() ) {
 			echo UserFeedback::message('<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error');
 			return 0;
 		}
