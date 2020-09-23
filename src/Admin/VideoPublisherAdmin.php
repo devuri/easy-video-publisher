@@ -31,7 +31,7 @@ final class VideoPublisherAdmin extends AdminPage {
 
   /**
    * check if this is pro
-   * @return boolean [description]
+   * @return bool [description]
    */
   private static function is_pro(){
     $is_pro = function_exists('evp_addons') ? true : false;

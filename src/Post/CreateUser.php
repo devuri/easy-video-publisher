@@ -28,7 +28,7 @@ class CreateUser
 	/**
 	 * new_user
 	 * @param  string $username
-	 * @return boolean
+	 * @return bool
 	 * @link https://developer.wordpress.org/reference/functions/wp_insert_user/
 	 */
 	private static function new_user( $username = null ){
@@ -62,7 +62,7 @@ class CreateUser
 	 * maybe create a new author
 	 * @param  string  $medialink     	the embed url
 	 * @param  string  $author        	author name
-	 * @param  boolean $create_author 	if we should creat a new wp user
+	 * @param  bool $create_author 	if we should creat a new wp user
 	 * @return string                 	the author
 	 */
 	public static function author( $medialink = null , $author = null , $create_author = false ){

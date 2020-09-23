@@ -27,7 +27,7 @@ if (!defined('ABSPATH')) exit;
 
     /**
      * processing
-     * @var boolean
+     * @var bool
      */
     public $processing = false;
 
@@ -70,7 +70,7 @@ if (!defined('ABSPATH')) exit;
      *
      * set field as required, defaults to false
      *
-     * @param boolean $required
+     * @param bool $required
      * @return string
      */
     public function is_required($required = false){
@@ -87,7 +87,7 @@ if (!defined('ABSPATH')) exit;
      *
      * @param string $fieldname the name of the field
      * @param string $val
-     * @param boolean $required set if this field is a required field
+     * @param bool $required set if this field is a required field
      * @param string $type the field type
      * @return string
      */
@@ -256,7 +256,7 @@ if (!defined('ABSPATH')) exit;
    * Textarea
    *
    * @param string $fieldname field name
-   * @param boolean $required set the filed to required
+   * @param bool $required set the filed to required
    * @return string
    */
     public function textarea($fieldname='name',$required = false){
@@ -399,7 +399,7 @@ if (!defined('ABSPATH')) exit;
       /**
        * Lets verify this
        *
-       * @return boolean
+       * @return bool
        */
       if ( ! isset( $_POST[$noncefield] ) || ! wp_verify_nonce( $_POST[$noncefield] )) {
         return false;

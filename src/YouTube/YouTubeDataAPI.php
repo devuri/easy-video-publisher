@@ -72,7 +72,7 @@ class YouTubeDataAPI extends Youtube
 	 * API key check
 	 *
 	 * check if an API key has been set
-	 * @return boolean
+	 * @return bool
 	 */
 	public function has_key(){
 
@@ -107,7 +107,7 @@ class YouTubeDataAPI extends Youtube
 	/**
 	 * lets make sure all is well
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function is_request_ok(){
 		try {
