@@ -1,10 +1,10 @@
 <?php
 namespace VideoPublisherlite\Post;
 
-	use VideoPublisherlite\YouTube\YouTubeData;
-	use VideoPublisherlite\YouTube\YoutubeVideoInfo;
-	use VideoPublisherlite\Database\VideosTable;
-	use VideoPublisherlite\UserFeedback;
+use VideoPublisherlite\YouTube\YouTubeData;
+use VideoPublisherlite\YouTube\YoutubeVideoInfo;
+use VideoPublisherlite\Database\VideosTable;
+use VideoPublisherlite\UserFeedback;
 
 /**
  *
@@ -46,7 +46,7 @@ class ChannelImport
 
 		// no videos to import
 		if ( ! $channel_videos ) {
-			// log some info here
+			//TODO log some info here
 			return 0;
 		}
 
@@ -101,7 +101,7 @@ class ChannelImport
 			if ($post_id) {
 
 				// add to "evp_videos" table
-				(new VideosTable())->insert_data(
+				(new VideosTable)->insert_data(
 					array(
 						'post_id' 		=> $post_id,
 						'user_id' 		=> get_post_field( 'post_author', $post_id ),

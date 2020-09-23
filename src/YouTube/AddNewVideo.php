@@ -2,10 +2,9 @@
 
 namespace VideoPublisherlite\YouTube;
 
-	use VideoPublisherlite\YouTube\YoutubeVideoInfo;
-	use VideoPublisherlite\Post\InsertPost;
-	use VideoPublisherlite\Post\GetBlock;
-	use VideoPublisherlite\UserFeedback;
+use VideoPublisherlite\Post\InsertPost;
+use VideoPublisherlite\Post\GetBlock;
+use VideoPublisherlite\UserFeedback;
 
 /**
  *

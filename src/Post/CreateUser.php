@@ -28,7 +28,7 @@ class CreateUser
 	/**
 	 * new_user
 	 * @param  string $username
-	 * @return boolean
+	 * @return bool
 	 * @link https://developer.wordpress.org/reference/functions/wp_insert_user/
 	 */
 	private static function new_user( $username = null ){
@@ -37,13 +37,15 @@ class CreateUser
 		 * lets clean this up
 		 * @link https://developer.wordpress.org/reference/functions/sanitize_title/
 		 */
+		$display_name = sanitize_text_field( $username );
 		$username = sanitize_title( $username );
+
 
 		$user_id = username_exists( $username );
 			 	if ( ! $user_id ) {
 					 $userdata = array(
 							 'user_login' 	=> $username,
-							 'display_name' => $username,
+							 'display_name' => $display_name,
 							 'user_pass'  	=> wp_generate_password( 10, true),
 					 );
 					 $user_id = wp_insert_user( $userdata );
@@ -60,7 +62,7 @@ class CreateUser
 	 * maybe create a new author
 	 * @param  string  $medialink     	the embed url
 	 * @param  string  $author        	author name
-	 * @param  boolean $create_author 	if we should creat a new wp user
+	 * @param  bool $create_author 	if we should creat a new wp user
 	 * @return string                 	the author
 	 */
 	public static function author( $medialink = null , $author = null , $create_author = false ){

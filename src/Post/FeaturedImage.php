@@ -2,8 +2,8 @@
 
 namespace VideoPublisherlite\Post;
 
-	use VideoPublisherlite\UserFeedback;
-	use VideoPublisherlite\IsError;
+use VideoPublisherlite\IsError;
+use VideoPublisherlite\UserFeedback;
 
 /**
  *
