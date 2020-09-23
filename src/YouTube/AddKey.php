@@ -2,7 +2,6 @@
 
 namespace VideoPublisherlite\YouTube;
 
-use VideoPublisherlite\YouTube\YouTubeData;
 use VideoPublisherlite\UserFeedback;
 
 /**

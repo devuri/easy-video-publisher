@@ -1,11 +1,11 @@
 <?php
 
-	use VideoPublisherlite\YouTube\YouTubeData;
-	use VideoPublisherlite\YouTube\ImportVideo;
-	use VideoPublisherlite\Form\CategoryList;
-	use VideoPublisherlite\Form\FormLoader;
-	use VideoPublisherlite\Form\InputField;
-	use VideoPublisherlite\PostType;
+use VideoPublisherlite\YouTube\YouTubeData;
+use VideoPublisherlite\YouTube\ImportVideo;
+use VideoPublisherlite\Form\CategoryList;
+use VideoPublisherlite\Form\FormLoader;
+use VideoPublisherlite\Form\InputField;
+use VideoPublisherlite\PostType;
 
 	/**
 	 * CSS for the loader

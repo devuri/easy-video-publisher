@@ -1,9 +1,9 @@
 <?php
 
-	use VideoPublisherlite\YouTube\YouTubeData;
-	use VideoPublisherlite\YouTube\AddChannel;
-	use VideoPublisherlite\Form\InputField;
-	use VideoPublisherlite\MaxIndex;
+use VideoPublisherlite\YouTube\YouTubeData;
+use VideoPublisherlite\YouTube\AddChannel;
+use VideoPublisherlite\Form\InputField;
+use VideoPublisherlite\MaxIndex;
 
 	// make sure we have added channels
 	if ( ! YouTubeData::api()->has_key() ) :

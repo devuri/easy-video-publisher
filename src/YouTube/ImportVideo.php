@@ -2,7 +2,6 @@
 
 namespace VideoPublisherlite\YouTube;
 
-use VideoPublisherlite\YouTube\YouTubeData;
 use VideoPublisherlite\Post\ChannelImport;
 use VideoPublisherlite\UserFeedback;
 
@@ -27,9 +26,9 @@ class ImportVideo
 
 		// if the channel is not set or empty return
 		if ( empty( (array) get_option('evp_channels') ) ) {
-			echo UserFeedback::message('Pleas Add a YouTube Channel!', 'error');
-			return 0;
-		}
+            echo UserFeedback::message('Please Add a YouTube Channel!', 'error');
+            return 0;
+        }
 
 		/**
 		 * get the channel to post from

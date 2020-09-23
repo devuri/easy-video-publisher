@@ -1,10 +1,10 @@
 <?php
 
-	use VideoPublisherlite\YouTube\AddNewVideo;
-	use VideoPublisherlite\Form\CategoryList;
-	use VideoPublisherlite\Form\FormLoader;
-	use VideoPublisherlite\Form\InputField;
-	use VideoPublisherlite\PostType;
+use VideoPublisherlite\YouTube\AddNewVideo;
+use VideoPublisherlite\Form\CategoryList;
+use VideoPublisherlite\Form\FormLoader;
+use VideoPublisherlite\Form\InputField;
+use VideoPublisherlite\PostType;
 
 	/**
 	 * CSS for the loader
