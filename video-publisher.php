@@ -51,20 +51,8 @@
    */
   register_activation_hook( __FILE__, function(){
 
-    // api key
-    $api_key = array();
-    update_option('evp_youtube_api', $api_key );
-
-    // channels
-    $channels = array();
-    update_option('evp_channels', $channels);
-
-    // restrict categories
-    $restricted_categories = array();
-    update_option('evp_restricted_categories', $restricted_categories );
-
-    // create "evp_videos" DB Table
-    VideoPublisherlite\Database\VideosTable::create();
+    // setup on activation
+    VideoPublisherlite\Activate::setup();
 
   });
 

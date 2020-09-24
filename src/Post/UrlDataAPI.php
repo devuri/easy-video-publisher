@@ -19,6 +19,11 @@ class UrlDataAPI
 	 * @link https://developer.wordpress.org/reference/classes/wp_oembed/
 	 */
 	public static function get_data( $url = null ){
+
+		if ( $url == null ) {
+			return array();
+		}
+
 		$oEmbed = new \WP_oEmbed;
 		$data = $oEmbed->get_data($url);
 		return $data;
@@ -26,7 +31,7 @@ class UrlDataAPI
 
 	/**
 	 * [provider description]
-	 * @param $geturl the url 
+	 * @param $geturl the url
 	 * @return object
 	 */
 	public static function provider( $geturl = null ){
