@@ -76,7 +76,7 @@ InputField::section_title('Add API Keys');
 		echo '<br>';
 		echo '<br><hr/>';
 
-		echo YouTubeData::api()->keys();
+		echo YouTubeData::api_keys();
 		echo '<input name="delete_api_keys" id="delete_api_keys" type="submit" class="button" value="Delete API Keys ">';
 		echo '<br/>';
 	?></form>
