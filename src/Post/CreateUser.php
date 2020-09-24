@@ -38,18 +38,17 @@ class CreateUser
 		 * @link https://developer.wordpress.org/reference/functions/sanitize_title/
 		 */
 		$display_name = sanitize_text_field( $username );
-		$username = sanitize_title( $username );
-
+		$username 		= sanitize_title( $username );
 
 		$user_id = username_exists( $username );
-			 	if ( ! $user_id ) {
-					 $userdata = array(
-							 'user_login' 	=> $username,
-							 'display_name' => $display_name,
-							 'user_pass'  	=> wp_generate_password( 10, true),
-					 );
-					 $user_id = wp_insert_user( $userdata );
-			 	}
+			if ( ! $user_id ) {
+				$userdata = array(
+					'user_login' 	 => $username,
+					'display_name' => $display_name,
+					'user_pass'		 => wp_generate_password( 10, true),
+			);
+				$user_id = wp_insert_user( $userdata );
+			}
 		// make sure we get an author here
 		if ( is_int( $user_id ) ) {
 			return $user_id;
