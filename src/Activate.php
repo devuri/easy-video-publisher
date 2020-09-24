@@ -12,8 +12,8 @@ class Activate
 	/**
 	 * create options on activation
 	 *
-	 * only create options if the dont already exist
-	 * incase the user is just debuging stuff.
+	 * only create options if they dont already exist
+	 * in case the user is just debuging stuff.
 	 *
 	 * @param string  the option name
 	 * @return void
