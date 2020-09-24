@@ -12,6 +12,49 @@ class YouTubeDataAPI extends Youtube
 {
 
 	/**
+	 * class instance
+	 */
+	private static $instance = null;
+
+	/**
+	 * Constructor
+	 */
+	private function __construct() {
+		try {
+			$this->init();
+		} catch (\Exception $error ) {
+			return $error;
+		}
+	}
+
+	/**
+	 * initiate the API
+	 * $youtube = new Youtube(array('key' => 'KEY HERE'))
+	 *
+	 * @param array $params
+	 *
+	 * @return Object
+	 * @throws \Exception
+	 * @link https://github.com/madcoda/php-youtube-api
+	 */
+	public function init(){
+		parent::__construct(
+			array('key' => $this->apikey() )
+		);
+	}
+
+	/**
+	 * new instance.
+	 * @return object
+	 */
+	public static function instance() {
+		if ( self::$instance == null ) {
+			self::$instance = new YouTubeDataAPI();
+		}
+		return self::$instance;
+	}
+
+	/**
 	 * Get API key
 	 *
 	 * uses a random key each time if mutiple keys are available.
@@ -36,37 +79,6 @@ class YouTubeDataAPI extends Youtube
 		}
 
 	}
-
-	/**
-	 * Constructor
-	 * $youtube = new Youtube(array('key' => 'KEY HERE'))
-	 *
-	 * @param array $params
-	 *
-	 * @link https://github.com/madcoda/php-youtube-api
-	 */
-	public function __construct() {
-
-		try {
-			$this->init();
-		} catch (\Exception $error ) {
-			return $error;
-		}
-
-	}
-
-	/**
-	 * initiate the API
-	 *
-	 * @return Object 
-	 * @throws \Exception
-	 */
-	public function init(){
-		parent::__construct(
-			array('key' => $this->apikey() )
-		);
-	}
-
 
   /**
    * [get_keys description]

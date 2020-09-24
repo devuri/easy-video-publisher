@@ -11,7 +11,7 @@ class YouTubeData
    * @return VideoPublisherlite\YouTube\YouTubeDataAPI
    */
   public static function api(){
-      return new YouTubeDataAPI();
+    return YouTubeDataAPI::instance();
   }
 
   /**
