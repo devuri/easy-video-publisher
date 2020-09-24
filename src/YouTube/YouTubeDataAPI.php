@@ -37,7 +37,7 @@ class YouTubeDataAPI extends Youtube
 	 * @throws \Exception
 	 * @link https://github.com/madcoda/php-youtube-api
 	 */
-	public function init(){
+	private function init(){
 		parent::__construct(
 			array('key' => $this->apikey() )
 		);
