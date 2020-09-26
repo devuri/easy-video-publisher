@@ -40,7 +40,7 @@ class Activate
 		// restrict categories
 		self::option( 'evp_restricted_categories' );
 
-		// create "evp_videos" DB Table
+		// create "evp_videos" Database Table
 		VideosTable::create();
 	}
 

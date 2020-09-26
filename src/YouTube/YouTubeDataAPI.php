@@ -214,7 +214,7 @@ class YouTubeDataAPI extends Youtube
 	}
 
 	/**
-	 * Fix error :: 400 invideoPromotion, remove invideoPromotion from part.
+	 * Fix error in Parent :: 400 invideoPromotion, remove invideoPromotion from part.
 	 *
 	 * @param $id
 	 * @return \StdClass
