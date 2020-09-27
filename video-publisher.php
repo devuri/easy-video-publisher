@@ -43,8 +43,7 @@
 //  -----------------------------------------------------------------------------
 
   /**
-   * Do stuff on Activate
-   * setup on activation
+   * Setup on activation
    *
    * @link https://developer.wordpress.org/reference/functions/register_activation_hook/
    */
