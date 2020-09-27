@@ -40,8 +40,8 @@ class AddChannel
 		if ( $channelId ) {
 
 			// set up data
-			$channelname 			= YouTubeData::api()->channelby_id( $channelId )->snippet->title;
-			$newchannel 			= array( $channelId => $channelname );
+			$channelname		= YouTubeData::api()->channelby_id( $channelId )->snippet->title;
+			$newchannel 		= array( $channelId => $channelname );
 			$update_channels	= array_merge( $newchannel , (array) get_option( 'evp_channels' ) );
 
 			// check if we already have the channel

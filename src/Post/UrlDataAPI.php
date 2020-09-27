@@ -25,7 +25,7 @@ class UrlDataAPI
 		}
 
 		$oEmbed = new \WP_oEmbed;
-		$data = $oEmbed->get_data($url);
+		$data 	= $oEmbed->get_data($url);
 		return $data;
 	}
 
@@ -36,9 +36,9 @@ class UrlDataAPI
 	 */
 	public static function provider( $geturl = null ){
 		$provider = [];
-		$provider['name'] = self::get_data($geturl)->provider_name;
-		$provider['url'] 	= self::get_data($geturl)->provider_url;
-		$obprovider = (object) $provider;
+		$provider['name'] 	= self::get_data($geturl)->provider_name;
+		$provider['url']	= self::get_data($geturl)->provider_url;
+		$obprovider 		= (object) $provider;
 		return $obprovider;
 	}
 

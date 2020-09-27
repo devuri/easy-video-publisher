@@ -49,10 +49,10 @@ class FeaturedImage
 
 		$wp_filetype = wp_check_filetype( $image['basename'] , null );
 		$attachment = array(
-			'post_mime_type' 	=> $wp_filetype['type'],
-			'post_title' 			=> $post_title,
-			'post_content' 		=> '',
-			'post_status' 		=> 'inherit'
+			'post_mime_type'	=> $wp_filetype['type'],
+			'post_title'		=> $post_title,
+			'post_content'		=> '',
+			'post_status'		=> 'inherit'
 		);
 
 		// create the attachment

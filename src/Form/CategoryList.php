@@ -21,8 +21,8 @@ class CategoryList
 		$categories = get_terms($terms);
 		foreach ($categories as $key => $category) {
 			if ( in_array( $category->term_id , (array) get_option('evp_restricted_categories') ) ) {
-				$color = '#b9b9b9';
-				$checkbox  = '<div id="category_checkbox" style="padding-bottom: 1em; color:'.$color.';font-weight:600">';
+				$color 		= '#b9b9b9';
+				$checkbox  	= '<div id="category_checkbox" style="padding-bottom: 1em; color:'.$color.';font-weight:600">';
 				$checkbox .= '<input type="checkbox" id="category['.$category->term_id.']" name="category['.$category->term_id.']" checked>';
 				$checkbox .= '<label for="'.sanitize_file_name(strtolower($category->name)).'">'.$category->name.' ('.$category->count.')</label>';
 				$checkbox .= '</div>';
@@ -55,8 +55,8 @@ class CategoryList
 			'exclude' 		=> $restricted,
 			'taxonomy' 		=> 'category',
 			'orderby' 		=> 'name',
-			'order' 			=> 'ASC',
-			'parent'			=> 0
+			'order' 		=> 'ASC',
+			'parent'		=> 0
 		);
 		$categories = get_terms($terms);
 		foreach ( $categories as $ckey => $category ) {

@@ -9,9 +9,9 @@ use VideoPublisherlite\Form\InputField;
 		 */
 		FormLoader::css_style(
 			array(
-				'size' 						=> '20px',
-				'padding' 				=> '0px',
-				'padding-bottom' 	=> '1em',
+				'size' 				=> '20px',
+				'padding' 			=> '0px',
+				'padding-bottom'	=> '1em',
 			)
 		);
 

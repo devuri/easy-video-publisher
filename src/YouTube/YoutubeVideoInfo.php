@@ -84,11 +84,11 @@ class YoutubeVideoInfo
 			$i = 0;
 			foreach ( $v as $key => $v) {
 				$vid[$key] = array(
-					'id' 					=> $v,
-					'title' 			=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->title,
-					'thumbnail' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
+					'id' 		  => $v,
+					'title' 	  => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->title,
+					'thumbnail'   => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
 					'author_name' => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
-					'author_url' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
+					'author_url'  => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
 				);
 
 				// stop if we reach the limit
@@ -98,11 +98,11 @@ class YoutubeVideoInfo
 
 		} else {
 			$vid = array(
-				'id' 					=> $v,
-				'title' 			=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->title,
-				'thumbnail' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
+				'id' 		  => $v,
+				'title' 	  => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->title,
+				'thumbnail'   => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->thumbnail_url,
 				'author_name' => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_name,
-				'author_url' 	=> UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
+				'author_url'  => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v='.$v )->author_url,
 			);
 			return $vid;
 		}

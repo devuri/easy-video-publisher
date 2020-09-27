@@ -81,7 +81,7 @@ final class VideosTable extends WPDb
 		$defualts = array(
 			'post_id' 		=> 0,
 			'user_id' 		=> 0,
-			'campaign_id' => 0,
+			'campaign_id' 	=> 0,
 			'video_id' 		=> null,
 			'channel' 		=> null,
 			'channel_title' => null,

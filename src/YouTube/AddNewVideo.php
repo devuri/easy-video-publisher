@@ -27,23 +27,23 @@ class AddNewVideo
 		// overrides title
 		$args = array();
 		if ( isset( $form_data['custom_title'] ) && isset( $form_data['video_title'] ) ) {
-			$args['title'] 			= sanitize_text_field( trim( $form_data['video_title'] ) );
-			$custom_title 			= true;
+			$args['title']	= sanitize_text_field( trim( $form_data['video_title'] ) );
+			$custom_title 	= true;
 		}
 
 		// set post type
 		if ( current_user_can('manage_options')) {
-			$args['post_type'] 		= sanitize_text_field( trim( $form_data['set_post_type'] ) );
+			$args['post_type']	= sanitize_text_field( trim( $form_data['set_post_type'] ) );
 		} else {
-			$args['post_type'] 		= 'post';
+			$args['post_type']	= 'post';
 		}
 
-		$args['embed'] 				= GetBlock::youtube( $vid );
+		$args['embed'] 			= GetBlock::youtube( $vid );
 		$args['thumbnail'] 		= YoutubeVideoInfo::video_thumbnail( $vid );
 		$args['category'] 		= intval( trim( $form_data['select_category'] ) );
-		$args['tags'] 				= sanitize_text_field( trim( $form_data['tags'] ) );
+		$args['tags'] 			= sanitize_text_field( trim( $form_data['tags'] ) );
 		$args['description']	= wp_filter_post_kses( trim( $form_data['post_description'] ) );
-		$args['hashtags']			= array( get_term( $args['category'] , 'category' )->name );
+		$args['hashtags']		= array( get_term( $args['category'] , 'category' )->name );
 
 		/**
 		 * make sure this is a youtube url

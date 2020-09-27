@@ -29,12 +29,12 @@ class ChannelImport
 		 * default args
 		 */
 		$default = array();
-		$default['post_type']				= 'post';
-		$default['create_author']		= false;
-		$default['youtube_channel'] = $channelId;
-		$default['number_of_posts'] = 2;
-		$default['setcategory'] 		= array(1);
-		$default['post_status'] 		= 'draft';
+		$default['post_type']		= 'post';
+		$default['create_author']	= false;
+		$default['youtube_channel']	= $channelId;
+		$default['number_of_posts']	= 2;
+		$default['setcategory']		= array(1);
+		$default['post_status']		= 'draft';
 		$params = wp_parse_args( $params , $default );
 
 		/**
@@ -89,12 +89,12 @@ class ChannelImport
 			/**
 			 * set up some $args
 			 */
-			$args['thumbnail'] 			= YoutubeVideoInfo::video_thumbnail( $vid );
-			$args['embed'] 					= GetBlock::youtube( $vid );
-			$args['post_type'] 			= $params['post_type'];
-			$args['category'] 			= $params['setcategory'];
-			$args['post_status'] 		= $params['post_status'];
-			$args['hashtags'] 			= $params['hashtags'];
+			$args['thumbnail']		= YoutubeVideoInfo::video_thumbnail( $vid );
+			$args['embed']			= GetBlock::youtube( $vid );
+			$args['post_type']		= $params['post_type'];
+			$args['category']		= $params['setcategory'];
+			$args['post_status']	= $params['post_status'];
+			$args['hashtags']		= $params['hashtags'];
 			$args['create_author']	= $params['create_author'];
 
 			$post_id = InsertPost::newpost( $vid , $args );
@@ -103,12 +103,12 @@ class ChannelImport
 				// add to "evp_videos" table
 				(new VideosTable)->insert_data(
 					array(
-						'post_id' 		=> $post_id,
-						'user_id' 		=> get_post_field( 'post_author', $post_id ),
-						'campaign_id' => 0,
-						'video_id' 		=> $id,
-						'channel' 		=> $channel,
-						'channel_title' => UrlDataAPI::get_data( $vid )->author_name,
+						'post_id'		=> $post_id,
+						'user_id'		=> get_post_field( 'post_author', $post_id ),
+						'campaign_id'	=> 0,
+						'video_id'		=> $id,
+						'channel'		=> $channel,
+						'channel_title'	=> UrlDataAPI::get_data( $vid )->author_name,
 					)
 				);
 

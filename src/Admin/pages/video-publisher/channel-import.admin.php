@@ -12,8 +12,8 @@ use VideoPublisherlite\PostType;
 	 */
 	FormLoader::css_style(
 		array(
-			'size' 						=> '200px',
-			'padding' 				=> '1em',
+			'size' 				=> '200px',
+			'padding'			=> '1em',
 			'padding-bottom' 	=> '0',
 		)
 	);
@@ -100,8 +100,8 @@ endif;
 		 * @var array
 		 */
 		$post_status = array(
-			'draft' 	=> 'Draft',
-			'publish' => 'Publish'
+			'draft'		=> 'Draft',
+			'publish' 	=> 'Publish'
 		);
 		echo $this->form()->select( $post_status , 'Post Status' );
 
