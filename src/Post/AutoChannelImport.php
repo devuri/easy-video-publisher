@@ -83,7 +83,7 @@ class AutoChannelImport
 						'campaign_id'	=> 0,
 						'video_id'		=> $id,
 						'channel'		=> $channel,
-						'channel_title'	=> UrlDataAPI::get_data( $vid )->author_name,
+						'channel_name'	=> UrlDataAPI::get_data( $vid )->author_name,
 					)
 				);
 

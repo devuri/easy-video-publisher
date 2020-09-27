@@ -36,7 +36,7 @@ final class VideosTable extends WPDb
 			campaign_id bigint(20) unsigned NOT NULL DEFAULT '0',
 			video_id varchar(30),
 			channel varchar(50),
-			channel_title varchar(200),
+			channel_name varchar(200),
 			created datetime NOT NULL default '0000-00-00 00:00:00',
 			PRIMARY KEY (ID),
 			KEY post_id (post_id),
@@ -84,7 +84,7 @@ final class VideosTable extends WPDb
 			'campaign_id' 	=> 0,
 			'video_id' 		=> null,
 			'channel' 		=> null,
-			'channel_title' => null,
+			'channel_name' => null,
 			'created' 		=> current_time( 'mysql' ),
 		);
 		$data = wp_parse_args( $columns , $defualts );

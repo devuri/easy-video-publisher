@@ -33,7 +33,7 @@ class GetData
    * @param string $data table id
    * @return false returns results as a keyed array
    */
-	public static function get_result( $data = 'channel_title' ){
+	public static function get_result( $data = 'channel_name' ){
 
 		$tablename = self::table_name();
 		$results = self::database()->get_results( "SELECT DISTINCT $data FROM $tablename", 'ARRAY_A' );
