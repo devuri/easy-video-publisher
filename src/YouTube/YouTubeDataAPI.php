@@ -21,7 +21,7 @@ class YouTubeDataAPI extends Youtube
 	 * @return object
 	 */
 	public static function instance() {
-		if ( self::$instance == null ) {
+		if ( is_null(self::$instance) ) {
 			self::$instance = new YouTubeDataAPI();
 		}
 		return self::$instance;
