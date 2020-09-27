@@ -37,32 +37,29 @@
   // plugin url
   define("EVP_URL", plugins_url( "/",__FILE__ ));
 
-  /**
-   * Load composer
-   */
+  // Load composer
   require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 //  -----------------------------------------------------------------------------
 
   /**
-   * Do stuff on Activate
+   * Setup on activation
    *
    * @link https://developer.wordpress.org/reference/functions/register_activation_hook/
    */
   register_activation_hook( __FILE__, function(){
 
-    // setup on activation
     VideoPublisherlite\Activate::setup();
 
   });
 
   /**
    * add after the plugins have fully loaded
+   * Load The Admin Pages
    *
    */
   add_action( 'plugins_loaded', function () {
 
-    // Load The Admin Pages
     if ( is_admin() ) {
       VideoPublisherlite\Admin\VideoPublisherAdmin::init();
     }

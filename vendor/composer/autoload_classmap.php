@@ -12,6 +12,7 @@ return array(
     'Madcoda\\Youtube\\YoutubeServiceProviderLaravel4' => $vendorDir . '/madcoda/php-youtube-api/src/YoutubeServiceProviderLaravel4.php',
     'Madcoda\\Youtube\\YoutubeServiceProviderLaravel5' => $vendorDir . '/madcoda/php-youtube-api/src/YoutubeServiceProviderLaravel5.php',
     'Madcoda\\compat' => $vendorDir . '/madcoda/php-youtube-api/src/compat.php',
+    'VideoPublisherlite\\Activate' => $baseDir . '/src/Activate.php',
     'VideoPublisherlite\\Admin\\VideoPublisherAdmin' => $baseDir . '/src/Admin/VideoPublisherAdmin.php',
     'VideoPublisherlite\\Data\\ChannelVideo' => $baseDir . '/src/Data/ChannelVideo.php',
     'VideoPublisherlite\\Database\\GetData' => $baseDir . '/src/Database/GetData.php',

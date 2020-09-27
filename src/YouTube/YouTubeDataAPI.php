@@ -12,6 +12,49 @@ class YouTubeDataAPI extends Youtube
 {
 
 	/**
+	 * class instance
+	 */
+	private static $instance = null;
+
+	/**
+	 * new instance.
+	 * @return object
+	 */
+	public static function instance() {
+		if ( is_null(self::$instance) ) {
+			self::$instance = new YouTubeDataAPI();
+		}
+		return self::$instance;
+	}
+
+	/**
+	 * Constructor
+	 */
+	private function __construct() {
+		try {
+			$this->init();
+		} catch (\Exception $error ) {
+			return $error;
+		}
+	}
+
+	/**
+	 * initiate the API
+	 * $youtube = new Youtube(array('key' => 'KEY HERE'))
+	 *
+	 * @param array $params
+	 *
+	 * @return Object
+	 * @throws \Exception
+	 * @link https://github.com/madcoda/php-youtube-api
+	 */
+	private function init(){
+		parent::__construct(
+			array('key' => $this->apikey() )
+		);
+	}
+
+	/**
 	 * Get API key
 	 *
 	 * uses a random key each time if mutiple keys are available.
@@ -19,15 +62,12 @@ class YouTubeDataAPI extends Youtube
 	 * @return mixed The API Key.
 	 */
 	private function apikey(){
-		// get the keys
-		$apikey = $this->get_keys();
 
-		// key shuffle
+		$apikey = $this->get_keys();
 		if ( $apikey ) {
 			shuffle( $apikey );
 		}
 
-		// get key
 		// TODO only return a valid key
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
@@ -36,37 +76,6 @@ class YouTubeDataAPI extends Youtube
 		}
 
 	}
-
-	/**
-	 * Constructor
-	 * $youtube = new Youtube(array('key' => 'KEY HERE'))
-	 *
-	 * @param array $params
-	 *
-	 * @link https://github.com/madcoda/php-youtube-api
-	 */
-	public function __construct() {
-
-		try {
-			$this->init();
-		} catch (\Exception $error ) {
-			return $error;
-		}
-
-	}
-
-	/**
-	 * initiate the API
-	 *
-	 * @return Object 
-	 * @throws \Exception
-	 */
-	public function init(){
-		parent::__construct(
-			array('key' => $this->apikey() )
-		);
-	}
-
 
   /**
    * [get_keys description]
@@ -155,15 +164,13 @@ class YouTubeDataAPI extends Youtube
    */
 	public function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ){
 
-		// get the channel videos
 		try {
 			$videos = $this->searchChannelVideos('', $channelId , $limit,'date');
 		} catch (\Exception $e) {
 			return 0;
 		}
 
-		// make sure we get the data,
-		// this will return false if we dont get any videos
+		// make sure we get the data
 		if ( ! $videos ) {
 			return 0;
 		}
@@ -202,7 +209,7 @@ class YouTubeDataAPI extends Youtube
 	}
 
 	/**
-	 * Fix error :: 400 invideoPromotion, remove invideoPromotion from part.
+	 * Fix error in Parent :: 400 invideoPromotion, remove invideoPromotion from part.
 	 *
 	 * @param $id
 	 * @return \StdClass
@@ -242,9 +249,7 @@ class YouTubeDataAPI extends Youtube
    * @return mixed [type]           [description]
    */
 	public function channels_vids( $channels = array() ){
-		/**
-		 * process channel ids
-		 */
+
 		foreach ($channels as $key => $id) {
 			$videos[] = $this->channel_videos($id, 2);
 		}
