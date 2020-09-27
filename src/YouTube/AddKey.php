@@ -32,7 +32,7 @@ class AddKey
 		if ( $is_key_valid ) {
 
 			// set the API key with a timestamp
-			$new_key			= array( $youtube_api_key => time() );
+			$new_key		= array( $youtube_api_key => time() );
 			$update_keys	= array_merge( $new_key , (array) get_option( 'evp_youtube_api' ) );
 
 			// check if we already have the key in recent updates

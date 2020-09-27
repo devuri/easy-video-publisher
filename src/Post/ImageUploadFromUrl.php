@@ -86,11 +86,11 @@ class ImageUploadFromUrl
     public function getFileInfo():array
     {
         return [
-            'basename' => basename($this->filePath),
-            'dirname' => dirname($this->filePath),
-            'realpath' => realpath($this->filePath),
-            'pathinfo' => pathinfo($this->filePath),
-            'filesize' => filesize($this->filePath),
+            'basename' 	=> basename($this->filePath),
+            'dirname' 	=> dirname($this->filePath),
+            'realpath' 	=> realpath($this->filePath),
+            'pathinfo' 	=> pathinfo($this->filePath),
+            'filesize' 	=> filesize($this->filePath),
         ];
     }
 
