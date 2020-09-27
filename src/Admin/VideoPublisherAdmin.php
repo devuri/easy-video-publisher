@@ -100,13 +100,10 @@ final class VideoPublisherAdmin extends AdminPage {
     $submenu[] = 'Channel Import';
     $submenu[] = 'Add Channel';
 
-    /**
-     * add submenu addons
-     * @var array
-     */
+    // add submenu addons
     $submenu = array_merge( $submenu, self::addons() );
 
-    // more submenu items
+    // continue submenu
     $submenu[] = 'API Setup';
     // $submenu[] = 'Extensions';
     // $submenu[] = 'Getting Started';
