@@ -108,7 +108,7 @@ final class VideoPublisherAdmin extends AdminPage {
     // $submenu[] = 'Extensions';
     // $submenu[] = 'Getting Started';
 
-    return $submenu;
+	return apply_filters( 'evp_submenu', $submenu );
   }
 
   /**
