@@ -37,7 +37,7 @@ class Activate
 		// channels
 		self::option( 'evp_channels' );
 
-		// restrict categories
+		// restricted categories
 		self::option( 'evp_restricted_categories' );
 
 		// create "evp_videos" Database Table

@@ -45,7 +45,7 @@ class WordProcessor
 
   /**
    * find $find by name
-   * search the string for artist
+   * search the string for text
    * @param string|null $text text to search
    * @param string $find [description]
    * @return array [type]         [description]

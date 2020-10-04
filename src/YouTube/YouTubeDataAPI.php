@@ -142,11 +142,11 @@ class YouTubeDataAPI extends Youtube
 		return true;
 	}
 
-  /**
-   * exit whatever is goin on here
-   *
-   * @return void [type] [description]
-   */
+	/**
+	 * exit whatever is goin on here
+	 *
+	 * @return void
+	 */
 	public function response_error(){
 		try {
 				$this->getVideoInfo('YXQpgAAeLM4');
@@ -197,12 +197,13 @@ class YouTubeDataAPI extends Youtube
 		return $description;
 	}
 
-  /**
-   * get video info
-   * @param string $vid
-   * @return string
-   * @throws \Exception
-   */
+  	/**
+  	 * get video info
+  	 *
+  	 * @param  string $vid
+  	 * @return string
+  	 * @throws \Exception
+  	 */
 	public function video_info( $vid = '' ){
 		$info = $this->getVideoInfo( $vid )->snippet;
 		return $info;
@@ -241,13 +242,12 @@ class YouTubeDataAPI extends Youtube
 		return $channel;
 	}
 
-
-  /**
-   * get videos from multiple channels
-   *
-   * @param array $channels [description]
-   * @return mixed [type]           [description]
-   */
+  	/**
+  	 * get videos from multiple channels
+  	 *
+  	 * @param array $channels
+  	 * @return mixed
+  	 */
 	public function channels_vids( $channels = array() ){
 
 		foreach ($channels as $key => $id) {
