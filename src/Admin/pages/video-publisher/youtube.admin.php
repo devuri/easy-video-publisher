@@ -11,9 +11,9 @@ use VideoPublisherlite\PostType;
 	 */
 	FormLoader::css_style(
 		array(
-			'size' 						=> '200px',
-			'padding' 				=> '1em',
-			'padding-bottom' 	=> '0',
+			'size'				=> '200px',
+			'padding'			=> '1em',
+			'padding-bottom'	=> '0',
 		)
 	);
 
@@ -96,6 +96,7 @@ read more about <a target="_blank" href="https://wordpress.org/support/article/r
 		echo '<span style="color:red;">EVP_ACCESS is defined, the capability is: '. EVP_ACCESS . '</span>';
 	}
 endif;
+
 ?><script type="text/javascript">
 	jQuery( document ).ready( function( $ ) {
 
