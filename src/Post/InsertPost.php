@@ -9,12 +9,13 @@ namespace VideoPublisherlite\Post;
 class InsertPost
 {
 
-  /**
-   * creates a simple hashtag from the username
-   * @param $medialink
-   * @param $username
-   * @return string [type]            [description]
-   */
+  	/**
+  	 * Set username from url author
+  	 *
+  	 * @param  string $medialink
+  	 * @param  string $username
+  	 * @return $string
+  	 */
 	private static function username( $medialink, $username ){
 		$username 	= UrlDataAPI::get_data( $medialink )->author_name;
 		$username 	= strtolower(sanitize_file_name( $username, true));
@@ -22,11 +23,12 @@ class InsertPost
 		return $username;
 	}
 
-  /**
-   * set hashtags
-   * @param array $hashtags [description]
-   * @return false|string [type]           [description]
-   */
+  	/**
+  	 * set hashtags
+  	 *
+  	 * @param array $hashtags
+  	 * @return false|string
+  	 */
 	private static function hashtags( $hashtags ){
 
 		// if we did not get an array return false
@@ -51,12 +53,13 @@ class InsertPost
 
 	}
 
-  /**
-   * Create the Post
-   * @param string|null $medialink youtube url
-   * @param array $args other options
-   * @return int
-   */
+  	/**
+  	 * Create the Post
+  	 *
+  	 * @param string|null $medialink
+  	 * @param array $args other options
+  	 * @return int
+  	 */
 	public static function newpost( string $medialink = null , array $args = array() ){
 
 		if ( is_null($medialink) || empty($medialink) ) {

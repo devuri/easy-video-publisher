@@ -26,12 +26,10 @@ abstract class WPDb
 	 */
 	abstract protected function table_name();
 
-  /**
-   * table
-   *
-   * define the table schema
-   * @return
-   */
+  	/**
+  	 * the table define the table schema
+  	 *
+  	 */
 	abstract protected function schema();
 
 	/**

@@ -7,11 +7,12 @@ namespace VideoPublisherlite;
 class MaxIndex
 {
 
-  /**
-   * [max_limit description]
-   * @param $option
-   * @return bool [description]
-   */
+  	/**
+  	 * limit api keys
+  	 *
+  	 * @param $option
+  	 * @return bool [description]
+  	 */
 	public static function api_key( $option ){
 		$indexlimit = 2;
 
@@ -23,11 +24,12 @@ class MaxIndex
 		}
 	}
 
-  /**
-   * [max_limit description]
-   * @param $option
-   * @return bool [description]
-   */
+	/**
+	 * limit channels
+	 *
+	 * @param $option
+	 * @return bool
+	 */
 	public static function channels( $option ){
 		$indexlimit = 59;
 

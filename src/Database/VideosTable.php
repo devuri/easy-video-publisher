@@ -2,10 +2,6 @@
 
 namespace VideoPublisherlite\Database;
 
-
-/**
- *
- */
 final class VideosTable extends WPDb
 {
 
@@ -17,12 +13,11 @@ final class VideosTable extends WPDb
 		return $this->database()->prefix . "evp_videos";
 	}
 
-  /**
-   * table
-   *
-   * define the table schema
-   * @return string
-   */
+  	/**
+  	 * define the table schema
+  	 *
+  	 * @return string
+  	 */
 	protected function schema(){
 
 		$table_name 			= $this->table_name();
@@ -48,10 +43,11 @@ final class VideosTable extends WPDb
 		) $charset_collate";
 	}
 
-  /**
-   * create the table
-   * @return void
-   */
+  	/**
+  	 * create the table
+  	 *
+  	 * @return void
+  	 */
 	public static function create(){
 		/**
 		 * inititate and create the table

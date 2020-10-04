@@ -7,12 +7,12 @@ namespace VideoPublisherlite\Form;
 class InputField
 {
 
-  /**
-   * define user access level for the admin form
-   * who can acces and use the form
-   * @param string $role
-   * @return mixed|string
-   */
+  	/**
+  	 * define user access level for the admin form, who can acces and use the form
+  	 *
+  	 * @param string $role
+  	 * @return mixed|string
+  	 */
 	public static function access_level( $role = 'admin'){
 
 		$access = array();
@@ -25,12 +25,12 @@ class InputField
 		return $access[$role];
 	}
 
-  /**
-   * allow the user to add a custom Title
-   * Instead of using the title from oEmbed
-   * @param string $fieldname
-   * @return string [type] [description]
-   */
+  	/**
+  	 * allow the user to add a custom Title, Instead of using the title from oEmbed
+  	 *
+  	 * @param  string $fieldname
+  	 * @return string
+  	 */
 	public static function custom_title( $fieldname = 'Title'){
 		$fieldname = strtolower($fieldname);
 		$get_title = '<tr class="input-custom-title hidden"><th>';
@@ -42,45 +42,54 @@ class InputField
 		return $get_title;
 	}
 
-  /**
-   * the wp editor
-   * @param string $content [description]
-   * @param string $editor_id
-   * @param array $options [description]
-   * @return false|string [type]            [description]
-   * @link https://developer.wordpress.org/reference/functions/wp_editor/
-   * @link https://developer.wordpress.org/reference/classes/_wp_editors/parse_settings/
-   */
-  public static function editor( $content = '', $editor_id = 'new_editor', $options = array() ) {
-      ob_start();
-      $args = array(
-        'media_buttons' => false,
-        'quicktags' => false,
-        'tinymce'       => array(
-            'toolbar1'      => 'bold,italic,underline,separator,alignleft,aligncenter,alignright,separator,bullist,numlist,outdent,indent,blockquote,link,unlink,undo,redo',
-            'toolbar2'      => '',
-            'toolbar3'      => '',
-        ),
-      );
-      wp_editor( $content, $editor_id, $args );
-      $editor = ob_get_clean();
+  	/**
+  	 * the wp editor
+  	 *
+  	 * @param  string $content
+  	 * @param  string $editor_id
+  	 * @param  array  $options
+  	 * @return false|string
+  	 * @link https://developer.wordpress.org/reference/functions/wp_editor/
+  	 * @link https://developer.wordpress.org/reference/classes/_wp_editors/parse_settings/
+  	 */
+	public static function editor( $content = '', $editor_id = 'new_editor', $options = array() ) {
+	    ob_start();
+	    $args = array(
+	        'media_buttons' => false,
+	        'quicktags' => false,
+	        'tinymce'       => array(
+	            'toolbar1'      => 'bold,italic,underline,separator,alignleft,aligncenter,alignright,separator,bullist,numlist,outdent,indent,blockquote,link,unlink,undo,redo',
+	            'toolbar2'      => '',
+	            'toolbar3'      => '',
+	        ),
+	    );
+	    wp_editor( $content, $editor_id, $args );
+	    $editor = ob_get_clean();
 
-      return $editor;
-  }
+	    return $editor;
+	}
 
-  public static function get_editor($content = '', $editor_id = 'new_editor', $options = array()){
-    $name = strtolower($editor_id);
-    $editor = '<tr class="input">
-      <th><label for="'.str_replace(" ", "_", $name).'">
-      '.ucwords(str_replace("_", " ", $name)).'
-      </label></th>
-    <td>
-      '.self::editor($content = '', $editor_id , $options = array()).'
-      <p class="description" id="'.str_replace(" ", "_", $name).'">'.str_replace("_", " ", $name).'.</p>
-      </td>
-    </tr>';
-    return $editor;
-  }
+	/**
+	 * the wp editor
+	 *
+	 * @param  string $content
+	 * @param  string $editor_id
+	 * @param  array  $options
+	 * @return string
+	 */
+	public static function get_editor($content = '', $editor_id = 'new_editor', $options = array()){
+	    $name = strtolower($editor_id);
+	    $editor = '<tr class="input">
+	      <th><label for="'.str_replace(" ", "_", $name).'">
+	      '.ucwords(str_replace("_", " ", $name)).'
+	      </label></th>
+	    <td>
+	      '.self::editor($content = '', $editor_id , $options = array()).'
+	      <p class="description" id="'.str_replace(" ", "_", $name).'">'.str_replace("_", " ", $name).'.</p>
+	      </td>
+	    </tr>';
+		return $editor;
+	}
 
 
 	public static function section_title( $title = 'Page Title', $args = array() ){

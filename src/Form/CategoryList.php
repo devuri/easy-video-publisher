@@ -6,10 +6,12 @@ namespace VideoPublisherlite\Form;
  */
 class CategoryList
 {
-  /**
-   * list of categories with checkbox
-   * @return void [type] [description]
-   */
+
+	/**
+	 * list of categories with checkbox
+	 *
+	 * @return void
+	 */
 	public static function checkbox(){
 		$terms = array(
 			'hide_empty' => false,
