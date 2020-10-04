@@ -7,11 +7,12 @@ namespace VideoPublisherlite;
 class IsError
 {
 
-  /**
-   * Helps to check if all is well
-   * @param  [type] $task [description]
-   * @return void [type]       [description]
-   */
+	/**
+	 * Helps to check if all is well
+	 *
+	 * @param  string $task
+	 * @return void
+	 */
 	public static function error_check( $task = null ){
 		if( is_wp_error( $task ) ) {
 			if ( current_user_can('manage_options') ) {

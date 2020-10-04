@@ -10,12 +10,13 @@ use VideoPublisherlite\UserFeedback;
 class AddKey
 {
 
-  /**
-   * Adds New API key if its valid.
-   * @param  [type] $youtube_api_key [description]
-   * @return void [type]                  [description]
-   * @throws \Exception
-   */
+	/**
+	 * Adds New API key if its valid.
+	 *
+	 * @param  string $youtube_api_key
+	 * @return void
+	 * @throws \Exception
+	 */
 	public static function new_apikey( $youtube_api_key = null ){
 
 		if ( is_null( $youtube_api_key ) ) {

@@ -7,14 +7,14 @@ namespace VideoPublisherlite\Text;
 class WordProcessor
 {
 
-  /**
-   * text_search() find item in the array
-   * array_search will not work for index 0
-   * @param string|null $find [description]
-   * @param array $text [description]
-   * @return string $result
-   * @link https://stackoverflow.com/questions/16750311/php-in-array-or-array-search-not-working
-   */
+  	/**
+  	 * text_search() find item in the array, array_search will not work for index 0
+  	 *
+  	 * @param  string|null $find
+  	 * @param  array  $text
+  	 * @return string $result
+  	 * @link https://stackoverflow.com/questions/16750311/php-in-array-or-array-search-not-working
+  	 */
 	private static function text_search( string $find = null , array $text  = array() ){
 		$search = array_search( $find , $text ) !== false;
 		if ( $search ) {
@@ -43,13 +43,13 @@ class WordProcessor
 		return $text;
 	}
 
-  /**
-   * find $find by name
-   * search the string for text
-   * @param string|null $text text to search
-   * @param string $find [description]
-   * @return array [type]         [description]
-   */
+ 	/**
+ 	 * find $find by name, search the string for text
+ 	 *
+ 	 * @param  string $text
+ 	 * @param  string $find
+ 	 * @return array
+ 	 */
 	public static function find_word( string $text = null , $find = null ){
 
 		// lowercase

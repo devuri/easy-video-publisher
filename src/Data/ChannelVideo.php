@@ -3,7 +3,8 @@
 namespace VideoPublisherlite\Data;
 
 /**
- *
+ *	DEPRECATED
+ *	this will be removed in future version 
  */
 class ChannelVideo
 {

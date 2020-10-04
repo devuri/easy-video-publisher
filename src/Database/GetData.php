@@ -27,12 +27,12 @@ class GetData
 		return self::database()->prefix . "evp_videos";
 	}
 
-  /**
-   * get a list of results
-   *
-   * @param string $data table id
-   * @return false returns results as a keyed array
-   */
+  	/**
+  	 * get a list of results
+  	 *
+  	 * @param string $data
+  	 * @return false returns results as a keyed array
+  	 */
 	public static function get_result( $data = 'channel_title' ){
 
 		$tablename = self::table_name();
@@ -50,14 +50,12 @@ class GetData
 		return $result_list;
 	}
 
-  /**
-   * channel_data() get data from the database table
-   *
-   * TODO add error check ' database error:Table doesn't exist'
-   * @param  [type] $tablename [description]
-   * @param array $args [description]
-   * @return false [type]            [description]
-   */
+  	/**
+  	 * get data from the database table
+  	 * @param  string $channel
+  	 * @param  array  $args
+  	 * @return mixed
+  	 */
 	public static function by_channel( $channel = null , $args = array() ){
 
 		if ( is_null( $channel ) ) {
