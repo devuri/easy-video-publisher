@@ -1,14 +1,14 @@
 <?php
 
-namespace VideoPublisherlite\Post;
+namespace VideoPublisherlite\UploadImage;
 
 /**
- * Class ImageUploadFromUrl
+ * Class UploadFromUrl
+ *
  * forked copy of the:
  * @link https://github.com/aleksnagornyi/image_upload_from_url
- * @package ImageUploadFromUrl
  */
-class ImageUploadFromUrl
+class UploadFromUrl
 {
     /**
      * @var string|string
