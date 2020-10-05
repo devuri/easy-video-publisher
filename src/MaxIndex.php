@@ -31,7 +31,7 @@ class MaxIndex
 	 * @return bool
 	 */
 	public static function channels( $option ){
-		$indexlimit = 59;
+		$indexlimit = 10;
 
 		$count = count( $option );
 		if ( $count >= $indexlimit ) {
