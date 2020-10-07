@@ -23,22 +23,22 @@
  */
 
 
-  // deny direct access
-    if ( ! defined( 'WPINC' ) ) {
-      die;
-    }
+	// deny direct access
+	if ( ! defined( 'WPINC' ) ) {
+	    die;
+	}
 
-  // plugin directory
+	// plugin directory
 	define("EVP_VERSION", '3.1.6');
 
-  // plugin directory
-  define("EVP_DIR", dirname(__FILE__));
+	// plugin directory
+	define("EVP_DIR", dirname(__FILE__));
 
-  // plugin url
-  define("EVP_URL", plugins_url( "/",__FILE__ ));
+	// plugin url
+	define("EVP_URL", plugins_url( "/",__FILE__ ));
 
-  // Load composer
-  require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+	// Load composer
+	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 //  -----------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@
 	 */
 	register_activation_hook( __FILE__, function(){
 
-	  VideoPublisherlite\Activate::setup();
+	 	VideoPublisherlite\Activate::setup();
 
 	});
 
@@ -59,7 +59,7 @@
   	 */
 	add_action( 'plugins_loaded', function () {
 
-	  if ( is_admin() ) {
-	    VideoPublisherlite\Admin\VideoPublisherAdmin::init();
-	  }
+		if ( is_admin() ) {
+			VideoPublisherlite\Admin\VideoPublisherAdmin::init();
+		}
 	});

@@ -3,9 +3,6 @@ namespace VideoPublisherlite;
 
 use VideoPublisherlite\Database\VideosTable;
 
-/**
- *
- */
 class Activate
 {
 	/**
