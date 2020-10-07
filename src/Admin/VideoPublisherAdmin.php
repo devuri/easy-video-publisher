@@ -2,9 +2,6 @@
 namespace VideoPublisherlite\Admin;
 
 use VideoPublisherlite\WPAdminPage\AdminPage;
-
-
-// TODO change to the new
 // use PluginAdminUI\AdminPage;
 
 final class VideoPublisherAdmin extends AdminPage {
