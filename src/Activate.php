@@ -40,23 +40,21 @@ class Activate
 	}
 
 	/**
-	 * setup the options and create database table
+	 * setup the options and create "evp_videos" Database Table
 	 *
 	 * @return void
 	 */
 	public static function setup(){
 
-		// api key
 		self::option( 'evp_youtube_api' );
 
-		// channels
 		self::option( 'evp_channels' );
 
-		// restricted categories
 		self::option( 'evp_restricted_categories' );
 
-		// create "evp_videos" Database Table
 		VideosTable::create();
+
+		do_action( 'evp_loaded' );
 	}
 
 }
