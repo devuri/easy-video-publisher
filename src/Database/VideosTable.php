@@ -2,6 +2,8 @@
 
 namespace VideoPublisherlite\Database;
 
+if ( ! defined('ABSPATH') ) exit;
+
 final class VideosTable extends WPDb
 {
 

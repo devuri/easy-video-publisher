@@ -5,9 +5,8 @@ namespace VideoPublisherlite\YouTube;
 use Madcoda\Youtube\Youtube;
 use VideoPublisherlite\UserFeedback;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class YouTubeDataAPI extends Youtube
 {
 

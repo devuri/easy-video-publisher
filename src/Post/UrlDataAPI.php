@@ -2,6 +2,7 @@
 
 namespace VideoPublisherlite\Post;
 
+if ( ! defined('ABSPATH') ) exit;
 
 /**
  * get url data

@@ -2,6 +2,8 @@
 
 namespace VideoPublisherlite\Post;
 
+if ( ! defined('ABSPATH') ) exit;
+
 /**
  * Class ImageUploadFromUrl
  * forked copy of the:

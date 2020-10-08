@@ -4,10 +4,8 @@ namespace VideoPublisherlite\YouTube;
 
 use VideoPublisherlite\Post\UrlDataAPI;
 
+if ( ! defined('ABSPATH') ) exit;
 
-/**
- *
- */
 class YoutubeVideoInfo
 {
 

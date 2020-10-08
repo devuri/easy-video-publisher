@@ -2,10 +2,8 @@
 
 namespace VideoPublisherlite\Database;
 
+if ( ! defined('ABSPATH') ) exit;
 
-/**
- *
- */
 abstract class WPDb
 {
 

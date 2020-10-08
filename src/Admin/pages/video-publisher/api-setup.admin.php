@@ -6,6 +6,8 @@ use VideoPublisherlite\Form\FormLoader;
 use VideoPublisherlite\Form\InputField;
 use VideoPublisherlite\MaxIndex;
 
+if ( ! defined('ABSPATH') ) exit;
+
 /**
  * Add API keys
  *

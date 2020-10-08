@@ -6,9 +6,8 @@ use VideoPublisherlite\Post\InsertPost;
 use VideoPublisherlite\Post\GetBlock;
 use VideoPublisherlite\UserFeedback;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class AddNewVideo
 {
 

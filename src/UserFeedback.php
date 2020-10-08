@@ -2,9 +2,8 @@
 //TODO change to namespace EvpLite;
 namespace VideoPublisherlite;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class UserFeedback
 {
 

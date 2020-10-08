@@ -5,9 +5,8 @@ namespace VideoPublisherlite\YouTube;
 use VideoPublisherlite\Post\ChannelImport;
 use VideoPublisherlite\UserFeedback;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class ImportVideo
 {
 

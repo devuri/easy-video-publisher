@@ -5,9 +5,8 @@ namespace VideoPublisherlite\Post;
 use VideoPublisherlite\IsError;
 use VideoPublisherlite\UserFeedback;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class FeaturedImage
 {
 

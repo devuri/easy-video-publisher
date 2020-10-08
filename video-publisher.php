@@ -22,11 +22,7 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-
-	// deny direct access
-	if ( ! defined( 'WPINC' ) ) {
-	    die;
-	}
+if ( ! defined('ABSPATH') ) exit;
 
 	// plugin directory
 	define("EVP_VERSION", '3.1.6');

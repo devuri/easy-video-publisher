@@ -3,6 +3,8 @@ namespace VideoPublisherlite;
 
 use VideoPublisherlite\Database\VideosTable;
 
+if ( ! defined('ABSPATH') ) exit;
+
 class Activate
 {
 	/**

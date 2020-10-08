@@ -2,9 +2,8 @@
 
 namespace VideoPublisherlite\Post;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class GetBlock
 {
 

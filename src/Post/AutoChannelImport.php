@@ -5,9 +5,8 @@ use VideoPublisherlite\Database\VideosTable;
 use VideoPublisherlite\YouTube\YouTubeData;
 use VideoPublisherlite\YouTube\YoutubeVideoInfo;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class AutoChannelImport
 {
 

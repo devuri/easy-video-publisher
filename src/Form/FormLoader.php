@@ -2,6 +2,8 @@
 
 namespace VideoPublisherlite\Form;
 
+if ( ! defined('ABSPATH') ) exit;
+
 class FormLoader
 {
 

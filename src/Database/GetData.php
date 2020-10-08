@@ -2,9 +2,8 @@
 
 namespace VideoPublisherlite\Database;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class GetData
 {
 

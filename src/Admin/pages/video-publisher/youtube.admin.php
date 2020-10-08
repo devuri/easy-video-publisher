@@ -6,6 +6,8 @@ use VideoPublisherlite\Form\FormLoader;
 use VideoPublisherlite\Form\InputField;
 use VideoPublisherlite\PostType;
 
+if ( ! defined('ABSPATH') ) exit;
+
 	/**
 	 * CSS for the loader
 	 */

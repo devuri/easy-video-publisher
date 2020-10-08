@@ -4,9 +4,8 @@ namespace VideoPublisherlite\YouTube;
 
 use VideoPublisherlite\UserFeedback;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class AddChannel
 {
 

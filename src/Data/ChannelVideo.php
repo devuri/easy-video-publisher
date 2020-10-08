@@ -2,9 +2,11 @@
 
 namespace VideoPublisherlite\Data;
 
+if ( ! defined('ABSPATH') ) exit;
+
 /**
- *	DEPRECATED
- *	this will be removed in future version 
+ *	TODO DEPRECATED
+ *	this will be removed in future version
  */
 class ChannelVideo
 {

@@ -1,6 +1,8 @@
 <?php
 namespace VideoPublisherlite\Text;
 
+if ( ! defined('ABSPATH') ) exit;
+
 /**
  * WordProcessor
  */

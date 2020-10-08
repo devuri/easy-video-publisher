@@ -6,6 +6,8 @@ use VideoPublisherlite\YouTube\YoutubeVideoInfo;
 use VideoPublisherlite\Database\VideosTable;
 use VideoPublisherlite\UserFeedback;
 
+if ( ! defined('ABSPATH') ) exit;
+
 class ChannelImport
 {
 

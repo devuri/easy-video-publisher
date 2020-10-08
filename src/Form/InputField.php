@@ -1,6 +1,8 @@
 <?php
 namespace VideoPublisherlite\Form;
 
+if ( ! defined('ABSPATH') ) exit;
+
 /**
  * Instance of the wp_editor
  */

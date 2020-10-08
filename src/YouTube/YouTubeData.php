@@ -2,6 +2,8 @@
 
 namespace VideoPublisherlite\YouTube;
 
+if ( ! defined('ABSPATH') ) exit;
+
 class YouTubeData
 {
 

@@ -1,9 +1,8 @@
 <?php
 namespace VideoPublisherlite\Post;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class UploadImage extends ImageUploadFromUrl
 {
 

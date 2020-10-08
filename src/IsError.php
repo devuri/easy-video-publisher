@@ -1,9 +1,8 @@
 <?php
 namespace VideoPublisherlite;
 
-/**
- *
- */
+if ( ! defined('ABSPATH') ) exit;
+
 class IsError
 {
 
