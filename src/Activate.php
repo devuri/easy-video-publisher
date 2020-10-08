@@ -30,7 +30,7 @@ class Activate
 	 * @param string  the option name
 	 * @return false|void
 	 */
-	public static function option( $option = null ){
+	public static function make_option( $option = null ){
 
 		if ( is_null($option) ) {
 			return 0;
@@ -48,11 +48,11 @@ class Activate
 	 */
 	public static function setup(){
 
-		self::option( 'evp_youtube_api' );
+		self::make_option( 'evp_youtube_api' );
 
-		self::option( 'evp_channels' );
+		self::make_option( 'evp_channels' );
 
-		self::option( 'evp_restricted_categories' );
+		self::make_option( 'evp_restricted_categories' );
 
 		VideosTable::create();
 
