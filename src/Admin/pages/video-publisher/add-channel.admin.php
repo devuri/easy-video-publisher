@@ -5,6 +5,8 @@ use VideoPublisherlite\YouTube\AddChannel;
 use VideoPublisherlite\Form\InputField;
 use VideoPublisherlite\MaxIndex;
 
+if ( ! defined('ABSPATH') ) exit;
+
 	// make sure we have added channels
 	if ( ! YouTubeData::api()->has_key() ) :
 		$adminkeylink = admin_url('/admin.php?page=evp-api-setup');

@@ -4,6 +4,9 @@ namespace VideoPublisherlite\Admin;
 use VideoPublisherlite\WPAdminPage\AdminPage;
 // use PluginAdminUI\AdminPage;
 
+if ( ! defined('ABSPATH') ) exit; 
+
+
 final class VideoPublisherAdmin extends AdminPage {
 
 	/**

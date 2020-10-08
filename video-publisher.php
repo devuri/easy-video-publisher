@@ -23,10 +23,7 @@
  */
 
 
-	// deny direct access
-	if ( ! defined( 'WPINC' ) ) {
-	    die;
-	}
+if ( ! defined('ABSPATH') ) exit;
 
 	// plugin directory
 	define("EVP_VERSION", '3.1.6');
