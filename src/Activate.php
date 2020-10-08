@@ -28,10 +28,15 @@ class Activate
 	 * in case the user is just debuging stuff.
 	 *
 	 * @param string  the option name
-	 * @return void
+	 * @return false|void
 	 */
 	public static function option( $option = null ){
-		if ( get_option( $option , false ) == false ) {
+
+		if ( is_null($option) ) {
+			return 0;
+		}
+
+		if ( get_option( $option , false ) === false ) {
 			update_option( $option , array() );
 		}
 	}
