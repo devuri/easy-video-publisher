@@ -46,6 +46,7 @@ class YouTubeData
 	  		$chanlist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
 	  		foreach( $evp_channels as $chkey => $channel ) {
 	  			$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
+	  			// TODO $chanlist 	.= '<li><strong>'.$channel.'</strong> <a href="#" style="color:#c1c1c1; text-decoration: none;"> delete </a></li>';
 	  		}
 	  		$chanlist 	.= '</ul><br>';
 	  	return $chanlist;

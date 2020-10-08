@@ -20,7 +20,7 @@ final class VideosTable extends WPDb
   	 */
 	protected function schema(){
 
-		$table_name 			= $this->table_name();
+		$table_name 		= $this->table_name();
 		$charset_collate 	= $this->database()->get_charset_collate();
 
 		// schema

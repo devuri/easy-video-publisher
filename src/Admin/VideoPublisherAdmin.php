@@ -2,10 +2,10 @@
 namespace VideoPublisherlite\Admin;
 
 use VideoPublisherlite\WPAdminPage\AdminPage;
-
-
-// TODO change to the new
 // use PluginAdminUI\AdminPage;
+
+if ( ! defined('ABSPATH') ) exit; 
+
 
 final class VideoPublisherAdmin extends AdminPage {
 

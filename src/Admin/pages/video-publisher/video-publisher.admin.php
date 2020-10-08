@@ -4,6 +4,8 @@ use VideoPublisherlite\Form\FormLoader;
 use VideoPublisherlite\Form\CategoryList;
 use VideoPublisherlite\Form\InputField;
 
+if ( ! defined('ABSPATH') ) exit;
+
 		/**
 		 * CSS for the loader
 		 */

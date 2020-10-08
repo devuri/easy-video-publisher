@@ -14,11 +14,11 @@ class CategoryList
 	 */
 	public static function checkbox(){
 		$terms = array(
-			'hide_empty' => false,
-			'taxonomy' => 'category',
-			'orderby' => 'name',
-      'order' => 'ASC',
-			'parent'   => 0
+			'hide_empty' 	=> false,
+			'taxonomy' 		=> 'category',
+			'orderby' 		=> 'name',
+      		'order' 		=> 'ASC',
+			'parent'  		=> 0
 		);
 		$categories = get_terms($terms);
 		foreach ($categories as $key => $category) {

@@ -35,6 +35,5 @@
   	global $wpdb;
   	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'evp_videos' );
 
-
-	// Finally clear the cache
+	// clear the cache
 	wp_cache_flush();
