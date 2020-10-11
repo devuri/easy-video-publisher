@@ -51,8 +51,7 @@ if ( ! defined('ABSPATH') ) exit;
 	});
 
   	/**
-  	 * add after the plugins have fully loaded
-  	 * Loads The Admin Pages
+  	 * Load The Admin Pages
   	 */
 	add_action( 'plugins_loaded', function () {
 
