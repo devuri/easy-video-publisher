@@ -6,7 +6,7 @@ use VideoPublisherlite\Database\VideosTable;
 class Activate
 {
 	/**
-	 * the external class library to get images uses curl,
+	 * the external class library uses curl,
 	 * so lets prepare incase its not avalable.
 	 *
 	 * This uses curl VideoPublisherlite\Post\ImageUploadFromUrl

@@ -62,8 +62,8 @@ class AddNewVideo
 				return $vidstatus;
 			}
 		} else {
-			$id = false;
-			$vidstatus = UserFeedback::message('Please Use a Valid YouTube url !!!', 'error');
+			$id 		= false;
+			$vidstatus	= UserFeedback::message('Please Use a Valid YouTube url !!!', 'error');
 			return $vidstatus;
 		}
 	}
