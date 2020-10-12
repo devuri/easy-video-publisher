@@ -94,37 +94,36 @@ class ImageUploadFromUrl
         ];
     }
 
+	/**
+	 * Validate the url
+	 *
+	 * @return bool
+	 */
+	public function validateUrl(){
+		if ( wp_http_validate_url( $this->remote_url ) ) {
+			return true;
+		}
+		return false;
+	}
+
     /**
-     * curl get image from url and return image recource
+     * get image from url and return image recource
      *
      * @return resource
      * @throws \Exception
+     * @link https://developer.wordpress.org/plugins/http-api/
      */
     private function getImageFromUrl()
     {
-        if (!extension_loaded('curl')) {
-            throw new \Exception('Curl Not Loadet');
-        }
+		if( ! $this->validateUrl() ){
+			throw new \Exception('URL Not Suported or Invalid');
+		}
 
-        $ch = curl_init($this->remote_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        $result = curl_exec($ch);
+		$response 	= wp_remote_get( $this->remote_url );
+        $type 		= wp_remote_retrieve_headers( $response )['content-type'];
+		$result 	= wp_remote_retrieve_body( $response );
 
-
-        if(curl_getinfo($ch, CURLINFO_RESPONSE_CODE) !== 200){
-            throw new \Exception('Image Not Found');
-        }
-
-        if(curl_getinfo($ch, CURLINFO_CONTENT_TYPE ) === NULL){
-            throw new \Exception('Server Dont Send Type');
-        }
-
-        $type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
-
-        curl_close($ch);
-
-        if($this->checkFileExtensions($type) == false) {
+        if( $this->checkFileExtensions($type) == false ) {
             throw new \Exception('Not Suported Mime Type');
         }
 
