@@ -6,7 +6,7 @@ use VideoPublisherlite\Post\ChannelImport;
 use VideoPublisherlite\UserFeedback;
 
 /**
- *
+ * Youtube Channel Import
  */
 class ImportVideo
 {

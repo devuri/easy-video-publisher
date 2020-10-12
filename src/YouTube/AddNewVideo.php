@@ -5,9 +5,11 @@ namespace VideoPublisherlite\YouTube;
 use VideoPublisherlite\Post\InsertPost;
 use VideoPublisherlite\Post\GetBlock;
 use VideoPublisherlite\UserFeedback;
+use VideoPublisherlite\Database\VideosTable;
+use VideoPublisherlite\Post\UrlDataAPI;
 
 /**
- *
+ * Youtube Video Publisher
  */
 class AddNewVideo
 {
@@ -50,9 +52,30 @@ class AddNewVideo
 		 */
 		if ( YoutubeVideoInfo::video_id($vid) ) {
 
+			$video_id = YoutubeVideoInfo::video_id($vid);
+
+			if ( VideosTable::video_exists( $video_id ) ) {
+				// TODO link to the specific post
+				return UserFeedback::message('This Video was already Published', 'warning');
+			}
+
 			$id = InsertPost::newpost($vid, $args);
 
 			if ($id) {
+
+				// add to "evp_videos" table
+				(new VideosTable)->insert_data(
+					array(
+						'post_id'		=> $id,
+						'user_id'		=> get_post_field( 'post_author', $id ),
+						'campaign_id'	=> 0,
+						'video_id'		=> $video_id,
+						//'channel'		=> $channel,
+						'channel_title'	=> UrlDataAPI::get_data( $vid )->author_name,
+					)
+				);
+
+				// user feedback
 				$vidstatus  = UserFeedback::message('Video Has been Published <strong> '.get_post( $id )->post_title.' </strong> ');
 				$vidstatus .= '<div id="new-post-preview">';
 				$vidstatus .= '<img width="400" src="'.get_the_post_thumbnail_url( $id ).'">';
