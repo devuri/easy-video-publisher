@@ -1,17 +1,20 @@
 ## Easy Video Publisher
-Easy Video Publisher use to Import YouTube videos from YouTube channel playlist or search.
- * Create posts videos from YouTube  search keywords
- * Create posts from YouTube channel
- * Create posts from YouTube playlist
 
- * Manually run Import to create new posts
- * Schedule posts Imports with WordPress cron
- * Set custom post type
+Easy Video Publisher lets you quickly publish YouTube videos, use to Import YouTube videos from one or multiple YouTube channels.
 
- * Set post status to publish, draft, private, pending
- * Set post author
- * Use Multiple API Keys
+Automatically set featured image and embed the video, use a custom title, or use the original YouTube video title.
 
- * Use YouTube Tags As WordPress Tags
- * Set Featured Image
- * Exclude Video If It Already in the Import List
+### Features:
+
+* Create posts from YouTube channel
+* Manually run Import to create new posts
+* Schedule posts or publish immediately.
+* Set custom post type
+* Set post status to publish, draft
+* Set post author
+* Use Multiple API Keys
+* Use YouTube Tags As WordPress Tags
+* Automatically Import and Set Featured Image
+* Exclude Video If It Already Exists
+* Set YouTube author as post author
+ 
