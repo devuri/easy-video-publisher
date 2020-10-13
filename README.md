@@ -1,5 +1,7 @@
 ## Easy Video Publisher
 
+> **Note:** This is the development version and contains features that may be in various stages of development. If you want to use this on a live website download here: [Easy Video Publisher](https://wordpress.org/plugins/easy-video-publisher/).
+
 Easy Video Publisher lets you quickly publish YouTube videos, use to Import YouTube videos from one or multiple YouTube channels.
 
 Automatically set featured image and embed the video, use a custom title, or use the original YouTube video title.
