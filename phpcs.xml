@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="wp-plugin-name">
+<ruleset name="UrielWilson">
 
 	<config name="minimum_supported_wp_version" value="4.9"/>
 
@@ -25,19 +25,22 @@
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 		<exclude name="Squiz.Commenting.ClassComment.Missing"/>
-		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+
+		<!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/> -->
+		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
 		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
 		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
-		<exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" />
-		<exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket" />
-		<exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
-		<exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
-		<exclude name="WordPress.Arrays.ArrayDeclaration.IndexNoNewline" />
-		<exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions.NoSpacesAroundArrayKeys" />
-		<exclude name="WordPress.PHP.YodaConditions" />
-		<exclude name="WordPress.Security.EscapeOutput"/>
+		<!-- <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" /> -->
+		<!-- <exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket" /> -->
+		<!-- <exclude name="PEAR.Functions.FunctionCallSignature.Indent" /> -->
+		<!-- <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" /> -->
+		<!-- <exclude name="WordPress.Arrays.ArrayDeclaration.IndexNoNewline" /> -->
+		<!-- <exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions.NoSpacesAroundArrayKeys" /> -->
+		<!-- <exclude name="WordPress.PHP.YodaConditions" /> -->
+		<!-- <exclude name="WordPress.Security.EscapeOutput"/> -->
 	</rule>
 
+	<rule ref="WordPress-Core"/>
 	<rule ref="WordPress-Docs"/>
 
 	<rule ref="WordPress.WP.I18n">
