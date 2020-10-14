@@ -10,7 +10,7 @@ class YouTubeData
 	 *
 	 * @return VideoPublisherlite\YouTube\YouTubeDataAPI
 	 */
-	public static function api(){
+	public static function api() {
 		return YouTubeDataAPI::instance();
 	}
 
@@ -19,36 +19,36 @@ class YouTubeData
   	 *
   	 * @return string API Keys
   	 */
-	public static function api_keys(){
+	public static function api_keys() {
 
-	  	$keylist 	= '<h4>API Keys:</h4>';
-	  	$keylist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-	  	foreach( get_option('evp_youtube_api' , array()) as $key => $time ) {
-	  		$key = substr( $key , 0, -20 );
-	  		$keylist 	.= '<li><strong>'.$key.'...</strong> Since '.date_i18n( get_option( 'date_format' ), $time ).'</li>';
+	  	$keylist = '<h4>API Keys:</h4>';
+	  	$keylist .= '<ul style="list-style: decimal;margin-left: 2em;">';
+	  	foreach ( get_option( 'evp_youtube_api', array() ) as $key => $time ) {
+	  		$key = substr( $key, 0, -20 );
+	  		$keylist .= '<li><strong>' . $key . '...</strong> Since ' . date_i18n( get_option( 'date_format' ), $time ) . '</li>';
 	  	}
-	  $keylist 	.= '</ul><br>';
-	  return $keylist;
+		$keylist .= '</ul><br>';
+	  	return $keylist;
 	}
 
   	/**
   	 * Get a list of channels
   	 *
-  	 * @return [type] [description]
+  	 * @return string channels
   	 */
-  	public static function list_channels(){
+  	public static function list_channels() {
 
-	  	// get the channels
-	  	$evp_channels =	get_option('evp_channels' , array() );
-	  	asort($evp_channels);
+	  	// get the channels.
+	  	$evp_channels = get_option( 'evp_channels', array() );
+	  	asort( $evp_channels );
 
-	  		$chanlist 	= '<h4>Channels:</h4>';
-	  		$chanlist 	.= '<ul style="list-style: decimal;margin-left: 2em;">';
-	  		foreach( $evp_channels as $chkey => $channel ) {
-	  			$chanlist 	.= '<li><strong>'.$channel.'</strong></li>';
-	  			// TODO $chanlist 	.= '<li><strong>'.$channel.'</strong> <a href="#" style="color:#c1c1c1; text-decoration: none;"> delete </a></li>';
+	  		$chanlist = '<h4>Channels:</h4>';
+	  		$chanlist .= '<ul style="list-style: decimal;margin-left: 2em;">';
+	  		foreach ( $evp_channels as $chkey => $channel ) {
+	  			$chanlist .= '<li><strong>' . $channel . '</strong></li>';
+	  			// TODO $chanlist .= '<li><strong>'.$channel.'</strong> <a href="#" style="color:#c1c1c1; text-decoration: none;"> delete </a></li>';...
 	  		}
-	  		$chanlist 	.= '</ul><br>';
+	  		$chanlist .= '</ul><br>';
 	  	return $chanlist;
   	}
 
