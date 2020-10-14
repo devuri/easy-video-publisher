@@ -7,31 +7,31 @@ class Activate
 {
 
 	/**
-	 * create options on activation
+	 * Create options on activation
 	 *
-	 * only create options if they dont already exist
+	 * Only create options if they dont already exist
 	 * in case the user is just debuging stuff.
 	 *
-	 * @param string  the option name
+	 * @param string $option the option name.
 	 * @return false|void
 	 */
-	public static function make_option( $option = null ){
+	public static function make_option( $option = null ) {
 
-		if ( is_null($option) ) {
+		if ( is_null( $option ) ) {
 			return 0;
 		}
 
-		if ( get_option( $option , false ) === false ) {
-			update_option( $option , array() );
+		if ( get_option( $option, false ) === false ) {
+			update_option( $option, array() );
 		}
 	}
 
 	/**
-	 * setup the options and create "evp_videos" Database Table
+	 * Setup the options and create "evp_videos" Database Table
 	 *
 	 * @return void
 	 */
-	public static function setup(){
+	public static function setup() {
 
 		self::make_option( 'evp_youtube_api' );
 
@@ -43,5 +43,4 @@ class Activate
 
 		do_action( 'evp_loaded' );
 	}
-
 }
