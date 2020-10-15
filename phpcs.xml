@@ -25,11 +25,11 @@
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 		<exclude name="Squiz.Commenting.ClassComment.Missing"/>
-
-		<!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/> -->
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
 		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
 		<exclude name="Generic.WhiteSpace.ScopeIndent"/>
+
+		<!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/> -->
 		<!-- <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" /> -->
 		<!-- <exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket" /> -->
 		<!-- <exclude name="PEAR.Functions.FunctionCallSignature.Indent" /> -->
