@@ -5,23 +5,23 @@ namespace VideoPublisherlite\YouTube;
 use Madcoda\Youtube\Youtube;
 use VideoPublisherlite\UserFeedback;
 
-/**
- *
- */
 class YouTubeDataAPI extends Youtube
 {
 
 	/**
-	 * class instance
+	 * Class instance.
+	 *
+	 * @var $instance
 	 */
 	private static $instance = null;
 
 	/**
-	 * new instance.
-	 * @return object
+	 * New instance.
+	 *
+	 * @return object ..
 	 */
 	public static function instance() {
-		if ( is_null(self::$instance) ) {
+		if ( is_null( self::$instance ) ) {
 			self::$instance = new YouTubeDataAPI();
 		}
 		return self::$instance;
@@ -33,42 +33,40 @@ class YouTubeDataAPI extends Youtube
 	private function __construct() {
 		try {
 			$this->init();
-		} catch (\Exception $error ) {
+		} catch ( \Exception $error ) {
 			return $error;
 		}
 	}
 
 	/**
-	 * initiate the API
-	 * $youtube = new Youtube(array('key' => 'KEY HERE'))
+	 * Initiate the API
+	 * $youtube = new Youtube(array('key' => 'KEY HERE')).
 	 *
-	 * @param array $params
-	 *
-	 * @return Object
-	 * @throws \Exception
+	 * @param array $params ..
+	 * @throws \Exception ..
 	 * @link https://github.com/madcoda/php-youtube-api
 	 */
-	private function init(){
+	private function init() {
 		parent::__construct(
-			array('key' => $this->apikey() )
+			array( 'key' => $this->apikey() )
 		);
 	}
 
 	/**
 	 * Get API key
-	 *
 	 * uses a random key each time if mutiple keys are available.
 	 * if no keys are available returns false.
+	 *
 	 * @return mixed The API Key.
 	 */
-	private function apikey(){
+	private function apikey() {
 
 		$apikey = $this->get_keys();
 		if ( $apikey ) {
 			shuffle( $apikey );
 		}
 
-		// TODO only return a valid key
+		// TODO only return a valid key.
 		if ( isset( $apikey[0] ) ) {
 			return $apikey[0];
 		} else {
@@ -77,30 +75,31 @@ class YouTubeDataAPI extends Youtube
 
 	}
 
-  /**
-   * [get_keys description]
-   * @return array|false [type] [description]
+	/**
+	 * Get the keys.
+	 *
+	 * @return array|false ..
 	 */
-	public function get_keys(){
-		if ( empty( get_option('evp_youtube_api', array() ) ) ) {
+	public function get_keys() {
+		if ( empty( get_option( 'evp_youtube_api', array() ) ) ) {
 			return false;
 		} else {
-			$apikey = (array) get_option('evp_youtube_api');
+			$apikey = (array) get_option( 'evp_youtube_api' );
 		}
-		// get the keys
-		$apikey = array_keys($apikey);
+		// get the keys.
+		$apikey = array_keys( $apikey );
 		return $apikey;
 	}
 
 	/**
 	 * API key check
+	 * Check if an API key has been set
 	 *
-	 * check if an API key has been set
 	 * @return bool
 	 */
-	public function has_key(){
+	public function has_key() {
 
-		$apikey = (array) get_option('evp_youtube_api');
+		$apikey = (array) get_option( 'evp_youtube_api' );
 
 			if ( ! $apikey ) :
 				return false;
@@ -110,101 +109,99 @@ class YouTubeDataAPI extends Youtube
 	}
 
 	/**
-	 * use to verify specific api key
+	 * Use to verify specific api key
 	 *
-	 * @param null $apikey
-	 * @return bool [description]
-	 * @throws \Exception
+	 * @param null $apikey ..
+	 * @return bool ..
+	 * @throws \Exception ..
 	 */
-	public function is_key_valid( $apikey = null ){
+	public function is_key_valid( $apikey = null ) {
 		$verify_api_key = new Youtube(
-			array('key' => $apikey )
+			array( 'key' => $apikey )
 		);
 		try {
-			$verify_api_key->getVideoInfo('YXQpgAAeLM4');
-		} catch (\Exception $e ) {
+			$verify_api_key->getVideoInfo( 'YXQpgAAeLM4' );
+		} catch ( \Exception $e ) {
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * lets make sure all is well
+	 * Lets make sure all is well
 	 *
 	 * @return bool
 	 */
-	public function is_request_ok(){
+	public function is_request_ok() {
 		try {
-				$this->getVideoInfo('YXQpgAAeLM4');
-		} catch (\Exception $e ) {
+				$this->getVideoInfo( 'YXQpgAAeLM4' );
+		} catch ( \Exception $e ) {
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * exit whatever is goin on here
+	 * Exit whatever is goin on here
 	 *
 	 * @return void
 	 */
-	public function response_error(){
+	public function response_error() {
 		try {
-				$this->getVideoInfo('YXQpgAAeLM4');
-		} catch (\Exception $e ) {
-			echo UserFeedback::message( $e->getMessage() , 'error');
+				$this->getVideoInfo( 'YXQpgAAeLM4' );
+		} catch ( \Exception $e ) {
+			echo UserFeedback::message( $e->getMessage() , 'error' ); // @codingStandardsIgnoreLine
 		}
 	}
 
-  /**
-   * get the latest videos by a channel.
-   *
-   * @param string $channelId [description]
-   * @param integer $limit [description]
-   * @return mixed [type]             [description]
-   */
-	public function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ){
+	/**
+	 * Get the latest videos by a channel.
+	 *
+	 * @param string  $channelId ..
+	 * @param integer $limit ..
+	 * @return mixed
+	 */
+	public function channel_videos( $channelId = 'UCWOA1ZGywLbqmigxE4Qlvuw', $limit = 12 ) {
 
 		try {
-			$videos = $this->searchChannelVideos('', $channelId , $limit,'date');
-		} catch (\Exception $e) {
+			$videos = $this->searchChannelVideos( '', $channelId, $limit, 'date' );
+		} catch ( \Exception $e ) {
 			return 0;
 		}
 
-		// make sure we get the data
+		// make sure we get the data.
 		if ( ! $videos ) {
 			return 0;
 		}
 
-
 		/**
-		 * return array of video data
-		 * @var [type]
+		 * Return array of video data.
 		 */
 		foreach ( $videos as $vkey => $vid ) {
-			$vidinfo[$vkey]		= $vid->id->videoId;
+			$vidinfo[ $vkey ] = $vid->id->videoId;
 		}
 		return $vidinfo;
 	}
 
 	/**
-	 * get video description
+	 * Get video description
 	 *
-	 * @param  string $videoId [description]
+	 * @param  string $videoId the video ID.
 	 * @return string
 	 */
-	public function video_description( $videoId = '' ){
-		$description 	= $this->getVideoInfo($videoId)->snippet->description;
+	public function video_description( $videoId = '' ) {
+		$description = $this->getVideoInfo( $videoId )->snippet->description;
 		return $description;
 	}
 
   	/**
-  	 * get video info
+  	 * Get video info
   	 *
-  	 * @param  string $vid
-  	 * @return string
-  	 * @throws \Exception
+  	 * @param  string $vid ..
+  	 * @return string $info ..
+  	 * @throws \Exception ..
   	 */
-	public function video_info( $vid = '' ){
+	public function video_info( $vid = '' ) {
 		$info = $this->getVideoInfo( $vid )->snippet;
 		return $info;
 	}
@@ -212,46 +209,46 @@ class YouTubeDataAPI extends Youtube
 	/**
 	 * Fix error in Parent :: 400 invideoPromotion, remove invideoPromotion from part.
 	 *
-	 * @param $id
+	 * @param string $id ..
+	 * @param string $optional_params ..
 	 * @return \StdClass
-	 * @throws \Exception
+	 * @throws \Exception ..
 	 */
-	public function getChannelById($id, $optionalParams = false)
-	{
-			$API_URL = $this->getApi('channels.list');
+	public function getChannelById( $id, $optional_params = false ) {
+			$api_url = $this->getApi( 'channels.list' );
 			$params = array(
-					'id' => $id,
-					'part' => 'id,snippet,contentDetails,statistics'
+				'id'   => $id,
+				'part' => 'id,snippet,contentDetails,statistics',
 			);
-			if ($optionalParams) {
-					$params = array_merge($params, $optionalParams);
+			if ( $optional_params ) {
+					$params = array_merge( $params, $optional_params );
 			}
-			$apiData = $this->api_get($API_URL, $params);
-			return $this->decodeSingle($apiData);
+			$api_data = $this->api_get( $api_url, $params );
+			return $this->decodeSingle( $api_data );
 	}
 
 	/**
- 	 * channelby_id
+ 	 * Channelby_id
  	 *
- 	 * @param  [type] $id [description]
- 	 * @return false|\StdClass [type]     [description]
- 	 * @throws \Exception
+ 	 * @param  string $id channel id.
+ 	 * @return false|\StdClass channel.
+ 	 * @throws \Exception Exception.
  	 */
-	public function channelby_id( $id = null ){
-		$channel = $this->getChannelById( $id , false );
+	public function channelby_id( $id = null ) {
+		$channel = $this->getChannelById( $id, false );
 		return $channel;
 	}
 
   	/**
-  	 * get videos from multiple channels
+  	 * Get videos from multiple channels
   	 *
-  	 * @param array $channels
+  	 * @param array $channels the channels.
   	 * @return mixed
   	 */
-	public function channels_vids( $channels = array() ){
+	public function channels_vids( $channels = array() ) {
 
-		foreach ($channels as $key => $id) {
-			$videos[] = $this->channel_videos($id, 2);
+		foreach ( $channels as $key => $id ) {
+			$videos[] = $this->channel_videos( $id, 2 );
 		}
 		return $videos;
 	}

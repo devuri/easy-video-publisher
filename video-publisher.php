@@ -11,7 +11,7 @@
  * Plugin Name:       Easy Video Publisher
  * Plugin URI:        https://switchwebdev.com/wordpress-plugins/
  * Description:       Video Publisher is a easy to use Video import plugin, use to Import Youtube videos and Import Youtube channel videos.
- * Version:           3.3.2
+ * Version:           3.3.4
  * Requires at least: 3.4
  * Requires PHP:      5.6
  * Author:            SwitchWebdev.com
@@ -22,40 +22,38 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined('ABSPATH') ) exit;
+	define( 'EVP_VERSION', '3.3.3' );
 
-	// plugin directory
-	define("EVP_VERSION", '3.3.2');
+	define( 'EVP_DIR', dirname( __FILE__ ) );
 
-	// plugin directory
-	define("EVP_DIR", dirname(__FILE__));
+	define( 'EVP_URL', plugins_url( '/', __FILE__ ) );
 
-	// plugin url
-	define("EVP_URL", plugins_url( "/",__FILE__ ));
-
-	// Load composer
+	// Load composer.
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-//-----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 	/**
 	 * Setup on activation
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/register_activation_hook/
 	 */
-	register_activation_hook( __FILE__, function(){
+	register_activation_hook( __FILE__, function() {
 
-	 	VideoPublisherlite\Activate::setup();
+		VideoPublisherlite\Activate::setup();
 
-	});
-
-  	/**
-  	 * Load The Admin Pages
-  	 */
-	add_action( 'plugins_loaded', function () {
-
-		if ( is_admin() ) {
-			VideoPublisherlite\Admin\VideoPublisherAdmin::init();
 		}
-	});
+	);
+
+	/**
+	 * Load The Admin Pages
+	 */
+	add_action('plugins_loaded', function() {
+
+			if ( is_admin() ) {
+				VideoPublisherlite\Admin\VideoPublisherAdmin::init();
+			}
+		}
+	);

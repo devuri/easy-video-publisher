@@ -106,6 +106,19 @@ class ImageUploadFromUrl
 		return false;
 	}
 
+	/**
+	 * Get URL Response
+	 *
+	 * @return array
+	 */
+	public function getResponse()
+	{
+		if( ! $this->validateUrl() ){
+			throw new \Exception('URL Not Suported or Invalid');
+		}
+		return wp_remote_get( $this->remote_url );
+	}
+
     /**
      * get image from url and return image recource
      *
@@ -115,13 +128,12 @@ class ImageUploadFromUrl
      */
     private function getImageFromUrl()
     {
-		if( ! $this->validateUrl() ){
-			throw new \Exception('URL Not Suported or Invalid');
+		if( ! wp_remote_retrieve_response_code( $this->getResponse() ) === 200 ) {
+			throw new \Exception('Repsonse Not Valid');
 		}
 
-		$response 	= wp_remote_get( $this->remote_url );
-        $type 		= wp_remote_retrieve_headers( $response )['content-type'];
-		$result 	= wp_remote_retrieve_body( $response );
+        $type	= wp_remote_retrieve_headers( $this->getResponse() )['content-type'];
+		$result	= wp_remote_retrieve_body( $this->getResponse() );
 
         if( $this->checkFileExtensions($type) == false ) {
             throw new \Exception('Not Suported Mime Type');
