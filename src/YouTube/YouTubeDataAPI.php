@@ -30,7 +30,7 @@ class YouTubeDataAPI extends Youtube
 	/**
 	 * Constructor
 	 */
-	private function __construct() {
+	public function __construct() {
 		try {
 			$this->init();
 		} catch ( \Exception $error ) {
@@ -46,7 +46,7 @@ class YouTubeDataAPI extends Youtube
 	 * @throws \Exception ..
 	 * @link https://github.com/madcoda/php-youtube-api
 	 */
-	private function init() {
+	public function init() {
 		parent::__construct(
 			array( 'key' => $this->apikey() )
 		);
