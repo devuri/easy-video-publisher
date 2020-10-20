@@ -27,9 +27,9 @@ class FeaturedImage
 		$get_image = wp_remote_get( $image_url );
 		IsError::error_check( $get_image );
 
-		// if all is not ok give us some feedback
- 		if ( ! $get_image['response']['code'] == 200 ) {
-			wp_die( UserFeedback::message( 'I cant download the Image to set featured Image' .' !!!', 'error'));
+		// if all is not ok give us some feedback.
+ 		if ( 200 !== $get_image['response']['code'] ) {
+			wp_die( UserFeedback::message( 'I cant download the Image to set featured Image' .' !!!', 'error' ) );
  		}
 
 		/**

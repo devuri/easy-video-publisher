@@ -407,5 +407,4 @@ if (!defined('ABSPATH')) exit;
         return true; // nonce is valid
       }
     }
-
-  }
+}

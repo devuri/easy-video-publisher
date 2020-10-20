@@ -50,22 +50,17 @@ class WordProcessor
  	 * @param  string $find
  	 * @return array
  	 */
-	public static function find_word( string $text = null , $find = null ){
+	public static function find_word( string $text = null, $find = null ) {
 
-		// lowercase
 		$find = strtolower( $find );
 
-		// convert the text to array
-		$text = self::text_to_array($text);
+		$text = self::text_to_array( $text );
 
-		// find string in the array
-		$result = self::text_search( $find , $text );
+		$result = self::text_search( $find, $text );
 
-		// add the result to empty $match array
 		$match = array();
 		$match[] = $result;
 
-		// output
 		return $match;
 	}
 
