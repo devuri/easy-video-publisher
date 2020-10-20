@@ -554,7 +554,7 @@ if (!defined('ABSPATH')) exit;
               $this->header();
               $this->require_page( $this->load_admin_page( $spage ) );
               $this->footer();
-            },
+            }
           );
         }
 
