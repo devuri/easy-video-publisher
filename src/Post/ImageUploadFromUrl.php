@@ -24,7 +24,7 @@ class ImageUploadFromUrl
      * @param bool $rewrite
      * @throws \Exception
      */
-    public function __construct(string $remote_url, string $folder, $filename = false, $rewrite = false)
+    public function __construct( $remote_url, $folder, $filename = false, $rewrite = false)
     {
         if(!filter_var($remote_url, FILTER_VALIDATE_URL)){
             throw new \Exception('Not a valid URL');
@@ -83,7 +83,7 @@ class ImageUploadFromUrl
      *
      * @return array
      */
-    public function getFileInfo():array
+    public function getFileInfo()
     {
         return [
             'basename' 	=> basename($this->filePath),
@@ -153,7 +153,7 @@ class ImageUploadFromUrl
      * @param string $type
      * @return bool
      */
-    private function checkFileExtensions(string $type):bool
+    private function checkFileExtensions($type)
     {
         $ext = ["image/gif" => 'gif', "image/jpeg" => 'jpg', "image/png" => 'png'];
         if (array_key_exists($type, $ext)) {
