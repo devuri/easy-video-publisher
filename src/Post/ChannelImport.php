@@ -9,7 +9,7 @@ use VideoPublisherlite\UserFeedback;
 class ChannelImport
 {
 
-	public static function publish( string $channelId = null , array $params = array() ){
+	public static function publish( $channelId = null, $params = array() ){
 
 		/**
 		 * checks to make sure the request is ok

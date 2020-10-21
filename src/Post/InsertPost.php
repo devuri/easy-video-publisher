@@ -61,7 +61,7 @@ class InsertPost
   	 * @param array $args other options
   	 * @return int
   	 */
-	public static function newpost( string $medialink = null , array $args = array() ){
+	public static function newpost( $medialink = null , $args = array() ){
 
 		if ( is_null($medialink) || empty($medialink) ) {
 			return 0;

@@ -16,7 +16,7 @@ class ImportVideo
 	 *
 	 * @param array $form_data brings in the $_POST data from the form submission.
 	 */
-	public static function add_video( array $form_data = array() ) {
+	public static function add_video( $form_data = array() ) {
 
 		// make sure we have a valid key.
 		if ( ! YouTubeData::api()->has_key() ) {

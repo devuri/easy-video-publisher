@@ -22,7 +22,7 @@ class YoutubeVideoInfo
 		}
 
 		// get the id.
-		if ( ! null === $video_url ) {
+		if ( null !== $video_url ) {
 
 			if ( preg_match( '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $vid_id ) ) {
 				$the_id = $vid_id[1];
