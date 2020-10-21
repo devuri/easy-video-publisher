@@ -24,7 +24,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-	define( 'EVP_VERSION', '3.3.5' );
+	define( 'EVP_VERSION', '3.3.6' );
 
 	define( 'EVP_DIR', dirname( __FILE__ ) );
 
