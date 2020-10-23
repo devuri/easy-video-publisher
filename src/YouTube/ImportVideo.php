@@ -20,20 +20,20 @@ class ImportVideo
 
 		// make sure we have a valid key.
 		if ( ! YouTubeData::api()->has_key() ) {
-			echo UserFeedback::message( '<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error' ); // @codingStandardsIgnoreLine
+			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' ); // @codingStandardsIgnoreLine
 			return 0;
 		}
 
 		// if the channel is not set or empty return.
 		if ( empty( (array) get_option( 'evp_channels' ) ) ) {
-            echo UserFeedback::message( 'Please Add a YouTube Channel!', 'error' ); // @codingStandardsIgnoreLine
+            echo UserFeedback::message( 'Please Add a YouTube Channel ! ', 'error' ); // @codingStandardsIgnoreLine
             return 0;
         }
 
 		/**
 		 * Get the channel to post from
 		 */
-		$channelId       = sanitize_text_field( trim( $form_data['youtube_channel'] ) );
+		$channel_id      = sanitize_text_field( trim( $form_data['youtube_channel'] ) );
 		$number_of_posts = absint( $form_data['number_of_posts'] );
 		$setcategory     = absint( $form_data['select_category'] );
 		$setauthor       = absint( $form_data['set_author'] );
@@ -55,7 +55,7 @@ class ImportVideo
 		}
 
 		$args['create_author']   = $setauthor;
-		$args['youtube_channel'] = $channelId;
+		$args['youtube_channel'] = $channel_id;
 		$args['number_of_posts'] = $number_of_posts;
 		$args['setcategory']     = $setcategory;
 		$args['post_status']     = $poststatus;
@@ -65,7 +65,7 @@ class ImportVideo
 		/**
 		 * Creates the posts
 		 */
-		$ids = ChannelImport::publish( $channelId, $args );
+		$ids = ChannelImport::publish( $channel_id, $args );
 
 		// get the posts ids.
 		return $ids;
