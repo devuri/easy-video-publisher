@@ -40,15 +40,15 @@ class AddKey
 
 			// check if we already have that key.
 			if ( $key_exists ) {
-				echo UserFeedback::message( '<strong> <span style="color:#dc3232">' . $youtube_api_key . '</span></strong> already Exists !!', 'error' );  // @codingStandardsIgnoreLine
+				echo UserFeedback::message( 'Key: ' . $youtube_api_key . ' already Exists !!', 'error' );  // @codingStandardsIgnoreLine
 			} else {
 				// add the new api key.
 				update_option( 'evp_youtube_api', $update_keys );
-				echo UserFeedback::message( 'New API Key <strong> <span style="color:#037b0e">' . $youtube_api_key . '</span></strong> has been successfully added !!' );  // @codingStandardsIgnoreLine
+				echo UserFeedback::message( 'New API Key: ' . $youtube_api_key . ' has been successfully added !!' );  // @codingStandardsIgnoreLine
 			}
 		} else {
 			// the key is not valid.
-			echo UserFeedback::message( 'The Key: <span style="color:#dc3232">' . $youtube_api_key . '</span> <strong> is NOT A Valid Key !! </strong> ', 'error' );  // @codingStandardsIgnoreLine
+			echo UserFeedback::message( 'The Key: ' . $youtube_api_key . ' is NOT A Valid Key !! ', 'error' );  // @codingStandardsIgnoreLine
 		}
 	}
 }

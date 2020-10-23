@@ -75,7 +75,7 @@ class AddNewVideo
 				);
 
 				// user feedback.
-				$vidstatus  = UserFeedback::message( 'Video Has been Published <strong> ' . get_post( $id )->post_title . ' </strong> ' );
+				$vidstatus  = UserFeedback::message( 'Video Has been Published: ' . get_post( $id )->post_title );
 				$vidstatus .= '<div id="new-post-preview">';
 				$vidstatus .= '<img width="400" src="' . get_the_post_thumbnail_url( $id ) . '">';
 				$vidstatus .= '<br>';
