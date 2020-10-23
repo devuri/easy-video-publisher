@@ -83,30 +83,30 @@ final class VideosTable extends WPDb
 			'channel_title' => null,
 			'created' 		=> current_time( 'mysql' ),
 		);
-		$data = wp_parse_args( $columns , $defualts );
+		$data = wp_parse_args( $columns, $defualts );
 
 		/**
-		 * insert data into the database
+		 * Insert data into the database
 		 * and return the id
 		 */
-		$this->database()->insert( $table , $data );
+		$this->database()->insert( $table, $data );
 		return $this->database()->insert_id;
 	}
 
 	/**
-	 * check the database if the video id already exists.
+	 * Check the database if the video id already exists.
 	 *
 	 * @param null $id
 	 * @return bool
 	 */
-	public static function video_exists( $id = null ){
-		$videos = GetData::get_result('video_id');
+	public static function video_exists( $id = null ) {
+		$videos = GetData::get_result( 'video_id' );
 
 		if ( ! is_array( $videos ) ) {
 			return false;
 		}
 
-		$vid_exists = array_key_exists( $id , $videos );
+		$vid_exists = array_key_exists( $id, $videos );
 		return $vid_exists;
 	}
 

@@ -42,7 +42,7 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 	}
 
 	/**
-	 * creates the posts
+	 * Creates the posts
 	 */
 	$posts = ImportVideo::add_video( $_POST );
 
@@ -57,7 +57,8 @@ if ( isset( $_POST['get_latest_updates'] ) ) :
 				get_post( $id )->post_status .
 				': <a href="'.get_permalink( $id ).'" target="_blank">' .
 				get_post( $id )->post_title .
-				'</a> </strong> ' );
+				'</a> </strong> '
+			);
 		}
 	}
 
