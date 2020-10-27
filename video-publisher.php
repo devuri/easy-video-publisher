@@ -22,13 +22,8 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
+// start plugin.
 if ( ! defined( 'ABSPATH' ) ) exit;
-
-	define( 'EVP_VERSION', '3.3.6' );
-
-	define( 'EVP_DIR', dirname( __FILE__ ) );
-
-	define( 'EVP_URL', plugins_url( '/', __FILE__ ) );
 
 	// Load composer.
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';

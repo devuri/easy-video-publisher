@@ -2,10 +2,10 @@
 
 namespace VideoPublisherlite\Post;
 
-
 /**
- * get url data
+ * Get url data
  * uses oEmbed via Core class WP_oEmbed used to get oEmbed data.
+ *
  * @link https://oembed.com/
  * @link https://developer.wordpress.org/reference/classes/wp_oembed/
  */
@@ -13,32 +13,34 @@ class UrlDataAPI
 {
 
 	/**
-	 * get_data() using  WP_oEmbed
-	 * @param  string $url video url
+	 * Get_data() using  WP_oEmbed
+	 *
+	 * @param  string $url video url.
 	 * @return object
 	 * @link https://developer.wordpress.org/reference/classes/wp_oembed/
 	 */
-	public static function get_data( $url = null ){
+	public static function get_data( $url = null ) {
 
-		if ( $url == null ) {
+		if ( is_null( $url ) ) {
 			return array();
 		}
 
-		$oEmbed = new \WP_oEmbed;
-		$data 	= $oEmbed->get_data($url);
+		$o_embed = new \WP_oEmbed();
+		$data = $o_embed->get_data( $url );
 		return $data;
 	}
 
 	/**
-	 * [provider description]
-	 * @param $geturl the url
+	 * Provider description
+	 *
+	 * @param  string $geturl the url.
 	 * @return object
 	 */
-	public static function provider( $geturl = null ){
-		$provider = [];
-		$provider['name'] 	= self::get_data($geturl)->provider_name;
-		$provider['url']	= self::get_data($geturl)->provider_url;
-		$obprovider 		= (object) $provider;
+	public static function provider( $geturl = null ) {
+		$provider = array();
+		$provider['name'] = self::get_data( $geturl )->provider_name;
+		$provider['url']  = self::get_data( $geturl )->provider_url;
+		$obprovider       = (object) $provider;
 		return $obprovider;
 	}
 

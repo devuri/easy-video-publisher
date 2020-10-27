@@ -2,11 +2,8 @@
 
 namespace VideoPublisherlite\Post;
 
-if ( ! defined('ABSPATH') ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- *
- */
 class InsertPost
 {
 
@@ -107,11 +104,9 @@ class InsertPost
 			$username 	= '';
 		}
 
-		if ( ! $medialink == null ) {
+		if ( null !== $medialink ) {
 
-			/**
-			 * setup info
-			 */
+			// setup info.
 			$title			= $args['title'];
 			$hashtags		= self::hashtags( $args['hashtags'] );
 			$thumbnail		= $args['thumbnail'];
@@ -128,26 +123,27 @@ class InsertPost
 
 			/**
 			 * Post info
+			 *
 			 * @link https://developer.wordpress.org/reference/functions/wp_insert_post/
 			 */
-			$postInfo = array(
-					'post_title'	=> esc_html($title . $username . $hashtags),
-					'post_content'	=> $embed.'<p>'.$description.'</p>',
-					'post_type'		=> $post_type,
-					'post_status' 	=> $post_status,
-					'post_category'	=> array($category),
-					'tags_input' 	=> $tags,
-					'post_author'	=> $post_author,
-					'post_date'		=> $post_date,
+			$post_info = array(
+				'post_title'    => esc_html( $title . $username . $hashtags ),
+				'post_content'  => $embed . '<p>' . $description . '</p>',
+				'post_type'     => $post_type,
+				'post_status'   => $post_status,
+				'post_category' => array( $category ),
+				'tags_input'    => $tags,
+				'post_author'   => $post_author,
+				'post_date'     => $post_date,
 			);
-			// create the post
-			$postId = wp_insert_post( $postInfo );
+			// create the post.
+			$post_id = wp_insert_post( $post_info );
 
-			// set featured image
-			FeaturedImage::setfeatured_image( $thumbnail , $postId, $title  );
+			// set featured image.
+			FeaturedImage::setfeatured_image( $thumbnail, $post_id, $title );
 		}
 
-		return $postId;
+		return $post_id;
 	}
 
 }

@@ -1,5 +1,5 @@
 <?php
-
+// @codingStandardsIgnoreFile
 namespace VideoPublisherlite\Post;
 
 /**
