@@ -6,6 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'WP_Queue\\' => array($vendorDir . '/a5hleyrich/wp-queue/src/WP_Queue'),
     'VideoPublisherlite\\' => array($baseDir . '/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Contracts\\Translation\\' => array($vendorDir . '/symfony/translation-contracts'),
+    'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'Madcoda\\Youtube\\' => array($vendorDir . '/madcoda/php-youtube-api/src'),
+    '' => array($vendorDir . '/nesbot/carbon/src'),
 );

@@ -27,6 +27,17 @@ class Activate
 	}
 
 	/**
+	 * Create options on activation
+	 * Install db tables for WP_Queue\Job
+	 *
+	 * @return false|void
+	 * @link https://github.com/deliciousbrains/wp-queue
+	 */
+	public static function queue_install() {
+		wp_queue_install_tables();
+	}
+
+	/**
 	 * Setup the options and create "evp_videos" Database Table
 	 *
 	 * @return void
@@ -40,6 +51,8 @@ class Activate
 		self::make_option( 'evp_restricted_categories' );
 
 		VideosTable::create();
+
+		self::queue_install();
 
 		do_action( 'evp_loaded' );
 	}

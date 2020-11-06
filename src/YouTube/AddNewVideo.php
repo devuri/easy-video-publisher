@@ -7,44 +7,67 @@ use VideoPublisherlite\Post\GetBlock;
 use VideoPublisherlite\UserFeedback;
 use VideoPublisherlite\Database\VideosTable;
 use VideoPublisherlite\Post\UrlDataAPI;
+use WP_Queue\Job;
 
 /**
  * Youtube Video Publisher
  */
-class AddNewVideo
+class AddNewVideo extends Job
 {
 
 	/**
-	 * Publish the video add new video post.
+	 * Data we might need .
 	 *
-	 * @param array $form_data brings in the $_POST data from the form submission.
+	 * @var array .
 	 */
-	public static function publish( $form_data = array() ) {
+	public $form_data;
+
+	/**
+	 * AddNewVideo constructor.
+	 *
+	 * @param array $data .
+	 */
+	public function __construct( $data = array() ) {
+		$this->form_data = $data;
+	}
+
+	/**
+	 * Handle job.
+	 */
+	public function handle() {
+		$this->publish();
+		// TODO notify user via email.
+	}
+
+	/**
+	 * Publish the video add new video post.
+	 */
+	public function publish() {
 
 		/**
 		 * Video url.
 		 */
-		$vid = sanitize_text_field( trim( $form_data['youtube_video_url'] ) );
+		$vid = sanitize_text_field( trim( $this->form_data['youtube_video_url'] ) );
 
 		// overrides title.
 		$args = array();
-		if ( isset( $form_data['custom_title'] ) && isset( $form_data['video_title'] ) ) {
-			$args['title'] = sanitize_text_field( trim( $form_data['video_title'] ) );
+		if ( isset( $this->form_data['custom_title'] ) && isset( $this->form_data['video_title'] ) ) {
+			$args['title'] = sanitize_text_field( trim( $this->form_data['video_title'] ) );
 			$custom_title  = true;
 		}
 
 		// set post type.
 		if ( current_user_can( 'manage_options' ) ) {
-			$args['post_type'] = sanitize_text_field( trim( $form_data['set_post_type'] ) );
+			$args['post_type'] = sanitize_text_field( trim( $this->form_data['set_post_type'] ) );
 		} else {
 			$args['post_type'] = 'post';
 		}
 
 		$args['embed']       = GetBlock::youtube( $vid );
 		$args['thumbnail']   = YoutubeVideoInfo::video_thumbnail( $vid );
-		$args['category']    = intval( trim( $form_data['select_category'] ) );
-		$args['tags']        = sanitize_text_field( trim( $form_data['tags'] ) );
-		$args['description'] = wp_filter_post_kses( trim( $form_data['post_description'] ) );
+		$args['category']    = intval( trim( $this->form_data['select_category'] ) );
+		$args['tags']        = sanitize_text_field( trim( $this->form_data['tags'] ) );
+		$args['description'] = wp_filter_post_kses( trim( $this->form_data['post_description'] ) );
 		$args['hashtags']    = array( get_term( $args['category'], 'category' )->name );
 
 		/**

@@ -52,3 +52,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			}
 		}
 	);
+
+	/**
+	 * Setup Queue Job Runner
+	 */
+	add_action( 'plugins_loaded', function() {
+	    	wp_queue()->cron();
+		}
+	);
