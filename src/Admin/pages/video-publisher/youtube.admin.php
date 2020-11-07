@@ -32,10 +32,8 @@ if ( isset( $_POST['submit_post_import'] ) ) :
 		/**
 		 * Add New Video Post
 		 */
-		$new_video = wp_queue()->push( new AddNewVideo( $_POST ) );
-		//wp_queue()->cron( 3 );
-		//$new_video = AddNewVideo::publish( $_POST );
-		//echo $new_video;
+		$new_video = ( new AddNewVideo( $_POST ) )->publish();
+		echo $new_video;
 
 endif;
 

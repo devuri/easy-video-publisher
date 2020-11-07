@@ -7,12 +7,11 @@ use VideoPublisherlite\Post\GetBlock;
 use VideoPublisherlite\UserFeedback;
 use VideoPublisherlite\Database\VideosTable;
 use VideoPublisherlite\Post\UrlDataAPI;
-use WP_Queue\Job;
 
 /**
  * Youtube Video Publisher
  */
-class AddNewVideo extends Job
+class AddNewVideo
 {
 
 	/**
@@ -29,14 +28,6 @@ class AddNewVideo extends Job
 	 */
 	public function __construct( $data = array() ) {
 		$this->form_data = $data;
-	}
-
-	/**
-	 * Handle job.
-	 */
-	public function handle() {
-		$this->publish();
-		// TODO notify user via email.
 	}
 
 	/**
