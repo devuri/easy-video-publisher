@@ -5,49 +5,52 @@ use VideoPublisherlite\YouTube\YouTubeData;
 use VideoPublisherlite\YouTube\YoutubeVideoInfo;
 use VideoPublisherlite\Database\VideosTable;
 use VideoPublisherlite\UserFeedback;
+use WP_Queue\Job;
 
-class ChannelImport
+class ChannelImport extends Job
 {
 
-	public static function publish( $channelId = null, $params = array() ){
+	/**
+	 * Get the youtube channel id
+	 *
+	 * @var string .
+	 */
+	public $the_channel;
 
-		/**
-		 * checks to make sure the request is ok
-		 * if not show the error message and exit
-		 */
-		try {
-			YouTubeData::api()->getVideoInfo('YXQpgAAeLM4');
-		} catch (\Exception $e ) {
-			// TODO create a log message $e->getMessage() and return
-			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
-		}
 
-		/**
-		 * default args
-		 */
-		$default = array();
-		$default['post_type']		= 'post';
-		$default['create_author']	= false;
-		$default['youtube_channel']	= $channelId;
-		$default['number_of_posts']	= 2;
-		$default['setcategory']		= array(1);
-		$default['post_status']		= 'draft';
-		$params = wp_parse_args( $params , $default );
+	/**
+	 * Data we might need .
+	 *
+	 * @var array .
+	 */
+	public $params;
 
-		/**
-		 * get the channel to post from
-		 */
-		$channel 					= trim( $params['youtube_channel'] );
-		$number_of_posts 	= intval( $params['number_of_posts'] );
-		$channel_videos 	= YouTubeData::api()->channel_videos( $channel , $number_of_posts );
+	/**
+	 * Publisher
+	 *
+	 * @param string $the_channel .
+	 * @param array  $params .
+	 */
+	public function __construct( $the_channel = null, $params = array() ) {
+		$this->the_channel = $the_channel;
+		$this->params      = $params;
+	}
 
-		// no videos to import
-		if ( ! $channel_videos ) {
-			//TODO log some info here
-			return 0;
-		}
 
-		// create posts
+	/**
+	 * Handle job.
+	 */
+	public function handle() {
+		$this->publish();
+		// TODO notify user via email.
+	}
+
+	/**
+	 * Handle job.
+	 */
+	public function create_post( $channel_videos = array() ) {
+
+		// create posts .
 		foreach ( $channel_videos  as $upkey => $id ) {
 
 			/**
@@ -71,9 +74,9 @@ class ChannelImport
 			 * based on post_schedule param
 			 * @var [type]
 			 */
-			if ( $params['post_schedule'] ) {
+			if ( $this->params['post_schedule'] ) {
 
-				$schedule = $params['post_schedule'];
+				$schedule = $this->params['post_schedule'];
 
 				$hrs = mt_rand(1, $schedule);
 				$post_date = time() + $hrs*60*60;
@@ -88,42 +91,75 @@ class ChannelImport
 			 */
 			$args['thumbnail']		= YoutubeVideoInfo::video_thumbnail( $vid );
 			$args['embed']			= GetBlock::youtube( $vid );
-			$args['post_type']		= $params['post_type'];
-			$args['category']		= $params['setcategory'];
-			$args['post_status']	= $params['post_status'];
-			$args['hashtags']		= $params['hashtags'];
-			$args['create_author']	= $params['create_author'];
+			$args['post_type']		= $this->params['post_type'];
+			$args['category']		= $this->params['setcategory'];
+			$args['post_status']	= $this->params['post_status'];
+			$args['hashtags']		= $this->params['hashtags'];
+			$args['create_author']	= $this->params['create_author'];
 
-			$post_id = InsertPost::newpost( $vid , $args );
-			if ($post_id) {
+			$post_id = InsertPost::newpost( $vid, $args );
+			if ( $post_id ) {
 
-				// add to "evp_videos" table
-				(new VideosTable)->insert_data(
+				// add to "evp_videos" table.
+				( new VideosTable() )->insert_data(
 					array(
-						'post_id'		=> $post_id,
-						'user_id'		=> get_post_field( 'post_author', $post_id ),
-						'campaign_id'	=> 0,
-						'video_id'		=> $id,
-						'channel'		=> $channel,
-						'channel_title'	=> UrlDataAPI::get_data( $vid )->author_name,
+						'post_id'       => $post_id,
+						'user_id'       => get_post_field( 'post_author', $post_id ),
+						'campaign_id'   => 0,
+						'video_id'      => $id,
+						'channel'       => $channel,
+						'channel_title' => UrlDataAPI::get_data( $vid )->author_name,
 					)
 				);
-
-				// get the post id
-				$posts[] = $post_id;
-
 			}
+
+		}
+	}
+
+	/**
+	 * Publich the video
+	 */
+	public function publish() {
+
+		// checks to make sure the request is ok.
+		try {
+			YouTubeData::api()->getVideoInfo('YXQpgAAeLM4');
+		} catch ( \Exception $e ) {
+			// TODO create a log message $e->getMessage() and return.
+			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
 		}
 
 		/**
-		 * empty
+		 * default args
 		 */
-		if ( empty($posts) ) {
+		$default = array();
+		$default['post_type']		= 'post';
+		$default['create_author']	= false;
+		$default['youtube_channel']	= $this->the_channel;
+		$default['number_of_posts']	= 2;
+		$default['setcategory']		= array(1);
+		$default['post_status']		= 'draft';
+		$this->params = wp_parse_args( $this->params , $default );
+
+		/**
+		 * get the channel to post from
+		 */
+		$channel 					= trim( $this->params['youtube_channel'] );
+		$number_of_posts 	= intval( $this->params['number_of_posts'] );
+		$channel_videos 	= YouTubeData::api()->channel_videos( $channel , $number_of_posts );
+
+		// no videos to import
+		if ( ! $channel_videos ) {
+			//TODO log some info here
 			return 0;
 		}
 
+		// create posts.
+		$posts = $this->create_post( $channel_videos );
+
 		/**
-		 * ids for each post
+		 * Ids for each post
+		 *
 		 * @var array list of post ids
 		 */
 		return $posts;
