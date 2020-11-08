@@ -42,21 +42,5 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 	);
 
-	/**
-	 * Load The Admin Pages
-	 */
-	add_action('plugins_loaded', function() {
-
-			if ( is_admin() ) {
-				VideoPublisherlite\Admin\VideoPublisherAdmin::init();
-			}
-		}
-	);
-
-	/**
-	 * Setup Queue Job Runner
-	 */
-	add_action( 'plugins_loaded', function() {
-	    	wp_queue()->cron();
-		}
-	);
+	// the plugin .
+	( new VideoPublisherlite\Plugin() )->init();
