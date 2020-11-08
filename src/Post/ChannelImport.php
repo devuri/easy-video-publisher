@@ -46,7 +46,10 @@ class ChannelImport extends Job
 	}
 
 	/**
-	 * Handle job.
+	 * Creates each Post
+	 *
+	 * @param array $channel_videos .
+	 * @return void
 	 */
 	public function create_post( $channel_videos = array() ) {
 
@@ -54,48 +57,47 @@ class ChannelImport extends Job
 		foreach ( $channel_videos  as $upkey => $id ) {
 
 			/**
-			 * skip over if video is already posted
+			 * Skip over if video is already posted
 			 * and continue to the next item.
 			 */
-			if( VideosTable::video_exists( $id ) ) continue;
+			if ( VideosTable::video_exists( $id ) ) continue;
 
-			// convert id to full youtube url
-			$vid = 'https://youtu.be/'.$id;
+			// convert id to full youtube url.
+			$vid = 'https://youtu.be/' . $id;
 
-			// check for tags to avoid "Undefined property"
-			if ( property_exists( YouTubeData::api()->video_info( $id ), 'tags') ) {
+			// check for tags to avoid "Undefined property".
+			if ( property_exists( YouTubeData::api()->video_info( $id ), 'tags' ) ) {
 				$args['tags'] = YouTubeData::api()->video_info( $id )->tags;
 			}
 
 			/**
-			 * schedule random time in the future
+			 * Schedule random time in the future
 			 *
-			 * will add a scheduled post between a range from one hour to the $shecdule time
+			 * Will add a scheduled post between a range from one hour to the $shecdule time
 			 * based on post_schedule param
-			 * @var [type]
 			 */
 			if ( $this->params['post_schedule'] ) {
 
 				$schedule = $this->params['post_schedule'];
 
-				$hrs = mt_rand(1, $schedule);
-				$post_date = time() + $hrs*60*60;
+				$hrs       = wp_rand( 1, $schedule );
+				$post_date = time() + $hrs * 60 * 60;
 
-				// set the schedule
+				// set the schedule.
 				$scheduled = date_i18n( 'Y-m-d H:i:s', $post_date );
-				$args['post_date']	= $scheduled;
+				$args['post_date'] = $scheduled;
 			}
 
 			/**
-			 * set up some $args
+			 * Set up some $args .
 			 */
-			$args['thumbnail']		= YoutubeVideoInfo::video_thumbnail( $vid );
-			$args['embed']			= GetBlock::youtube( $vid );
-			$args['post_type']		= $this->params['post_type'];
-			$args['category']		= $this->params['setcategory'];
-			$args['post_status']	= $this->params['post_status'];
-			$args['hashtags']		= $this->params['hashtags'];
-			$args['create_author']	= $this->params['create_author'];
+			$args['thumbnail']     = YoutubeVideoInfo::video_thumbnail( $vid );
+			$args['embed']         = GetBlock::youtube( $vid );
+			$args['post_type']     = $this->params['post_type'];
+			$args['category']      = $this->params['setcategory'];
+			$args['post_status']   = $this->params['post_status'];
+			$args['hashtags']      = $this->params['hashtags'];
+			$args['create_author'] = $this->params['create_author'];
 
 			$post_id = InsertPost::newpost( $vid, $args );
 			if ( $post_id ) {
@@ -112,7 +114,6 @@ class ChannelImport extends Job
 					)
 				);
 			}
-
 		}
 	}
 
@@ -123,34 +124,34 @@ class ChannelImport extends Job
 
 		// checks to make sure the request is ok.
 		try {
-			YouTubeData::api()->getVideoInfo('YXQpgAAeLM4');
+			YouTubeData::api()->getVideoInfo( 'YXQpgAAeLM4' );
 		} catch ( \Exception $e ) {
 			// TODO create a log message $e->getMessage() and return.
-			wp_die( UserFeedback::message( 'Request failed: '. $e->getMessage(), 'error') );
+			wp_die( UserFeedback::message( 'Request failed: ' . $e->getMessage(), 'error' ) ); // @codingStandardsIgnoreLine.
 		}
 
 		/**
-		 * default args
+		 * Default args
 		 */
 		$default = array();
-		$default['post_type']		= 'post';
-		$default['create_author']	= false;
-		$default['youtube_channel']	= $this->the_channel;
-		$default['number_of_posts']	= 2;
-		$default['setcategory']		= array(1);
-		$default['post_status']		= 'draft';
-		$this->params = wp_parse_args( $this->params , $default );
+		$default['post_type']       = 'post';
+		$default['create_author']   = false;
+		$default['youtube_channel'] = $this->the_channel;
+		$default['number_of_posts'] = 2;
+		$default['setcategory']     = array( 1 );
+		$default['post_status']     = 'draft';
+		$this->params = wp_parse_args( $this->params, $default );
 
 		/**
-		 * get the channel to post from
+		 * Get the channel to post from
 		 */
-		$channel 					= trim( $this->params['youtube_channel'] );
-		$number_of_posts 	= intval( $this->params['number_of_posts'] );
-		$channel_videos 	= YouTubeData::api()->channel_videos( $channel , $number_of_posts );
+		$channel          = trim( $this->params['youtube_channel'] );
+		$number_of_posts  = intval( $this->params['number_of_posts'] );
+		$channel_videos   = YouTubeData::api()->channel_videos( $channel, $number_of_posts );
 
-		// no videos to import
+		// no videos to import.
 		if ( ! $channel_videos ) {
-			//TODO log some info here
+			// TODO log some info here.
 			return 0;
 		}
 
