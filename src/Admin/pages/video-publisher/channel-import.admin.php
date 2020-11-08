@@ -45,7 +45,6 @@ if ( isset( $_POST['get_latest_updates'] ) ) : // @codingStandardsIgnoreLine
 	 */
 	$create = new ImportVideo( $_POST ); // @codingStandardsIgnoreLine
 	$create->add_video();
-	echo $this->form()->user_feedback( 'Import Has been added to the Queue ! ' ); // @codingStandardsIgnoreLine
 
 endif;
 
