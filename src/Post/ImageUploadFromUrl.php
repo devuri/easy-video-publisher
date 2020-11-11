@@ -120,7 +120,7 @@ class ImageUploadFromUrl
 	}
 
     /**
-     * get image from url and return image recource
+     * get image from url and return image resource
      *
      * @return resource
      * @throws \Exception

@@ -179,6 +179,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'VideoPublisherlite\\Form\\InputField' => __DIR__ . '/../..' . '/src/Form/InputField.php',
         'VideoPublisherlite\\IsError' => __DIR__ . '/../..' . '/src/IsError.php',
         'VideoPublisherlite\\MaxIndex' => __DIR__ . '/../..' . '/src/MaxIndex.php',
+        'VideoPublisherlite\\Plugin' => __DIR__ . '/../..' . '/src/Plugin.php',
         'VideoPublisherlite\\PostType' => __DIR__ . '/../..' . '/src/PostType.php',
         'VideoPublisherlite\\Post\\AutoChannelImport' => __DIR__ . '/../..' . '/src/Post/AutoChannelImport.php',
         'VideoPublisherlite\\Post\\ChannelImport' => __DIR__ . '/../..' . '/src/Post/ChannelImport.php',

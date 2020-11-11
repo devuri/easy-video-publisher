@@ -111,6 +111,7 @@ return array(
     'VideoPublisherlite\\Form\\InputField' => $baseDir . '/src/Form/InputField.php',
     'VideoPublisherlite\\IsError' => $baseDir . '/src/IsError.php',
     'VideoPublisherlite\\MaxIndex' => $baseDir . '/src/MaxIndex.php',
+    'VideoPublisherlite\\Plugin' => $baseDir . '/src/Plugin.php',
     'VideoPublisherlite\\PostType' => $baseDir . '/src/PostType.php',
     'VideoPublisherlite\\Post\\AutoChannelImport' => $baseDir . '/src/Post/AutoChannelImport.php',
     'VideoPublisherlite\\Post\\ChannelImport' => $baseDir . '/src/Post/ChannelImport.php',
