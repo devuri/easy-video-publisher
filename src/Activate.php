@@ -22,7 +22,8 @@ class Activate
 		}
 
 		if ( get_option( $option, false ) === false ) {
-			update_option( $option, array() );
+			$update = update_option( $option, array() );
+			return $update;
 		}
 	}
 
@@ -33,7 +34,7 @@ class Activate
 	 * @return false|void
 	 * @link https://github.com/deliciousbrains/wp-queue
 	 */
-	public static function queue_install() {
+	public static function create_queue_tables() {
 		wp_queue_install_tables();
 	}
 
@@ -52,7 +53,7 @@ class Activate
 
 		VideosTable::create();
 
-		self::queue_install();
+		self::create_queue_tables();
 
 		do_action( 'evp_loaded' );
 	}
