@@ -123,6 +123,7 @@ return array(
     'VideoPublisherlite\\Post\\UploadImage' => $baseDir . '/src/Post/UploadImage.php',
     'VideoPublisherlite\\Post\\UrlDataAPI' => $baseDir . '/src/Post/UrlDataAPI.php',
     'VideoPublisherlite\\Text\\WordProcessor' => $baseDir . '/src/Text/WordProcessor.php',
+    'VideoPublisherlite\\Traits\\Singleton' => $baseDir . '/src/Traits/Singleton.php',
     'VideoPublisherlite\\UserFeedback' => $baseDir . '/src/UserFeedback.php',
     'VideoPublisherlite\\WPAdminPage\\AdminPage' => $baseDir . '/src/WPAdminPage/AdminPage.php',
     'VideoPublisherlite\\WPAdminPage\\FormHelper' => $baseDir . '/src/WPAdminPage/FormHelper.php',

@@ -191,6 +191,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'VideoPublisherlite\\Post\\UploadImage' => __DIR__ . '/../..' . '/src/Post/UploadImage.php',
         'VideoPublisherlite\\Post\\UrlDataAPI' => __DIR__ . '/../..' . '/src/Post/UrlDataAPI.php',
         'VideoPublisherlite\\Text\\WordProcessor' => __DIR__ . '/../..' . '/src/Text/WordProcessor.php',
+        'VideoPublisherlite\\Traits\\Singleton' => __DIR__ . '/../..' . '/src/Traits/Singleton.php',
         'VideoPublisherlite\\UserFeedback' => __DIR__ . '/../..' . '/src/UserFeedback.php',
         'VideoPublisherlite\\WPAdminPage\\AdminPage' => __DIR__ . '/../..' . '/src/WPAdminPage/AdminPage.php',
         'VideoPublisherlite\\WPAdminPage\\FormHelper' => __DIR__ . '/../..' . '/src/WPAdminPage/FormHelper.php',
