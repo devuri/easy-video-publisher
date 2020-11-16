@@ -2,24 +2,18 @@
 
 namespace VideoPublisherlite;
 
+use VideoPublisherlite\Traits\Singleton;
 use VideoPublisherlite\Admin\VideoPublisherAdmin;
 
 class Plugin
 {
 
+	use Singleton;
+
 	/**
 	 * Start here
 	 */
 	public function __construct() {
-		$this->init();
-	}
-
-	/**
-  	 * Init
-  	 *
-  	 * @return void
-  	 */
-	public function init() {
 		add_action( 'plugins_loaded', array( $this, 'admin_pages' ) );
 		add_action( 'plugins_loaded', array( $this, 'queue_cron' ) );
 	}

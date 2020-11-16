@@ -43,4 +43,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	);
 
 	// the plugin .
-	( new VideoPublisherlite\Plugin() )->init();
+	VideoPublisherlite\Plugin::init();
