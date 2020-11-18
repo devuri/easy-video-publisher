@@ -86,7 +86,7 @@ class InsertPost
 		$default['post_date']		= current_time( 'mysql' );
 		$default['html']			= false;
 		$default['create_author']	= false;
-		$default['author']			= get_current_user_id();
+		$default['author']			= null;
 		$default['tags']			= array();
 		$default['description']		= '';
 		$default['thumbnail']		= UrlDataAPI::get_data( $medialink )->thumbnail_url;
@@ -119,7 +119,7 @@ class InsertPost
 			$create_author	= $args['create_author'];
 			$author			= $args['author'];
 			$post_date		= $args['post_date'];
-			$post_author	= CreateUser::author( $medialink , $author , $create_author );
+			$post_author	= CreateUser::author( $medialink, $author, $create_author );
 
 			/**
 			 * Post info
