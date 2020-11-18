@@ -101,8 +101,8 @@ final class ImportVideo
 		$args = $this->video_args();
 		$the_channel = $args['youtube_channel'];
 
-		// do the import delayed by 10 minutes in seconds 1200.
-		wp_queue()->push( new ChannelImport( $the_channel, $args ), 1200 );
+		// do the import delayed by 5 minutes in seconds 600.
+		wp_queue()->push( new ChannelImport( $the_channel, $args ), 600 );
 		echo UserFeedback::message( 'Import Has been added to the Queue ! ' ); // @codingStandardsIgnoreLine
 
 	}
