@@ -109,9 +109,18 @@ endif;
 		/**
 		 * Posts Author.
 		 */
+		$video_description = array(
+			1 => 'Yes, Include Video Description',
+			0 => 'No, Exclude Video Description',
+		);
+		echo $this->form()->select( $video_description, 'Import with Video Description' ); // @codingStandardsIgnoreLine
+
+		/**
+		 * Posts Author.
+		 */
 		$set_author = array(
-			0 => 'Current Author',
 			1 => 'YouTube Author',
+			0 => 'Current Author',
 		);
 		echo $this->form()->select( $set_author, 'Set Author' ); // @codingStandardsIgnoreLine
 

@@ -56,6 +56,7 @@ final class ImportVideo
 		$get_data['number_of_posts'] = absint( $this->form_data['number_of_posts'] );
 		$get_data['setcategory']     = absint( $this->form_data['select_category'] );
 		$get_data['setauthor']       = absint( $this->form_data['set_author'] );
+		$get_data['description']     = absint( $this->form_data['import_with_video_description'] );
 		$get_data['schedule']        = absint( $this->form_data['post_schedule'] );
 		$get_data['poststatus']      = sanitize_text_field( trim( $this->form_data['post_status'] ) );
 		$get_data['post_type']       = sanitize_text_field( trim( $this->form_data['set_post_type'] ) );
@@ -84,6 +85,7 @@ final class ImportVideo
 		$args['setcategory']     = $video_args['setcategory'];
 		$args['post_status']     = $video_args['poststatus'];
 		$args['post_schedule']   = $video_args['schedule'];
+		$args['set_description'] = $video_args['description'];
 		$args['hashtags']        = array( get_term( $args['setcategory'], 'category' )->name );
 
 		return $args;

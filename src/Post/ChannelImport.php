@@ -98,6 +98,9 @@ class ChannelImport extends Job
 			$args['post_status']   = $this->params['post_status'];
 			$args['hashtags']      = $this->params['hashtags'];
 			$args['create_author'] = $this->params['create_author'];
+			if ( $this->params['set_description'] ) {
+				$args['description'] = wp_kses_post( nl2br( YouTubeData::api()->video_description( $id ) ) );
+			}
 
 			$post_id = InsertPost::newpost( $vid, $args );
 			if ( $post_id ) {
