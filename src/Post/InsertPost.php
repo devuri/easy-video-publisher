@@ -128,7 +128,7 @@ class InsertPost
 			 */
 			$post_info = array(
 				'post_title'    => esc_html( $title . $username . $hashtags ),
-				'post_content'  => $embed . '<p>' . $description . '</p>',
+				'post_content'  => $embed . '<div class="evp-description">' . $description . '</div>',
 				'post_type'     => $post_type,
 				'post_status'   => $post_status,
 				'post_category' => array( $category ),
