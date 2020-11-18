@@ -112,7 +112,7 @@ class ChannelImport extends Job
 						'user_id'       => get_post_field( 'post_author', $post_id ),
 						'campaign_id'   => 0,
 						'video_id'      => $id,
-						'channel'       => $channel,
+						'channel'       => $this->the_channel,
 						'channel_title' => UrlDataAPI::get_data( $vid )->author_name,
 					)
 				);
