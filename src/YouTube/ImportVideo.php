@@ -8,37 +8,68 @@ use VideoPublisherlite\UserFeedback;
 /**
  * Youtube Channel Import
  */
-class ImportVideo
+final class ImportVideo
 {
+	/**
+	 * Data we need .
+	 *
+	 * @var array .
+	 */
+	private $form_data;
 
 	/**
-	 * Add_video import and post channel videos
+	 * AddNewVideo constructor.
 	 *
-	 * @param array $form_data brings in the $_POST data from the form submission.
+	 * @param array $data .
 	 */
-	public static function add_video( $form_data = array() ) {
+	public function __construct( $data = array() ) {
 
 		// make sure we have a valid key.
 		if ( ! YouTubeData::api()->has_key() ) {
-			echo UserFeedback::message( '<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error' ); // @codingStandardsIgnoreLine
+			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' ); // @codingStandardsIgnoreLine
 			return 0;
 		}
 
 		// if the channel is not set or empty return.
 		if ( empty( (array) get_option( 'evp_channels' ) ) ) {
-            echo UserFeedback::message( 'Please Add a YouTube Channel!', 'error' ); // @codingStandardsIgnoreLine
-            return 0;
-        }
+			echo UserFeedback::message( 'Please Add a YouTube Channel ! ', 'error' ); // @codingStandardsIgnoreLine
+			return 0;
+		}
+
+		// Get the form data.
+		$this->form_data = $data;
+
+	}
+
+	/**
+	 * Clean the data
+	 *
+	 * @return array items .
+	 */
+	private function get_data() {
 
 		/**
 		 * Get the channel to post from
 		 */
-		$channelId       = sanitize_text_field( trim( $form_data['youtube_channel'] ) );
-		$number_of_posts = absint( $form_data['number_of_posts'] );
-		$setcategory     = absint( $form_data['select_category'] );
-		$setauthor       = absint( $form_data['set_author'] );
-		$schedule        = absint( $form_data['post_schedule'] );
-		$poststatus      = sanitize_text_field( trim( $form_data['post_status'] ) );
+		$get_data = array();
+		$get_data['channel_id']      = sanitize_text_field( trim( $this->form_data['youtube_channel'] ) );
+		$get_data['number_of_posts'] = absint( $this->form_data['number_of_posts'] );
+		$get_data['setcategory']     = absint( $this->form_data['select_category'] );
+		$get_data['setauthor']       = absint( $this->form_data['set_author'] );
+		$get_data['description']     = absint( $this->form_data['import_with_video_description'] );
+		$get_data['schedule']        = absint( $this->form_data['post_schedule'] );
+		$get_data['poststatus']      = sanitize_text_field( trim( $this->form_data['post_status'] ) );
+		$get_data['post_type']       = sanitize_text_field( trim( $this->form_data['set_post_type'] ) );
+
+		return $get_data;
+	}
+
+	/**
+	 * Add_video import and post channel videos
+	 */
+	private function video_args() {
+
+		$video_args = $this->get_data();
 
 		/**
 		 * Set args to override $default
@@ -47,28 +78,33 @@ class ImportVideo
 		 */
 		$args = array();
 
-		// set post type.
-		if ( current_user_can( 'manage_options' ) ) {
-			$args['post_type'] = sanitize_text_field( trim( $form_data['set_post_type'] ) );
-		} else {
-			$args['post_type'] = 'post';
-		}
-
-		$args['create_author']   = $setauthor;
-		$args['youtube_channel'] = $channelId;
-		$args['number_of_posts'] = $number_of_posts;
-		$args['setcategory']     = $setcategory;
-		$args['post_status']     = $poststatus;
-		$args['post_schedule']   = $schedule;
+		$args['post_type']       = $video_args['post_type'];
+		$args['create_author']   = $video_args['setauthor'];
+		$args['youtube_channel'] = $video_args['channel_id'];
+		$args['number_of_posts'] = $video_args['number_of_posts'];
+		$args['setcategory']     = $video_args['setcategory'];
+		$args['post_status']     = $video_args['poststatus'];
+		$args['post_schedule']   = $video_args['schedule'];
+		$args['set_description'] = $video_args['description'];
 		$args['hashtags']        = array( get_term( $args['setcategory'], 'category' )->name );
 
-		/**
-		 * Creates the posts
-		 */
-		$ids = ChannelImport::publish( $channelId, $args );
+		return $args;
 
-		// get the posts ids.
-		return $ids;
+	}
+
+	/**
+	 * Creates the posts
+	 */
+	public function add_video() {
+
+		// get video args .
+		$args = $this->video_args();
+		$the_channel = $args['youtube_channel'];
+
+		// do the import delayed by 10 minutes in seconds 1200.
+		wp_queue()->push( new ChannelImport( $the_channel, $args ), 1200 );
+		echo UserFeedback::message( 'Import Has been added to the Queue ! ' ); // @codingStandardsIgnoreLine
+
 	}
 
 }

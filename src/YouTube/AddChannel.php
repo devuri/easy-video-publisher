@@ -16,7 +16,7 @@ class AddChannel
 
 		// make sure we have a valid key.
 		if ( ! YouTubeData::api()->has_key() ) {
-			echo UserFeedback::message( '<strong> Key is not Valid, Requires A Valid YouTube API Key !! </strong> ', 'error' );  // @codingStandardsIgnoreLine
+			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' );  // @codingStandardsIgnoreLine
 			return 0;
 		}
 
@@ -28,7 +28,7 @@ class AddChannel
 		// validate the channel id, try to get 10 videos.
 		$get_vidoes = YouTubeData::api()->channel_videos( $channel_id, 10 );
 		if ( false === $get_vidoes ) {
-			echo UserFeedback::message( '<strong> Channel ID is not Valid ! </strong> ', 'error' );  // @codingStandardsIgnoreLine
+			echo UserFeedback::message( ' Channel ID is not Valid ! ', 'error' );  // @codingStandardsIgnoreLine
 			return 0;
 		}
 
@@ -47,14 +47,14 @@ class AddChannel
 
 			// if channel_exists, let the user know.
 			if ( $channel_exists ) {
-				echo UserFeedback::message( '<strong>' . $channelname . '</strong> Channel was already Added !!!', 'error' );  // @codingStandardsIgnoreLine
+				echo UserFeedback::message( $channelname . ' Channel was already Added ! ', 'error' );  // @codingStandardsIgnoreLine
 			} else {
 				// add the new channel.
 				update_option( 'evp_channels', $update_channels );
-				echo UserFeedback::message( '<strong>' . $channelname . '</strong> Channel Added !!!');  // @codingStandardsIgnoreLine
+				echo UserFeedback::message( $channelname . ' Channel Added ! ');  // @codingStandardsIgnoreLine
 			}
 		} else {
-			echo UserFeedback::message( '<strong> No Channel ID to Add !! </strong> ', 'error' );  // @codingStandardsIgnoreLine
+			echo UserFeedback::message( 'No Channel ID to Add ! ', 'error' );  // @codingStandardsIgnoreLine
 		}
 	}
 }

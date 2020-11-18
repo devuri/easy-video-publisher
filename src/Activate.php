@@ -22,8 +22,20 @@ class Activate
 		}
 
 		if ( get_option( $option, false ) === false ) {
-			update_option( $option, array() );
+			$update = update_option( $option, array() );
+			return $update;
 		}
+	}
+
+	/**
+	 * Create options on activation
+	 * Install db tables for WP_Queue\Job
+	 *
+	 * @return false|void
+	 * @link https://github.com/deliciousbrains/wp-queue
+	 */
+	public static function create_queue_tables() {
+		wp_queue_install_tables();
 	}
 
 	/**
@@ -40,6 +52,8 @@ class Activate
 		self::make_option( 'evp_restricted_categories' );
 
 		VideosTable::create();
+
+		self::create_queue_tables();
 
 		do_action( 'evp_loaded' );
 	}
