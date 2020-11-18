@@ -66,6 +66,11 @@ class CreateUser
 	 */
 	public static function author( $medialink = null, $author = null, $create_author = false ) {
 
+		if ( is_null( $author ) ) {
+			$admin = get_user_by( 'email', get_option( 'admin_email' ) );
+			$author = $admin->ID;
+		}
+
 		// Make sure all is well with our data.
 		if ( ! property_exists( UrlDataAPI::get_data( $medialink ), 'title' ) ) {
 			return 0;

@@ -60,6 +60,7 @@ final class ImportVideo
 		$get_data['schedule']        = absint( $this->form_data['post_schedule'] );
 		$get_data['poststatus']      = sanitize_text_field( trim( $this->form_data['post_status'] ) );
 		$get_data['post_type']       = sanitize_text_field( trim( $this->form_data['set_post_type'] ) );
+		$get_data['author']          = get_current_user_id();
 
 		return $get_data;
 	}
