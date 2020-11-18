@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: youtube, youtube channel, YouTube embed, channel, post, thumbnail
 Requires at least: 4.0
 Tested up to: 5.5
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
