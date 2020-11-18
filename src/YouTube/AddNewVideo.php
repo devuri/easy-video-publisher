@@ -60,6 +60,7 @@ class AddNewVideo
 		$args['tags']        = sanitize_text_field( trim( $this->form_data['tags'] ) );
 		$args['description'] = wp_kses_post( nl2br( $this->form_data['post_description'] ) );
 		$args['hashtags']    = array( get_term( $args['category'], 'category' )->name );
+		$args['author']      = get_current_user_id();
 
 		/**
 		 * Make sure this is a youtube url.
