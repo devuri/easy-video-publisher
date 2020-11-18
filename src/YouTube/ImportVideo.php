@@ -87,6 +87,7 @@ final class ImportVideo
 		$args['post_status']     = $video_args['poststatus'];
 		$args['post_schedule']   = $video_args['schedule'];
 		$args['set_description'] = $video_args['description'];
+		$args['author']          = $video_args['author'];
 		$args['hashtags']        = array( get_term( $args['setcategory'], 'category' )->name );
 
 		return $args;
