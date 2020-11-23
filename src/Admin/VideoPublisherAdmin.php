@@ -2,9 +2,9 @@
 namespace VideoPublisherlite\Admin;
 
 use VideoPublisherlite\WPAdminPage\AdminPage;
-// use PluginAdminUI\AdminPage;
+// use PluginAdminUI\AdminPage.
 
-if ( ! defined('ABSPATH') ) exit; 
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 final class VideoPublisherAdmin extends AdminPage {
@@ -12,7 +12,7 @@ final class VideoPublisherAdmin extends AdminPage {
 	/**
 	 * The capability() for YouTube
 	 *
-	 * control access for the youtube video publisher.
+	 * Control access for the youtube video publisher.
 	 * uses WordPress capabilities, the EVP_ACCESS needs be defined in your wp-config.php file.
 	 * Example to give access to subscribers simply add "define( 'EVP_ACCESS', 'read' );"
 	 * in the wp-config.php file and subscribers will be able to access the youtube publisher.
@@ -21,34 +21,34 @@ final class VideoPublisherAdmin extends AdminPage {
 	 * @return string user capability.
 	 * @link https://wordpress.org/support/article/roles-and-capabilities/
 	 */
-	private static function capability(){
-	    if (defined('EVP_ACCESS')) {
-	      return EVP_ACCESS;
+	private static function capability() {
+	    if ( defined( 'EVP_ACCESS' ) ) {
+		    return EVP_ACCESS;
 	    } else {
-	      return 'manage_options';
+	    	return 'manage_options';
 	    }
 	}
 
   	/**
-  	 * check if this is pro
+  	 * Check if this is pro
   	 *
   	 * @return bool
   	 */
-	private static function is_pro(){
-	    $is_pro = function_exists('evp_addons') ? true : false;
-	    return $is_pro ;
+	private static function is_pro() {
+	    $is_pro = function_exists( 'evp_addons' ) ? true : false;
+	    return $is_pro;
 	}
 
   	/**
-  	 * get the pro addons
+  	 * Get the pro addons
   	 *
   	 * @return array if not pro return empy array
   	 */
-	private static function addons(){
+	private static function addons() {
 	    if ( self::is_pro() ) {
-	      $addons = (array) evp_addons();
+	      	$addons = (array) evp_addons();
 	    } else {
-	      $addons = array();
+	      	$addons = array();
 	    }
 	    return $addons;
 	}
@@ -58,10 +58,10 @@ final class VideoPublisherAdmin extends AdminPage {
   	 *
   	 * @return array
   	 */
-  	private static function admin_menu(){
+  	private static function admin_menu() {
     	$menu = array();
     	$menu['mcolor']       = '#0071A1';
-    	$menu['page_title']   = 'Easy Video Publisher '. self::pro();
+    	$menu['page_title']   = 'Easy Video Publisher ' . self::pro();
     	$menu['menu_title']   = 'Video Publisher';
     	$menu['capability']   = 'manage_options';
     	$menu['menu_slug']    = 'video-publisher';
@@ -73,11 +73,11 @@ final class VideoPublisherAdmin extends AdminPage {
   	}
 
   	/**
-  	 * pro badge
+  	 * Pro badge
   	 *
   	 * @return mixed
   	 */
-	private static function pro(){
+	private static function pro() {
 		if ( self::is_pro() ) {
 	  	return ' <span class="dashicons dashicons-awards pro"></span>';
 		}
@@ -85,25 +85,25 @@ final class VideoPublisherAdmin extends AdminPage {
 	}
 
   	/**
-  	 * array of submenu items
+  	 * Array of submenu items
   	 *
   	 * @return array
   	 */
-	public static function submenu(){
+	public static function submenu() {
 
 		$submenu = array();
 		$submenu[] = 'Settings';
 		$submenu[] = array(
-	      'name'        => 'YouTube',
-	      'capability'  => self::capability()
+			'name'       => 'YouTube',
+			'capability' => self::capability(),
 		);
 		$submenu[] = 'Channel Import';
 		$submenu[] = 'Add Channel';
 
-		// add submenu addons
+		// add submenu addons.
 		$submenu = array_merge( $submenu, self::addons() );
 
-		// continue submenu
+		// continue submenu.
 		$submenu[] = 'API Setup';
 		// $submenu[] = 'Extensions';
 		// $submenu[] = 'Getting Started';
@@ -112,11 +112,11 @@ final class VideoPublisherAdmin extends AdminPage {
 	}
 
   	/**
-  	 * admin description
+  	 * Admin description
   	 *
   	 * @return VideoPublisherAdmin
   	 */
-	public static function init(){
-		return new VideoPublisherAdmin(self::admin_menu(), self::submenu());
+	public static function init() {
+		return new VideoPublisherAdmin( self::admin_menu(), self::submenu() );
 	}
 }
