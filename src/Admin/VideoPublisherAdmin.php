@@ -14,6 +14,7 @@ final class VideoPublisherAdmin extends AdminPage {
 	 *
 	 * Control access for the youtube video publisher.
 	 * uses WordPress capabilities, the EVP_ACCESS needs be defined in your wp-config.php file.
+	 *
 	 * Example to give access to subscribers simply add "define( 'EVP_ACCESS', 'read' );"
 	 * in the wp-config.php file and subscribers will be able to access the youtube publisher.
 	 * default capability is "manage_options" for Administrators

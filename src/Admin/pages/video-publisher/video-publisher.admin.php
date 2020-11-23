@@ -40,12 +40,12 @@ if ( isset( $_POST['save_category_settings'] ) ) :
 	} else {
 
 		/**
-		 * get category ids
+		 * Get category ids
 		 */
 		$categories = array_keys( $_POST['category'] );
 		foreach ( $categories as $catkey => $val ) {
-			intval( $val );
-			$restricted_category[$catkey] = absint($val);
+			$val = (int) $val;
+			$restricted_category[ $catkey ] = absint( $val );
 		}
 
 		// update and provide feedback

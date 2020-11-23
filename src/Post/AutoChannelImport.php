@@ -45,7 +45,7 @@ class AutoChannelImport
 		 * get the channel to post from
 		 */
 		$channel 			= trim( $params['youtube_channel'] );
-		$number_of_posts	= intval( $params['number_of_posts'] );
+		$number_of_posts	= (int) $params['number_of_posts'];
 		$channel_videos		= YouTubeData::api()->channel_videos( $channel , $number_of_posts );
 
 		// create posts
