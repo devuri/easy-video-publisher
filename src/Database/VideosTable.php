@@ -6,6 +6,13 @@ final class VideosTable extends WPDb
 {
 
 	/**
+	 * DB Table version
+	 *
+	 * @var $version
+	 */
+	private $version;
+
+	/**
 	 * set the table name
 	 * @return string
 	 */
@@ -42,6 +49,56 @@ final class VideosTable extends WPDb
 			KEY created (created)
 		) $charset_collate";
 	}
+
+	/**
+	 * Migration update.
+	 */
+	public function maybe_migrate() {
+
+		if ( ! is_admin() ) {
+			return false;
+		}
+
+		if ( false === get_option( 'evp_version', false ) ) {
+			update_option( 'evp_version', '0.0.4' );
+		}
+
+		$this->do_migrate();
+	}
+
+	/**
+	 * Add new views
+	 *
+	 * @return void
+	 */
+	public function do_migrate() {
+
+		$this->version = get_option( 'evp_version', false );
+
+		if ( version_compare( $this->version, '3.5.4', '<' ) ) {
+			$this->v354_upgrade();
+			update_option( 'evp_version', '3.5.4' );
+		}
+
+	}
+
+	/**
+	 * Add new views
+	 *
+	 * @return bool $col true if column added successfully
+	 */
+	public function v354_upgrade() {
+
+ 		// be sure to include the file upgrade.php.
+ 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+ 		$table_name  = $this->table_name();
+ 		$column_name = 'video_views';
+ 		$create_ddl  = "ALTER TABLE {$table_name} ADD {$column_name} bigint(20) unsigned NOT NULL DEFAULT '0' AFTER video_id";
+
+ 		$col = maybe_add_column( $table_name, $column_name, $create_ddl );
+ 		return $col;
+ 	}
 
   	/**
   	 * create the table
