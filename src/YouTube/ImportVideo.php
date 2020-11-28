@@ -24,12 +24,6 @@ final class ImportVideo
 	 */
 	public function __construct( $data = array() ) {
 
-		// make sure we have a valid key.
-		if ( ! YouTubeData::api()->has_key() ) {
-			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' ); // @codingStandardsIgnoreLine
-			return false;
-		}
-
 		// Get the form data.
 		$this->form_data = $data;
 
@@ -66,6 +60,18 @@ final class ImportVideo
 	 * Creates the posts
 	 */
 	public function add_video() {
+
+		// make sure we have a valid key.
+		if ( ! YouTubeData::api()->has_key() ) {
+			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' ); // @codingStandardsIgnoreLine
+			return false;
+		}
+
+		// make sure we have added channels .
+		if ( ! get_option( 'evp_channels', false ) ) :
+			echo UserFeedback::message( 'Please Add at least One Channel', 'error' ); // @codingStandardsIgnoreLine
+			return false;
+		endif;
 
 		// get video args .
 		$args = $this->video_args();
