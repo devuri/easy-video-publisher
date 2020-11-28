@@ -16,6 +16,18 @@ class AddKey
 	 */
 	public static function new_apikey( $youtube_api_key = null ) {
 
+		$youtube_api_key = trim( $youtube_api_key );
+
+		if ( empty( $youtube_api_key ) ) {
+			echo UserFeedback::message( 'The Key: ' . $youtube_api_key . ' is NOT A Valid Key !! ', 'error' );
+			return false;
+		}
+
+		// make sure we have array.
+		if ( false === get_option( 'evp_youtube_api', false ) ) {
+			update_option( 'evp_youtube_api', array() );
+		}
+
 		if ( is_null( $youtube_api_key ) ) {
 			$is_key_valid = false;
 		} else {

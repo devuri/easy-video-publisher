@@ -17,12 +17,27 @@ class AddChannel
 		// make sure we have a valid key.
 		if ( ! YouTubeData::api()->has_key() ) {
 			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' );  // @codingStandardsIgnoreLine
-			return 0;
+			return false;
+		}
+
+		// channel ID.
+		$channel_id = trim( $channel_id );
+
+		// validate that the channel works.
+		if ( ! YouTubeData::api()->channel_videos( $channel_id ) ) {
+			echo UserFeedback::message( 'Channel ID is Not Valid! ', 'error' );  // @codingStandardsIgnoreLine
+			return false;
+		}
+
+		// make sure we have array option.
+		if ( false === get_option( 'evp_channels', false ) ) {
+			update_option( 'evp_channels', array() );
 		}
 
 		// make sure ID is set.
 		if ( is_null( $channel_id ) ) {
 			$channel_id = false;
+			return false;
 		}
 
 		// validate the channel id, try to get 10 videos.
