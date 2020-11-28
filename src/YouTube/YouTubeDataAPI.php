@@ -99,9 +99,9 @@ class YouTubeDataAPI extends Youtube
 	 */
 	public function has_key() {
 
-		$apikey = (array) get_option( 'evp_youtube_api' );
+		$apikey = get_option( 'evp_youtube_api', false );
 
-			if ( ! $apikey ) :
+			if ( false === $apikey || empty( $apikey ) ) :
 				return false;
 			endif;
 
