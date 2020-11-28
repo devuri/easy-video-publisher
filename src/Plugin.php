@@ -4,6 +4,7 @@ namespace VideoPublisherlite;
 
 use VideoPublisherlite\Traits\Singleton;
 use VideoPublisherlite\Admin\VideoPublisherAdmin;
+use VideoPublisherlite\Database\VideosTable;
 
 class Plugin
 {
@@ -15,7 +16,7 @@ class Plugin
 	 */
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'admin_pages' ) );
-		add_action( 'plugins_loaded', array( $this, 'queue_cron' ) );
+		add_action( 'plugins_loaded', array( $this, 'queue' ) );
 	}
 
   	/**
@@ -35,7 +36,7 @@ class Plugin
 	 * @return void
 	 * @link https://github.com/deliciousbrains/wp-queue
 	 */
-	public function queue_cron() {
+	public function queue() {
 		wp_queue()->cron();
 	}
 

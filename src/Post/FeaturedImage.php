@@ -25,7 +25,7 @@ class FeaturedImage
 
 		// if all is not ok give us some feedback.
  		if ( 200 !== $get_image['response']['code'] ) {
-			wp_die( UserFeedback::message( 'I cant download the Image to set featured Image !!!', 'error' ) ); // @codingStandardsIgnoreLine
+			wp_die( UserFeedback::message( 'class FeaturedImage : I cant download the Image to set featured Image !!!', 'error' ) ); // @codingStandardsIgnoreLine
  		}
 
 		// add uniqid() to avoid replacing the image.

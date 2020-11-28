@@ -150,7 +150,7 @@ class ChannelImport extends Job
 		 * Get the channel to post from
 		 */
 		$channel          = trim( $this->params['youtube_channel'] );
-		$number_of_posts  = intval( $this->params['number_of_posts'] );
+		$number_of_posts  = (int) $this->params['number_of_posts'];
 		$channel_videos   = YouTubeData::api()->channel_videos( $channel, $number_of_posts );
 
 		// no videos to import.

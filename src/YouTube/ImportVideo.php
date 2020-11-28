@@ -27,13 +27,7 @@ final class ImportVideo
 		// make sure we have a valid key.
 		if ( ! YouTubeData::api()->has_key() ) {
 			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' ); // @codingStandardsIgnoreLine
-			return 0;
-		}
-
-		// if the channel is not set or empty return.
-		if ( empty( (array) get_option( 'evp_channels' ) ) ) {
-			echo UserFeedback::message( 'Please Add a YouTube Channel ! ', 'error' ); // @codingStandardsIgnoreLine
-			return 0;
+			return false;
 		}
 
 		// Get the form data.
@@ -42,35 +36,9 @@ final class ImportVideo
 	}
 
 	/**
-	 * Clean the data
-	 *
-	 * @return array items .
-	 */
-	private function get_data() {
-
-		/**
-		 * Get the channel to post from
-		 */
-		$get_data = array();
-		$get_data['channel_id']      = sanitize_text_field( trim( $this->form_data['youtube_channel'] ) );
-		$get_data['number_of_posts'] = absint( $this->form_data['number_of_posts'] );
-		$get_data['setcategory']     = absint( $this->form_data['select_category'] );
-		$get_data['setauthor']       = absint( $this->form_data['set_author'] );
-		$get_data['description']     = absint( $this->form_data['import_with_video_description'] );
-		$get_data['schedule']        = absint( $this->form_data['post_schedule'] );
-		$get_data['poststatus']      = sanitize_text_field( trim( $this->form_data['post_status'] ) );
-		$get_data['post_type']       = sanitize_text_field( trim( $this->form_data['set_post_type'] ) );
-		$get_data['author']          = get_current_user_id();
-
-		return $get_data;
-	}
-
-	/**
 	 * Add_video import and post channel videos
 	 */
 	private function video_args() {
-
-		$video_args = $this->get_data();
 
 		/**
 		 * Set args to override $default
@@ -79,14 +47,15 @@ final class ImportVideo
 		 */
 		$args = array();
 
-		$args['post_type']       = $video_args['post_type'];
-		$args['create_author']   = $video_args['setauthor'];
-		$args['youtube_channel'] = $video_args['channel_id'];
-		$args['number_of_posts'] = $video_args['number_of_posts'];
-		$args['setcategory']     = $video_args['setcategory'];
-		$args['post_status']     = $video_args['poststatus'];
-		$args['post_schedule']   = $video_args['schedule'];
-		$args['set_description'] = $video_args['description'];
+		$args['post_type']       = sanitize_text_field( trim( $this->form_data['set_post_type'] ) );
+		$args['create_author']   = absint( $this->form_data['set_author'] );
+		$args['youtube_channel'] = sanitize_text_field( trim( $this->form_data['youtube_channel'] ) );
+		$args['number_of_posts'] = absint( $this->form_data['number_of_posts'] );
+		$args['setcategory']     = absint( $this->form_data['select_category'] );
+		$args['post_status']     = sanitize_text_field( trim( $this->form_data['post_status'] ) );
+		$args['post_schedule']   = absint( $this->form_data['post_schedule'] );
+		$args['set_description'] = absint( $this->form_data['import_with_video_description'] );
+		$args['author']          = get_current_user_id();
 		$args['hashtags']        = array( get_term( $args['setcategory'], 'category' )->name );
 
 		return $args;

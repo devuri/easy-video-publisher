@@ -75,36 +75,63 @@ class YoutubeVideoInfo
 	 * @return array video data
 	 */
 	public static function video_info( $v = null, $limit = 1 ) {
+
 		/**
 		 * Get vid info for array
 		 */
 		if ( is_array( $v ) ) {
-
-			$i = 0;
-			foreach ( $v as $key => $v ) {
-				$vid[ $key ] = array(
-					'id'          => $v,
-					'title'       => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->title,
-					'thumbnail'   => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->thumbnail_url,
-					'author_name' => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->author_name,
-					'author_url'  => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->author_url,
-				);
-
-				// stop if we reach the limit.
-				if ( ++$i === $limit ) break;
-			}
-			return $vid;
-
+			$data = self::videos_data( $v, $limit );
+			return $data;
 		} else {
-			$vid = array(
+			$data = self::vid_data( $v );
+			return $data;
+		}
+	}
+
+	/**
+	 * Get video data for a single video using WP_oEmbed
+	 *
+	 * @param mixed $v video id.
+	 *
+	 * @return array video data
+	 */
+	public static function vid_data( $v = null ) {
+
+		$vid = array(
+			'id'          => $v,
+			'title'       => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->title,
+			'thumbnail'   => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->thumbnail_url,
+			'author_name' => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->author_name,
+			'author_url'  => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->author_url,
+		);
+		return $vid;
+	}
+
+	/**
+	 * Get info for a list of videos using WP_oEmbed
+	 *
+	 * @param  mixed   $v array of video ids.
+	 * @param  integer $limit how many videos.
+	 *
+	 * @return array video data
+	 */
+	public static function videos_data( $v = null, $limit = 1 ) {
+
+		$i = 0;
+		foreach ( $v as $key => $v ) {
+
+			$videos[ $key ] = array(
 				'id'          => $v,
 				'title'       => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->title,
 				'thumbnail'   => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->thumbnail_url,
 				'author_name' => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->author_name,
 				'author_url'  => UrlDataAPI::get_data( 'https://www.youtube.com/watch?v=' . $v )->author_url,
 			);
-			return $vid;
+
+			// stop if we reach the limit.
+			if ( ++$i === $limit ) break;
 		}
+		return $videos;
 	}
 
 }

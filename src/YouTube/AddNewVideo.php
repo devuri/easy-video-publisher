@@ -56,7 +56,7 @@ class AddNewVideo
 
 		$args['embed']       = GetBlock::youtube( $vid );
 		$args['thumbnail']   = YoutubeVideoInfo::video_thumbnail( $vid );
-		$args['category']    = intval( trim( $this->form_data['select_category'] ) );
+		$args['category']    = (int) trim( $this->form_data['select_category'] );
 		$args['tags']        = sanitize_text_field( trim( $this->form_data['tags'] ) );
 		$args['description'] = wp_kses_post( nl2br( $this->form_data['post_description'] ) );
 		$args['hashtags']    = array( get_term( $args['category'], 'category' )->name );
