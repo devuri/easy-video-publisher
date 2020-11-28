@@ -13,10 +13,23 @@ final class VideosTable extends WPDb
 	private $version;
 
 	/**
+	 * [__construct description]
+	 */
+	public function __construct() {
+
+		if ( false === get_option( 'evp_version', false ) ) {
+			update_option( 'evp_version', '0.0.1' );
+		}
+
+		$this->version = get_option( 'evp_version', false );
+
+	}
+
+	/**
 	 * set the table name
 	 * @return string
 	 */
-	protected function table_name(){
+	protected function table_name() {
 		return $this->database()->prefix . "evp_videos";
 	}
 
@@ -59,11 +72,19 @@ final class VideosTable extends WPDb
 			return false;
 		}
 
-		if ( false === get_option( 'evp_version', false ) ) {
-			update_option( 'evp_version', '0.0.4' );
-		}
-
 		$this->do_migrate();
+	}
+
+	/**
+	 * Checks table version
+	 *
+	 * @return bool
+	 */
+	public function update_available() {
+		if ( version_compare( $this->version, '3.5.4', '<' ) ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -73,9 +94,7 @@ final class VideosTable extends WPDb
 	 */
 	public function do_migrate() {
 
-		$this->version = get_option( 'evp_version', false );
-
-		if ( version_compare( $this->version, '3.5.4', '<' ) ) {
+		if ( $this->update_available() ) {
 			$this->v354_upgrade();
 			update_option( 'evp_version', '3.5.4' );
 		}
@@ -153,11 +172,11 @@ final class VideosTable extends WPDb
 	/**
 	 * Check the database if the video id already exists.
 	 *
-	 * @param null $id
+	 * @param null $id .
 	 * @return bool
 	 */
 	public static function video_exists( $id = null ) {
-		$videos = GetData::get_result( 'video_id' );
+		$videos = GetData::results( 'video_id' );
 
 		if ( ! is_array( $videos ) ) {
 			return false;

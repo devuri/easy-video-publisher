@@ -22,6 +22,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	/**
 	 * Delete the plugin options
 	 */
+	delete_option( 'evp_version' );
 	delete_option( 'evp_author' );
 	delete_option( 'evp_youtube_api' );
 	delete_option( 'evp_channels' );

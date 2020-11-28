@@ -11,7 +11,7 @@ class GetData
 	 * @link https://developer.wordpress.org/reference/classes/wpdb/
 	 * @return object
 	 */
-	protected static function database() {
+	protected static function db() {
 		global $wpdb;
 		return $wpdb;
 	}
@@ -22,19 +22,21 @@ class GetData
 	 * @return string
 	 */
 	protected static function table_name() {
-		return self::database()->prefix . 'evp_videos';
+		return self::db()->prefix . 'evp_videos';
 	}
 
   	/**
   	 * Get a list of results
   	 *
-  	 * @param string $data .
+  	 * @param string $data the column.
+  	 * @param string $limit results limit.
   	 * @return false returns results as a keyed array
   	 */
-	public static function get_result( $data = 'channel_title' ) {
+	public static function results( $data = 'channel_title' ) {
 
 		$tablename = self::table_name();
-		$results = self::database()->get_results( "SELECT DISTINCT $data FROM $tablename", 'ARRAY_A' );
+
+		$results = self::db()->get_results( "SELECT DISTINCT $data FROM $tablename", 'ARRAY_A' );
 
 		if ( ! empty( $results ) && is_array( $results ) ) {
 			foreach ( $results as $entry ) {
@@ -79,8 +81,8 @@ class GetData
 		 *
 		 * @link https://developer.wordpress.org/reference/classes/wpdb/#placeholders
 		 */
-		$data = self::database()->get_results(
-			self::database()->prepare( "SELECT * from $table WHERE channel =  %s LIMIT %d OFFSET %d", $channel, $args['limit'], $args['start'] ),
+		$data = self::db()->get_results(
+			self::db()->prepare( "SELECT * from $table WHERE channel =  %s LIMIT %d OFFSET %d", $channel, $args['limit'], $args['start'] ),
 			$args['output']
 		);
 		return $data;
