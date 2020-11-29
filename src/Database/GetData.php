@@ -29,7 +29,6 @@ class GetData
   	 * Get a list of results
   	 *
   	 * @param string $data the column.
-  	 * @param string $limit results limit.
   	 * @return false returns results as a keyed array
   	 */
 	public static function results( $data = 'channel_title' ) {
