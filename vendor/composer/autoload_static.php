@@ -170,7 +170,6 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'UpdateHelper\\UpdateHelperInterface' => __DIR__ . '/..' . '/kylekatarnls/update-helper/src/UpdateHelper/UpdateHelperInterface.php',
         'VideoPublisherlite\\Activate' => __DIR__ . '/../..' . '/src/Activate.php',
         'VideoPublisherlite\\Admin\\VideoPublisherAdmin' => __DIR__ . '/../..' . '/src/Admin/VideoPublisherAdmin.php',
-        'VideoPublisherlite\\Data\\ChannelVideo' => __DIR__ . '/../..' . '/src/Data/ChannelVideo.php',
         'VideoPublisherlite\\Database\\GetData' => __DIR__ . '/../..' . '/src/Database/GetData.php',
         'VideoPublisherlite\\Database\\VideosTable' => __DIR__ . '/../..' . '/src/Database/VideosTable.php',
         'VideoPublisherlite\\Database\\WPDb' => __DIR__ . '/../..' . '/src/Database/WPDb.php',

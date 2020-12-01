@@ -102,7 +102,6 @@ return array(
     'UpdateHelper\\UpdateHelperInterface' => $vendorDir . '/kylekatarnls/update-helper/src/UpdateHelper/UpdateHelperInterface.php',
     'VideoPublisherlite\\Activate' => $baseDir . '/src/Activate.php',
     'VideoPublisherlite\\Admin\\VideoPublisherAdmin' => $baseDir . '/src/Admin/VideoPublisherAdmin.php',
-    'VideoPublisherlite\\Data\\ChannelVideo' => $baseDir . '/src/Data/ChannelVideo.php',
     'VideoPublisherlite\\Database\\GetData' => $baseDir . '/src/Database/GetData.php',
     'VideoPublisherlite\\Database\\VideosTable' => $baseDir . '/src/Database/VideosTable.php',
     'VideoPublisherlite\\Database\\WPDb' => $baseDir . '/src/Database/WPDb.php',
