@@ -40,7 +40,8 @@ class YouTubeData
 
 	  	// get the channels.
 	  	$evp_channels = get_option( 'evp_channels', array() );
-	  	asort( $evp_channels );
+
+		asort( $evp_channels );
 
 	  		$chanlist = '<h4>Channels:</h4>';
 	  		$chanlist .= '<ul style="list-style: decimal;margin-left: 2em;">';
