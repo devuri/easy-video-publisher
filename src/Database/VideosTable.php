@@ -173,7 +173,7 @@ final class VideosTable extends WPDb
 	 * @return bool
 	 */
 	public static function video_exists( $id = null ) {
-		$videos = GetData::results( 'video_id' );
+		$videos = GetData::distinct_results( 'video_id' ); 
 
 		if ( ! is_array( $videos ) ) {
 			return false;

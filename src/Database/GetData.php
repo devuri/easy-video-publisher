@@ -25,6 +25,29 @@ class GetData
 		return self::db()->prefix . 'evp_videos';
 	}
 
+	/**
+  	 * Get a list of results
+  	 *
+  	 * @param string $data the column.
+  	 * @return false returns results as a keyed array
+  	 */
+	public static function distinct_results( $data = 'channel_title' ) {
+
+		$tablename = self::table_name();
+
+		$results = self::db()->get_results( "SELECT DISTINCT $data FROM $tablename", 'ARRAY_A' );
+
+		if ( ! empty( $results ) && is_array( $results ) ) {
+			foreach ( $results as $entry ) {
+				$key = $entry[ $data ];
+				$result_list[ $key ] = $key;
+			}
+		} else {
+			return false;
+		}
+		return $result_list;
+	}
+
   	/**
   	 * Get a list of results
   	 *
@@ -35,7 +58,7 @@ class GetData
 
 		$tablename = self::table_name();
 
-		$results = self::db()->get_results( "SELECT DISTINCT $data FROM $tablename", 'ARRAY_A' );
+		$results = self::db()->get_results( "SELECT $data FROM $tablename", 'ARRAY_A' );
 
 		if ( ! empty( $results ) && is_array( $results ) ) {
 			foreach ( $results as $entry ) {
