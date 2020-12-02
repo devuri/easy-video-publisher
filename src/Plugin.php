@@ -37,7 +37,7 @@ class Plugin
 	 * @link https://github.com/deliciousbrains/wp-queue
 	 */
 	public function queue() {
-		wp_queue()->cron();
+		wp_queue()->cron( 3 );
 	}
 
 }
