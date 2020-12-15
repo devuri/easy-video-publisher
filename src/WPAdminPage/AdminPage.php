@@ -235,7 +235,9 @@ if (!defined('ABSPATH')) exit;
      * @return [type] [description]
      */
     public function admin_gui_version(){
-      return self::ADMINVERSION;
+		if ( ( current_user_can( 'manage_options') ) {
+			return self::ADMINVERSION;
+		}
     }
 
     /**
