@@ -51,6 +51,7 @@ final class VideosTable extends WPDb
 			user_id bigint(20) unsigned NOT NULL DEFAULT '0',
 			campaign_id bigint(20) unsigned NOT NULL DEFAULT '0',
 			video_id varchar(30),
+			video_views bigint(20) unsigned NOT NULL DEFAULT '0',
 			channel varchar(50),
 			channel_title varchar(200),
 			created datetime NOT NULL default '0000-00-00 00:00:00',
@@ -173,7 +174,7 @@ final class VideosTable extends WPDb
 	 * @return bool
 	 */
 	public static function video_exists( $id = null ) {
-		$videos = GetData::distinct_results( 'video_id' ); 
+		$videos = GetData::distinct_results( 'video_id' );
 
 		if ( ! is_array( $videos ) ) {
 			return false;
