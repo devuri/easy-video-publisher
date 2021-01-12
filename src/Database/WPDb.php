@@ -2,8 +2,12 @@
 
 namespace VideoPublisherlite\Database;
 
+use  VideoPublisherlite\Traits\Database;
+
 abstract class WPDb
 {
+
+	use Database;
 
 	/**
 	 * Setup WordPress database abstraction.
@@ -12,8 +16,7 @@ abstract class WPDb
 	 * @return object
 	 */
 	protected function database() {
-		global $wpdb;
-		return $wpdb;
+		return $this->db();
 	}
 
 	/**
