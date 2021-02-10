@@ -62,10 +62,10 @@ final class ImportVideo
 	public function add_video() {
 
 		// make sure we have a valid key.
-		if ( ! YouTubeData::api()->has_key() ) {
+		if ( ! YouTubeData::api()->has_key() ) :
 			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' ); // @codingStandardsIgnoreLine
 			return false;
-		}
+		endif;
 
 		// make sure we have added channels .
 		if ( ! get_option( 'evp_channels', false ) ) :
