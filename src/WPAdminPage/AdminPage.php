@@ -384,7 +384,7 @@ abstract class AdminPage {
 				$file_location_error .= '<span class="alert-danger">' . $adminfile . '</span> location of file was not found ';
 			}
 				// User feedback.
-				echo $file_location_error; 
+				echo $file_location_error;   // @codingStandardsIgnoreLine
 		}
 	}
 
@@ -442,13 +442,25 @@ abstract class AdminPage {
 
 				// Build out the sub menu items.
 				if ( $submenu_slug === $this->page_title() ) {
-					echo '<a href="' . admin_url( '/admin.php?page=' . strtolower( $submenu_slug ) . '') . '" style="color:' . $this->mcolor . '" class="wll-admin-tab nav-tab-active">' . ucwords( $this->submenu_val( $submenu_item, 'name' ) ) . '</a>';
+					echo '<a href="' . $this->make_admin_url( $submenu_slug ) . '" style="color:' . $this->mcolor . '" class="wll-admin-tab nav-tab-active">' . ucwords( $this->submenu_val( $submenu_item, 'name' ) ) . '</a>';
 				} else {
-					echo '<a href="' . admin_url( '/admin.php?page=' . strtolower( $submenu_slug ) . '') . '" style="color:' . $this->mcolor . '" class="wll-admin-tab">' . ucwords( $this->submenu_val( $submenu_item, 'name' ) ) . '</a>';
+					echo '<a href="' . $this->make_admin_url( $submenu_slug ) . '" style="color:' . $this->mcolor . '" class="wll-admin-tab">' . ucwords( $this->submenu_val( $submenu_item, 'name' ) ) . '</a>';
 				}
 			}
 		}
 	  	echo '</h2>';
+	}
+
+	/**
+	 * Build the admin url.
+	 *
+	 * @param string $slug .
+	 * @return string .
+	 */
+	public function make_admin_url( $slug ) {
+		$slug = strtolower( $slug );
+		$admin_url = admin_url( '/admin.php?page=' . $slug . ''); // @codingStandardsIgnoreLine
+		return esc_url( $admin_url );
 	}
 
 	/**
