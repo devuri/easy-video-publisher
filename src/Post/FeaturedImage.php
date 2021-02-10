@@ -16,7 +16,7 @@ class FeaturedImage
 	 * @param string $post_title title of the post.
 	 * @return int   $attach_id the attachment id.
 	 */
-	public static function setfeatured_image( $thumbnail, $post_id, $post_title ) {
+	public static function setfeatured_image( $thumbnail, $post_id, $post_title ) : int {
 
 		// lets make sure all is well.
 		$image_url = $thumbnail;

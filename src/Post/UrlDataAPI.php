@@ -26,8 +26,8 @@ class UrlDataAPI
 		}
 
 		$o_embed = new \WP_oEmbed();
-		$data = $o_embed->get_data( $url );
-		return $data;
+		return $o_embed->get_data( $url );
+
 	}
 
 	/**

@@ -42,7 +42,6 @@ class YouTubeDataAPI extends Youtube
 	 * Initiate the API
 	 * $youtube = new Youtube(array('key' => 'KEY HERE')).
 	 *
-	 * @param array $params ..
 	 * @throws \Exception ..
 	 * @link https://github.com/madcoda/php-youtube-api
 	 */
@@ -186,11 +185,16 @@ class YouTubeDataAPI extends Youtube
 	/**
 	 * Get video description
 	 *
-	 * @param  string $videoId the video ID.
+	 * @param  string $video_id the video ID.
 	 * @return string
 	 */
-	public function video_description( $videoId = '' ) {
-		$description = $this->getVideoInfo( $videoId )->snippet->description;
+	public function video_description( $video_id = null ) {
+
+		if ( is_null( $video_id ) || empty( $video_id ) ) {
+			return false;
+		}
+
+		$description = $this->getVideoInfo( $video_id )->snippet->description;
 		return $description;
 	}
 

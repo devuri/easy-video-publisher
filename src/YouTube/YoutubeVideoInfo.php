@@ -14,7 +14,7 @@ class YoutubeVideoInfo
 	 * @param string $video_url the video url.
 	 * @return mixed
 	 */
-	public static function video_id( $video_url = null ) {
+	public static function video_id( $video_url = null ) : string {
 
 		// check if empty.
 		if ( empty( $video_url ) ) {
@@ -39,7 +39,7 @@ class YoutubeVideoInfo
 	 * @param  string $video_url the video url.
 	 * @return string
 	 */
-	public static function video_thumbnail( $video_url = null ) {
+	public static function video_thumbnail( $video_url = null ) : string {
 
 		// get the video id.
 		$vid_id = self::video_id( $video_url );

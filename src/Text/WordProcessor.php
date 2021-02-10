@@ -16,7 +16,7 @@ class WordProcessor
   	 * @return string      $result .
   	 * @link https://stackoverflow.com/questions/16750311/php-in-array-or-array-search-not-working
   	 */
-	private static function text_search( $find = null, $text = array() ) {
+	private static function text_search( $find = null, $text = array() ) : string {
 		$search = array_search( $find, $text, true ) !== false;
 		if ( $search ) {
 			$search = array_search( $find, $text, true );
@@ -31,7 +31,7 @@ class WordProcessor
 	 * @param  string $text .
 	 * @return array  $text .
 	 */
-	public static function text_to_array( $text = null ) {
+	public static function text_to_array( $text = null ) : array {
 
 		// clean up and remove unwanted elements.
 		$text = strtolower( $text );
@@ -54,7 +54,7 @@ class WordProcessor
  	 * @param string $find .
  	 * @return array
  	 */
-	public static function find_word( $text = null, $find = null ) {
+	public static function find_word( $text = null, $find = null ) : array {
 
 		$find = strtolower( $find );
 

@@ -11,7 +11,6 @@ class AddKey
 	 * Adds New API key if its valid.
 	 *
 	 * @param string $youtube_api_key api key.
-	 * @return void
 	 * @throws \Exception ..
 	 */
 	public static function new_apikey( $youtube_api_key = null ) {
@@ -19,7 +18,7 @@ class AddKey
 		$youtube_api_key = trim( $youtube_api_key );
 
 		if ( empty( $youtube_api_key ) ) {
-			echo UserFeedback::message( 'The Key: ' . $youtube_api_key . ' is NOT A Valid Key !! ', 'error' );
+			echo UserFeedback::message( 'The Key: ' . $youtube_api_key . ' is NOT A Valid Key !! ', 'error' );  // @codingStandardsIgnoreLine
 			return false;
 		}
 

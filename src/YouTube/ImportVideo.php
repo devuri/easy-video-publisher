@@ -32,7 +32,7 @@ final class ImportVideo
 	/**
 	 * Add_video import and post channel videos
 	 */
-	private function video_args() {
+	private function video_args() : array {
 
 		/**
 		 * Set args to override $default
@@ -62,10 +62,10 @@ final class ImportVideo
 	public function add_video() {
 
 		// make sure we have a valid key.
-		if ( ! YouTubeData::api()->has_key() ) {
+		if ( ! YouTubeData::api()->has_key() ) :
 			echo UserFeedback::message( 'Key is not Valid, Requires A Valid YouTube API Key ! ', 'error' ); // @codingStandardsIgnoreLine
 			return false;
-		}
+		endif;
 
 		// make sure we have added channels .
 		if ( ! get_option( 'evp_channels', false ) ) :
@@ -77,8 +77,8 @@ final class ImportVideo
 		$args = $this->video_args();
 		$the_channel = $args['youtube_channel'];
 
-		// do the import delayed by 5 minutes in seconds 600.
-		wp_queue()->push( new ChannelImport( $the_channel, $args ), 600 );
+		// do the import delayed by 5 minutes in seconds 300.
+		wp_queue()->push( new ChannelImport( $the_channel, $args ), 300 );
 		echo UserFeedback::message( 'Import Has been added to the Queue ! ' ); // @codingStandardsIgnoreLine
 
 	}

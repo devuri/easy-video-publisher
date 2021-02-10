@@ -5,38 +5,37 @@ use VideoPublisherlite\Form\CategoryList;
 use VideoPublisherlite\Form\InputField;
 use VideoPublisherlite\Database\VideosTable;
 
-if ( ! defined('ABSPATH') ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 		/**
 		 * CSS for the loader
 		 */
 		FormLoader::css_style(
 			array(
-				'size' 				=> '20px',
-				'padding' 			=> '0px',
-				'padding-bottom'	=> '1em',
+				'size'           => '20px',
+				'padding'        => '0px',
+				'padding-bottom' => '1em',
 			)
 		);
 
 
 /**
  * Process the data
- *
  */
 if ( isset( $_POST['save_category_settings'] ) ) :
 
-	if ( ! $this->form()->verify_nonce()  ) {
-		wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
+	if ( ! $this->form()->verify_nonce() ) {
+		wp_die($this->form()->user_feedback( 'Verification Failed !!!', 'error' ) );
 	}
+
 	/**
 	 * Make sure this is set if not load empty array
-	 * @var [type]
 	 */
 	if ( ! isset( $_POST['category'] ) ) {
 
-		// update with empty array
+		// update with empty array.
 		$restricted_category = array();
-		update_option( 'evp_restricted_categories' , $restricted_category );
+		update_option( 'evp_restricted_categories', $restricted_category );
 
 	} else {
 
@@ -49,15 +48,15 @@ if ( isset( $_POST['save_category_settings'] ) ) :
 			$restricted_category[ $catkey ] = absint( $val );
 		}
 
-		// update and provide feedback
-	  update_option('evp_restricted_categories', $restricted_category );
+		// update and provide feedback.
+	  	update_option( 'evp_restricted_categories', $restricted_category );
 	}
 
 endif;
 
-	// section title
+	// section title.
 	$arg['loader'] = true;
-	InputField::section_title('Video Publisher Settings', $arg );
+	InputField::section_title( 'Video Publisher Settings', $arg );
 
 	/**
 	 * Update Videos Table
@@ -65,7 +64,7 @@ endif;
 	if ( isset( $_POST['update_videos_table'] ) ) :
 
 		if ( ! $this->form()->verify_nonce()  ) {
-			wp_die($this->form()->user_feedback('Verification Failed !!!', 'error'));
+			wp_die( $this->form()->user_feedback( 'Verification Failed !!!', 'error') );
 		}
 
 		( new VideosTable() )->maybe_migrate();
@@ -78,7 +77,7 @@ endif;
 <div id="yt-importform" class="notice-warning notice-alt notice-large">
 	<h3 class="notice-title">Update Available</h3>
 	<p>
-		<strong>There is a new version update available for the videos table...</strong>
+		<strong>There is a new version update available for the videos data table!</strong>
 	<form action="" method="POST"	enctype="multipart/form-data">
 		<?php $this->form()->nonce(); ?>
 		<input name="update_videos_table" id="update_videos_table" type="submit" class="button" value="Update Table Now">
@@ -91,18 +90,27 @@ endif;
 		<small>
 			Restricted for other users that have access to the Youtube Video Publisher.
 		</small>
-			<form action="" method="POST"	enctype="multipart/form-data"><?php
-			//var_dump(get_option('evp_restricted_categories'));
-			echo $this->form()->table('open');
-			echo '<th><label for="category-list">Restrict Categories</label></th>';
-			echo '<td>';
-			echo CategoryList::checkbox();
-			echo '</td>';
-			echo $this->form()->table('close');
-			$this->form()->nonce();
-			echo '<br/>';
-			echo $this->form()->submit_button('Update Restricted Categories', 'primary large', 'save_category_settings');
-		?></form>
+			<form action="" method="POST"	enctype="multipart/form-data">
+				<?php
+					echo $this->form()->table('open');
+
+					echo '<th><label for="category-list">Restrict Categories</label></th>';
+
+					echo '<td>';
+
+					echo CategoryList::checkbox();
+
+					echo '</td>';
+
+					echo $this->form()->table('close');
+
+					$this->form()->nonce();
+
+					echo '<br/>';
+
+					echo $this->form()->submit_button( 'Update Restricted Categories', 'primary large', 'save_category_settings');
+				?>
+		</form>
 	</div><!--frmwrap-->
 <!-- CategoryList -->
 <br/><hr/>

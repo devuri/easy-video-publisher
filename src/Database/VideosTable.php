@@ -26,30 +26,32 @@ final class VideosTable extends WPDb
 	}
 
 	/**
-	 * set the table name
+	 * Set the table name
+	 *
 	 * @return string
 	 */
 	protected function table_name() {
-		return $this->database()->prefix . "evp_videos";
+		return $this->database()->prefix . 'evp_videos';
 	}
 
   	/**
-  	 * define the table schema
+  	 * Define the table schema
   	 *
   	 * @return string
   	 */
-	protected function schema(){
+	protected function schema() {
 
-		$table_name 		= $this->table_name();
-		$charset_collate 	= $this->database()->get_charset_collate();
+		$table_name = $this->table_name();
+		$charset_collate = $this->database()->get_charset_collate();
 
-		// schema
+		// schema.
 		return "CREATE TABLE {$table_name} (
 			ID bigint(20) unsigned NOT NULL auto_increment,
 			post_id bigint(20) unsigned NOT NULL default '0',
 			user_id bigint(20) unsigned NOT NULL DEFAULT '0',
 			campaign_id bigint(20) unsigned NOT NULL DEFAULT '0',
 			video_id varchar(30),
+			video_views bigint(20) unsigned NOT NULL DEFAULT '0',
 			channel varchar(50),
 			channel_title varchar(200),
 			created datetime NOT NULL default '0000-00-00 00:00:00',
@@ -120,44 +122,40 @@ final class VideosTable extends WPDb
  	}
 
   	/**
-  	 * create the table
+  	 * Create the table
   	 *
   	 * @return void
   	 */
-	public static function create(){
+	public static function create() {
 		/**
-		 * inititate and create the table
+		 * Inititate and create the table
 		 */
-		(new VideosTable)->new_table();
+		( new VideosTable() )->new_table();
 	}
 
 	/**
-	 * insert_data()
+	 * Insert Data
 	 *
-	 * insert new video item into the table
+	 * Insert new video item into the table
 	 *
-	 * @param null $tablename
-	 * @param array $columns array of data to update
-	 * @return  int   the id of the inserted
+	 * @param array $columns array of data to update.
+	 * @return int the id of the inserted
 	 * @link https://developer.wordpress.org/reference/classes/wpdb/insert/
 	 */
-	public function insert_data( $columns = array() ){
+	public function insert_data( $columns = array() ) {
 
-		// Table Name
+		// Set the Table Name.
 		$table = $this->table_name();
 
-		/**
-		 * build the data array
-		 * @var array
-		 */
+		// Build the data array.
 		$defualts = array(
-			'post_id' 		=> 0,
-			'user_id' 		=> 0,
-			'campaign_id' 	=> 0,
-			'video_id' 		=> null,
-			'channel' 		=> null,
+			'post_id'       => 0,
+			'user_id'       => 0,
+			'campaign_id'   => 0,
+			'video_id'      => null,
+			'channel'       => null,
 			'channel_title' => null,
-			'created' 		=> current_time( 'mysql' ),
+			'created'       => current_time( 'mysql' ),
 		);
 		$data = wp_parse_args( $columns, $defualts );
 
@@ -176,7 +174,8 @@ final class VideosTable extends WPDb
 	 * @return bool
 	 */
 	public static function video_exists( $id = null ) {
-		$videos = GetData::results( 'video_id' );
+
+		$videos = ( new GetData() )->distinct_results( 'video_id' );
 
 		if ( ! is_array( $videos ) ) {
 			return false;

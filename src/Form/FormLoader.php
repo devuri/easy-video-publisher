@@ -12,15 +12,15 @@ class FormLoader
   	 * @param array $css
   	 * @return void
   	 */
-	public static function loading($name = 'update-loader', $css = array()){
+	public static function loading( $name = 'update-loader', $css = array() ) {
 
 		/**
 		 * make the prongs (12)
 		 */
 		$prong = '<div class="prong"><div class="inner"></div></div>';
-		echo '<div class="loading '.$name.' hidden">';
+		echo '<div class="loading ' . $name . ' hidden">';
 		echo '<div class="loader">';
-			for ($i=0; $i <= 12 ; $i++) {
+			for ( $i = 0; $i <= 12; $i++) {
 				echo $prong;
 			}
 		echo '</div>';
@@ -28,12 +28,13 @@ class FormLoader
 	}
 
   	/**
-  	 * css for the loader
+  	 * CSS for the loader
   	 *
   	 * @param  array  $css
   	 * @return void
   	 */
-	public static function css_style( $css = array() ){	?><style media="screen">
+	public static function css_style( $css = array() ) {	?>
+		<style media="screen">
 		.loading {
 			padding: <?php echo $css['padding']; ?>;
 			padding-bottom: <?php echo $css['padding-bottom']; ?>;
@@ -117,6 +118,7 @@ class FormLoader
 			transform: rotate(360deg);
 		}
 		}
-		</style><?php
+		</style>
+	<?php
 	}
 }
