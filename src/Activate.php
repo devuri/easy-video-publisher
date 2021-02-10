@@ -14,7 +14,7 @@ class Activate
 	 *
 	 * @param string $option the option name.
 	 */
-	public static function make_option( $option = null ) : bool {
+	public static function make_option( $option = null ) {
 
 		if ( is_null( $option ) ) {
 			return false;
