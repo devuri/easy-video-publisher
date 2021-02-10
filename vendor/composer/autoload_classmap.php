@@ -13,6 +13,7 @@ return array(
     'Carbon\\Laravel\\ServiceProvider' => $vendorDir . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
     'Carbon\\Translator' => $vendorDir . '/nesbot/carbon/src/Carbon/Translator.php',
     'Carbon\\Upgrade' => $vendorDir . '/nesbot/carbon/src/Carbon/Upgrade.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'JsonSerializable' => $vendorDir . '/nesbot/carbon/src/JsonSerializable.php',
     'Madcoda\\Youtube\\Constants' => $vendorDir . '/madcoda/php-youtube-api/src/Constants.php',
     'Madcoda\\Youtube\\Facades\\Youtube' => $vendorDir . '/madcoda/php-youtube-api/src/Facades/Youtube.php',

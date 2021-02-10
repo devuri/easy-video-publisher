@@ -81,6 +81,7 @@ class ComposerStaticInite49e946abfb4b37124808c30d3cfe0bc
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\Upgrade' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Upgrade.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
         'Madcoda\\Youtube\\Constants' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/Constants.php',
         'Madcoda\\Youtube\\Facades\\Youtube' => __DIR__ . '/..' . '/madcoda/php-youtube-api/src/Facades/Youtube.php',
