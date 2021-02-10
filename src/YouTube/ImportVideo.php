@@ -32,7 +32,7 @@ final class ImportVideo
 	/**
 	 * Add_video import and post channel videos
 	 */
-	private function video_args() {
+	private function video_args() : array {
 
 		/**
 		 * Set args to override $default

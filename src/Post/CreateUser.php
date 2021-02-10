@@ -10,7 +10,7 @@ class CreateUser
 	 *
 	 * @return int the author id
 	 */
-	public static function evp_author() {
+	public static function evp_author() : int {
 
 		$evp_author = get_option( 'evp_author', false );
 
