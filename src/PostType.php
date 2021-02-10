@@ -8,7 +8,7 @@ class PostType
 	 *
 	 * @var array
 	 */
-    public static function post_types() {
+    public static function post_types() : array {
 
         $pt_args = array(
             'public' => true,

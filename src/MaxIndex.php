@@ -10,7 +10,7 @@ class MaxIndex
 	 *
 	 * @return int
 	 */
-	private static function api_keys_limit() {
+	private static function api_keys_limit() : int {
 		if ( defined( 'EVP_APIKEYS_LIMIT' ) ) {
 			return (int) EVP_APIKEYS_LIMIT;
 		} else {
@@ -24,7 +24,7 @@ class MaxIndex
 	 *
 	 * @return int
 	 */
-	private static function channels_limit() {
+	private static function channels_limit() : int {
 	    if ( defined( 'EVP_CHANNEL_LIMIT' ) ) {
 	    	return (int) EVP_CHANNEL_LIMIT;
 	    } else {
@@ -38,7 +38,7 @@ class MaxIndex
   	 * @param string $option the option.
   	 * @return bool
   	 */
-	public static function api_key( $option ) {
+	public static function api_key( $option ) : bool {
 		$count = count( $option );
 		if ( $count >= self::api_keys_limit() ) {
 			return true;
@@ -53,7 +53,7 @@ class MaxIndex
 	 * @param string $option the option.
 	 * @return bool
 	 */
-	public static function channels( $option ) {
+	public static function channels( $option ) : bool {
 		$count = count( $option );
 		if ( $count >= self::channels_limit() ) {
 			return true;

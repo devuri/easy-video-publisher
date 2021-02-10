@@ -38,7 +38,7 @@ class Plugin
   	 *
   	 * @return void
   	 */
-	public function admin_pages() {
+	public function admin_pages() : void {
 		if ( is_admin() ) {
 			VideoPublisherAdmin::init();
 		}
@@ -54,7 +54,7 @@ class Plugin
 	 * @return void
 	 * @link https://github.com/deliciousbrains/wp-queue
 	 */
-	public function queue() {
+	public function queue() : void {
 		wp_queue()->cron( $this->retry );
 	}
 

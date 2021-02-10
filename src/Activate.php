@@ -13,12 +13,11 @@ class Activate
 	 * in case the user is just debuging stuff.
 	 *
 	 * @param string $option the option name.
-	 * @return false|void
 	 */
-	public static function make_option( $option = null ) {
+	public static function make_option( $option = null ) : bool {
 
 		if ( is_null( $option ) ) {
-			return 0;
+			return false;
 		}
 
 		if ( get_option( $option, false ) === false ) {
@@ -34,7 +33,7 @@ class Activate
 	 * @return false|void
 	 * @link https://github.com/deliciousbrains/wp-queue
 	 */
-	public static function create_queue_tables() {
+	public static function create_queue_tables() : void {
 		wp_queue_install_tables();
 	}
 
@@ -43,7 +42,7 @@ class Activate
 	 *
 	 * @return void
 	 */
-	public static function setup() {
+	public static function setup() : void {
 
 		self::make_option( 'evp_youtube_api' );
 
