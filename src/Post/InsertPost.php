@@ -107,9 +107,15 @@ class InsertPost
 
 		if ( null !== $medialink ) {
 
+			// optional use category as hashtags in title.
+			if ( true === get_option( 'evp_hashtag_in_title', false ) ) {
+				$hashtags = self::hashtags( $args['hashtags'] );
+			} else {
+				$hashtags = '';
+			}
+
 			// setup info.
 			$title         = $args['title'];
-			$hashtags      = self::hashtags( $args['hashtags'] );
 			$thumbnail     = $args['thumbnail'];
 			$embed         = $args['embed'];
 			$description   = $args['description'];
