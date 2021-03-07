@@ -14,8 +14,8 @@
  * Version:           4.0.6
  * Requires at least: 3.4
  * Requires PHP:      7.2.5
- * Author:            SwitchWebdev.com
- * Author URI:        https://switchwebdev.com
+ * Author:            Uriel Wilson
+ * Author URI:        https://urielwilson.com
  * Text Domain:       easy-video-publisher
  * Domain Path:       languages
  * License:           GPLv2
