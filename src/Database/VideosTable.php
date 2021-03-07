@@ -18,7 +18,7 @@ final class VideosTable extends WPDb
 	public function __construct() {
 
 		if ( false === get_option( 'evp_version', false ) ) {
-			update_option( 'evp_version', '0.0.1' );
+			update_option( 'evp_version', '3.5.6' );
 		}
 
 		$this->version = get_option( 'evp_version', false );
