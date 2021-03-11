@@ -3,7 +3,7 @@ Contributors: icelayer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6D6W2KXB88NKE
 Tags: youtube, youtube channel, YouTube embed, channel, post, thumbnail
 Requires at least: 4.0
-Tested up to: 5.5
+Tested up to: 5.7
 Stable tag: 4.0.8
 Requires PHP: 7.2.5
 License: GPLv2 or later
